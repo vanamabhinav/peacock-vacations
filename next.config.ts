@@ -1,7 +1,78 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  webpack(config) {
+    const fileLoaderRule = config.module.rules.find(
+      (rule: { test: { test: (arg0: string) => any } } | null) =>
+        typeof rule === "object" &&
+        rule !== null &&
+        "test" in rule &&
+        rule.test instanceof RegExp &&
+        rule.test.test(".svg")
+    ) as any;
+
+    if (fileLoaderRule) {
+      fileLoaderRule.exclude = /\.svg$/;
+    }
+
+    config.module.rules.push({
+      test: /\.svg$/,
+      include: path.resolve(__dirname, "src/icons"),
+      issuer: /\.[jt]sx?$/,
+      use: [
+        {
+          loader: "@svgr/webpack",
+          options: {
+            svgo: true,
+            svgoConfig: {
+              plugins: [
+                { name: "removeViewBox", active: false },
+                {
+                  name: "removeAttrs",
+                  params: {
+                    attrs: "(fill|stroke)",
+                  },
+                },
+              ],
+            },
+            titleProp: true,
+            ref: true,
+          },
+        },
+      ],
+    });
+
+    return config;
+  },
+  turbopack: {
+    rules: {
+      "src/icons/*.svg": {
+        loaders: [
+          {
+            loader: "@svgr/webpack",
+            options: {
+              svgo: true,
+              svgoConfig: {
+                plugins: [
+                  { name: "removeViewBox", active: false },
+                  {
+                    name: "removeAttrs",
+                    params: {
+                      attrs: "(fill|stroke)",
+                    },
+                  },
+                ],
+              },
+              titleProp: true,
+              ref: true,
+            },
+          },
+        ],
+        as: "*.js",
+      },
+    },
+  },
 };
 
 export default nextConfig;
