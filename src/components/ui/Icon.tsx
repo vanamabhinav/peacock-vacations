@@ -22,7 +22,7 @@ export function Icon({
           fill="currentColor"
           className={cn("inline self-center w-[1em] h-[1em]", className)}
         >
-          <use href={`./icons/sprite.svg#${name}`} />
+          <use href={`/icons/sprite.svg#${name}`} />
         </svg>
         <span
           className={cn(
@@ -41,7 +41,7 @@ export function Icon({
       fill="currentColor"
       className={cn("inline self-center w-[1em] h-[1em]", className)}
     >
-      <use href={`./icons/sprite.svg#${name}`} />
+      <use href={`/icons/sprite.svg#${name}`} />
     </svg>
   );
 }

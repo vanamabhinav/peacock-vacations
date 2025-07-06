@@ -22,29 +22,29 @@ function DestinationSelection({
   return (
     <div
       className={twMerge(
-        "gap-5 grid grid-cols-2 bg-white px-20 py-10 rounded-[20px] divide-x-[1px] divide-alto w-full h-[18.75rem]",
+        "gap-5 grid grid-cols-2 bg-white px-20 py-10 rounded-[20px] divide-x divide-alto w-full h-[18.75rem]",
         className
       )}
     >
       <div className="col-span-1">
         <div className="flex flex-col gap-9">
           <h3 className="font-black text-xl">Explore By Month</h3>
-          <div className="flex-1 gap-2 gap-x-3 gap-y-5 grid grid-cols-3 grid-rows-4">
+          <div className="flex-1 gap-x-3 gap-y-5 grid grid-cols-3 grid-rows-4">
             {months.map((month, index) => (
               <div
                 key={month}
-                className="group flex items-center gap-[15px]"
+                className="group flex items-center gap-4"
                 onClick={() => handleSelection(month)}
               >
-                <div className="flex justify-start items-center gap-2 h-6 font-medium group-hover:text-bigstone text-lg transition-colors cursor-pointer">
+                <div className="flex items-center gap-2 h-6 font-medium group-hover:text-bigstone text-lg transition-colors cursor-pointer">
                   <DateUI
                     number={index + 1}
                     className="w-6 h-5 group-hover:text-bigstone"
-                  />{" "}
+                  />
                   {month}
                 </div>
                 <Icon
-                  name="homepage/up-arrow"
+                  name="customize/up-arrow"
                   width={13}
                   height={11}
                   fill="#1A3642"
@@ -58,23 +58,23 @@ function DestinationSelection({
       <div className="col-span-1">
         <div className="flex flex-col gap-9">
           <h3 className="font-black text-xl">Popular By Region</h3>
-          <div className="flex-1 gap-2 gap-x-3 gap-y-5 grid grid-cols-3 grid-rows-4">
+          <div className="flex-1 gap-x-3 gap-y-5 grid grid-cols-3 grid-rows-4">
             {regions.map((region) => (
               <div
                 key={region}
-                className="group flex items-center gap-[15px]"
+                className="group flex items-center gap-4"
                 onClick={() => handleSelection(region)}
               >
-                <div className="flex justify-start items-center gap-2 h-6 font-medium hover:text-bigstone text-lg transition-colors cursor-pointer">
+                <div className="flex items-center gap-2 h-6 font-medium hover:text-bigstone text-lg transition-colors cursor-pointer">
                   <RegionIcon
                     region={region}
-                    className="w-5 h-5"
-                    fill="currentColor"
-                  />{" "}
+                    className="w-5 h-5 text-bigstone"
+                    fill="#1a3642"
+                  />
                   {region}
                 </div>
                 <Icon
-                  name="homepage/up-arrow"
+                  name="customize/up-arrow"
                   width={13}
                   height={11}
                   fill="#1A3642"

@@ -6,6 +6,7 @@ import DestinationSelection from "@/components/selection/DestinationSelection";
 import { Icon } from "@/components/ui/Icon";
 import { DestinationsData } from "@/types";
 import { regions } from "@/lib/constants";
+import RegionIcon, { RegionType } from "../ui/Region";
 
 interface PopularDestinationsClientProps {
   initialData: DestinationsData;
@@ -80,11 +81,11 @@ export default function PopularDestinationsClient({
     initialData.january;
 
   return (
-    <section className="flex justify-center bg-bridalHealth p-16">
-      <div className="flex flex-col justify-center gap-2 w-[72rem]">
-        <div className="flex items-start w-full h-fit">
+    <section className="bg-bridalHealth p-16">
+      <div className="flex flex-col gap-2 mx-auto w-[72rem]">
+        <div className="flex items-start w-full">
           <div className="flex flex-col gap-2">
-            <h2 className="flex items-center gap-2 font-black text-bigstone text-4xl leading-none tracking-normal">
+            <h2 className="flex items-center gap-2 font-black text-bigstone text-4xl leading-none">
               Popular Destinations in{" "}
               <div
                 ref={selectionRef}
@@ -92,22 +93,30 @@ export default function PopularDestinationsClient({
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                <span className="group flex gap-2 underline cursor-pointer">
+                <span className="flex gap-2 underline cursor-pointer">
                   {isSelectionVisible
                     ? "Month / Region "
                     : currentSelectionText}
+                  {isRegion() && !isSelectionVisible && (
+                    <RegionIcon
+                      region={currentSelectionText as RegionType}
+                      height={36}
+                      width={40}
+                      fill="#345B63"
+                    />
+                  )}
                   <Icon
-                    name="homepage/right-arrow"
+                    name="customize/right-arrow"
                     width={20}
                     height={20}
-                    className={`ml-1 w-4 transform transition-transform duration-300 ${
+                    className={`ml-1 w-4 transition-transform duration-300 ${
                       isSelectionVisible ? "-rotate-90" : "rotate-90"
                     } origin-center`}
                   />
                 </span>
               </div>
             </h2>
-            <p className="font-normal text-scorpion text-xl">
+            <p className="text-scorpion text-xl">
               Discover the top places to visit{" "}
               {isRegion() ? "in this region" : "this month"}
             </p>
@@ -117,7 +126,7 @@ export default function PopularDestinationsClient({
         <div className="relative mt-10">
           <div
             ref={selectionBoxRef}
-            className={`top-0 left-0 z-50 absolute w-full transform transition-all duration-300 ease-in-out ${
+            className={`top-0 left-0 z-50 absolute w-full transition-all duration-300 ease-in-out ${
               isSelectionVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 -translate-y-4 pointer-events-none"

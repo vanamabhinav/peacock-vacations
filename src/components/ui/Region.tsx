@@ -32,7 +32,6 @@ interface RegionIconProps extends Omit<SVGProps<SVGSVGElement>, "fill"> {
 
 export default function RegionIcon({
   region,
-  fill,
   width,
   height,
   className,
@@ -42,8 +41,7 @@ export default function RegionIcon({
 
   return (
     <Icon
-      name={`homepage/${mappedRegion}`}
-      fill={fill ?? "currentColor"}
+      name={`customize/${mappedRegion}`}
       width={width ?? 20}
       height={height ?? 22}
       className={className}
