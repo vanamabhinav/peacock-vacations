@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 import path from "path";
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [new URL("https://picsum.photos/**")],
+  },
   webpack(config) {
     const fileLoaderRule = config.module.rules.find(
       (rule: { test: { test: (arg0: string) => any } } | null) =>

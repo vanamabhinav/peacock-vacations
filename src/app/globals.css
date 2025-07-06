@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+@theme {
+  --color-bigstone: oklch(31.65% 0.04 227.9);
+  --color-silverchalice: #a1a1a1;
+  --color-alto: #d1d1d1;
+  --color-tealyellow: #ffbe67;
+  --color-twilightBlue: #f1fbff;
+  --color-william: #345b63;
+  --color-scorpion: #606060;
+  --color-gray: #919191;
+  --color-bridalHealth: #fff8ef;
+  --color-karry: #ffecd4;
+  --color-astra: #fbe6c1;
+  --color-quincy: #614831;
+  --color-sandybrown: #f1aa4c;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

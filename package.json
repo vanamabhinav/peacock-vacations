@@ -7,7 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "svg:sprite": "node scripts/build-sprite.js",
     "build:icons": "npx tsx ./build-icons.mts"
   },
   "dependencies": {

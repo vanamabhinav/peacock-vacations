@@ -125,6 +125,27 @@ async function generateSvgSprite({
       svg.removeAttribute("width");
       svg.removeAttribute("height");
 
+      // Convert fill and stroke to currentColor for styleable icons
+      const elementsWithFillOrStroke = svg.querySelectorAll("[fill], [stroke]");
+      elementsWithFillOrStroke.forEach((element) => {
+        const fillValue = element.getAttribute("fill");
+        const strokeValue = element.getAttribute("stroke");
+
+        // Convert fill to currentColor (except "none")
+        if (fillValue && fillValue !== "none" && fillValue !== "currentColor") {
+          element.setAttribute("fill", "currentColor");
+        }
+
+        // Convert stroke to currentColor (except "none")
+        if (
+          strokeValue &&
+          strokeValue !== "none" &&
+          strokeValue !== "currentColor"
+        ) {
+          element.setAttribute("stroke", "currentColor");
+        }
+      });
+
       return svg.toString().trim();
     })
   );

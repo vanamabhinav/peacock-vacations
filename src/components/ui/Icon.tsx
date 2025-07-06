@@ -16,17 +16,29 @@ export function Icon({
 }) {
   if (children) {
     return (
-      <span
-        className={cn(`inline-flex items-center font gap-1.5`, childClassName)}
-      >
-        <Icon name={name} className={className} {...props} />
-        {children}
+      <span className="inline-flex relative">
+        <svg
+          {...props}
+          fill="currentColor"
+          className={cn("inline self-center w-[1em] h-[1em]", className)}
+        >
+          <use href={`./icons/sprite.svg#${name}`} />
+        </svg>
+        <span
+          className={cn(
+            "absolute inset-0 flex items-center justify-center",
+            childClassName
+          )}
+        >
+          {children}
+        </span>
       </span>
     );
   }
   return (
     <svg
       {...props}
+      fill="currentColor"
       className={cn("inline self-center w-[1em] h-[1em]", className)}
     >
       <use href={`./icons/sprite.svg#${name}`} />

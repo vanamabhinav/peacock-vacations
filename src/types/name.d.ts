@@ -21,7 +21,6 @@ export type IconName =
 	| "homepage/northEastIndia"
 	| "homepage/northIndia"
 	| "homepage/northWestIndia"
-	| "homepage/peacock-vacations-logo"
 	| "homepage/piligrimage"
 	| "homepage/resort"
 	| "homepage/right-arrow"
