@@ -1,6 +1,7 @@
 import VideoCarousel from "@/components/slider/VideoCarousel";
 import PopularDestinations from "@/sections/PopularDestinations";
 import PopularPackages from "@/sections/PopularPackage";
+import TravelByTheme from "@/sections/TravelByTheme";
 import VisaMadeEasy from "@/sections/VisaMadeEasy";
 
 export default function Home() {
@@ -8,8 +9,9 @@ export default function Home() {
     <div>
       <VideoCarousel />
       <PopularDestinations />
-      <PopularPackages />
       <VisaMadeEasy />
+      <PopularPackages />
+      <TravelByTheme />
     </div>
   );
 }

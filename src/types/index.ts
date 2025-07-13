@@ -37,3 +37,22 @@ export type PackageData = {
     text: string;
   }>;
 };
+
+export type TravelThemeFilter = {
+  id: string;
+  label: string;
+  icon: string;
+};
+
+export type TravelThemeCard = {
+  title: string;
+  description: string;
+  bgColor: string;
+  imageUrl: string;
+  href: string;
+  ctaText: string;
+  categories?: string[];
+};
+export type TravelThemeData = {
+  themeData: TravelThemeCard[];
+};

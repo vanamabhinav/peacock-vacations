@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
-import GenericSlider, { SliderHandle } from "./GenericSlider";
+import SwiperSlider, { SwiperSliderHandle } from "./SwiperSlider";
 import { Icon } from "../ui/Icon";
 
 interface TravelPackageSliderProps {
@@ -11,7 +11,7 @@ interface TravelPackageSliderProps {
 export default function TravelPackageSlider({
   children,
 }: TravelPackageSliderProps) {
-  const sliderRef = useRef<SliderHandle>(null);
+  const sliderRef = useRef<SwiperSliderHandle>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
@@ -64,12 +64,13 @@ export default function TravelPackageSlider({
           </button>
         </div>
       </div>
-      <GenericSlider
+      <SwiperSlider
         ref={sliderRef}
+        spaceBetween={25}
         onScrollStateChange={handleScrollStateChange}
       >
         {children}
-      </GenericSlider>
+      </SwiperSlider>
     </section>
   );
 }

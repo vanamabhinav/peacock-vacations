@@ -18,6 +18,8 @@ html {
   --color-astra: #fbe6c1;
   --color-quincy: #614831;
   --color-sandybrown: #f1aa4c;
+  --color-botticelli: #d3e5ec;
+  --color-catSkillWhite: #f0f6f8;
 }
 
 .scrollbar-hide::-webkit-scrollbar {

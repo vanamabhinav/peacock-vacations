@@ -10,7 +10,7 @@ interface VideoProps {
 }
 
 export interface VideoHandle {
-  play: () => void;
+  play: () => Promise<void>;
   pause: () => void;
 }
 
@@ -18,7 +18,12 @@ function Video({ muted, src, onVideoEnd, className, ref }: VideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useImperativeHandle(ref, () => ({
-    play: () => videoRef.current?.play(),
+    play: async () => {
+      if (videoRef.current) {
+        return videoRef.current.play();
+      }
+      return Promise.resolve();
+    },
     pause: () => videoRef.current?.pause(),
   }));
 
