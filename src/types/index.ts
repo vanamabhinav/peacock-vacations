@@ -18,3 +18,22 @@ export type DestinationsData = {
     cardText: CardText;
   };
 };
+
+export type PackageData = {
+  location: {
+    icon: string;
+    name: string;
+  };
+  image: string;
+  title: string;
+  description: string;
+  url: string;
+  pricing: {
+    original: string;
+    discounted: string;
+  };
+  includes: Array<{
+    icon: string;
+    text: string;
+  }>;
+};

@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Peacock Vacations",
   description: "Peacock Vacations - Your Gateway to Exotic Travel Experiences",
+  icons: {
+    icon: "/icons/peacock-vacations-logo.svg",
+  },
 };
 
 export default function RootLayout({
@@ -13,7 +16,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <link rel="icon" href="/icons/peacock-vacations-logo.svg" />
       <body>{children}</body>
     </html>
   );

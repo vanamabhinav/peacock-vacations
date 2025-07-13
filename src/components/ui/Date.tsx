@@ -9,7 +9,7 @@ interface DateUIProps {
 function DateUI({ className, number, size = 24 }: DateUIProps) {
   return (
     <Icon
-      name="homepage/dateTemplate"
+      name="customize/dateTemplate"
       width={size}
       height={size}
       className={className}

@@ -125,26 +125,34 @@ async function generateSvgSprite({
       svg.removeAttribute("width");
       svg.removeAttribute("height");
 
-      // Convert fill and stroke to currentColor for styleable icons
-      const elementsWithFillOrStroke = svg.querySelectorAll("[fill], [stroke]");
-      elementsWithFillOrStroke.forEach((element) => {
-        const fillValue = element.getAttribute("fill");
-        const strokeValue = element.getAttribute("stroke");
+      // Only convert fill/stroke to currentColor for icons in 'customize' folder
+      if (file.replace(/\\/g, "/").startsWith("customize/")) {
+        const elementsWithFillOrStroke =
+          svg.querySelectorAll("[fill], [stroke]");
+        elementsWithFillOrStroke.forEach((element) => {
+          const fillValue = element.getAttribute("fill");
+          const strokeValue = element.getAttribute("stroke");
 
-        // Convert fill to currentColor (except "none")
-        if (fillValue && fillValue !== "none" && fillValue !== "currentColor") {
-          element.setAttribute("fill", "currentColor");
-        }
+          // Convert fill to currentColor (except "none" and "currentColor")
+          if (
+            fillValue &&
+            fillValue !== "none" &&
+            fillValue !== "currentColor"
+          ) {
+            element.setAttribute("fill", "currentColor");
+          }
 
-        // Convert stroke to currentColor (except "none")
-        if (
-          strokeValue &&
-          strokeValue !== "none" &&
-          strokeValue !== "currentColor"
-        ) {
-          element.setAttribute("stroke", "currentColor");
-        }
-      });
+          // Convert stroke to currentColor (except "none" and "currentColor")
+          if (
+            strokeValue &&
+            strokeValue !== "none" &&
+            strokeValue !== "currentColor"
+          ) {
+            element.setAttribute("stroke", "currentColor");
+          }
+        });
+      }
+      // For homepage icons, keep original fill/stroke
 
       return svg.toString().trim();
     })

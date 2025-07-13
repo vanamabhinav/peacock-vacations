@@ -5,7 +5,7 @@ html {
 }
 
 @theme {
-  --color-bigstone: oklch(31.65% 0.04 227.9);
+  --color-bigstone: #1a3642;
   --color-silverchalice: #a1a1a1;
   --color-alto: #d1d1d1;
   --color-tealyellow: #ffbe67;
