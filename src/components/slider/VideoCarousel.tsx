@@ -23,7 +23,7 @@ export default function VideoCarousel() {
 
   useEffect(() => {
     videoRefs?.current[0]?.play();
-  });
+  }, []);
 
   // Handle Slide change
   const handleSlideChange = (swiper: SwiperType) => {
