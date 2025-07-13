@@ -139,7 +139,7 @@ export default function PopularDestinationsClient({
 
           <DestinationBentoGrid
             destinations={currentData.destinations}
-            cardText={currentData.cardText}
+            ctaCard={currentData.ctaCard}
           />
         </div>
       </div>

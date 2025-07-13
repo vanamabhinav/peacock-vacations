@@ -36,7 +36,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Winter Whispers",
         subtitle: "Snow-Clad Serenity, Festive Charm",
         lowertext: "Chill in the air, Warmth in the soul",
@@ -76,7 +76,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Spring Beginnings",
         subtitle: "Pleasant Weather, Cultural Celebrations",
         lowertext: "Festivals & Fairytales across the land",
@@ -116,7 +116,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Colorful Transitions",
         subtitle: "Spring Blooms, Festival Vibes",
         lowertext: "Awakening of colors across landscapes",
@@ -156,7 +156,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Spring Escapes",
         subtitle: "Nature Trails, Wildlife Encounters",
         lowertext: "Last chance before summer's embrace",
@@ -196,7 +196,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Summer Highlands",
         subtitle: "Hill Stations, Cool Retreats",
         lowertext: "Escape the heat in mountain paradise",
@@ -236,7 +236,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Monsoon Prelude",
         subtitle: "Mountain Adventures, Valley Explorations",
         lowertext: "Journey to the top of the world",
@@ -276,7 +276,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Monsoon Magic",
         subtitle: "Verdant Landscapes, Misty Mountains",
         lowertext: "Embrace the rains in nature's paradise",
@@ -316,7 +316,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Rain-Drenched Wonders",
         subtitle: "Lush Forests, Flowing Waterfalls",
         lowertext: "Monsoon glory at its peak",
@@ -356,7 +356,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Post-Monsoon Charm",
         subtitle: "Clear Skies, Green Landscapes",
         lowertext: "Perfect weather for explorers",
@@ -396,7 +396,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Festive Journeys",
         subtitle: "Cultural Celebrations, Divine Experiences",
         lowertext: "Experience India's vibrant traditions",
@@ -436,7 +436,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Winter Welcome",
         subtitle: "Deserts & Beaches, Cultural Fairs",
         lowertext: "Perfect weather for exploring India",
@@ -476,7 +476,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Year-End Wonders",
         subtitle: "Festive Celebrations, Snowy Retreats",
         lowertext: "Farewell the year in style",
@@ -518,7 +518,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Northern Frontiers",
         subtitle: "Mountains, Spirituality, Heritage",
         lowertext: "Where the Himalayas embrace the plains",
@@ -558,7 +558,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Southern Splendors",
         subtitle: "Beaches, Hills, Ancient Temples",
         lowertext: "Where traditions meet coastal beauty",
@@ -598,7 +598,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Eastern Mysteries",
         subtitle: "Tea Gardens, Mangroves, Ancient Culture",
         lowertext: "Where the sun rises on Indian soil",
@@ -638,7 +638,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Western Wonders",
         subtitle: "Deserts, Beaches, Royal Heritage",
         lowertext: "Where royal history meets modern dreams",
@@ -678,7 +678,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Northeastern Frontiers",
         subtitle: "Tribal Culture, Hidden Valleys, Living Bridges",
         lowertext: "The unexplored paradise of India",
@@ -718,7 +718,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Northwestern Frontiers",
         subtitle: "Mountains, Deserts, Spiritual Journeys",
         lowertext: "Where diversity meets serenity",
@@ -758,7 +758,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Southeastern Treasures",
         subtitle: "Ancient Temples, Coastal Beauty, Rich Culture",
         lowertext: "Where history whispers in stone temples",
@@ -798,7 +798,7 @@ export async function fetchDestinationsData(): Promise<DestinationsData> {
           url: "https://example.com/destination",
         },
       ],
-      cardText: {
+      ctaCard: {
         title: "Southwestern Gems",
         subtitle: "Backwaters, Beaches, Hill Stations",
         lowertext: "God's own country awaits your footsteps",

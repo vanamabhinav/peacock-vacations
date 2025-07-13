@@ -5,7 +5,7 @@ export type Destination = {
   url: string;
 };
 
-export type CardText = {
+export type CtaCard = {
   title: string;
   subtitle: string;
   lowertext: string;
@@ -15,7 +15,7 @@ export type CardText = {
 export type DestinationsData = {
   [key: string]: {
     destinations: Destination[];
-    cardText: CardText;
+    ctaCard: CtaCard;
   };
 };
 

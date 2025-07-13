@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Icon } from "@/components/ui/Icon";
 import { memo } from "react";
 import Link from "next/link";
-import { CardText, Destination } from "@/types";
+import { CtaCard, Destination } from "@/types";
 
 const sizes = [
   "col-span-4 row-span-6",
@@ -75,7 +75,7 @@ const DestinationCard = memo(
 DestinationCard.displayName = "DestinationCard";
 
 const CallToActionCard = memo(
-  ({ title, subtitle, lowertext, url }: CardText) => (
+  ({ title, subtitle, lowertext, url }: CtaCard) => (
     <div className="flex justify-between items-center col-span-4 row-span-2 bg-astra p-5 rounded-[18px] text-bigstone">
       <div>
         <h3 className="font-bold text-lg leading-none">{title}</h3>
@@ -101,10 +101,10 @@ CallToActionCard.displayName = "CallToActionCard";
 const DestinationBentoGrid = memo(
   ({
     destinations,
-    cardText,
+    ctaCard,
   }: {
     destinations: Destination[];
-    cardText: CardText;
+    ctaCard: CtaCard;
   }) => {
     return (
       <div className="gap-5 grid grid-cols-12 grid-rows-10 w-full h-[37.5rem]">
@@ -120,10 +120,10 @@ const DestinationBentoGrid = memo(
           />
         ))}
         <CallToActionCard
-          title={cardText.title}
-          subtitle={cardText.subtitle}
-          lowertext={cardText.lowertext}
-          url={cardText.url}
+          title={ctaCard.title}
+          subtitle={ctaCard.subtitle}
+          lowertext={ctaCard.lowertext}
+          url={ctaCard.url}
         />
       </div>
     );

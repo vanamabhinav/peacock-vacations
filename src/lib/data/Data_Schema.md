@@ -1,40 +1,48 @@
 Hero Section Data (HeroSlide[]):
+
 - An array of video slides.
 - Each slide contains:
-    - videoUrl: string
-    - title: string
-    - description: string
-    - ctaText: string
-    - ctaLink: string
+  - \_id (object reference id)
+  - videoUrl: string
+  - title: string
+  - description: string
+  - ctaText: string
+  - ctaLink: string
 
-Popular Destinations Section (Record<string, DestinationContent>):
-- Key: Month or Region (e.g., "January", "Europe")
+Popular Destinations Section :
+Destinations Data:
+
+- Key: Month or Region (e.g., "January", "North India")
 - Value (DestinationContent):
-    - destinations: Destination[]
-    - cardText: DestinationCard
+  - destinations: Destination[]
+  - ctaCard: CtaCard
 
 Destination (type):
+
 - title: string
 - subtitle: string
 - image: string
 - url: string
 
-DestinationCard (type):
+ctaCard (type):
+
 - title: string
 - subtitle: string
 - lowertext: string
 - url: string
 
 Travel Packages Section:
+
 - sectionTitle: string
 - sectionSubtitle: string
 - packages: TravelPackage[]
 
 TravelPackage (type):
-- location: { icon: string, name: string }
+
+- location: { icon: string[such as northIndia, southIndia etc], name: string }
 - image: string
 - title: string
 - description: string
 - url: string
 - pricing: { original: string, discounted: string }
-- includes: { icon: string, text: string }[]
+- includes: { icon: string[for icon showing], text: string }[]
