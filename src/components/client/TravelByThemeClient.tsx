@@ -6,30 +6,20 @@ import { Icon } from "../ui/Icon";
 import TravelThemeSelection from "../selection/TravelThemeSelection";
 import TravelByThemeCard from "../card/TravelByThemeCard";
 import SwiperSlider, { SwiperSliderHandle } from "../slider/SwiperSlider";
-import { TravelThemeData } from "@/types";
+import { ThemeType, TravelByThemeSectionData } from "@/types";
 
-export default function TravelByThemeClient({ themeData }: TravelThemeData) {
+export default function TravelByThemeClient(data: TravelByThemeSectionData) {
   const sliderRef = useRef<SwiperSliderHandle>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const [selectedThemes, setSelectedThemes] = useState<string[]>(["honeymoon"]);
-
-  const travelThemes = [
-    { id: "honeymoon", label: "Honeymoon", icon: "homepage/honeymoon" },
-    { id: "adventure", label: "Adventure", icon: "homepage/adventure" },
-    { id: "beach", label: "Beach", icon: "homepage/beach" },
-    { id: "luxury", label: "Luxury", icon: "homepage/luxury" },
-    { id: "pilgrimage", label: "Pilgrimage", icon: "homepage/piligrimage" },
-    { id: "solo", label: "Solo Travel", icon: "homepage/solo" },
-    { id: "resort", label: "Resort", icon: "homepage/resort" },
-  ];
+  const [selectedThemes, setSelectedThemes] = useState<ThemeType[]>([]);
 
   const handleScrollStateChange = (left: boolean, right: boolean) => {
     setCanScrollLeft(left);
     setCanScrollRight(right);
   };
 
-  const handleThemeSelectionChange = (newSelectedThemes: string[]) => {
+  const handleThemeSelectionChange = (newSelectedThemes: ThemeType[]) => {
     setSelectedThemes(newSelectedThemes);
     // Reset slider to beginning when themes change
     if (sliderRef.current) {
@@ -39,11 +29,15 @@ export default function TravelByThemeClient({ themeData }: TravelThemeData) {
     }
   };
 
-  // Filter theme data based on selected themes
-  const filteredThemeData = themeData.filter((theme) => {
-    const themeId = theme.href.split("/").pop() || "";
-    return selectedThemes.includes(themeId);
-  });
+  const packageData = data.packages;
+
+  // Filter theme data based on selected themes - check if any category matches
+  const filteredPackages =
+    selectedThemes.length === 0
+      ? packageData
+      : packageData.filter((pkg) =>
+          pkg.theme.some((theme) => selectedThemes.includes(theme))
+        );
 
   return (
     <section
@@ -53,11 +47,8 @@ export default function TravelByThemeClient({ themeData }: TravelThemeData) {
       {/* Header Section with Navigation Buttons */}
       <div className="flex justify-between items-center">
         <div className="flex flex-col gap-2">
-          <h2 className="font-bold text-william text-4xl">Travel by Theme</h2>
-          <p className="text-scorpion text-xl">
-            Handpicked travel experiences across India&apos;s most iconic routes
-            and destinations
-          </p>
+          <h2 className="font-bold text-william text-4xl">{data.heading}</h2>
+          <p className="text-scorpion text-xl">{data.subheading}</p>
         </div>
         {/* Navigation Buttons at header level - same as PopularPackages */}
         <div className="flex gap-4">
@@ -98,7 +89,7 @@ export default function TravelByThemeClient({ themeData }: TravelThemeData) {
         {/* Filter Section - 304px width */}
         <aside className="flex-shrink-0 w-[304px]" aria-label="Theme Filters">
           <TravelThemeSelection
-            travelThemes={travelThemes}
+            travelThemes={data.themes}
             selectedThemes={selectedThemes}
             onThemeChange={handleThemeSelectionChange}
           />
@@ -113,7 +104,7 @@ export default function TravelByThemeClient({ themeData }: TravelThemeData) {
             onScrollStateChange={handleScrollStateChange}
             aria-label="Travel theme packages slider"
           >
-            {filteredThemeData.map((theme, idx) => (
+            {filteredPackages.map((theme, idx) => (
               <article key={idx} className="min-w-max">
                 <TravelByThemeCard {...theme} />
               </article>

@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
         hostname: "www.psdstack.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        pathname: "/**",
+      },
     ],
   },
   webpack(config) {

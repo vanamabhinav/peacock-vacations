@@ -5,10 +5,14 @@ import SwiperSlider, { SwiperSliderHandle } from "./SwiperSlider";
 import { Icon } from "../ui/Icon";
 
 interface TravelPackageSliderProps {
+  heading: string;
+  subheading: string;
   children: ReactNode;
 }
 
 export default function TravelPackageSlider({
+  heading,
+  subheading,
   children,
 }: TravelPackageSliderProps) {
   const sliderRef = useRef<SwiperSliderHandle>(null);
@@ -27,10 +31,8 @@ export default function TravelPackageSlider({
     >
       <div className="flex justify-between items-center">
         <div className="flex flex-col gap-2">
-          <h2 className="font-bold text-william text-4xl">Popular Packages</h2>
-          <p className="text-scorpion text-xl">
-            Handpicked travel experiences across India
-          </p>
+          <h2 className="font-bold text-william text-4xl">{heading}</h2>
+          <p className="text-scorpion text-xl">{subheading}</p>
         </div>
         <div className="flex gap-4">
           <button

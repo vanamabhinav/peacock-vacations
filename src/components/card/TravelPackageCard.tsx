@@ -1,19 +1,24 @@
 import { PackageData } from "@/types";
 import Link from "next/link";
-import { Icon, IconName } from "../ui/Icon";
+import { Icon } from "../ui/Icon";
 import Image from "next/image";
+import { getInclusionIcon, getRegionIcon } from "@/lib/utils/iconMapper";
 
-interface TravelPackageCardProps {
-  packageData: PackageData;
-}
-
-function TravelPackageCard({ packageData }: TravelPackageCardProps) {
-  const { location, image, title, description, pricing, includes, url } =
-    packageData;
+function TravelPackageCard({
+  region,
+  heading,
+  subheading,
+  currency,
+  originalPrice,
+  discountedPrice,
+  inclusions,
+  image,
+  url,
+}: PackageData) {
   return (
     <article
       className="w-fit h-fit cursor-pointer"
-      aria-label={`Travel package: ${title}`}
+      aria-label={`Travel package: ${heading}`}
     >
       <div className="group relative w-[300px] h-116">
         {/* Hover overlay */}
@@ -21,7 +26,7 @@ function TravelPackageCard({ packageData }: TravelPackageCardProps) {
           <Link
             href={url}
             className="bottom-2.5 absolute flex justify-center items-center gap-2.5 w-full h-fit text-white hover:cursor-pointer"
-            aria-label={`View package: ${title}`}
+            aria-label={`View package: ${heading}`}
             tabIndex={0}
             role="button"
           >
@@ -36,18 +41,18 @@ function TravelPackageCard({ packageData }: TravelPackageCardProps) {
             {/* Location header */}
             <header className="flex flex-col items-center gap-2.5 w-full">
               <div className="flex items-center gap-1.5">
-                <Icon name={`customize/westIndia`} className="w-[18px] h-5" />
-                <h3 className="font-semibold text-base">{location.name}</h3>
+                <Icon name={getRegionIcon(region)} className="w-[18px] h-5" />
+                <h3 className="font-semibold text-base">{region}</h3>
               </div>
 
               {/* Featured image */}
               <figure className="relative rounded-[1.25rem] w-full h-50 overflow-hidden">
                 <figcaption className="z-20 absolute flex flex-col gap-[5px] px-3 py-2.5 w-full">
                   <h2 className="h-14 font-bold text-[32px] text-white leading-[86%] card-title">
-                    {title}
+                    {heading}
                   </h2>
                   <p className="h-14 font-semibold text-[12px] text-tealyellow group-hover:text-white italic transition-all duration-300 card-description">
-                    {description}
+                    {subheading}
                   </p>
                 </figcaption>
 
@@ -55,7 +60,7 @@ function TravelPackageCard({ packageData }: TravelPackageCardProps) {
 
                 <Image
                   src={image}
-                  alt={title}
+                  alt={heading}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 300px"
                   className="absolute inset-0 w-full h-full object-cover"
@@ -68,11 +73,14 @@ function TravelPackageCard({ packageData }: TravelPackageCardProps) {
             <div className="flex justify-between p-1 w-full">
               <div className="flex items-center gap-1">
                 <span className="font-bold text-normal">Starts From</span>
-                <s className="font-normal text-sm">{pricing.original}</s>
+                <s className="font-normal text-sm">
+                  {currency === "INR" ? "₹" : "$"}
+                  {originalPrice}
+                </s>
               </div>
               <div>
                 <strong className="font-semibold text-xl italic">
-                  {pricing.discounted}
+                  @{discountedPrice}
                 </strong>
               </div>
             </div>
@@ -83,13 +91,13 @@ function TravelPackageCard({ packageData }: TravelPackageCardProps) {
             <section className="flex flex-col flex-1 gap-0 w-full">
               <h4 className="font-extrabold italic">Includes</h4>
               <ul className="flex flex-col gap-0 opacity-70 px-4 text-sm">
-                {includes.slice(0, 3).map((item, index) => (
+                {inclusions.slice(0, 3).map((item, index) => (
                   <li key={index} className="flex items-center gap-1.5">
-                    <Icon name={`homepage/${item.icon}` as IconName} />
-                    <span>{item.text}</span>
+                    <Icon name={getInclusionIcon(item)} />
+                    <span>{item}</span>
                   </li>
                 ))}
-                {includes.length >= 3 && (
+                {inclusions.length >= 3 && (
                   <li className="flex gap-1.5 ml-5">
                     <span>more...</span>
                   </li>

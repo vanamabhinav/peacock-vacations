@@ -19,40 +19,89 @@ export type DestinationsData = {
   };
 };
 
-export type PackageData = {
-  location: {
-    icon: string;
-    name: string;
-  };
-  image: string;
+// New Data for HomePage CMS
+export type HeroSectionSlide = {
   title: string;
   description: string;
-  url: string;
-  pricing: {
-    original: string;
-    discounted: string;
-  };
-  includes: Array<{
-    icon: string;
-    text: string;
-  }>;
-};
-
-export type TravelThemeFilter = {
-  id: string;
-  label: string;
-  icon: string;
-};
-
-export type TravelThemeCard = {
-  title: string;
-  description: string;
-  bgColor: string;
-  imageUrl: string;
-  href: string;
   ctaText: string;
-  categories?: string[];
+  ctaLink: string;
+  videoUrl: string;
 };
-export type TravelThemeData = {
-  themeData: TravelThemeCard[];
+export type HeroSectionData = {
+  slides: HeroSectionSlide[];
+};
+
+export type PopularDestinationsSectionData = {
+  heading: string;
+  subheading: string;
+  data: DestinationsData;
+};
+
+export type VisaAssistanceSectionData = {
+  title: string;
+  description: string;
+  ctaText: string;
+  ctaLink: string;
+};
+export type RegionType =
+  | "North East India"
+  | "South East India"
+  | "North West India"
+  | "South West India"
+  | "North India"
+  | "South India"
+  | "East India"
+  | "West India";
+
+export type InclusionType = "Resort Stay" | "Airport Transfers" | "Breakfast";
+
+export type PackageData = {
+  region: RegionType;
+  heading: string;
+  subheading: string;
+  currency: "INR" | "USD";
+  originalPrice: number;
+  discountedPrice: number;
+  inclusions: InclusionType[];
+  image: string;
+  url: string;
+};
+
+export type PopularPackagesSectionData = {
+  heading: string;
+  subheading: string;
+  data: PackageData[];
+};
+
+export type ThemeType =
+  | "Honeymoon"
+  | "Adventure"
+  | "Beach"
+  | "Luxury"
+  | "Pilgrimage"
+  | "Solo Travel"
+  | "Resort";
+
+export type ThemePackage = {
+  title: string;
+  description: string;
+  image: string;
+  ctaText: string;
+  ctaLink: string;
+  theme: ThemeType[];
+};
+
+export type TravelByThemeSectionData = {
+  heading: string;
+  subheading: string;
+  themes: ThemeType[];
+  packages: ThemePackage[];
+};
+
+export type HomePageData = {
+  heroSectionData: HeroSectionData;
+  popularDestinationsSectionData: PopularDestinationsSectionData;
+  visaAssistanceSectionData: VisaAssistanceSectionData;
+  popularPackagesSectionData: PopularPackagesSectionData;
+  travelByThemeSectionData: TravelByThemeSectionData;
 };

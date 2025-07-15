@@ -1,24 +1,20 @@
+import { getThemeIcon, ThemeString } from "@/lib/utils/iconMapper";
 import { Icon } from "./Icon";
-import { type IconName } from "@/types/name";
 
 interface TravelThemeSelectionItemProps {
-  id: string;
-  label: string;
-  icon: string;
+  label: ThemeString;
   isSelected: boolean;
-  onToggle: (themeId: string) => void;
+  onToggle: (theme: ThemeString) => void;
 }
 
 function TravelThemeSelectionItem({
-  id,
   label,
-  icon,
   isSelected,
   onToggle,
 }: TravelThemeSelectionItemProps) {
   return (
     <button
-      onClick={() => onToggle(id)}
+      onClick={() => onToggle(label)}
       className={`flex justify-between items-center w-full px-4 py-3 border rounded-lg h-[50px] transition-all duration-200 cursor-pointer ${
         isSelected
           ? "bg-botticelli border-william text-william"
@@ -27,7 +23,7 @@ function TravelThemeSelectionItem({
     >
       <span className="font-normal text-lg leading-normal">{label}</span>
       <Icon
-        name={icon as IconName}
+        name={getThemeIcon(label)}
         className={`w-6 h-6 ${isSelected ? "text-william" : "text-bigstone"}`}
       />
     </button>

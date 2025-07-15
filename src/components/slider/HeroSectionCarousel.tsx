@@ -8,8 +8,9 @@ import HeroSectionSlide from "./HeroSectionSlide";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Icon } from "../ui/Icon";
 import { VideoHandle } from "../video/Video";
+import { HeroSectionData } from "@/types";
 
-export default function VideoCarousel() {
+export default function HeroSectionCarousel({ slides }: HeroSectionData) {
   const [isMuted, setIsMuted] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isReady, setIsReady] = useState(false);
@@ -131,45 +132,6 @@ export default function VideoCarousel() {
     };
   }, []);
 
-  const slides = [
-    {
-      id: "india-360",
-      videoUrl:
-        "https://www.incredibleindia.gov.in/content/dam/incredible-india/videos/home/India-360-v2.mp4",
-      posterUrl:
-        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=1080&fit=crop",
-      title: "Incredible India 360°",
-      description:
-        "Experience the diverse beauty of India from every angle. Discover stunning landscapes, rich culture, and unforgettable adventures.",
-      ctaText: "Explore India",
-      ctaLink: "/destinations/india",
-    },
-    {
-      id: "adventure-india",
-      videoUrl:
-        "https://www.incredibleindia.gov.in/content/dam/incredible-india/videos/home/Adventure.mp4",
-      posterUrl:
-        "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1920&h=1080&fit=crop",
-      title: "Adventure Awaits",
-      description:
-        "Embark on thrilling adventures across India's diverse terrains. From mountain peaks to river rapids, your next adventure starts here.",
-      ctaText: "Book Adventure",
-      ctaLink: "/destinations/adventure",
-    },
-    {
-      id: "nature-india",
-      videoUrl:
-        "https://www.incredibleindia.gov.in/content/dam/incredible-india/videos/home/Nature.mp4",
-      posterUrl:
-        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=1080&fit=crop",
-      title: "Nature's Paradise",
-      description:
-        "Immerse yourself in India's pristine natural beauty. From lush forests to serene lakes, discover untouched wilderness.",
-      ctaText: "Discover Nature",
-      ctaLink: "/destinations/nature",
-    },
-  ];
-
   return (
     <div className="relative">
       <Swiper
@@ -184,7 +146,7 @@ export default function VideoCarousel() {
         autoplay={false}
       >
         {slides.map((slide, index) => (
-          <SwiperSlide key={slide.id}>
+          <SwiperSlide key={index}>
             <HeroSectionSlide
               ref={(ref) => setVideoRef(ref, index)}
               {...slide}

@@ -1,18 +1,19 @@
-import { getDestinationsAction } from "@/lib/actions/destinations";
 import PopularDestinationsClient from "@/components/client/PopularDestinationsClient";
+import { PopularDestinationsSectionData } from "@/types";
 
-export default async function PopularDestinations() {
+export default async function PopularDestinations({
+  heading,
+  subheading,
+  data,
+}: PopularDestinationsSectionData) {
   const selectedMonth = "January";
-
-  // Fetch data on server side
-  const initialData = await getDestinationsAction();
 
   return (
     <PopularDestinationsClient
-      initialData={initialData}
-      initialMonth={
-        selectedMonth.charAt(0).toUpperCase() + selectedMonth.slice(1)
-      }
+      heading={heading}
+      subheading={subheading}
+      initialData={data}
+      initialMonth={selectedMonth}
     />
   );
 }
