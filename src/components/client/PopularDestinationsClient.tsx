@@ -106,6 +106,7 @@ export default function PopularDestinationsClient({
                       height={36}
                       width={40}
                       fill="#345B63"
+                      aria-hidden="true"
                     />
                   )}
                   <Icon
@@ -115,6 +116,7 @@ export default function PopularDestinationsClient({
                     className={`ml-1 w-4 transition-transform duration-300 ${
                       isSelectionVisible ? "-rotate-90" : "rotate-90"
                     } origin-center`}
+                    aria-hidden="true"
                   />
                 </span>
               </div>

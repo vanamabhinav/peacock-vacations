@@ -49,6 +49,7 @@ export default function TravelPackageSlider({
             <Icon
               name="customize/right-arrow"
               className="text-bigstone rotate-180"
+              aria-hidden="true"
             />
           </button>
           <button
@@ -62,7 +63,11 @@ export default function TravelPackageSlider({
             aria-label="Scroll Right"
             disabled={!canScrollRight}
           >
-            <Icon name="customize/right-arrow" className="text-bigstone" />
+            <Icon
+              name="customize/right-arrow"
+              className="text-bigstone"
+              aria-hidden="true"
+            />
           </button>
         </div>
       </div>

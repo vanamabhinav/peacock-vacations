@@ -29,9 +29,9 @@ function HeroSectionSlide(slide: HeroVideoSlide) {
       {/* Text content overlay */}
       <div className="absolute inset-0 flex items-center ml-8 sm:ml-16 max-w-xl lg:max-w-2xl pointer-events-auto">
         <div className="space-y-4">
-          <h2 className="drop-shadow-lg font-normal text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
+          <h1 className="drop-shadow-lg font-normal text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
             {slide.title}
-          </h2>
+          </h1>
           <p className="opacity-90 drop-shadow-lg max-w-lg text-white text-base sm:text-lg md:text-xl leading-relaxed">
             {slide.description}
           </p>

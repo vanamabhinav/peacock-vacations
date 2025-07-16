@@ -31,7 +31,11 @@ function TravelPackageCard({
             role="button"
           >
             <span>View Package</span>
-            <Icon name="customize/chevron" className="w-3 rotate-45" />
+            <Icon
+              name="customize/chevron"
+              className="w-3 rotate-45"
+              aria-hidden="true"
+            />
           </Link>
         </div>
 
@@ -41,16 +45,20 @@ function TravelPackageCard({
             {/* Location header */}
             <header className="flex flex-col items-center gap-2.5 w-full">
               <div className="flex items-center gap-1.5">
-                <Icon name={getRegionIcon(region)} className="w-[18px] h-5" />
-                <h3 className="font-semibold text-base">{region}</h3>
+                <Icon
+                  name={getRegionIcon(region)}
+                  className="w-[18px] h-5"
+                  aria-hidden="true"
+                />
+                <h4 className="font-semibold text-base">{region}</h4>
               </div>
 
               {/* Featured image */}
               <figure className="relative rounded-[1.25rem] w-full h-50 overflow-hidden">
                 <figcaption className="z-20 absolute flex flex-col gap-[5px] px-3 py-2.5 w-full">
-                  <h2 className="h-14 font-bold text-[32px] text-white leading-[86%] card-title">
+                  <h3 className="h-14 font-bold text-[32px] text-white leading-[86%] card-title">
                     {heading}
-                  </h2>
+                  </h3>
                   <p className="h-14 font-semibold text-[12px] text-tealyellow group-hover:text-white italic transition-all duration-300 card-description">
                     {subheading}
                   </p>
@@ -89,11 +97,11 @@ function TravelPackageCard({
 
             {/* Features section */}
             <section className="flex flex-col flex-1 gap-0 w-full">
-              <h4 className="font-extrabold italic">Includes</h4>
+              <h5 className="font-extrabold italic">Includes</h5>
               <ul className="flex flex-col gap-0 opacity-70 px-4 text-sm">
                 {inclusions.slice(0, 3).map((item, index) => (
                   <li key={index} className="flex items-center gap-1.5">
-                    <Icon name={getInclusionIcon(item)} />
+                    <Icon name={getInclusionIcon(item)} aria-hidden="true" />
                     <span>{item}</span>
                   </li>
                 ))}

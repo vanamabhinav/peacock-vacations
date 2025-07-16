@@ -25,6 +25,7 @@ function TravelThemeSelectionItem({
       <Icon
         name={getThemeIcon(label)}
         className={`w-6 h-6 ${isSelected ? "text-william" : "text-bigstone"}`}
+        aria-hidden="true"
       />
     </button>
   );

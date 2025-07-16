@@ -180,6 +180,7 @@ export default function HeroSectionCarousel({ slides }: HeroSectionData) {
         <Icon
           name={isMuted ? "customize/mute" : "customize/unmute"}
           className="drop-shadow-lg w-10 h-10 text-white"
+          aria-hidden="true"
         />
       </button>
     </div>

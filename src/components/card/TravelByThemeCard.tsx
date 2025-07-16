@@ -20,12 +20,12 @@ function TravelByThemeCard({
       /> */}
       <div className="bottom-0 z-10 absolute flex flex-col items-start gap-5 p-5 w-full text-white">
         <div className="flex flex-col gap-1">
-          <h3
+          <h4
             className="font-bold text-[26px] text-white leading-normal"
             itemProp="name"
           >
             {title}
-          </h3>
+          </h4>
           <p
             className="text-shadow-md font-normal text-white/50 leading-[1.035] tracking-tight"
             itemProp="description"
