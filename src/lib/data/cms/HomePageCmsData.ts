@@ -1267,9 +1267,108 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
         },
       ],
     },
+    whatMakesUsDifferentSectionData: {
+      heading: "What Makes Us Different?",
+      subheading:
+        "Trusted by thousands of travelers, we make travel safe, personalized, and unforgettable.",
+      ctaText: "Join Us",
+      ctaLink: "/join-us",
+      cards: [
+        {
+          title: "Authentic Indian Experiences",
+          description:
+            " We promote Indian tourism through immersive cultural journeys, taking you beyond typical destinations to explore the real heart of India —its traditions, people, and local lifestyles.",
+          icon: "india-icon",
+        },
+        {
+          title: "Curated by Locals",
+          description:
+            "Our experiences are designed by locals to give you an authentic taste of each destination.",
+          icon: "curated-locals",
+        },
+        {
+          title: "Trusted & Secure",
+          description:
+            "Every stay, guide, and activity is screened for quality, safety, and reliability.",
+          icon: "trusted",
+        },
+        {
+          title: "Always by Your Side",
+          description:
+            "From booking to travel, our support team is available anytime you need help.",
+          icon: "247-call",
+        },
+      ],
+    },
+    testimonialsSectionData: {
+      heading: "What Our Travellers say about us",
+      subheading: "Real stories from explorers who experienced India with us.",
+      testimonials: [
+        {
+          profileImage: "https://randomuser.me/api/portraits/men/81.jpg",
+          title: "Amazing Experience",
+          description:
+            "Had a wonderful time with Peacock Vacations. The service was exceptional and the destinations were breathtaking.",
+          rating: 5,
+          name: "John Smith",
+          location: "New York, USA",
+          images: [
+            "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=500&h=400&fit=crop&crop=center",
+            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&crop=center",
+            "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=300&h=200&fit=crop&crop=center",
+            "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&h=400&fit=crop&crop=center",
+            "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=400&h=300&fit=crop&crop=center",
+          ],
+        },
+        {
+          profileImage: "https://randomuser.me/api/portraits/women/44.jpg",
+          title: "Incredible Cultural Journey",
+          description:
+            "The cultural immersion was beyond my expectations. Every moment was carefully curated to showcase the real essence of India.",
+          rating: 4.8,
+          name: "Sarah Johnson",
+          location: "London, UK",
+          images: [
+            "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=500&h=400&fit=crop&crop=center",
+            "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=300&h=200&fit=crop&crop=center",
+            "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=200&fit=crop&crop=center",
+            "https://images.unsplash.com/photo-1524500704046-75c1b19ce0f8?w=600&h=400&fit=crop&crop=center",
+          ],
+        },
+        {
+          profileImage: "https://randomuser.me/api/portraits/men/23.jpg",
+          title: "Adventure of a Lifetime",
+          description:
+            "From the Himalayas to the beaches of Goa, every destination was perfectly planned. The guides were knowledgeable and friendly.",
+          rating: 4.9,
+          name: "Mike Chen",
+          occupation: "Photographer",
+          location: "Toronto, Canada",
+          images: [
+            "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=500&h=400&fit=crop&crop=center",
+            "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=300&h=200&fit=crop&crop=center",
+            "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=200&fit=crop&crop=center",
+            "https://images.unsplash.com/photo-1524500704046-75c1b19ce0f8?w=600&h=400&fit=crop&crop=center",
+          ],
+        },
+        {
+          profileImage: "https://randomuser.me/api/portraits/women/67.jpg",
+          title: "Luxury Meets Authenticity",
+          description:
+            "Perfect balance of luxury accommodation and authentic local experiences. The palace stays were absolutely magical.",
+          rating: 5,
+          name: "Emma Rodriguez",
+          location: "Madrid, Spain",
+          images: [
+            "https://images.unsplash.com/photo-1512841772335-3beb7d70b242?w=500&h=400&fit=crop&crop=center",
+            "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=200&fit=crop&crop=center",
+          ],
+        },
+      ],
+    },
   };
 
   return new Promise((resolve) => {
-    setTimeout(() => resolve(data), 100); // Reduced from 10 seconds to 100ms for development
+    resolve(data);
   });
 }

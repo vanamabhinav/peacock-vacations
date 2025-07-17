@@ -20,6 +20,12 @@ html {
   --color-sandybrown: #f1aa4c;
   --color-botticelli: #d3e5ec;
   --color-catSkillWhite: #f0f6f8;
+  --color-springWood: #f8f5f1;
+  --color-bitter: #8a8b7f;
+  --color-brandyPunch: #d68d2c;
+  --color-islandSplice: #fffaee;
+  --color-putty: #e8ce92;
+  --color-woodsmoke: #111518;
 }
 
 .scrollbar-hide::-webkit-scrollbar {

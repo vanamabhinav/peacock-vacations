@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "www.psdstack.com",
+        hostname: "randomuser.me",
         pathname: "/**",
       },
       {

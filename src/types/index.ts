@@ -98,10 +98,42 @@ export type TravelByThemeSectionData = {
   packages: ThemePackage[];
 };
 
+export type UspCardType = {
+  icon: string;
+  title: string;
+  description: string;
+};
+export type WhatMakesUsDifferentSectionData = {
+  heading: string;
+  subheading: string;
+  ctaText: string;
+  ctaLink: string;
+  cards: UspCardType[];
+};
+
+export type TestimonialCardData = {
+  profileImage: string;
+  title: string;
+  description: string;
+  rating: number;
+  name: string;
+  occupation?: string;
+  location: string;
+  images: string[];
+};
+
+export type TestimonialSectionData = {
+  heading: string;
+  subheading: string;
+  testimonials: TestimonialCardData[];
+};
+
 export type HomePageData = {
   heroSectionData: HeroSectionData;
   popularDestinationsSectionData: PopularDestinationsSectionData;
   visaAssistanceSectionData: VisaAssistanceSectionData;
   popularPackagesSectionData: PopularPackagesSectionData;
   travelByThemeSectionData: TravelByThemeSectionData;
+  whatMakesUsDifferentSectionData: WhatMakesUsDifferentSectionData;
+  testimonialsSectionData: TestimonialSectionData;
 };

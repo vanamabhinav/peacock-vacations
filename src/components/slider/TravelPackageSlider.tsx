@@ -38,7 +38,7 @@ export default function TravelPackageSlider({
           <button
             onClick={() => sliderRef.current?.scrollLeft()}
             className={twMerge(
-              "flex justify-center items-center border border-bigstone rounded-full w-10 h-10 transition-all duration-300",
+              "flex justify-center items-center border border-bigstone rounded-full focus:outline-none focus:ring-0 w-10 h-10 transition-all duration-300",
               canScrollLeft
                 ? "bg-bridalHealth hover:bg-karry cursor-pointer"
                 : "bg-bridalHealth/90 cursor-default"
@@ -55,7 +55,7 @@ export default function TravelPackageSlider({
           <button
             onClick={() => sliderRef.current?.scrollRight()}
             className={twMerge(
-              "flex justify-center items-center border border-bigstone rounded-full w-10 h-10 transition-all duration-300",
+              "flex justify-center items-center border border-bigstone rounded-full focus:outline-none focus:ring-0 w-10 h-10 transition-all duration-300",
               canScrollRight
                 ? "bg-bridalHealth hover:bg-karry cursor-pointer"
                 : "bg-bridalHealth/90 cursor-default"

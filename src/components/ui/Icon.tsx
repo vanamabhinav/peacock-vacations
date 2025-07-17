@@ -26,7 +26,10 @@ export function Icon({
         <svg
           {...accessibilityProps}
           fill="currentColor"
-          className={cn("inline self-center w-[1em] h-[1em]", className)}
+          className={cn(
+            "inline self-center w-[1em] h-[1em] pointer-events-none",
+            className
+          )}
         >
           <use href={`/icons/sprite.svg#${name}`} />
         </svg>
@@ -45,7 +48,10 @@ export function Icon({
     <svg
       {...accessibilityProps}
       fill="currentColor"
-      className={cn("inline self-center w-[1em] h-[1em]", className)}
+      className={cn(
+        "inline self-center w-[1em] h-[1em] pointer-events-none",
+        className
+      )}
     >
       <use href={`/icons/sprite.svg#${name}`} />
     </svg>

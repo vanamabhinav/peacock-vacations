@@ -42,7 +42,7 @@ export function getIconName(
     case "theme":
       return getThemeIcon(value as ThemeString);
     default:
-      return getGenericIcon();
+      return getGenericIcon(value);
   }
 }
 
@@ -88,10 +88,73 @@ export function getThemeIcon(theme: ThemeString): IconName {
   return themeMap[theme] || "homepage/adventure"; // fallback
 }
 
-// Generic fallback for unmatched strings - FIXED: removed unused parameter
-function getGenericIcon(): IconName {
-  // Return a safe default that exists in your IconName type
-  return "homepage/resort";
+// Generic fallback for unmatched strings - handles generic icon names
+function getGenericIcon(value?: string): IconName {
+  if (!value) {
+    // Return a safe default that exists in your IconName type
+    return "homepage/resort";
+  }
+
+  // If the value already contains a path (has '/'), use it as is
+  if (value.includes("/")) {
+    return value as IconName;
+  }
+
+  // Create list of available icon names from both directories
+  const customizeIcons = [
+    "247-call",
+    "chevron",
+    "chime",
+    "curated-locals",
+    "dateTemplate",
+    "eastIndia",
+    "facebook",
+    "heart",
+    "india-icon",
+    "instagram",
+    "mute",
+    "northEastIndia",
+    "northIndia",
+    "northWestIndia",
+    "right-arrow",
+    "search",
+    "see-all-icon",
+    "southEastIndia",
+    "southIndia",
+    "southWestIndia",
+    "star",
+    "trusted",
+    "twitter",
+    "unmute",
+    "up-arrow",
+    "westIndia",
+    "youtube",
+  ];
+
+  const homepageIcons = [
+    "adventure",
+    "airport",
+    "beach",
+    "breakfast",
+    "honeymoon",
+    "luxury",
+    "piligrimage",
+    "resort",
+    "solo",
+  ];
+
+  // Check if the icon exists in customize directory first
+  if (customizeIcons.includes(value)) {
+    return `customize/${value}` as IconName;
+  }
+
+  // Then check homepage directory
+  if (homepageIcons.includes(value)) {
+    return `homepage/${value}` as IconName;
+  }
+
+  // If not found in either, default to customize (most common)
+  return `customize/${value}` as IconName;
 }
 
 // Type guard functions
