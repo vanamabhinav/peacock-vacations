@@ -35,12 +35,14 @@ export default function RegionIcon({
   width,
   height,
   className,
+  ...props
 }: RegionIconProps): React.ReactElement | null {
   const mappedRegion = regionMap[region];
   if (!mappedRegion) return null;
 
   return (
     <Icon
+      {...props}
       name={`customize/${mappedRegion}`}
       width={width ?? 20}
       height={height ?? 22}

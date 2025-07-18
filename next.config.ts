@@ -3,7 +3,23 @@ import path from "path";
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [new URL("https://picsum.photos/**")],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "picsum.photos",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "randomuser.me",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        pathname: "/**",
+      },
+    ],
   },
   webpack(config) {
     const fileLoaderRule = config.module.rules.find(

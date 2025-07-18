@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Icon } from "@/components/ui/Icon";
 import { memo } from "react";
 import Link from "next/link";
-import { CardText, Destination } from "@/types";
+import { CtaCard, Destination } from "@/types";
 
 const sizes = [
   "col-span-4 row-span-6",
@@ -47,7 +47,7 @@ const DestinationCard = memo(
       />
 
       <div className="z-10 relative p-2">
-        <h3 className="font-semibold text-lg leading-none">{title}</h3>
+        <h4 className="font-semibold text-lg leading-none">{title}</h4>
         <p className="font-normal text-base italic">{subtitle}</p>
       </div>
 
@@ -56,7 +56,7 @@ const DestinationCard = memo(
         className="top-4 right-4 z-20 absolute flex justify-center items-center bg-black/14 hover:bg-black/6 border border-white rounded-full w-8 h-8 transition-colors cursor-pointer"
         aria-label={`View details for ${title}`}
       >
-        <Icon name="customize/chevron" className="w-4 h-4" />
+        <Icon name="customize/chevron" className="w-4 h-4" aria-hidden="true" />
       </Link>
 
       <div
@@ -75,10 +75,10 @@ const DestinationCard = memo(
 DestinationCard.displayName = "DestinationCard";
 
 const CallToActionCard = memo(
-  ({ title, subtitle, lowertext, url }: CardText) => (
+  ({ title, subtitle, lowertext, url }: CtaCard) => (
     <div className="flex justify-between items-center col-span-4 row-span-2 bg-astra p-5 rounded-[18px] text-bigstone">
       <div>
-        <h3 className="font-bold text-lg leading-none">{title}</h3>
+        <h4 className="font-bold text-lg leading-none">{title}</h4>
         <p className="font-semibold text-sm">{subtitle}</p>
         <p className="mt-1 font-normal text-quincy text-xs">{lowertext}</p>
       </div>
@@ -90,6 +90,7 @@ const CallToActionCard = memo(
         <Icon
           name="customize/chevron"
           className="w-6 h-4 text-bigstone rotate-45"
+          aria-hidden="true"
         />
       </Link>
     </div>
@@ -101,10 +102,10 @@ CallToActionCard.displayName = "CallToActionCard";
 const DestinationBentoGrid = memo(
   ({
     destinations,
-    cardText,
+    ctaCard,
   }: {
     destinations: Destination[];
-    cardText: CardText;
+    ctaCard: CtaCard;
   }) => {
     return (
       <div className="gap-5 grid grid-cols-12 grid-rows-10 w-full h-[37.5rem]">
@@ -120,10 +121,10 @@ const DestinationBentoGrid = memo(
           />
         ))}
         <CallToActionCard
-          title={cardText.title}
-          subtitle={cardText.subtitle}
-          lowertext={cardText.lowertext}
-          url={cardText.url}
+          title={ctaCard.title}
+          subtitle={ctaCard.subtitle}
+          lowertext={ctaCard.lowertext}
+          url={ctaCard.url}
         />
       </div>
     );

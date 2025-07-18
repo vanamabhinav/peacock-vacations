@@ -40,6 +40,7 @@ function DestinationSelection({
                   <DateUI
                     number={index + 1}
                     className="w-6 h-5 group-hover:text-bigstone"
+                    aria-hidden="true"
                   />
                   {month}
                 </div>
@@ -49,6 +50,7 @@ function DestinationSelection({
                   height={11}
                   fill="#1A3642"
                   className="opacity-0 group-hover:opacity-100 rotate-45 transition-all -translate-x-2 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 duration-300"
+                  aria-hidden="true"
                 />
               </div>
             ))}
@@ -70,6 +72,7 @@ function DestinationSelection({
                     region={region}
                     className="w-5 h-5 text-bigstone"
                     fill="#1a3642"
+                    aria-hidden="true"
                   />
                   {region}
                 </div>
@@ -79,6 +82,7 @@ function DestinationSelection({
                   height={11}
                   fill="#1A3642"
                   className="opacity-0 group-hover:opacity-100 rotate-45 transition-all -translate-x-2 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 duration-300"
+                  aria-hidden="true"
                 />
               </div>
             ))}

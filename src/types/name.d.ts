@@ -21,6 +21,7 @@ export type IconName =
 	| "customize/southEastIndia"
 	| "customize/southIndia"
 	| "customize/southWestIndia"
+	| "customize/star-half"
 	| "customize/star"
 	| "customize/trusted"
 	| "customize/twitter"

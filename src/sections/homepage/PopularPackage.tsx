@@ -1,15 +1,22 @@
 import TravelPackageSlider from "@/components/slider/TravelPackageSlider";
 import TravelPackageCard from "@/components/card/TravelPackageCard";
-import { getPackagesAction } from "@/lib/actions/packages";
+import { PackageData } from "@/types";
 
-async function PopularPackages() {
-  const packages = await getPackagesAction();
+async function PopularPackages({
+  heading,
+  subheading,
+  data,
+}: {
+  heading: string;
+  subheading: string;
+  data: PackageData[];
+}) {
   return (
     <div className="flex justify-center bg-twilightBlue p-16">
-      <TravelPackageSlider>
-        {packages.map((pkg, idx) => (
+      <TravelPackageSlider heading={heading} subheading={subheading}>
+        {data.map((pkg, idx) => (
           <div key={idx} className="min-w-max">
-            <TravelPackageCard packageData={pkg} />
+            <TravelPackageCard {...pkg} />
           </div>
         ))}
       </TravelPackageSlider>

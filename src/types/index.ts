@@ -5,7 +5,7 @@ export type Destination = {
   url: string;
 };
 
-export type CardText = {
+export type CtaCard = {
   title: string;
   subtitle: string;
   lowertext: string;
@@ -15,25 +15,125 @@ export type CardText = {
 export type DestinationsData = {
   [key: string]: {
     destinations: Destination[];
-    cardText: CardText;
+    ctaCard: CtaCard;
   };
 };
 
-export type PackageData = {
-  location: {
-    icon: string;
-    name: string;
-  };
-  image: string;
+// New Data for HomePage CMS
+export type HeroSectionSlide = {
   title: string;
   description: string;
+  ctaText: string;
+  ctaLink: string;
+  videoUrl: string;
+};
+export type HeroSectionData = {
+  slides: HeroSectionSlide[];
+};
+
+export type PopularDestinationsSectionData = {
+  heading: string;
+  subheading: string;
+  data: DestinationsData;
+};
+
+export type VisaAssistanceSectionData = {
+  title: string;
+  description: string;
+  ctaText: string;
+  ctaLink: string;
+};
+export type RegionType =
+  | "North East India"
+  | "South East India"
+  | "North West India"
+  | "South West India"
+  | "North India"
+  | "South India"
+  | "East India"
+  | "West India";
+
+export type InclusionType = "Resort Stay" | "Airport Transfers" | "Breakfast";
+
+export type PackageData = {
+  region: RegionType;
+  heading: string;
+  subheading: string;
+  currency: "INR" | "USD";
+  originalPrice: number;
+  discountedPrice: number;
+  inclusions: InclusionType[];
+  image: string;
   url: string;
-  pricing: {
-    original: string;
-    discounted: string;
-  };
-  includes: Array<{
-    icon: string;
-    text: string;
-  }>;
+};
+
+export type PopularPackagesSectionData = {
+  heading: string;
+  subheading: string;
+  data: PackageData[];
+};
+
+export type ThemeType =
+  | "Honeymoon"
+  | "Adventure"
+  | "Beach"
+  | "Luxury"
+  | "Pilgrimage"
+  | "Solo Travel"
+  | "Resort";
+
+export type ThemePackage = {
+  title: string;
+  description: string;
+  image: string;
+  ctaText: string;
+  ctaLink: string;
+  theme: ThemeType[];
+};
+
+export type TravelByThemeSectionData = {
+  heading: string;
+  subheading: string;
+  themes: ThemeType[];
+  packages: ThemePackage[];
+};
+
+export type UspCardType = {
+  icon: string;
+  title: string;
+  description: string;
+};
+export type WhatMakesUsDifferentSectionData = {
+  heading: string;
+  subheading: string;
+  ctaText: string;
+  ctaLink: string;
+  cards: UspCardType[];
+};
+
+export type TestimonialCardData = {
+  profileImage: string;
+  title: string;
+  description: string;
+  rating: number;
+  name: string;
+  occupation?: string;
+  location: string;
+  images: string[];
+};
+
+export type TestimonialSectionData = {
+  heading: string;
+  subheading: string;
+  testimonials: TestimonialCardData[];
+};
+
+export type HomePageData = {
+  heroSectionData: HeroSectionData;
+  popularDestinationsSectionData: PopularDestinationsSectionData;
+  visaAssistanceSectionData: VisaAssistanceSectionData;
+  popularPackagesSectionData: PopularPackagesSectionData;
+  travelByThemeSectionData: TravelByThemeSectionData;
+  whatMakesUsDifferentSectionData: WhatMakesUsDifferentSectionData;
+  testimonialsSectionData: TestimonialSectionData;
 };

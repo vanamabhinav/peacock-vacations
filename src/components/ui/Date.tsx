@@ -1,14 +1,17 @@
 import { Icon } from "./Icon";
+import type { SVGProps } from "react";
 
-interface DateUIProps {
+interface DateUIProps
+  extends Omit<SVGProps<SVGSVGElement>, "width" | "height"> {
   className?: string;
   number: number;
   size?: number;
 }
 
-function DateUI({ className, number, size = 24 }: DateUIProps) {
+function DateUI({ className, number, size = 24, ...props }: DateUIProps) {
   return (
     <Icon
+      {...props}
       name="customize/dateTemplate"
       width={size}
       height={size}

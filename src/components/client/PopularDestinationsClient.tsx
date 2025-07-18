@@ -9,11 +9,15 @@ import { regions } from "@/lib/constants";
 import RegionIcon, { RegionType } from "../ui/Region";
 
 interface PopularDestinationsClientProps {
+  heading: string;
+  subheading: string;
   initialData: DestinationsData;
   initialMonth?: string;
 }
 
 export default function PopularDestinationsClient({
+  heading,
+  subheading,
   initialData,
   initialMonth = "January",
 }: PopularDestinationsClientProps) {
@@ -77,8 +81,7 @@ export default function PopularDestinationsClient({
 
   // Get current data based on selection
   const currentData =
-    initialData[currentSelectionText.toLowerCase() as keyof DestinationsData] ||
-    initialData.january;
+    initialData[currentSelectionText.toLowerCase() as keyof DestinationsData];
 
   return (
     <section className="bg-bridalHealth p-16">
@@ -86,7 +89,7 @@ export default function PopularDestinationsClient({
         <div className="flex items-start w-full">
           <div className="flex flex-col gap-2">
             <h2 className="flex items-center gap-2 font-black text-bigstone text-4xl leading-none">
-              Popular Destinations in{" "}
+              {heading}{" "}
               <div
                 ref={selectionRef}
                 className="inline-block relative"
@@ -103,6 +106,7 @@ export default function PopularDestinationsClient({
                       height={36}
                       width={40}
                       fill="#345B63"
+                      aria-hidden="true"
                     />
                   )}
                   <Icon
@@ -112,13 +116,13 @@ export default function PopularDestinationsClient({
                     className={`ml-1 w-4 transition-transform duration-300 ${
                       isSelectionVisible ? "-rotate-90" : "rotate-90"
                     } origin-center`}
+                    aria-hidden="true"
                   />
                 </span>
               </div>
             </h2>
             <p className="text-scorpion text-xl">
-              Discover the top places to visit{" "}
-              {isRegion() ? "in this region" : "this month"}
+              {subheading} {isRegion() ? "in this region" : "this month"}
             </p>
           </div>
         </div>
@@ -139,7 +143,7 @@ export default function PopularDestinationsClient({
 
           <DestinationBentoGrid
             destinations={currentData.destinations}
-            cardText={currentData.cardText}
+            ctaCard={currentData.ctaCard}
           />
         </div>
       </div>
