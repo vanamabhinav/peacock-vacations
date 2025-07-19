@@ -45,35 +45,35 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               title: "Auli, Uttarakhand",
               subtitle: "Last Snow Adventures",
               image:
-                "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/14392872/pexels-photo-14392872.jpeg",
               url: "/destinations/auli",
             },
             {
               title: "Kashmir",
               subtitle: "Blooming In Colors",
               image:
-                "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/10975803/pexels-photo-10975803.jpeg",
               url: "/destinations/kashmir",
             },
             {
               title: "Wayanad, Kerala",
               subtitle: "Into The Wild & Waterfalls",
               image:
-                "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/16166132/pexels-photo-16166132.jpeg",
               url: "/destinations/wayanad",
             },
             {
               title: "Coorg, Karnataka",
               subtitle: "Coffee Trails & Mist",
               image:
-                "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/982021/pexels-photo-982021.jpeg",
               url: "/destinations/coorg",
             },
             {
               title: "Varanasi",
               subtitle: "Ganga Ghats & Spiritual Flow",
               image:
-                "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/8112558/pexels-photo-8112558.jpeg",
               url: "/destinations/varanasi",
             },
           ],
@@ -90,35 +90,35 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               title: "Goa",
               subtitle: "Perfect Beach Weather",
               image:
-                "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg", // Goa beach
               url: "/destinations/goa",
             },
             {
               title: "Andaman Islands",
               subtitle: "Pristine Blue Waters",
               image:
-                "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Rajasthan desert
               url: "/destinations/andaman",
             },
             {
               title: "Rishikesh",
               subtitle: "Adventure & Spirituality",
               image:
-                "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Kutch salt desert
               url: "/destinations/rishikesh",
             },
             {
               title: "Jaisalmer, Rajasthan",
               subtitle: "Desert Festival & Dunes",
               image:
-                "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Pushkar fair
               url: "/destinations/jaisalmer",
             },
             {
               title: "Shillong",
               subtitle: "Scotland of the East",
               image:
-                "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Jaisalmer fort
               url: "/destinations/shillong",
             },
           ],
@@ -135,35 +135,35 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               title: "Darjeeling",
               subtitle: "Tea Gardens & Kanchenjunga Views",
               image:
-                "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg", // Darjeeling tea gardens
               url: "/destinations/darjeeling",
             },
             {
               title: "Udaipur",
               subtitle: "City of Lakes",
               image:
-                "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Udaipur palace
               url: "/destinations/udaipur",
             },
             {
               title: "Kaziranga National Park",
               subtitle: "One-Horned Rhinos",
               image:
-                "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/164631/pexels-photo-164631.jpeg", // Kaziranga forest
               url: "/destinations/kaziranga",
             },
             {
               title: "Hampi",
               subtitle: "Ancient Ruins & Boulders",
               image:
-                "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Hampi ruins
               url: "/destinations/hampi",
             },
             {
               title: "Mathura & Vrindavan",
               subtitle: "Holi Celebrations",
               image:
-                "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg", // Mathura festival
               url: "/destinations/mathura",
             },
           ],
@@ -180,35 +180,35 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               title: "Gangtok, Sikkim",
               subtitle: "Rhododendron Blooms",
               image:
-                "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Gangtok monastery
               url: "/destinations/gangtok",
             },
             {
               title: "Ooty",
               subtitle: "Queen of Hill Stations",
               image:
-                "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/982021/pexels-photo-982021.jpeg", // Ooty hills
               url: "/destinations/ooty",
             },
             {
               title: "Ranthambore",
               subtitle: "Tiger Sightings",
               image:
-                "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/164631/pexels-photo-164631.jpeg", // Ranthambore forest
               url: "/destinations/ranthambore",
             },
             {
               title: "Munnar",
               subtitle: "Tea Plantations & Cool Hills",
               image:
-                "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/16166132/pexels-photo-16166132.jpeg", // Munnar tea gardens
               url: "/destinations/munnar",
             },
             {
               title: "Lansdowne",
               subtitle: "Peaceful Hill Station",
               image:
-                "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg", // Lansdowne hills
               url: "/destinations/lansdowne",
             },
           ],
@@ -225,35 +225,35 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               title: "Ladakh",
               subtitle: "Roads Open, High Altitude Adventure",
               image:
-                "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/14392872/pexels-photo-14392872.jpeg", // Ladakh
               url: "/destinations/ladakh",
             },
             {
               title: "Manali",
               subtitle: "Valley of Gods",
               image:
-                "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg", // Manali mountains
               url: "/destinations/manali",
             },
             {
               title: "Dharamshala",
               subtitle: "Little Lhasa",
               image:
-                "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Dharamshala monastery
               url: "/destinations/dharamshala",
             },
             {
               title: "Kodaikanal",
               subtitle: "Princess of Hill Stations",
               image:
-                "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg", // Kodaikanal lake
               url: "/destinations/kodaikanal",
             },
             {
               title: "Shimla",
               subtitle: "Queen of Hills",
               image:
-                "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/14392872/pexels-photo-14392872.jpeg", // Shimla snow
               url: "/destinations/shimla",
             },
           ],
@@ -322,28 +322,28 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               title: "Spiti Valley",
               subtitle: "Cold Desert Beauty",
               image:
-                "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg", // Goa festive beach
               url: "/destinations/spiti",
             },
             {
               title: "Tawang",
               subtitle: "Monastery in the Clouds",
               image:
-                "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg", // Puducherry festive beach
               url: "/destinations/tawang",
             },
             {
               title: "Pahalgam",
               subtitle: "Valley of Shepherds",
               image:
-                "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg", // Kerala festive backwaters
               url: "/destinations/pahalgam",
             },
             {
               title: "Gulmarg",
               subtitle: "Meadow of Flowers",
               image:
-                "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg", // Andaman festive beach
               url: "/destinations/gulmarg",
             },
           ],
@@ -360,35 +360,35 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               title: "Kerala Backwaters",
               subtitle: "Monsoon Houseboats",
               image:
-                "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg", // Kerala backwaters
               url: "/destinations/kerala-backwaters",
             },
             {
               title: "Udaipur",
               subtitle: "Monsoon Palace",
               image:
-                "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg", // Andaman beach
               url: "/destinations/udaipur",
             },
             {
               title: "Mount Abu",
               subtitle: "Hill Station in Desert",
               image:
-                "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/14392872/pexels-photo-14392872.jpeg", // Kashmir valley
               url: "/destinations/mount-abu",
             },
             {
               title: "Panchgani",
               subtitle: "Table Land Views",
               image:
-                "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Rishikesh river
               url: "/destinations/panchgani",
             },
             {
               title: "Lonavala",
               subtitle: "Monsoon Waterfalls",
               image:
-                "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg", // Pondicherry beach
               url: "/destinations/lonavala",
             },
           ],
@@ -412,7 +412,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               title: "Uttarakhand",
               subtitle: "Clear Mountain Views",
               image:
-                "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/14392872/pexels-photo-14392872.jpeg",
               url: "/destinations/uttarakhand",
             },
             {
@@ -587,35 +587,35 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               title: "Shimla",
               subtitle: "Queen of Hills",
               image:
-                "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/14392872/pexels-photo-14392872.jpeg", // Shimla snow
               url: "/destinations/shimla",
             },
             {
               title: "Manali",
               subtitle: "Valley of Gods",
               image:
-                "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg", // Manali mountains
               url: "/destinations/manali",
             },
             {
               title: "Rishikesh",
               subtitle: "Yoga Capital",
               image:
-                "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/532826/pexels-photo-532826.jpeg", // Rishikesh river
               url: "/destinations/rishikesh",
             },
             {
               title: "Amritsar",
               subtitle: "Golden Temple",
               image:
-                "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Amritsar temple
               url: "/destinations/amritsar",
             },
             {
               title: "Dehradun",
               subtitle: "City of Valleys",
               image:
-                "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/16166132/pexels-photo-16166132.jpeg", // Dehradun valley
               url: "/destinations/dehradun",
             },
           ],
@@ -632,35 +632,35 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               title: "Kochi",
               subtitle: "Queen of Arabian Sea",
               image:
-                "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/8112558/pexels-photo-8112558.jpeg", // Kochi backwaters
               url: "/destinations/kochi",
             },
             {
               title: "Ooty",
               subtitle: "Queen of Hill Stations",
               image:
-                "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/982021/pexels-photo-982021.jpeg", // Ooty hills
               url: "/destinations/ooty",
             },
             {
               title: "Pondicherry",
               subtitle: "French Riviera of the East",
               image:
-                "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg", // Pondicherry beach
               url: "/destinations/pondicherry",
             },
             {
               title: "Munnar",
               subtitle: "Kashmir of South India",
               image:
-                "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/16166132/pexels-photo-16166132.jpeg", // Munnar tea gardens
               url: "/destinations/munnar",
             },
             {
               title: "Kodaikanal",
               subtitle: "Princess of Hill Stations",
               image:
-                "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg", // Kodaikanal lake
               url: "/destinations/kodaikanal",
             },
           ],
@@ -677,35 +677,35 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               title: "Darjeeling",
               subtitle: "Queen of Hills",
               image:
-                "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg", // Darjeeling tea gardens
               url: "/destinations/darjeeling",
             },
             {
               title: "Gangtok",
               subtitle: "Land of Monasteries",
               image:
-                "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Gangtok monastery
               url: "/destinations/gangtok",
             },
             {
               title: "Kolkata",
               subtitle: "City of Joy",
               image:
-                "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg", // Kolkata market
               url: "/destinations/kolkata",
             },
             {
               title: "Sundarbans",
               subtitle: "Royal Bengal Tigers",
               image:
-                "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/164631/pexels-photo-164631.jpeg", // Sundarbans mangroves
               url: "/destinations/sundarbans",
             },
             {
               title: "Puri",
               subtitle: "Temple City",
               image:
-                "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Puri temple
               url: "/destinations/puri",
             },
           ],
@@ -722,35 +722,35 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               title: "Mumbai",
               subtitle: "City of Dreams",
               image:
-                "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/358443/pexels-photo-358443.jpeg", // Mumbai cityscape
               url: "/destinations/mumbai",
             },
             {
               title: "Goa",
               subtitle: "Beach Paradise",
               image:
-                "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg", // Goa beach
               url: "/destinations/goa",
             },
             {
               title: "Jaipur",
               subtitle: "Pink City",
               image:
-                "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Jaipur palace
               url: "/destinations/jaipur",
             },
             {
               title: "Udaipur",
               subtitle: "City of Lakes",
               image:
-                "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/461940/pexels-photo-461940.jpeg", // Udaipur lake
               url: "/destinations/udaipur",
             },
             {
               title: "Ahmedabad",
               subtitle: "Manchester of India",
               image:
-                "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg", // Ahmedabad market
               url: "/destinations/ahmedabad",
             },
           ],
@@ -781,21 +781,21 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               title: "Cherrapunji",
               subtitle: "Land of Clouds",
               image:
-                "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg", // Cherrapunji clouds
               url: "/destinations/cherrapunji",
             },
             {
               title: "Majuli",
               subtitle: "World's Largest River Island",
               image:
-                "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/164631/pexels-photo-164631.jpeg", // Majuli river island
               url: "/destinations/majuli",
             },
             {
               title: "Shillong",
               subtitle: "Scotland of the East",
               image:
-                "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=200&fit=crop&auto=format",
+                "https://images.pexels.com/photos/16166132/pexels-photo-16166132.jpeg", // Shillong landscape
               url: "/destinations/shillong",
             },
           ],
@@ -944,7 +944,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
       },
     },
     visaAssistanceSectionData: {
-      title: "Visa Made Easy",
+      title: "Visa Assistance Made Easy",
       description:
         "Get hassle-free visa assistance for your international travel. Our expert team ensures smooth processing with complete documentation support.",
       ctaText: "Get Visa Assistance",
@@ -964,7 +964,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           discountedPrice: 38590,
           inclusions: ["Resort Stay", "Airport Transfers", "Breakfast"],
           image:
-            "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg", // Goa beach
           url: "/packages/goa-beach-getaway",
         },
         {
@@ -976,7 +976,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           discountedPrice: 34999,
           inclusions: ["Resort Stay", "Airport Transfers", "Breakfast"],
           image:
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg", // Himalayas
           url: "/packages/himalayan-adventure",
         },
         {
@@ -988,7 +988,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           discountedPrice: 29500,
           inclusions: ["Resort Stay", "Airport Transfers", "Breakfast"],
           image:
-            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/8112558/pexels-photo-8112558.jpeg", // Kerala backwaters
           url: "/packages/kerala-backwaters",
         },
         {
@@ -1000,7 +1000,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           discountedPrice: 27800,
           inclusions: ["Resort Stay", "Airport Transfers", "Breakfast"],
           image:
-            "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg", // Darjeeling tea gardens
           url: "/packages/darjeeling-tea-trails",
         },
         {
@@ -1012,7 +1012,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           discountedPrice: 31200,
           inclusions: ["Resort Stay", "Airport Transfers", "Breakfast"],
           image:
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/164631/pexels-photo-164631.jpeg", // Kanha forest
           url: "/packages/kanha-wildlife-safari",
         },
         {
@@ -1024,7 +1024,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           discountedPrice: 28500,
           inclusions: ["Resort Stay", "Airport Transfers", "Breakfast"],
           image:
-            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg", // Meghalaya caves
           url: "/packages/meghalaya-living-roots",
         },
         {
@@ -1036,7 +1036,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           discountedPrice: 41900,
           inclusions: ["Resort Stay", "Airport Transfers", "Breakfast"],
           image:
-            "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg", // Andaman beach
           url: "/packages/andaman-island-escape",
         },
       ],
@@ -1060,7 +1060,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Perfect honeymoon destination with pristine beaches, luxury resorts, and romantic sunset cruises along the Arabian Sea",
           image:
-            "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg", // Goa beach
           ctaText: "Book Honeymoon",
           ctaLink: "/packages/honeymoon/goa",
           theme: ["Honeymoon"],
@@ -1070,7 +1070,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Experience heaven on earth with romantic houseboat stays, shikara rides, and snow-capped mountain views",
           image:
-            "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/10975803/pexels-photo-10975803.jpeg", // Kashmir snow
           ctaText: "Plan Romance",
           ctaLink: "/packages/honeymoon/kashmir",
           theme: ["Honeymoon", "Luxury"],
@@ -1080,7 +1080,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Stay in palace hotels, enjoy private boat rides on Lake Pichola, and witness royal sunsets in the City of Lakes",
           image:
-            "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Udaipur palace
           ctaText: "Royal Honeymoon",
           ctaLink: "/packages/honeymoon/udaipur",
           theme: ["Honeymoon", "Luxury"],
@@ -1090,7 +1090,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Challenge yourself with breathtaking treks in the mighty Himalayas, from Valley of Flowers to Roopkund",
           image:
-            "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg", // Himalayas
           ctaText: "Start Adventure",
           ctaLink: "/packages/adventure/himalayas",
           theme: ["Adventure"],
@@ -1100,7 +1100,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Ride through the world's highest motorable roads, experience Buddhist culture, and camp under starlit skies",
           image:
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/14392872/pexels-photo-14392872.jpeg", // Ladakh
           ctaText: "Book Expedition",
           ctaLink: "/packages/adventure/ladakh",
           theme: ["Adventure", "Solo Travel"],
@@ -1110,7 +1110,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Experience thrilling white water rafting on the Ganges, bungee jumping, and spiritual yoga sessions",
           image:
-            "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/532826/pexels-photo-532826.jpeg", // Rishikesh river
           ctaText: "Adventure Time",
           ctaLink: "/packages/adventure/rishikesh",
           theme: ["Adventure", "Pilgrimage"],
@@ -1120,7 +1120,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Crystal clear waters, golden sand beaches, water sports, and vibrant nightlife in India's beach capital",
           image:
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg", // Goa beach
           ctaText: "Explore Beaches",
           ctaLink: "/packages/beach/goa",
           theme: ["Beach"],
@@ -1130,7 +1130,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Pristine beaches, coral reefs, scuba diving, and the famous Radhanagar Beach in untouched paradise",
           image:
-            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg", // Andaman beach
           ctaText: "Island Hopping",
           ctaLink: "/packages/beach/andaman",
           theme: ["Beach", "Adventure"],
@@ -1140,7 +1140,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Unique combination of backwater cruises, palm-fringed beaches, and ayurvedic spa treatments",
           image:
-            "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/8112558/pexels-photo-8112558.jpeg", // Kerala backwaters
           ctaText: "Beach & Backwaters",
           ctaLink: "/packages/beach/kerala",
           theme: ["Beach", "Resort"],
@@ -1150,7 +1150,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Stay in authentic palace hotels, enjoy royal treatments, desert safaris, and experience the grandeur of Rajputana heritage",
           image:
-            "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Rajasthan palace
           ctaText: "Book Luxury",
           ctaLink: "/packages/luxury/rajasthan",
           theme: ["Luxury"],
@@ -1160,7 +1160,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Premium houseboat experiences with personal chefs, private decks, and luxury amenities in God's Own Country",
           image:
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/8112558/pexels-photo-8112558.jpeg", // Kerala houseboat
           ctaText: "Luxury Cruise",
           ctaLink: "/packages/luxury/kerala",
           theme: ["Luxury", "Resort"],
@@ -1170,7 +1170,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "5-star mountain resorts, helicopter transfers, private tours, and exclusive access to hidden Himalayan gems",
           image:
-            "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/14392872/pexels-photo-14392872.jpeg", // Himachal mountains
           ctaText: "Mountain Luxury",
           ctaLink: "/packages/luxury/himachal",
           theme: ["Luxury", "Resort"],
@@ -1180,7 +1180,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Experience the spiritual heart of India with sacred ghats, ancient temples, Ganga aarti, and divine ceremonies",
           image:
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/8112558/pexels-photo-8112558.jpeg", // Varanasi ghats
           ctaText: "Begin Pilgrimage",
           ctaLink: "/packages/pilgrimage/varanasi",
           theme: ["Pilgrimage"],
@@ -1190,7 +1190,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Complete the sacred journey to Kedarnath, Badrinath, Gangotri, and Yamunotri in the Himalayas",
           image:
-            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg", // Char Dham Himalayas
           ctaText: "Sacred Journey",
           ctaLink: "/packages/pilgrimage/chardham",
           theme: ["Pilgrimage", "Adventure"],
@@ -1200,7 +1200,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Visit iconic temples in Delhi, Agra, and Jaipur, including Akshardham, Taj Mahal, and Govind Dev Ji Temple",
           image:
-            "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Golden Triangle temple
           ctaText: "Temple Trail",
           ctaLink: "/packages/pilgrimage/golden-triangle",
           theme: ["Pilgrimage", "Luxury"],
@@ -1210,7 +1210,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Discover India's hidden gems in the Northeast with solo-friendly accommodations, guided experiences, and tribal culture",
           image:
-            "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg", // Northeast India
           ctaText: "Solo Adventure",
           ctaLink: "/packages/solo/northeast",
           theme: ["Solo Travel"],
@@ -1220,7 +1220,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Self-discovery journey through Buddhist monasteries, high-altitude lakes, and peaceful mountain villages",
           image:
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/14392872/pexels-photo-14392872.jpeg", // Ladakh
           ctaText: "Solo Expedition",
           ctaLink: "/packages/solo/ladakh",
           theme: ["Solo Travel", "Adventure"],
@@ -1230,7 +1230,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Explore Kerala at your own pace with backpacker-friendly stays, local transportation, and cultural immersion",
           image:
-            "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/8112558/pexels-photo-8112558.jpeg", // Kerala backpacking
           ctaText: "Solo Journey",
           ctaLink: "/packages/solo/kerala",
           theme: ["Solo Travel", "Beach"],
@@ -1240,7 +1240,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Unwind in luxury resorts surrounded by lush greenery, spice plantations, and tranquil backwaters with world-class spa",
           image:
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/8112558/pexels-photo-8112558.jpeg", // Kerala resort
           ctaText: "Resort Booking",
           ctaLink: "/packages/resort/kerala",
           theme: ["Resort"],
@@ -1250,7 +1250,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "5-star beachfront resorts with private beaches, infinity pools, water sports, and authentic Goan cuisine",
           image:
-            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg", // Goa beach resort
           ctaText: "Beach Resort",
           ctaLink: "/packages/resort/goa",
           theme: ["Resort", "Beach"],
@@ -1260,7 +1260,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Mountain resorts with panoramic valley views, adventure activities, wellness spas, and local cultural programs",
           image:
-            "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=400&h=300&fit=crop&auto=format",
+            "https://images.pexels.com/photos/14392872/pexels-photo-14392872.jpeg", // Himachal hill resort
           ctaText: "Hill Resort",
           ctaLink: "/packages/resort/himachal",
           theme: ["Resort", "Adventure"],
@@ -1313,11 +1313,11 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           name: "John Smith",
           location: "New York, USA",
           images: [
-            "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=500&h=400&fit=crop&crop=center",
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&crop=center",
-            "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=300&h=200&fit=crop&crop=center",
-            "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&h=400&fit=crop&crop=center",
-            "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=400&h=300&fit=crop&crop=center",
+            "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg", // Snowy mountains
+            "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg", // Indian festival
+            "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Indian palace
+            "https://images.pexels.com/photos/461940/pexels-photo-461940.jpeg", // Indian heritage architecture
+            "https://images.pexels.com/photos/16166132/pexels-photo-16166132.jpeg", // Kerala backwaters
           ],
         },
         {
@@ -1329,10 +1329,10 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           name: "Sarah Johnson",
           location: "London, UK",
           images: [
-            "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=500&h=400&fit=crop&crop=center",
-            "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=300&h=200&fit=crop&crop=center",
-            "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=200&fit=crop&crop=center",
-            "https://images.unsplash.com/photo-1524500704046-75c1b19ce0f8?w=600&h=400&fit=crop&crop=center",
+            "https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg", // Indian market
+            "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Indian palace
+            "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg", // Indian festival
+            "https://images.pexels.com/photos/8112558/pexels-photo-8112558.jpeg", // Varanasi ghats
           ],
         },
         {
@@ -1345,10 +1345,10 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           occupation: "Photographer",
           location: "Toronto, Canada",
           images: [
-            "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=500&h=400&fit=crop&crop=center",
-            "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=300&h=200&fit=crop&crop=center",
-            "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=200&fit=crop&crop=center",
-            "https://images.unsplash.com/photo-1524500704046-75c1b19ce0f8?w=600&h=400&fit=crop&crop=center",
+            "https://images.pexels.com/photos/532826/pexels-photo-532826.jpeg", // Trekking in Himalayas
+            "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Indian palace
+            "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg", // Snowy mountains
+            "https://images.pexels.com/photos/16166132/pexels-photo-16166132.jpeg", // Kerala backwaters
           ],
         },
         {
@@ -1360,8 +1360,10 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           name: "Emma Rodriguez",
           location: "Madrid, Spain",
           images: [
-            "https://images.unsplash.com/photo-1512841772335-3beb7d70b242?w=500&h=400&fit=crop&crop=center",
-            "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=200&fit=crop&crop=center",
+            "https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg", // Indian market
+            "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Indian palace
+            "https://images.pexels.com/photos/461940/pexels-photo-461940.jpeg", // Indian heritage architecture
+            "https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg", // Indian market
           ],
         },
       ],

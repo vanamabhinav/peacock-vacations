@@ -26,6 +26,23 @@ html {
   --color-islandSplice: #fffaee;
   --color-putty: #e8ce92;
   --color-woodsmoke: #111518;
+  --color-firefly: #0c1b22;
+  --color-silver: #c4c4c4;
+  --color-peachorange: #ffd49c;
+  --color-rawsienna: #d49847;
+  --color-ochre: #d58822;
+  --color-bluedianne: #1e3a47;
+  --color-nevada: #6a6e71;
+  --color-mercury: #e7e7e7;
+  --color-nobel: #b4b4b4;
+  --color-marconi_cheese: #ffc27f;
+  --color-desertstorm: #f2f1f0;
+
+  --font-clashdisplay: var(--font-clashdisplay);
+  --font-cabinetgrotesk: var(--font-cabinetgrotesk);
+  --font-inter: var(--font-inter);
+  --font-albertsans: var(--font-albertsans);
+  --font-dmsans: var(--font-dmsans);
 }
 
 .scrollbar-hide::-webkit-scrollbar {

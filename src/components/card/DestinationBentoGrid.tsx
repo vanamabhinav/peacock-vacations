@@ -80,7 +80,9 @@ const CallToActionCard = memo(
       <div>
         <h4 className="font-bold text-lg leading-none">{title}</h4>
         <p className="font-semibold text-sm">{subtitle}</p>
-        <p className="mt-1 font-normal text-quincy text-xs">{lowertext}</p>
+        <p className="mt-1 font-normal text-quincy text-xs italic">
+          {lowertext}
+        </p>
       </div>
       <Link
         href={url}

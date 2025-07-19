@@ -47,8 +47,8 @@ export default function TravelByThemeClient(data: TravelByThemeSectionData) {
       {/* Header Section with Navigation Buttons */}
       <div className="flex justify-between items-center">
         <div className="flex flex-col gap-2">
-          <h2 className="font-bold text-william text-4xl">{data.heading}</h2>
-          <p className="text-scorpion text-xl">{data.subheading}</p>
+          <h2 className="font-black text-william text-4xl">{data.heading}</h2>
+          <p className="font-medium text-scorpion text-xl">{data.subheading}</p>
         </div>
         {/* Navigation Buttons at header level - same as PopularPackages */}
         <div className="flex gap-4">

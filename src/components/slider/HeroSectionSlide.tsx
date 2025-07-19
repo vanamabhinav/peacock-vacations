@@ -29,16 +29,16 @@ function HeroSectionSlide(slide: HeroVideoSlide) {
       {/* Text content overlay */}
       <div className="absolute inset-0 flex items-center ml-8 sm:ml-16 max-w-xl lg:max-w-2xl pointer-events-auto">
         <div className="space-y-4">
-          <h1 className="drop-shadow-lg font-normal text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
+          <h1 className="drop-shadow-lg font-clashdisplay font-medium text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
             {slide.title}
           </h1>
-          <p className="opacity-90 drop-shadow-lg max-w-lg text-white text-base sm:text-lg md:text-xl leading-relaxed">
+          <p className="opacity-90 drop-shadow-lg max-w-lg font-cabinetgrotesk text-white text-base sm:text-lg md:text-xl leading-relaxed">
             {slide.description}
           </p>
           {slide.ctaText && (
             <Link
               href={slide.ctaLink || "#"}
-              className="inline-block bg-amber-400 hover:bg-amber-500 shadow-lg mt-6 px-6 py-3 rounded-lg font-semibold text-gray-900 text-sm sm:text-base transition-colors duration-300"
+              className="inline-block bg-amber-400 hover:bg-amber-500 shadow-lg mt-6 px-6 py-3 rounded-lg font-inter font-semibold text-gray-900 text-sm sm:text-base transition-colors duration-300"
             >
               {slide.ctaText}
             </Link>

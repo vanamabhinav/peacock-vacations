@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 function VisaMadeEasy(data: VisaAssistanceSectionData) {
   return (
-    <section className="flex justify-center bg-white p-4 md:p-8 lg:p-16">
+    <section className="flex justify-center bg-white p-4 md:p-8 lg:p-16 font-albertsans">
       <div className="relative border border-black/12 rounded-[18px] w-[72rem] h-[18.25rem] overflow-hidden">
         {/* Main background gradient */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#EFF1F5] to-[#D9DCE4]" />
@@ -21,7 +21,7 @@ function VisaMadeEasy(data: VisaAssistanceSectionData) {
             </div>
             <Link
               href={data.ctaLink}
-              className="inline-block z-5 bg-black hover:bg-gray-800 px-5 py-2.5 rounded-[40px] focus:ring-2 focus:ring-black w-fit text-white text-center transition-all duration-200 cursor-pointer"
+              className="inline-block z-5 bg-black hover:bg-gray-800 px-5 py-2.5 rounded-[40px] focus:ring-2 focus:ring-black w-fit font-inter text-white text-center transition-all duration-200 cursor-pointer"
             >
               {data.ctaText}
             </Link>
