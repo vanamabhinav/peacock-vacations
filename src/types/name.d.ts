@@ -36,7 +36,17 @@ export type IconName =
 	| "homepage/breakfast"
 	| "homepage/facebook"
 	| "homepage/honeymoon"
+	| "homepage/india-flag"
+	| "homepage/india-map-all"
+	| "homepage/india-map-delhi"
+	| "homepage/india-map-goa"
+	| "homepage/india-map-kerala"
+	| "homepage/india-map-mumbai"
+	| "homepage/india-map-puri"
+	| "homepage/india-map-telangana"
 	| "homepage/luxury"
+	| "homepage/map_direction"
 	| "homepage/piligrimage"
 	| "homepage/resort"
-	| "homepage/solo";
+	| "homepage/solo"
+	| "homepage/weather-sunny";

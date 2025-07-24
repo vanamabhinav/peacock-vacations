@@ -10,6 +10,7 @@ export interface HeroVideoSlide {
   ctaLink: string;
   muted: boolean;
   ref: React.Ref<VideoHandle>;
+  isActive: boolean;
   onVideoEnd?: () => void;
 }
 
@@ -21,6 +22,7 @@ function HeroSectionSlide(slide: HeroVideoSlide) {
         ref={slide.ref}
         muted={slide.muted}
         src={slide.videoUrl}
+        isActive={slide.isActive}
         onVideoEnd={slide.onVideoEnd}
         className="absolute inset-0 w-full h-full object-cover"
       />

@@ -1,5 +1,6 @@
 import HeroSectionCarousel from "@/components/slider/HeroSectionCarousel";
 import { fetchHomePageCmsDataAction } from "@/lib/actions/fetchHomePageCmsAction";
+import IndiaMapSection from "@/sections/homepage/IndiaMapSection";
 import PopularDestinations from "@/sections/homepage/PopularDestinations";
 import PopularPackages from "@/sections/homepage/PopularPackage";
 import TestimonialsSection from "@/sections/homepage/TestimonialsSection";
@@ -18,6 +19,7 @@ export default async function Home() {
       <TravelByTheme {...homePageData.travelByThemeSectionData} />
       <WhatMakesDifferent {...homePageData.whatMakesUsDifferentSectionData} />
       <TestimonialsSection {...homePageData.testimonialsSectionData} />
+      <IndiaMapSection regionData={homePageData.indiaMapSectionData} />
     </main>
   );
 }

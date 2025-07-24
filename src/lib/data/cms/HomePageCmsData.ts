@@ -1368,6 +1368,230 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
         },
       ],
     },
+    indiaMapSectionData: {
+      delhi: {
+        destination: "DELHI",
+        tagline: "India's Capital of Culture and Contrasts",
+        bestTime: "October — March",
+        temperatureRange: "12°C to 26°C",
+        quote:
+          "Where ancient empires meet modern marvels — a vibrant gateway to India’s soul.",
+        description:
+          "Delhi is a dynamic blend of history, culture, and innovation. As the heart of India, it's where grand Mughal architecture stands beside bustling bazaars, and colonial-era avenues blend into high-tech hubs. Whether you're a history buff, foodie, or photographer — Delhi never stops surprising.",
+        attractions: [
+          {
+            name: "Red Fort",
+            description:
+              "Majestic Mughal fortress and UNESCO World Heritage Site",
+          },
+          {
+            name: "Qutub Minar",
+            description:
+              "The world's tallest brick minaret surrounded by ancient ruins",
+          },
+          {
+            name: "India Gate",
+            description:
+              "Iconic war memorial and perfect evening stroll destination",
+          },
+          {
+            name: "Humayun’s Tomb",
+            description: "The inspiration for the Taj Mahal",
+          },
+          {
+            name: "Lotus Temple",
+            description:
+              "A modern marvel of peaceful architecture and symmetry",
+          },
+          {
+            name: "Akshardham Temple",
+            description:
+              "Ornate carvings, cultural shows, and a lighted musical fountain",
+          },
+        ],
+        exploreLink: "/packages/delhi",
+      },
+      mumbai: {
+        destination: "MUMBAI",
+        tagline: "India’s City of Dreams",
+        bestTime: "November — February",
+        temperatureRange: "20°C to 30°C",
+        quote:
+          "A city that never sleeps — where Bollywood glam meets coastal calm.",
+        description:
+          "Mumbai is India’s financial powerhouse and entertainment capital. From colonial-era architecture to lively beaches, and spicy street food to luxury malls, Mumbai promises energy, elegance, and endless exploration.",
+        attractions: [
+          {
+            name: "Gateway of India",
+            description: "Iconic waterfront arch facing the Arabian Sea",
+          },
+          {
+            name: "Marine Drive",
+            description: "Sunset views, sea breeze, and the Queen's Necklace",
+          },
+          {
+            name: "Elephanta Caves",
+            description: "Ancient rock-cut caves on a scenic island",
+          },
+          {
+            name: "Colaba Causeway",
+            description: "Shop till you drop in this lively street market",
+          },
+          {
+            name: "Chhatrapati Shivaji Maharaj Terminus",
+            description: "A UNESCO masterpiece of Gothic Revival architecture",
+          },
+          {
+            name: "Bandra-Worli Sea Link",
+            description: "An engineering marvel with cityscape views",
+          },
+        ],
+        exploreLink: "/packages/mumbai",
+      },
+      telangana: {
+        destination: "TELANGANA",
+        tagline: "A Fusion of Heritage and Tech",
+        bestTime: "October — March",
+        temperatureRange: "18°C to 29°C",
+        quote:
+          "Where royal dynasties, spicy biryani, and vibrant bazaars blend into India’s tech heartland.",
+        description:
+          "Home to Hyderabad, Telangana offers a mix of royal history, architectural wonders, and IT boomtown energy. It's a unique stop where tradition meets innovation.",
+        attractions: [
+          {
+            name: "Charminar",
+            description: "Iconic 16th-century minaret in the heart of Old City",
+          },
+          {
+            name: "Golconda Fort",
+            description: "Echoes of an ancient citadel",
+          },
+          {
+            name: "Ramoji Film City",
+            description: "The world's largest film studio complex",
+          },
+          {
+            name: "Hussain Sagar Lake",
+            description: "Serene waters with a massive Buddha statue",
+          },
+          {
+            name: "Birla Mandir",
+            description: "Peaceful hilltop white marble temple",
+          },
+          {
+            name: "Laad Bazaar",
+            description:
+              "Buy colorful bangles and pearls in Hyderabad's famous shopping street",
+          },
+        ],
+        exploreLink: "/packages/telangana",
+      },
+      kerala: {
+        destination: "KERALA",
+        tagline: "God's Own Country",
+        bestTime: "October — March",
+        temperatureRange: "22°C to 28°C",
+        quote:
+          "Where emerald backwaters, Ayurvedic bliss, and tropical beauty redefine serenity.",
+        description:
+          "Kerala is a lush paradise of coconut groves, traditional houseboats, and misty hill stations. Ideal for nature lovers, wellness seekers, and cultural explorers.",
+        attractions: [
+          {
+            name: "Alleppey Backwaters",
+            description: "Cruise on a traditional houseboat",
+          },
+          {
+            name: "Munnar Hills",
+            description: "Tea gardens, cool weather, and nature trails",
+          },
+          {
+            name: "Fort Kochi",
+            description: "Colonial charm, Chinese fishing nets, and art cafés",
+          },
+          {
+            name: "Periyar Wildlife Sanctuary",
+            description: "Jungle safaris and spice plantations",
+          },
+          {
+            name: "Varkala & Kovalam Beaches",
+            description: "Golden sands and cliffside café",
+          },
+          { name: "Athirappilly Falls", description: "The Niagara of India" },
+        ],
+        exploreLink: "/packages/kerala",
+      },
+      puri: {
+        destination: "PURI (Odisha)",
+        tagline: "A Sacred Seaside Retreat",
+        bestTime: "November — February",
+        temperatureRange: "18°C to 26°C",
+        quote: "Where devotion meets the ocean — India’s spiritual coastline.",
+        description:
+          "Puri is one of India’s four Char Dham pilgrimage sites. With pristine beaches, ancient temples, and vibrant festivals, it's a serene yet powerful destination for cultural immersion.",
+        attractions: [
+          {
+            name: "Jagannath Temple",
+            description: "World-famous spiritual center and Rath Yatra hub",
+          },
+          {
+            name: "Puri Beach",
+            description: "Ideal for sunrise walks and camel rides",
+          },
+          {
+            name: "Konark Sun Temple",
+            description: "13th-century architectural marvel and UNESCO site",
+          },
+          {
+            name: "Chilika Lake",
+            description:
+              "Asia's largest brackish water lagoon with migratory birds",
+          },
+          {
+            name: "Raghurajpur Heritage Village",
+            description: "Pattachitra artists and folk performances",
+          },
+          {
+            name: "Pipili Village",
+            description: "Vibrant appliqué handicrafts and street art",
+          },
+        ],
+        exploreLink: "/packages/puri",
+      },
+      goa: {
+        destination: "GOA",
+        tagline: "India’s beach paradise",
+        bestTime: "Dec – Mar",
+        temperatureRange: "24°C to 29°C",
+        quote:
+          "Where golden beaches meet Portuguese charm, and every sunset feels like a postcard.",
+        description:
+          "Goa is India’s ultimate tropical escape, offering a perfect blend of beach relaxation, thrilling water sports, buzzing nightlife, and heritage charm. Whether you’re a solo backpacker, a couple on a romantic getaway, or a family, Goa has something for everyone.",
+        attractions: [
+          {
+            name: "Palolem Beach",
+            description: "Calm, scenic, and perfect for sunbathing",
+          },
+          {
+            name: "Basilica of Bom Jesus",
+            description: "UNESCO heritage site with baroque architecture",
+          },
+          {
+            name: "Fort Aguada",
+            description: "17th-century fort with panoramic sea views",
+          },
+          {
+            name: "Anjuna Flea Market",
+            description: "Shop for handicrafts, jewelry, and souvenirs",
+          },
+          {
+            name: "Dudhsagar Waterfalls",
+            description:
+              "Majestic four-tiered waterfall near the Goa-Karnataka border",
+          },
+        ],
+        exploreLink: "/packages/goa",
+      },
+    },
   };
 
   return new Promise((resolve) => {

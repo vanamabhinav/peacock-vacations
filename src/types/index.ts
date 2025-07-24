@@ -128,6 +128,26 @@ export type TestimonialSectionData = {
   testimonials: TestimonialCardData[];
 };
 
+export type IndiaMapAttraction = {
+  name: string;
+  description: string;
+};
+
+export type IndiaMapRegionData = {
+  destination: string;
+  tagline: string;
+  bestTime: string;
+  temperatureRange: string;
+  quote: string;
+  description: string;
+  attractions: IndiaMapAttraction[];
+  exploreLink: string;
+};
+
+export type IndiaMapSectionData = {
+  [region: string]: IndiaMapRegionData;
+};
+
 export type HomePageData = {
   heroSectionData: HeroSectionData;
   popularDestinationsSectionData: PopularDestinationsSectionData;
@@ -136,4 +156,5 @@ export type HomePageData = {
   travelByThemeSectionData: TravelByThemeSectionData;
   whatMakesUsDifferentSectionData: WhatMakesUsDifferentSectionData;
   testimonialsSectionData: TestimonialSectionData;
+  indiaMapSectionData: IndiaMapSectionData;
 };

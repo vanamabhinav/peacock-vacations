@@ -153,10 +153,8 @@ function PartnerSection({
                   alt={`Logo of partner ${rowIdx * 6 + idx + 1}`}
                   width={120}
                   height={60}
-                  objectFit="contain"
                   title={`Logo of partner ${rowIdx * 6 + idx + 1}`}
                   loading="lazy"
-                  // Ensure these images are compressed and optimized for web
                 />
               </div>
             ))}
