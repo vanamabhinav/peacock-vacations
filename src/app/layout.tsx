@@ -3,6 +3,7 @@ import "./globals.css";
 import localfont from "next/font/local";
 import { Inter, Albert_Sans, DM_Sans } from "next/font/google";
 import Footer from "@/components/slider/Footer";
+import StickyNavWrapper from "@/sections/global/StickyNavWrapper";
 
 const clashDisplayFont = localfont({
   src: "/fonts/clash-display/ClashDisplay-Variable.ttf",
@@ -45,6 +46,7 @@ export default function RootLayout({
       <body
         className={`${clashDisplayFont.variable} ${cabinetGroteskFont.variable} ${interFont.variable} ${albertSansFont.variable} ${dmSansFont.variable}`}
       >
+        <StickyNavWrapper />
         {children}
         <Footer />
       </body>

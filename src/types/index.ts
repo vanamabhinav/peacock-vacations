@@ -145,7 +145,13 @@ export type IndiaMapRegionData = {
 };
 
 export type IndiaMapSectionData = {
-  [region: string]: IndiaMapRegionData;
+  indiaData: {
+    heading: string;
+    description: string;
+  };
+  regionData: {
+    [region: string]: IndiaMapRegionData;
+  };
 };
 
 export type HomePageData = {

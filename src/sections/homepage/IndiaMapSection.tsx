@@ -1,14 +1,10 @@
 import IndiaMapSectionClient from "@/components/client/IndiaMapSectionClient";
 import { IndiaMapSectionData } from "@/types";
 
-type Props = {
-  regionData: IndiaMapSectionData;
-};
-
-function IndiaMapSection({ regionData }: Props) {
+function IndiaMapSection({ regionData, indiaData }: IndiaMapSectionData) {
   return (
     <div className="bg-desertstorm px-16 py-19">
-      <IndiaMapSectionClient regionData={regionData} />
+      <IndiaMapSectionClient indiaData={indiaData} regionData={regionData} />
     </div>
   );
 }

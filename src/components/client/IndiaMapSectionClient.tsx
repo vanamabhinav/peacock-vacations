@@ -14,11 +14,7 @@ export type MapType =
   | "goa"
   | "mumbai";
 
-interface IndiaMapSectionClientProps {
-  regionData: IndiaMapSectionData;
-}
-
-function IndiaMapSectionClient({ regionData }: IndiaMapSectionClientProps) {
+function IndiaMapSectionClient({ indiaData, regionData }: IndiaMapSectionData) {
   const [activeMap, setActiveMap] = useState<MapType>("all");
 
   const map_dimensions: { location: MapType; className: string }[] = [
@@ -60,7 +56,10 @@ function IndiaMapSectionClient({ regionData }: IndiaMapSectionClientProps) {
       </div>
 
       {activeMap === "all" ? (
-        <IndiaMapDescription />
+        <IndiaMapDescription
+          heading={indiaData.heading}
+          description={indiaData.description}
+        />
       ) : (
         cardData && <DestinationCard {...cardData} />
       )}
@@ -68,19 +67,23 @@ function IndiaMapSectionClient({ regionData }: IndiaMapSectionClientProps) {
   );
 }
 
-function IndiaMapDescription() {
+function IndiaMapDescription({
+  heading,
+  description,
+}: {
+  heading: string;
+  description: string;
+}) {
   return (
-    <div className="flex flex-col justify-center items-center bg-bridalHealth px-11 py-5 w-full h-full">
+    <div className="flex flex-col justify-center items-center bg-bridalHealth px-11 py-5 border-[rgba(255,199,126,0.18)] border-1 rounded-[6px] w-full h-full">
       <h2 className="font-bold text-black text-3xl leading-normal">India</h2>
       <Icon name="homepage/india-flag" className="py-3 w-[20rem] h-auto" />
       <div className="text-center">
         <h3 className="font-medium text-[18px] text-black text-center leading-normal">
-          The Land of Diversity
+          {heading}
         </h3>
         <p className="font-albertsans font-normal text-black text-base text-justify leading-normal">
-          {
-            "India, with 28 states and 8 Union Territories, is a vibrant tapestry of cultures, languages, and traditions. From the snow-capped Himalayas to sun-kissed coastal beaches, every region showcases its own unique identity. With New Delhi as its capital, and Hindi, English, along with 21 other recognized languages, as official tongues, India thrives as the world’s largest democracy. Since gaining independence on 15th August 1947, it has grown into a nation of over 1.4 billion people, united by festivals, diverse cuisines, rich heritage, and ancient civilizations. Each state plays a vital role in shaping the nation’s economy, culture, and global identity, all powered by the Indian Rupee (INR)."
-          }
+          {description}
         </p>
       </div>
     </div>
@@ -98,7 +101,7 @@ function DestinationCard({
   exploreLink,
 }: IndiaMapRegionData) {
   return (
-    <div className="relative space-y-4 bg-bridalHealth p-11 rounded-xl text-black">
+    <div className="relative space-y-4 bg-bridalHealth p-11 border-[rgba(255,199,126,0.18)] border-1 rounded-[6px] text-black">
       <div>
         <h3 className="font-bold text-black text-4xl not-italic leading-normal">
           {destination}

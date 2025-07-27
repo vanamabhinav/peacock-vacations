@@ -19,7 +19,10 @@ export default async function Home() {
       <TravelByTheme {...homePageData.travelByThemeSectionData} />
       <WhatMakesDifferent {...homePageData.whatMakesUsDifferentSectionData} />
       <TestimonialsSection {...homePageData.testimonialsSectionData} />
-      <IndiaMapSection regionData={homePageData.indiaMapSectionData} />
+      <IndiaMapSection
+        regionData={homePageData.indiaMapSectionData.regionData}
+        indiaData={homePageData.indiaMapSectionData.indiaData}
+      />
     </main>
   );
 }

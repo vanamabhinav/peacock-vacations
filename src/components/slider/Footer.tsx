@@ -318,7 +318,7 @@ function NewsLetterComponent() {
         {/* Social Media Section */}
         <div className="flex justify-between w-full">
           <address className="font-normal text-nevada text-base not-italic">
-            © 2025 Peacock Vacations. All rights reserved.
+            © {new Date().getFullYear()} Peacock Vacations. All rights reserved.
           </address>
           <div className="flex gap-5">
             <Link href="#" aria-label="Twitter">
