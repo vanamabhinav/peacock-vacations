@@ -8,7 +8,7 @@ function TestimonialsSection({
   testimonials,
 }: TestimonialSectionData) {
   return (
-    <div className="flex justify-center bg-white p-16">
+    <div className="flex justify-center bg-white p-16 font-albertsans">
       <TravelPackageSlider heading={heading} subheading={subheading}>
         {testimonials.map((testimonial, idx) => (
           <div key={idx} className="min-w-max">

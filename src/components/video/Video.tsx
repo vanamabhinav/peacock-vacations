@@ -5,6 +5,7 @@ interface VideoProps {
   muted: boolean;
   src: string;
   onVideoEnd?: () => void;
+  isActive: boolean;
   className?: string;
   ref: React.Ref<VideoHandle>;
 }
@@ -14,7 +15,14 @@ export interface VideoHandle {
   pause: () => void;
 }
 
-function Video({ muted, src, onVideoEnd, className, ref }: VideoProps) {
+function Video({
+  muted,
+  src,
+  onVideoEnd,
+  className,
+  isActive,
+  ref,
+}: VideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useImperativeHandle(ref, () => ({
@@ -38,6 +46,19 @@ function Video({ muted, src, onVideoEnd, className, ref }: VideoProps) {
     video.addEventListener("ended", handleEnded);
     return () => video.removeEventListener("ended", handleEnded);
   }, [onVideoEnd]);
+  if (!isActive) {
+    // Render a black box with the same aspect ratio as your video
+    return (
+      <div
+        className={className}
+        style={{
+          background: "black",
+          width: "100%",
+          height: "100%",
+        }}
+      />
+    );
+  }
 
   return (
     <video
@@ -46,7 +67,7 @@ function Video({ muted, src, onVideoEnd, className, ref }: VideoProps) {
       muted={muted}
       playsInline
       className={className}
-      preload="metadata"
+      preload="auto"
     >
       <source src={src} type="video/mp4" />
       Your browser does not support the video tag.

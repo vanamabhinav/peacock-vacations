@@ -71,7 +71,7 @@ function TestimonialDetails({
     <div className="flex flex-col items-start gap-2">
       <h3 className="font-medium text-black text-xl leading-normal">{title}</h3>
       <div className="gap-2">
-        <p className="inline font-normal text-woodsmoke text-base line-clamp-3 leading-normal">
+        <p className="inline font-dmsans font-normal text-woodsmoke text-base line-clamp-3 leading-normal">
           {description}
           <span className="ml-1">
             <button className="font-normal text-blue-800 text-base italic capitalize leading-normal whitespace-nowrap hover:cursor-pointer">
@@ -97,11 +97,11 @@ function ProfileName({
 }) {
   return (
     <div>
-      <p className="text-black text-lg leading-normal">
+      <p className="font-medium text-black text-lg leading-normal">
         {name}
         {occupation && occupation.length > 0 ? `, ${occupation}` : ""}
       </p>
-      <p className="font-normal text-william text-sm">{location}</p>
+      <p className="font-dmsans font-normal text-william text-sm">{location}</p>
     </div>
   );
 }

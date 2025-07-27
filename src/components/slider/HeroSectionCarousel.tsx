@@ -150,6 +150,7 @@ export default function HeroSectionCarousel({ slides }: HeroSectionData) {
             <HeroSectionSlide
               ref={(ref) => setVideoRef(ref, index)}
               {...slide}
+              isActive={activeIndex === index}
               muted={isMuted}
               onVideoEnd={handleVideoEnd}
             />

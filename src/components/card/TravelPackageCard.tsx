@@ -80,7 +80,9 @@ function TravelPackageCard({
             {/* Pricing section */}
             <div className="flex justify-between p-1 w-full">
               <div className="flex items-center gap-1">
-                <span className="font-bold text-normal">Starts From</span>
+                <span className="font-dmsans font-bold text-normal">
+                  Starts From
+                </span>
                 <s className="font-normal text-sm">
                   {currency === "INR" ? "₹" : "$"}
                   {originalPrice}

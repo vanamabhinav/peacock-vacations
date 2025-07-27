@@ -15,14 +15,14 @@ export default function WhatMakesDifferent({
       style={{ boxShadow: "0px 0px 15px 0px rgba(0, 0, 0, 0.07) inset" }}
     >
       <section
-        className="flex flex-col gap-10 w-[72rem]"
+        className="flex flex-col gap-10 w-[72rem] font-albertsans"
         aria-label="Travel by Theme - Curated India Travel Packages"
       >
         {/* Header Section with Navigation Buttons */}
         <div className="grid grid-cols-12">
           <div className="flex flex-col gap-2 col-span-9">
-            <h2 className="font-bold text-william text-4xl">{heading}</h2>
-            <p className="text-scorpion text-xl">{subheading}</p>
+            <h2 className="font-black text-william text-4xl">{heading}</h2>
+            <p className="font-medium text-scorpion text-xl">{subheading}</p>
           </div>
           <div className="flex justify-center items-center col-span-1 col-start-12">
             <Link
@@ -36,7 +36,7 @@ export default function WhatMakesDifferent({
 
         <div className="flex justify-center items-center gap-6">
           {cards.map((card: UspCardType, index: number) => (
-            <UspCard key={index} data={card} />
+            <UspCard key={index} data={card} isActive={index == 0} />
           ))}
         </div>
       </section>

@@ -3,7 +3,7 @@ import { TravelByThemeSectionData } from "@/types";
 
 export default function TravelByTheme(data: TravelByThemeSectionData) {
   return (
-    <div className="flex justify-center bg-white p-16">
+    <div className="flex justify-center bg-white p-16 font-albertsans">
       <TravelByThemeClient {...data} />
     </div>
   );

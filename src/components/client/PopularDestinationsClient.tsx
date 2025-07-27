@@ -84,11 +84,11 @@ export default function PopularDestinationsClient({
     initialData[currentSelectionText.toLowerCase() as keyof DestinationsData];
 
   return (
-    <section className="bg-bridalHealth p-16">
+    <section className="bg-bridalHealth p-16 font-albertsans">
       <div className="flex flex-col gap-2 mx-auto w-[72rem]">
         <div className="flex items-start w-full">
           <div className="flex flex-col gap-2">
-            <h2 className="flex items-center gap-2 font-black text-bigstone text-4xl leading-none">
+            <h2 className="flex items-center gap-2 font-black text-william text-4xl leading-none">
               {heading}{" "}
               <div
                 ref={selectionRef}
@@ -121,7 +121,7 @@ export default function PopularDestinationsClient({
                 </span>
               </div>
             </h2>
-            <p className="text-scorpion text-xl">
+            <p className="font-medium text-scorpion text-xl">
               {subheading} {isRegion() ? "in this region" : "this month"}
             </p>
           </div>

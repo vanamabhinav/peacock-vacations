@@ -18,7 +18,7 @@ function DateUI({ className, number, size = 24, ...props }: DateUIProps) {
       className={className}
     >
       <span
-        className="absolute inset-0 flex justify-center items-center text-xs"
+        className="absolute inset-0 flex justify-center items-center pt-1 text-xs"
         style={{ pointerEvents: "none" }}
       >
         {number}
