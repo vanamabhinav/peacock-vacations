@@ -56,7 +56,7 @@ const DestinationCard = memo(
         className="top-4 right-4 z-20 absolute flex justify-center items-center bg-black/14 hover:bg-black/6 border border-white rounded-full w-8 h-8 transition-colors cursor-pointer"
         aria-label={`View details for ${title}`}
       >
-        <Icon name="customize/chevron" className="w-4 h-4" aria-hidden="true" />
+        <Icon name="chevron" className="w-4 h-4" aria-hidden="true" />
       </Link>
 
       <div
@@ -90,7 +90,7 @@ const CallToActionCard = memo(
         aria-label="Explore all destinations"
       >
         <Icon
-          name="customize/chevron"
+          name="chevron"
           className="w-6 h-4 text-bigstone rotate-45"
           aria-hidden="true"
         />

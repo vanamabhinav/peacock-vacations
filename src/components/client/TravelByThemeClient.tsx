@@ -64,7 +64,7 @@ export default function TravelByThemeClient(data: TravelByThemeSectionData) {
             disabled={!canScrollLeft}
           >
             <Icon
-              name="customize/right-arrow"
+              name="right-arrow"
               className="text-bigstone rotate-180"
               aria-hidden="true"
             />
@@ -81,7 +81,7 @@ export default function TravelByThemeClient(data: TravelByThemeSectionData) {
             disabled={!canScrollRight}
           >
             <Icon
-              name="customize/right-arrow"
+              name="right-arrow"
               className="text-bigstone"
               aria-hidden="true"
             />

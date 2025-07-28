@@ -31,11 +31,7 @@ function TravelPackageCard({
             role="button"
           >
             <span>View Package</span>
-            <Icon
-              name="customize/chevron"
-              className="w-3 rotate-45"
-              aria-hidden="true"
-            />
+            <Icon name="chevron" className="w-3 rotate-45" aria-hidden="true" />
           </Link>
         </div>
 

@@ -47,7 +47,7 @@ export default function TravelPackageSlider({
             disabled={!canScrollLeft}
           >
             <Icon
-              name="customize/right-arrow"
+              name="right-arrow"
               className="text-bigstone rotate-180"
               aria-hidden="true"
             />
@@ -64,7 +64,7 @@ export default function TravelPackageSlider({
             disabled={!canScrollRight}
           >
             <Icon
-              name="customize/right-arrow"
+              name="right-arrow"
               className="text-bigstone"
               aria-hidden="true"
             />

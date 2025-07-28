@@ -5,38 +5,42 @@ html {
 }
 
 @theme {
-  --color-bigstone: #1a3642;
-  --color-silverchalice: #a1a1a1;
   --color-alto: #d1d1d1;
+  --color-astra: #fbe6c1;
+  --color-bigstone: #1a3642;
+  --color-bitter: #8a8b7f;
+  --color-bluedianne: #1e3a47;
+  --color-botticelli: #d3e5ec;
+  --color-brandyPunch: #d68d2c;
+  --color-bridalHealth: #fff8ef;
+  --color-catSkillWhite: #f0f6f8;
+  --color-desertstorm: #f2f1f0;
+  --color-firefly: #0c1b22;
+  --color-goldentainoi: #ffc65d;
+  --color-gray: #919191;
+  --color-islandSplice: #fffaee;
+  --color-karry: #ffecd4;
+  --color-koromiko: #ffba5f;
+  --color-marconi_cheese: #ffc27f;
+  --color-mercury: #e7e7e7;
+  --color-nevada: #6a6e71;
+  --color-nobel: #b4b4b4;
+  --color-ochre: #d58822;
+  --color-peachorange: #ffd49c;
+  --color-provincialpink: #fefaf7;
+  --color-putty: #e8ce92;
+  --color-quincy: #614831;
+  --color-rawsienna: #d49847;
+  --color-sandybrown: #f1aa4c;
+  --color-scorpion: #606060;
+  --color-silver: #c4c4c4;
+  --color-silverchalice: #a1a1a1;
+  --color-springWood: #f8f5f1;
   --color-tealyellow: #ffbe67;
   --color-twilightBlue: #f1fbff;
   --color-william: #345b63;
-  --color-scorpion: #606060;
-  --color-gray: #919191;
-  --color-bridalHealth: #fff8ef;
-  --color-karry: #ffecd4;
-  --color-astra: #fbe6c1;
-  --color-quincy: #614831;
-  --color-sandybrown: #f1aa4c;
-  --color-botticelli: #d3e5ec;
-  --color-catSkillWhite: #f0f6f8;
-  --color-springWood: #f8f5f1;
-  --color-bitter: #8a8b7f;
-  --color-brandyPunch: #d68d2c;
-  --color-islandSplice: #fffaee;
-  --color-putty: #e8ce92;
   --color-woodsmoke: #111518;
-  --color-firefly: #0c1b22;
-  --color-silver: #c4c4c4;
-  --color-peachorange: #ffd49c;
-  --color-rawsienna: #d49847;
-  --color-ochre: #d58822;
-  --color-bluedianne: #1e3a47;
-  --color-nevada: #6a6e71;
-  --color-mercury: #e7e7e7;
-  --color-nobel: #b4b4b4;
-  --color-marconi_cheese: #ffc27f;
-  --color-desertstorm: #f2f1f0;
+  --color-yelloworange: #ffad3d;
 
   --font-clashdisplay: var(--font-clashdisplay);
   --font-cabinetgrotesk: var(--font-cabinetgrotesk);
@@ -51,4 +55,44 @@ html {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+.AdditionalNavMenu {
+  will-change: transform;
+}
+
+.PhoneInputInput {
+  font-size: 14px;
+  padding: 2px 8px;
+  border: none;
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+  border-left: #888 1px solid;
+}
+.PhoneInputCountry {
+  --PhoneInputCountrySelectArrow-color: #2a1800;
+}
+
+/* Custom select styles inside country input */
+.PhoneInputCountry select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  padding: 8px 8px 8px 8px;
+  border-radius: 40;
+  color: #2a1800;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+}
+
+.PhoneInputCountry select:focus {
+  outline: 2px solid #ffbe67;
+}
+
+.PhoneInputCountry {
+  position: relative;
 }

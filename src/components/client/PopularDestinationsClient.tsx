@@ -110,7 +110,7 @@ export default function PopularDestinationsClient({
                     />
                   )}
                   <Icon
-                    name="customize/right-arrow"
+                    name="right-arrow"
                     width={20}
                     height={20}
                     className={`ml-1 w-4 transition-transform duration-300 ${

@@ -58,7 +58,7 @@ export default function TestimonialBentoGrid({
                 <div className="absolute inset-0 flex justify-center items-end p-4">
                   <div className="flex flex-col items-center">
                     <Icon
-                      name="customize/see-all-icon"
+                      name="see-all-icon"
                       className="text-white"
                       style={{ height: "16px", width: "16px" }}
                     />

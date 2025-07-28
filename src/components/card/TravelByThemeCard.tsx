@@ -43,7 +43,7 @@ function TravelByThemeCard({
           >
             <span>{ctaText}</span>
             <Icon
-              name="customize/right-arrow"
+              name="right-arrow"
               aria-hidden="true"
               className="flex-shrink-0"
             />

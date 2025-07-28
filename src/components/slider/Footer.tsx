@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "../ui/Icon";
+import CopyrightYear from "../client/CopyrightYear";
 export default function Footer() {
   const LinkSectionData = [
     {
@@ -263,11 +264,11 @@ function NewsLetterComponent() {
             {/* Logo */}
             <div className="flex gap-1">
               <Icon
-                name="customize/peacock-vacations-logo"
+                name="peacock-vacations-logo"
                 className="w-16 h-11 text-ochre"
               />
               <Icon
-                name="customize/peacock-vacations-word"
+                name="peacock-vacations-word"
                 className="w-30 h-11 text-bluedianne"
               />
             </div>
@@ -317,21 +318,19 @@ function NewsLetterComponent() {
         <hr className="border-silver" />
         {/* Social Media Section */}
         <div className="flex justify-between w-full">
-          <address className="font-normal text-nevada text-base not-italic">
-            © {new Date().getFullYear()} Peacock Vacations. All rights reserved.
-          </address>
+          <CopyrightYear />
           <div className="flex gap-5">
             <Link href="#" aria-label="Twitter">
-              <Icon name="customize/twitter" className="w-5 h-5" />
+              <Icon name="twitter" className="w-5 h-5" />
             </Link>
             <Link href="#" aria-label="Instagram">
-              <Icon name="customize/instagram" className="w-5 h-5" />
+              <Icon name="instagram" className="w-5 h-5" />
             </Link>
             <Link href="#" aria-label="YouTube">
-              <Icon name="customize/youtube" className="w-7 h-5" />
+              <Icon name="youtube" className="w-7 h-5" />
             </Link>
             <Link href="#" aria-label="Facebook">
-              <Icon name="homepage/facebook" className="w-5 h-5" />
+              <Icon name="facebook" className="w-5 h-5" />
             </Link>
           </div>
         </div>

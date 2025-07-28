@@ -1,6 +1,7 @@
 import { type SVGProps } from "react";
 import { cn } from "@/lib/cn";
 import { type IconName } from "@/types/name";
+import iconManifest from "@/types/icon-manifest";
 
 export { IconName };
 
@@ -16,7 +17,9 @@ export function Icon({
   childClassName?: string;
   ref?: React.Ref<SVGSVGElement>;
 }) {
-  // Ensure aria-hidden icons are not focusable
+  const spriteFile = iconManifest[name]; // fallback for dev
+  const href = `/icons/${spriteFile}#${name}`;
+
   const accessibilityProps = {
     ...props,
     ...(props["aria-hidden"] === "true" && { tabIndex: -1 }),
@@ -34,7 +37,7 @@ export function Icon({
             className
           )}
         >
-          <use href={`/icons/sprite.svg#${name}`} />
+          <use href={href} />
         </svg>
         <span
           className={cn(
@@ -57,7 +60,7 @@ export function Icon({
         className
       )}
     >
-      <use href={`/icons/sprite.svg#${name}`} />
+      <use href={href} />
     </svg>
   );
 }
