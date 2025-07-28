@@ -1,5 +1,6 @@
 const iconManifestData = {
   "mute": "customize-sprite.svg",
+  "right-arrow": "customize-sprite.svg",
   "youtube": "customize-sprite.svg",
   "peacock-vacations-logo": "customize-sprite.svg",
   "peacock-vacations-word": "customize-sprite.svg",
@@ -20,7 +21,6 @@ const iconManifestData = {
   "heart": "customize-sprite.svg",
   "instagram": "customize-sprite.svg",
   "phone": "customize-sprite.svg",
-  "right-arrow": "customize-sprite.svg",
   "search": "customize-sprite.svg",
   "see-all-icon": "customize-sprite.svg",
   "star-half": "customize-sprite.svg",
