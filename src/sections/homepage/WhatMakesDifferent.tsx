@@ -11,11 +11,11 @@ export default function WhatMakesDifferent({
 }: WhatMakesUsDifferentSectionData) {
   return (
     <div
-      className="flex justify-center bg-white p-16"
+      className="flex justify-center bg-white px-4 py-16"
       style={{ boxShadow: "0px 0px 15px 0px rgba(0, 0, 0, 0.07) inset" }}
     >
       <section
-        className="flex flex-col gap-10 w-[72rem] font-albertsans"
+        className="flex flex-col gap-10 mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl font-albertsans"
         aria-label="Travel by Theme - Curated India Travel Packages"
       >
         {/* Header Section with Navigation Buttons */}

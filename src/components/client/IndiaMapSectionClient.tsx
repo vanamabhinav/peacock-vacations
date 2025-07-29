@@ -46,7 +46,7 @@ function IndiaMapSectionClient({ indiaData, regionData }: IndiaMapSectionData) {
   };
   const cardData: IndiaMapRegionData | undefined = regionData[activeMap];
   return (
-    <div className="grid grid-cols-2 bg-white p-8 rounded-[20px] h-[45rem] font-albertsans">
+    <div className="grid grid-cols-2 bg-white mx-auto p-8 rounded-[20px] w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl font-albertsans">
       <div className="flex justify-center items-center px-20 w-full h-full">
         <IndiaMapComponent
           handleMapClick={handleMapClick}

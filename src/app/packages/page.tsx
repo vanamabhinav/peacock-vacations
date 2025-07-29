@@ -1,4 +1,5 @@
 import HeroSection from "@/sections/packages/HeroSection";
+import PackageSection from "@/sections/packages/PackageSection";
 
 export default async function Home() {
   return (
@@ -12,6 +13,7 @@ export default async function Home() {
           count: 7023,
         }}
       />
+      <PackageSection />
     </main>
   );
 }

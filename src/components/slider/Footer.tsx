@@ -70,38 +70,40 @@ export default function Footer() {
   ];
   return (
     <footer
-      className="flex flex-col gap-21 bg-firefly px-[60px] py-[62px] font-albertsans"
+      className="flex flex-col gap-21 bg-firefly py-[62px] font-albertsans"
       aria-label="Site Footer"
     >
-      <section aria-label="Partners">
-        <PartnerSection
-          heading="Partners"
-          subheading="Co-creating authentic journeys across India."
-          partnerImages={[
-            "/images/Incredible_India_logo.png",
-            "/images/toft_tigers_logo.png",
-            "/images/columbus_vacations_logo.png",
-            "/images/Toft_logo.png",
-            "/images/Incredible_India_logo.png",
-            "/images/toft_tigers_logo.png",
-            "/images/columbus_vacations_logo.png",
-            "/images/Toft_logo.png",
-            "/images/Incredible_India_logo.png",
-            "/images/toft_tigers_logo.png",
-            "/images/Incredible_India_logo.png",
-          ]}
-        />
-      </section>
+      <div className="mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl">
+        <section aria-label="Partners">
+          <PartnerSection
+            heading="Partners"
+            subheading="Co-creating authentic journeys across India."
+            partnerImages={[
+              "/images/Incredible_India_logo.png",
+              "/images/toft_tigers_logo.png",
+              "/images/columbus_vacations_logo.png",
+              "/images/Toft_logo.png",
+              "/images/Incredible_India_logo.png",
+              "/images/toft_tigers_logo.png",
+              "/images/columbus_vacations_logo.png",
+              "/images/Toft_logo.png",
+              "/images/Incredible_India_logo.png",
+              "/images/toft_tigers_logo.png",
+              "/images/Incredible_India_logo.png",
+            ]}
+          />
+        </section>
 
-      <nav aria-label="Footer Navigation">
-        {LinkSectionData.map(({ title, links }, idx) => {
-          return <LinkSection key={idx} title={title} links={links} />;
-        })}
-      </nav>
+        <nav aria-label="Footer Navigation">
+          {LinkSectionData.map(({ title, links }, idx) => {
+            return <LinkSection key={idx} title={title} links={links} />;
+          })}
+        </nav>
 
-      <section aria-label="Newsletter">
-        <NewsLetterComponent />
-      </section>
+        <section aria-label="Newsletter">
+          <NewsLetterComponent />
+        </section>
+      </div>
     </footer>
   );
 }
@@ -135,7 +137,7 @@ function PartnerSection({
   const rows = splitImages(partnerImages, 6);
 
   return (
-    <div className="flex flex-col gap-16 px-[85px] w-full">
+    <div className="flex flex-col gap-16 w-full">
       <div>
         <h2 className="font-black text-sandybrown text-4xl text-center leading-normal">
           {heading}
@@ -177,7 +179,7 @@ function LinkSection({
   }[];
 }) {
   return (
-    <div className="flex flex-col gap-7 border-peachorange/28 border-b-[1px] font-albertsans">
+    <div className="flex flex-col gap-7 mb-2 border-peachorange/28 border-b-[1px] font-albertsans">
       <h3 className="font-semibold text-rawsienna text-2xl leading-normal">
         {title}
       </h3>

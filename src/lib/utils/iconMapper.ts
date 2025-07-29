@@ -1,4 +1,5 @@
 import { IconName } from "@/components/ui/Icon";
+import iconManifestData from "@/types/icon-manifest";
 
 // Type definitions for better type safety
 export type RegionString =
@@ -59,7 +60,7 @@ export function getRegionIcon(region: RegionString): IconName {
     "West India": "westIndia",
   };
 
-  return regionMap[region] || "westIndia"; // fallback
+  return regionMap[region] || ""; // fallback
 }
 
 // Inclusion icon mapper
@@ -100,61 +101,23 @@ function getGenericIcon(value?: string): IconName {
     return value as IconName;
   }
 
-  // Create list of available icon names from both directories
-  const customizeIcons = [
-    "247-call",
-    "chevron",
-    "chime",
-    "curated-locals",
-    "dateTemplate",
-    "eastIndia",
-    "facebook",
-    "heart",
-    "india-icon",
-    "instagram",
-    "mute",
-    "northEastIndia",
-    "northIndia",
-    "northWestIndia",
-    "right-arrow",
-    "search",
-    "see-all-icon",
-    "southEastIndia",
-    "southIndia",
-    "southWestIndia",
-    "star",
-    "trusted",
-    "twitter",
-    "unmute",
-    "up-arrow",
-    "westIndia",
-    "youtube",
-  ];
+  // Normalize a string: lowercase, remove spaces, dashes, underscores
+  const normalize = (str: string) => str.toLowerCase().replace(/[-_\s]/g, "");
+  const normalizedValue = normalize(value);
 
-  const homepageIcons = [
-    "adventure",
-    "airport",
-    "beach",
-    "breakfast",
-    "honeymoon",
-    "luxury",
-    "piligrimage",
-    "resort",
-    "solo",
-  ];
-
-  // Check if the icon exists in customize directory first
-  if (customizeIcons.includes(value)) {
-    return `${value}` as IconName;
+  // Build a map of normalized icon keys to actual icon keys
+  const availableIcons = Object.keys(iconManifestData);
+  const normalizedIconMap: Record<string, string> = {};
+  for (const iconKey of availableIcons) {
+    normalizedIconMap[normalize(iconKey)] = iconKey;
   }
 
-  // Then check homepage directory
-  if (homepageIcons.includes(value)) {
-    return `${value}` as IconName;
+  if (normalizedValue in normalizedIconMap) {
+    return normalizedIconMap[normalizedValue] as IconName;
   }
 
-  // If not found in either, default to customize (most common)
-  return `${value}` as IconName;
+  // If not found, fallback to a safe default
+  return "resort";
 }
 
 // Type guard functions

@@ -29,8 +29,8 @@ const HeroSection = ({
         />
         <RequestCallBack className="top-1/2 right-10 absolute w-80 -translate-y-1/2" />
       </section>
-      <div className="relative flex bg-bigstone px-16 py-5 w-full h-20 text-alto text-xs">
-        <div className="flex justify-between items-center w-full">
+      <div className="relative flex bg-bigstone px-4 py-6 h-20 text-alto text-xs">
+        <div className="flex justify-between items-center mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl">
           <div className="flex gap-12">
             <div>
               <div className="font-medium">Average Duration</div>

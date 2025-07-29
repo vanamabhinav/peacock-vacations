@@ -53,13 +53,20 @@ export type RegionType =
   | "East India"
   | "West India";
 
-export type InclusionType = "Resort Stay" | "Airport Transfers" | "Breakfast";
+export type InclusionType =
+  | "Resort Stay"
+  | "Airport Transfers"
+  | "Breakfast"
+  | "Celebrate";
 
 export type PackageData = {
   region: RegionType;
+  location: string;
   heading: string;
   subheading: string;
   currency: "INR" | "USD";
+  days: number;
+  nights: number;
   originalPrice: number;
   discountedPrice: number;
   inclusions: InclusionType[];

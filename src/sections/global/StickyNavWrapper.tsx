@@ -5,9 +5,10 @@ import Image from "next/image";
 export default function StickyNavWrapper() {
   return (
     <header className="top-0 z-[100] sticky w-full">
-      <div className="z-[120] relative">
+      <div className="z-[120] relative bg-bigstone px-4 py-4">
         <Topbar />
       </div>
+
       <StickyNavWrapperClient />
     </header>
   );
@@ -15,7 +16,7 @@ export default function StickyNavWrapper() {
 
 export const Topbar = () => (
   <nav
-    className="z-[100] flex justify-between items-center bg-bigstone px-4 md:px-8 lg:px-16 py-[14px] font-inter font-semibold text-white text-base"
+    className="z-[100] flex justify-between items-center mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl font-inter font-semibold text-white text-base"
     aria-label="Main navigation"
   >
     {/* Left Logo Section */}
@@ -66,10 +67,10 @@ export const AdditionalNavMenu = ({
   className?: string;
 }) => (
   <nav
-    className={`w-full flex bg-marconi_cheese overflow-hidden flex-col items-start text-left text-sm text-black font-albertsans font-medium capitalize ${className}`}
+    className={`flex overflow-hidden flex-col items-start text-left text-sm text-black font-albertsans font-medium capitalize bg-marconi_cheese ${className}`}
     aria-label="Secondary navigation"
   >
-    <div className="flex flex-row justify-center items-center gap-6 mx-auto w-full h-9">
+    <div className="flex flex-row justify-center items-center gap-6 mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl h-9">
       <Link href="/" className="flex items-center px-[10px] h-[35px]">
         Home
       </Link>

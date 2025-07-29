@@ -960,8 +960,11 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           heading: "Goa Beach Getaway",
           subheading: "Beaches and Nightlife",
           currency: "INR",
+          location: "Goa",
           originalPrice: 52097,
           discountedPrice: 38590,
+          days: 4,
+          nights: 3,
           inclusions: ["Resort Stay", "Airport Transfers", "Breakfast"],
           image:
             "https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg", // Goa beach
@@ -972,8 +975,11 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           heading: "Himalayan Adventure",
           subheading: "Mountains and Trekking",
           currency: "INR",
+          location: "Himalayas",
           originalPrice: 45000,
           discountedPrice: 34999,
+          days: 4,
+          nights: 3,
           inclusions: ["Resort Stay", "Airport Transfers", "Breakfast"],
           image:
             "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg", // Himalayas
@@ -984,8 +990,11 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           heading: "Kerala Backwaters",
           subheading: "Houseboats and Nature",
           currency: "INR",
+          location: "Kerala",
           originalPrice: 40000,
           discountedPrice: 29500,
+          days: 4,
+          nights: 3,
           inclusions: ["Resort Stay", "Airport Transfers", "Breakfast"],
           image:
             "https://images.pexels.com/photos/8112558/pexels-photo-8112558.jpeg", // Kerala backwaters
@@ -995,9 +1004,12 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           region: "East India",
           heading: "Darjeeling Tea Trails",
           subheading: "Tea Gardens and Hills",
+          location: "Assam",
           currency: "INR",
           originalPrice: 38000,
           discountedPrice: 27800,
+          days: 4,
+          nights: 3,
           inclusions: ["Resort Stay", "Airport Transfers", "Breakfast"],
           image:
             "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg", // Darjeeling tea gardens
@@ -1008,8 +1020,11 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           heading: "Kanha Wildlife Safari",
           subheading: "Wildlife and Forests",
           currency: "INR",
+          location: "Kanha",
           originalPrice: 42500,
           discountedPrice: 31200,
+          days: 4,
+          nights: 3,
           inclusions: ["Resort Stay", "Airport Transfers", "Breakfast"],
           image:
             "https://images.pexels.com/photos/164631/pexels-photo-164631.jpeg", // Kanha forest
@@ -1020,8 +1035,11 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           heading: "Meghalaya Living Roots",
           subheading: "Caves and Waterfalls",
           currency: "INR",
+          location: "Meghalaya",
           originalPrice: 39000,
           discountedPrice: 28500,
+          days: 4,
+          nights: 3,
           inclusions: ["Resort Stay", "Airport Transfers", "Breakfast"],
           image:
             "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg", // Meghalaya caves
@@ -1031,9 +1049,12 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           region: "South East India",
           heading: "Andaman Island Escape",
           subheading: "Islands and Water Sports",
+          location: "Andaman",
           currency: "INR",
           originalPrice: 55000,
           discountedPrice: 41900,
+          days: 4,
+          nights: 3,
           inclusions: ["Resort Stay", "Airport Transfers", "Breakfast"],
           image:
             "https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg", // Andaman beach

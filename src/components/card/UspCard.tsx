@@ -13,7 +13,7 @@ function UspCard({
   return (
     <div
       className={twMerge(
-        "flex flex-col justify-start items-start p-5 border-1 border-bigstone/13 rounded-[20px] w-72 aspect-[269/403] transition-colors",
+        "flex flex-col justify-start items-start p-5 border-1 border-bigstone/13 rounded-[20px] w-full h-full transition-colors",
         isActive ? "bg-sandybrown/38" : "bg-springWood"
       )}
     >

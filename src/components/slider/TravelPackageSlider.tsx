@@ -26,7 +26,7 @@ export default function TravelPackageSlider({
 
   return (
     <section
-      className="flex flex-col gap-5 w-[72rem]"
+      className="flex flex-col gap-5 mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl"
       aria-label="Popular Packages"
     >
       <div className="flex justify-between items-center">

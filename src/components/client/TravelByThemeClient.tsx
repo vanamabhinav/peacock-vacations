@@ -41,7 +41,7 @@ export default function TravelByThemeClient(data: TravelByThemeSectionData) {
 
   return (
     <section
-      className="flex flex-col gap-5 w-[72rem]"
+      className="flex flex-col gap-5 mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl"
       aria-label="Travel by Theme - Curated India Travel Packages"
     >
       {/* Header Section with Navigation Buttons */}
