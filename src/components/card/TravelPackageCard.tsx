@@ -2,7 +2,7 @@ import { PackageData } from "@/types";
 import Link from "next/link";
 import { Icon } from "../ui/Icon";
 import Image from "next/image";
-import { getInclusionIcon, getRegionIcon } from "@/lib/utils/iconMapper";
+import { getIconName, getRegionIcon } from "@/lib/utils/iconMapper";
 
 function TravelPackageCard({
   region,
@@ -31,11 +31,7 @@ function TravelPackageCard({
             role="button"
           >
             <span>View Package</span>
-            <Icon
-              name="customize/chevron"
-              className="w-3 rotate-45"
-              aria-hidden="true"
-            />
+            <Icon name="chevron" className="w-3 rotate-45" aria-hidden="true" />
           </Link>
         </div>
 
@@ -103,7 +99,7 @@ function TravelPackageCard({
               <ul className="flex flex-col gap-0 opacity-70 px-4 text-sm">
                 {inclusions.slice(0, 3).map((item, index) => (
                   <li key={index} className="flex items-center gap-1.5">
-                    <Icon name={getInclusionIcon(item)} aria-hidden="true" />
+                    <Icon name={getIconName(item)} aria-hidden="true" />
                     <span>{item}</span>
                   </li>
                 ))}

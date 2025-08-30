@@ -6,20 +6,20 @@ import { Icon } from "../ui/Icon";
 import TravelThemeSelection from "../selection/TravelThemeSelection";
 import TravelByThemeCard from "../card/TravelByThemeCard";
 import SwiperSlider, { SwiperSliderHandle } from "../slider/SwiperSlider";
-import { ThemeType, TravelByThemeSectionData } from "@/types";
+import { TravelByThemeSectionData } from "@/types";
 
 export default function TravelByThemeClient(data: TravelByThemeSectionData) {
   const sliderRef = useRef<SwiperSliderHandle>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const [selectedThemes, setSelectedThemes] = useState<ThemeType[]>([]);
+  const [selectedThemes, setSelectedThemes] = useState<string[]>([]);
 
   const handleScrollStateChange = (left: boolean, right: boolean) => {
     setCanScrollLeft(left);
     setCanScrollRight(right);
   };
 
-  const handleThemeSelectionChange = (newSelectedThemes: ThemeType[]) => {
+  const handleThemeSelectionChange = (newSelectedThemes: string[]) => {
     setSelectedThemes(newSelectedThemes);
     // Reset slider to beginning when themes change
     if (sliderRef.current) {
@@ -41,7 +41,7 @@ export default function TravelByThemeClient(data: TravelByThemeSectionData) {
 
   return (
     <section
-      className="flex flex-col gap-5 w-[72rem]"
+      className="flex flex-col gap-5 mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl"
       aria-label="Travel by Theme - Curated India Travel Packages"
     >
       {/* Header Section with Navigation Buttons */}
@@ -64,7 +64,7 @@ export default function TravelByThemeClient(data: TravelByThemeSectionData) {
             disabled={!canScrollLeft}
           >
             <Icon
-              name="customize/right-arrow"
+              name="right-arrow"
               className="text-bigstone rotate-180"
               aria-hidden="true"
             />
@@ -81,7 +81,7 @@ export default function TravelByThemeClient(data: TravelByThemeSectionData) {
             disabled={!canScrollRight}
           >
             <Icon
-              name="customize/right-arrow"
+              name="right-arrow"
               className="text-bigstone"
               aria-hidden="true"
             />

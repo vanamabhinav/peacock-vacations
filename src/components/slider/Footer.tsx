@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "../ui/Icon";
+import CopyrightYear from "../client/CopyrightYear";
 export default function Footer() {
   const LinkSectionData = [
     {
@@ -69,38 +70,40 @@ export default function Footer() {
   ];
   return (
     <footer
-      className="flex flex-col gap-21 bg-firefly px-[60px] py-[62px] font-albertsans"
+      className="flex flex-col gap-21 bg-firefly py-[62px] font-albertsans"
       aria-label="Site Footer"
     >
-      <section aria-label="Partners">
-        <PartnerSection
-          heading="Partners"
-          subheading="Co-creating authentic journeys across India."
-          partnerImages={[
-            "/images/Incredible_India_logo.png",
-            "/images/toft_tigers_logo.png",
-            "/images/columbus_vacations_logo.png",
-            "/images/Toft_logo.png",
-            "/images/Incredible_India_logo.png",
-            "/images/toft_tigers_logo.png",
-            "/images/columbus_vacations_logo.png",
-            "/images/Toft_logo.png",
-            "/images/Incredible_India_logo.png",
-            "/images/toft_tigers_logo.png",
-            "/images/Incredible_India_logo.png",
-          ]}
-        />
-      </section>
+      <div className="mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl">
+        <section aria-label="Partners">
+          <PartnerSection
+            heading="Partners"
+            subheading="Co-creating authentic journeys across India."
+            partnerImages={[
+              "/images/Incredible_India_logo.png",
+              "/images/toft_tigers_logo.png",
+              "/images/columbus_vacations_logo.png",
+              "/images/Toft_logo.png",
+              "/images/Incredible_India_logo.png",
+              "/images/toft_tigers_logo.png",
+              "/images/columbus_vacations_logo.png",
+              "/images/Toft_logo.png",
+              "/images/Incredible_India_logo.png",
+              "/images/toft_tigers_logo.png",
+              "/images/Incredible_India_logo.png",
+            ]}
+          />
+        </section>
 
-      <nav aria-label="Footer Navigation">
-        {LinkSectionData.map(({ title, links }, idx) => {
-          return <LinkSection key={idx} title={title} links={links} />;
-        })}
-      </nav>
+        <nav aria-label="Footer Navigation">
+          {LinkSectionData.map(({ title, links }, idx) => {
+            return <LinkSection key={idx} title={title} links={links} />;
+          })}
+        </nav>
 
-      <section aria-label="Newsletter">
-        <NewsLetterComponent />
-      </section>
+        <section aria-label="Newsletter">
+          <NewsLetterComponent />
+        </section>
+      </div>
     </footer>
   );
 }
@@ -134,7 +137,7 @@ function PartnerSection({
   const rows = splitImages(partnerImages, 6);
 
   return (
-    <div className="flex flex-col gap-16 px-[85px] w-full">
+    <div className="flex flex-col gap-16 w-full">
       <div>
         <h2 className="font-black text-sandybrown text-4xl text-center leading-normal">
           {heading}
@@ -155,6 +158,10 @@ function PartnerSection({
                   height={60}
                   title={`Logo of partner ${rowIdx * 6 + idx + 1}`}
                   loading="lazy"
+                  style={{
+                    width: "auto",
+                    height: "auto",
+                  }}
                 />
               </div>
             ))}
@@ -176,7 +183,7 @@ function LinkSection({
   }[];
 }) {
   return (
-    <div className="flex flex-col gap-7 border-peachorange/28 border-b-[1px] font-albertsans">
+    <div className="flex flex-col gap-7 mb-2 border-peachorange/28 border-b-[1px] font-albertsans">
       <h3 className="font-semibold text-rawsienna text-2xl leading-normal">
         {title}
       </h3>
@@ -263,11 +270,11 @@ function NewsLetterComponent() {
             {/* Logo */}
             <div className="flex gap-1">
               <Icon
-                name="customize/peacock-vacations-logo"
+                name="peacock-vacations-logo"
                 className="w-16 h-11 text-ochre"
               />
               <Icon
-                name="customize/peacock-vacations-word"
+                name="peacock-vacations-word"
                 className="w-30 h-11 text-bluedianne"
               />
             </div>
@@ -317,21 +324,19 @@ function NewsLetterComponent() {
         <hr className="border-silver" />
         {/* Social Media Section */}
         <div className="flex justify-between w-full">
-          <address className="font-normal text-nevada text-base not-italic">
-            © {new Date().getFullYear()} Peacock Vacations. All rights reserved.
-          </address>
+          <CopyrightYear />
           <div className="flex gap-5">
             <Link href="#" aria-label="Twitter">
-              <Icon name="customize/twitter" className="w-5 h-5" />
+              <Icon name="twitter" className="w-5 h-5" />
             </Link>
             <Link href="#" aria-label="Instagram">
-              <Icon name="customize/instagram" className="w-5 h-5" />
+              <Icon name="instagram" className="w-5 h-5" />
             </Link>
             <Link href="#" aria-label="YouTube">
-              <Icon name="customize/youtube" className="w-7 h-5" />
+              <Icon name="youtube" className="w-7 h-5" />
             </Link>
             <Link href="#" aria-label="Facebook">
-              <Icon name="homepage/facebook" className="w-5 h-5" />
+              <Icon name="facebook" className="w-5 h-5" />
             </Link>
           </div>
         </div>

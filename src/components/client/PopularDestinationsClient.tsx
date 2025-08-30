@@ -84,8 +84,8 @@ export default function PopularDestinationsClient({
     initialData[currentSelectionText.toLowerCase() as keyof DestinationsData];
 
   return (
-    <section className="bg-bridalHealth p-16 font-albertsans">
-      <div className="flex flex-col gap-2 mx-auto w-[72rem]">
+    <section className="bg-bridalHealth p-16 w-full font-albertsans">
+      <div className="flex flex-col gap-2 mx-auto max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl">
         <div className="flex items-start w-full">
           <div className="flex flex-col gap-2">
             <h2 className="flex items-center gap-2 font-black text-william text-4xl leading-none">
@@ -110,7 +110,7 @@ export default function PopularDestinationsClient({
                     />
                   )}
                   <Icon
-                    name="customize/right-arrow"
+                    name="right-arrow"
                     width={20}
                     height={20}
                     className={`ml-1 w-4 transition-transform duration-300 ${

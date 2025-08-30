@@ -3,8 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 function VisaMadeEasy(data: VisaAssistanceSectionData) {
   return (
-    <section className="flex justify-center bg-white p-4 md:p-8 lg:p-16 font-albertsans">
-      <div className="relative border border-black/12 rounded-[18px] w-[72rem] h-[18.25rem] overflow-hidden">
+    <section className="flex justify-center bg-white p-4 md:py-8 lg:py-16 font-albertsans">
+      <div className="relative mx-auto border border-black/12 rounded-[18px] w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl h-[18.25rem] overflow-hidden">
         {/* Main background gradient */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#EFF1F5] to-[#D9DCE4]" />
 

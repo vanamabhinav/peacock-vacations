@@ -12,12 +12,6 @@ function TravelByThemeCard({
 }: ThemePackage) {
   return (
     <article className="relative rounded-[21px] w-[300px] h-[450px] overflow-hidden">
-      {/* <div
-        className="z-5 absolute inset-0 blur-xs overflow-hidden scale-110"
-        style={{
-          background: `linear-gradient(to bottom, transparent 0%, transparent 40%, ${bgColor} 70%, ${bgColor} 100%)`,
-        }}
-      /> */}
       <div className="bottom-0 z-10 absolute flex flex-col items-start gap-5 p-5 w-full text-white">
         <div className="flex flex-col gap-1">
           <h4
@@ -43,7 +37,7 @@ function TravelByThemeCard({
           >
             <span>{ctaText}</span>
             <Icon
-              name="customize/right-arrow"
+              name="right-arrow"
               aria-hidden="true"
               className="flex-shrink-0"
             />

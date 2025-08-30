@@ -12,7 +12,7 @@ function DateUI({ className, number, size = 24, ...props }: DateUIProps) {
   return (
     <Icon
       {...props}
-      name="customize/dateTemplate"
+      name="dateTemplate"
       width={size}
       height={size}
       className={className}

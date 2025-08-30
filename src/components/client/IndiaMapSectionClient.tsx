@@ -46,7 +46,7 @@ function IndiaMapSectionClient({ indiaData, regionData }: IndiaMapSectionData) {
   };
   const cardData: IndiaMapRegionData | undefined = regionData[activeMap];
   return (
-    <div className="grid grid-cols-2 bg-white p-8 rounded-[20px] h-[45rem] font-albertsans">
+    <div className="grid grid-cols-2 bg-white mx-auto p-8 rounded-[20px] w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl font-albertsans">
       <div className="flex justify-center items-center px-20 w-full h-full">
         <IndiaMapComponent
           handleMapClick={handleMapClick}
@@ -77,7 +77,7 @@ function IndiaMapDescription({
   return (
     <div className="flex flex-col justify-center items-center bg-bridalHealth px-11 py-5 border-[rgba(255,199,126,0.18)] border-1 rounded-[6px] w-full h-full">
       <h2 className="font-bold text-black text-3xl leading-normal">India</h2>
-      <Icon name="homepage/india-flag" className="py-3 w-[20rem] h-auto" />
+      <Icon name="india-flag" className="py-3 w-[20rem] h-auto" />
       <div className="text-center">
         <h3 className="font-medium text-[18px] text-black text-center leading-normal">
           {heading}
@@ -114,10 +114,7 @@ function DestinationCard({
       <div className="text-xl">
         <p className="font-medium">Best time to visit {bestTime}</p>
         <p className="text-yellow-600">
-          <Icon
-            name="homepage/weather-sunny"
-            className="w-6 h-6 text-sandybrown"
-          />{" "}
+          <Icon name="weather-sunny" className="w-6 h-6 text-sandybrown" />{" "}
           {temperatureRange}
         </p>
       </div>
@@ -150,7 +147,7 @@ function DestinationCard({
         href={exploreLink}
         className="inline-flex right-11 bottom-5.5 absolute items-center gap-2 bg-bigstone mt-3 px-[25px] py-[10px] rounded-full text-white text-sm transition"
       >
-        Explore Packages <Icon name="customize/chevron" className="w-2 h-2" />
+        Explore Packages <Icon name="chevron" className="w-2 h-2" />
       </a>
     </div>
   );

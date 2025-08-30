@@ -45,7 +45,7 @@ function DestinationSelection({
                   {month}
                 </div>
                 <Icon
-                  name="customize/up-arrow"
+                  name="up-arrow"
                   width={13}
                   height={11}
                   fill="#1A3642"
@@ -77,7 +77,7 @@ function DestinationSelection({
                   {region}
                 </div>
                 <Icon
-                  name="customize/up-arrow"
+                  name="up-arrow"
                   width={13}
                   height={11}
                   fill="#1A3642"

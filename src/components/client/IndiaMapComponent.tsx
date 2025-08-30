@@ -34,7 +34,7 @@ function IndiaMapComponent({
       })}
 
       <Icon
-        name="homepage/map_direction"
+        name="map_direction"
         className="right-[20%] bottom-[0%] absolute w-32 h-32"
       />
     </div>

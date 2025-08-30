@@ -3,7 +3,7 @@ import { IndiaMapSectionData } from "@/types";
 
 function IndiaMapSection({ regionData, indiaData }: IndiaMapSectionData) {
   return (
-    <div className="bg-desertstorm px-16 py-19">
+    <div className="bg-desertstorm px-4 py-16">
       <IndiaMapSectionClient indiaData={indiaData} regionData={regionData} />
     </div>
   );

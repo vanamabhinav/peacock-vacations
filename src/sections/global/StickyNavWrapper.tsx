@@ -1,45 +1,22 @@
-"use client";
-import { Icon } from "@/components/ui/Icon";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-
+import StickyNavWrapperClient from "./StickyNavWrapperClient";
+import { Icon } from "@/components/ui/Icon";
+import Image from "next/image";
 export default function StickyNavWrapper() {
-  const [showMenu, setShowMenu] = useState(true);
-
-  useEffect(() => {
-    let lastScrollY = window.scrollY;
-
-    const controlNavbar = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        setShowMenu(false);
-      } else if (currentScrollY < lastScrollY && currentScrollY > 50) {
-        setShowMenu(true);
-      }
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener("scroll", controlNavbar);
-
-    return () => window.removeEventListener("scroll", controlNavbar);
-  }, []);
   return (
-    <header className="top-0 left-0 z-[100] fixed w-full">
-      <Topbar />
-      <AdditionalNavMenu
-        className={`transition-all ease-in duration-300 origin-top overflow-hidden ${
-          showMenu
-            ? "opacity-100 scale-y-100 pointer-events-auto h-9"
-            : "opacity-0 scale-y-0 pointer-events-none h-0"
-        }`}
-      />
+    <header className="top-0 z-[100] sticky w-full">
+      <div className="z-[120] relative bg-bigstone px-4 py-4">
+        <Topbar />
+      </div>
+
+      <StickyNavWrapperClient />
     </header>
   );
 }
 
-const Topbar = () => (
+export const Topbar = () => (
   <nav
-    className="flex justify-between items-center bg-bigstone px-4 md:px-8 lg:px-16 py-[14px] font-inter font-semibold text-white text-base"
+    className="z-[100] flex justify-between items-center mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl font-inter font-semibold text-white text-base"
     aria-label="Main navigation"
   >
     {/* Left Logo Section */}
@@ -48,37 +25,25 @@ const Topbar = () => (
       className="flex items-center max-w-fit"
       aria-label="Peacock Vacations Home"
     >
-      <Icon
-        name="customize/peacock-vacations-logo"
-        className="w-14 h-10 text-sandybrown"
-        aria-hidden="true"
-      />
-      <Icon
-        name="customize/peacock-vacations-word"
-        className="w-28 h-9 text-sandybrown"
-        aria-hidden="true"
+      <Image
+        src="/logo/peacock-vacations-logo.svg"
+        alt="Peacock Vacations Logo"
+        width={178}
+        height={40}
       />
     </Link>
 
     {/* Right Nav Icons and Buttons */}
     <div className="flex items-center gap-5">
       <button type="button" aria-label="Search" className="flex items-center">
-        <Icon
-          name="customize/search"
-          className="w-6 h-6 text-white"
-          aria-hidden="true"
-        />
+        <Icon name="search" className="w-6 h-6 text-white" aria-hidden="true" />
       </button>
       <Link
         href="/wishlist"
         aria-label="Wishlist"
         className="flex items-center"
       >
-        <Icon
-          name="customize/heart"
-          className="w-6 h-6 text-white"
-          aria-hidden="true"
-        />
+        <Icon name="heart" className="w-6 h-6 text-white" aria-hidden="true" />
       </Link>
       <Link
         href="/packages"
@@ -96,18 +61,22 @@ const Topbar = () => (
   </nav>
 );
 
-const AdditionalNavMenu = ({ className = "" }: { className?: string }) => (
+export const AdditionalNavMenu = ({
+  className = "",
+}: {
+  className?: string;
+}) => (
   <nav
-    className={`w-full bg-[#ffc77e] overflow-hidden flex flex-col items-start text-left text-sm text-black font-albertsans font-medium capitalize z-[40] ${className}`}
+    className={`flex overflow-hidden flex-col items-start text-left text-sm text-black font-albertsans font-medium capitalize bg-marconi_cheese ${className}`}
     aria-label="Secondary navigation"
   >
-    <div className="flex flex-row justify-center items-center gap-6 mx-auto w-full max-w-[1280px] h-9">
+    <div className="flex flex-row justify-center items-center gap-6 mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl h-9">
       <Link href="/" className="flex items-center px-[10px] h-[35px]">
         Home
       </Link>
-      <div className="flex items-center gap-[5px] bg-[#ffc77e] px-[10px] h-[35px] text-[#1a3642]">
+      <div className="flex items-center gap-[5px] bg-marconi_cheese px-[10px] h-[35px] text-bigstone">
         Destinations
-        <Icon name="customize/right-arrow" className="rotate-90" />
+        <Icon name="right-arrow" className="rotate-90" />
       </div>
       <Link href="/packages" className="flex items-center px-[10px] h-[35px]">
         Packages

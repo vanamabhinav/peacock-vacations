@@ -43,7 +43,7 @@ export default function RegionIcon({
   return (
     <Icon
       {...props}
-      name={`customize/${mappedRegion}`}
+      name={`${mappedRegion}`}
       width={width ?? 20}
       height={height ?? 22}
       className={className}

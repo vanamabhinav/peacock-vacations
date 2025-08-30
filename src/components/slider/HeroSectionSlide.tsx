@@ -16,7 +16,13 @@ export interface HeroVideoSlide {
 
 function HeroSectionSlide(slide: HeroVideoSlide) {
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div
+      className="relative w-full h-full overflow-hidden"
+      style={{
+        maxHeight: "calc(100vh - 104px)",
+        minHeight: "calc(100vh - 104px)",
+      }}
+    >
       {/* Video background */}
       <Video
         ref={slide.ref}

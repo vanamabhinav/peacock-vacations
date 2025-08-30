@@ -133,7 +133,7 @@ export default function HeroSectionCarousel({ slides }: HeroSectionData) {
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative" style={{ maxHeight: "calc(100vh - 104px)" }}>
       <Swiper
         slidesPerView={1}
         modules={[Autoplay]}
@@ -179,7 +179,7 @@ export default function HeroSectionCarousel({ slides }: HeroSectionData) {
         aria-label={isMuted ? "Unmute video" : "Mute video"}
       >
         <Icon
-          name={isMuted ? "customize/mute" : "customize/unmute"}
+          name={isMuted ? "mute" : "unmute"}
           className="drop-shadow-lg w-10 h-10 text-white"
           aria-hidden="true"
         />

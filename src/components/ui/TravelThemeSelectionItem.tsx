@@ -1,10 +1,10 @@
-import { getThemeIcon, ThemeString } from "@/lib/utils/iconMapper";
+import { getIconName } from "@/lib/utils/iconMapper";
 import { Icon } from "./Icon";
 
 interface TravelThemeSelectionItemProps {
-  label: ThemeString;
+  label: string;
   isSelected: boolean;
-  onToggle: (theme: ThemeString) => void;
+  onToggle: (theme: string) => void;
 }
 
 function TravelThemeSelectionItem({
@@ -23,7 +23,7 @@ function TravelThemeSelectionItem({
     >
       <span className="font-normal text-lg leading-normal">{label}</span>
       <Icon
-        name={getThemeIcon(label)}
+        name={getIconName(label)}
         className={`w-6 h-6 ${isSelected ? "text-william" : "text-bigstone"}`}
         aria-hidden="true"
       />

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Icon } from "../ui/Icon";
+import Rating from "../ui/Rating";
 import TestimonialBentoGrid from "./TestimonialBentoGrid";
 import { TestimonialCardData } from "@/types";
 
@@ -80,7 +80,7 @@ function TestimonialDetails({
           </span>
         </p>
       </div>
-      <RatingComponent rating={rating} />
+      <Rating rating={rating} />
       <ProfileName name={name} occupation={occupation} location={location} />
     </div>
   );
@@ -102,45 +102,6 @@ function ProfileName({
         {occupation && occupation.length > 0 ? `, ${occupation}` : ""}
       </p>
       <p className="font-dmsans font-normal text-william text-sm">{location}</p>
-    </div>
-  );
-}
-
-function RatingComponent({ rating }: { rating: number }) {
-  const fullStars = Math.floor(rating);
-  const hasHalfStar = rating % 1 >= 0.5;
-
-  return (
-    <div className="flex items-center gap-1">
-      {Array.from({ length: 5 }, (_, index) => {
-        const starValue = index + 1;
-        if (starValue <= fullStars) {
-          return (
-            <Icon
-              key={index}
-              name="customize/star"
-              className="text-sandybrown"
-            />
-          );
-        } else if (starValue === fullStars + 1 && hasHalfStar) {
-          return (
-            <div key={index} className="relative flex items-center">
-              <Icon name="customize/star" className="text-alto" />
-              <Icon
-                name="customize/star-half"
-                className="top-0 left-0 absolute text-sandybrown"
-              />
-            </div>
-          );
-        } else {
-          return (
-            <Icon key={index} name="customize/star" className="text-alto" />
-          );
-        }
-      })}
-      <span className="ml-1 font-medium text-woodsmoke">
-        {rating.toFixed(1)}
-      </span>
     </div>
   );
 }
