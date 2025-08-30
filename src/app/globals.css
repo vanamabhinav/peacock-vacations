@@ -16,6 +16,7 @@ html {
   --color-catSkillWhite: #f0f6f8;
   --color-codgrey: #1e1e1e;
   --color-desertstorm: #f2f1f0;
+  --color-eggsour: #fff4dc;
   --color-firefly: #0c1b22;
   --color-frangipani: #ffe1b9;
   --color-gallery: #eeeeee;
@@ -52,6 +53,11 @@ html {
   --font-inter: var(--font-inter);
   --font-albertsans: var(--font-albertsans);
   --font-dmsans: var(--font-dmsans);
+
+  /* Component Variables */
+  --slider-thumb-size: 20px;
+  --slider-track-height: 8px;
+  --transition-fast: 150ms ease-in-out;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -61,6 +67,7 @@ html {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 .AdditionalNavMenu {
   will-change: transform;
 }
@@ -74,11 +81,11 @@ html {
   box-shadow: none;
   border-left: #888 1px solid;
 }
+
 .PhoneInputCountry {
   --PhoneInputCountrySelectArrow-color: #2a1800;
 }
 
-/* Custom select styles inside country input */
 .PhoneInputCountry select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -100,4 +107,48 @@ html {
 
 .PhoneInputCountry {
   position: relative;
+}
+
+/* Consolidated Range Slider Styles */
+.slider-thumb {
+  appearance: none;
+  background: transparent;
+  border: none;
+  width: 100%;
+  height: var(--slider-track-height);
+  outline: none;
+  cursor: pointer;
+}
+
+.slider-thumb::-webkit-slider-thumb {
+  appearance: none;
+  height: var(--slider-thumb-size);
+  width: var(--slider-thumb-size);
+  border-radius: 50%;
+  background: var(--color-goldentainoi);
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  pointer-events: all;
+  transition: transform var(--transition-fast);
+}
+
+.slider-thumb::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+.slider-thumb::-webkit-slider-thumb:active {
+  transform: scale(1.2);
+}
+
+.slider-thumb::-moz-range-thumb {
+  height: var(--slider-thumb-size);
+  width: var(--slider-thumb-size);
+  border-radius: 50%;
+  background: var(--color-goldentainoi);
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  pointer-events: all;
+  border: none;
 }

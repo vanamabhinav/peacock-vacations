@@ -1,12 +1,11 @@
 "use client";
 
-import { ThemeType } from "@/types";
 import TravelThemeSelectionItem from "../ui/TravelThemeSelectionItem";
 
 interface TravelThemeSelectionProps {
-  travelThemes: ThemeType[];
-  selectedThemes: ThemeType[];
-  onThemeChange: (selectedThemes: ThemeType[]) => void;
+  travelThemes: string[];
+  selectedThemes: string[];
+  onThemeChange: (selectedThemes: string[]) => void;
 }
 
 function TravelThemeSelection({
@@ -14,7 +13,7 @@ function TravelThemeSelection({
   selectedThemes,
   onThemeChange,
 }: TravelThemeSelectionProps) {
-  const toggleTheme = (theme: ThemeType) => {
+  const toggleTheme = (theme: string) => {
     const newSelectedThemes = selectedThemes.includes(theme)
       ? selectedThemes.filter((selectedTheme) => selectedTheme !== theme)
       : [...selectedThemes, theme];

@@ -1,15 +1,13 @@
 "use client";
+
+import { PackageListingPageData } from "@/types/pages/packageListing";
 import { useState, useRef, useLayoutEffect } from "react";
 
 export default function PackageDescription({
-  packageName,
-  packageShortDescription,
-  packageLongDescription,
-}: {
-  packageName: string;
-  packageShortDescription: string;
-  packageLongDescription: string;
-}) {
+  bigHeading,
+  shortDescription,
+  longDescription,
+}: PackageListingPageData) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [height, setHeight] = useState<string | number>(0);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -22,16 +20,16 @@ export default function PackageDescription({
         setHeight(contentRef.current.firstElementChild?.scrollHeight || 0);
       }
     }
-  }, [isExpanded, packageLongDescription, packageShortDescription]);
+  }, [isExpanded, longDescription, shortDescription]);
 
   const handleExpandToggle = () => {
     setIsExpanded((prev) => !prev);
   };
 
   return (
-    <div className="relative flex flex-col bg-white px-4 sm:px-6 md:px-10 pt-5 pb-3 border rounded-2xl w-full font-albertsans text-black text-base sm:text-lg">
+    <div className="relative flex flex-col bg-white px-4 sm:px-6 md:px-10 pt-5 pb-3 border border-silver rounded-2xl w-full font-albertsans text-black text-base sm:text-lg">
       <div>
-        <h2 className="w-full font-semibold capitalize">{packageName}</h2>
+        <h2 className="w-full font-semibold capitalize">{bigHeading}</h2>
         <div
           id="package-description"
           className="relative overflow-hidden transition-all duration-500"
@@ -40,7 +38,9 @@ export default function PackageDescription({
         >
           <div>
             <p className="w-full text-mineshaft text-sm sm:text-base capitalize">
-              {isExpanded ? packageLongDescription : packageShortDescription}
+              {shortDescription}
+              <br />
+              {isExpanded && longDescription}
             </p>
           </div>
         </div>

@@ -19,7 +19,6 @@ export type DestinationsData = {
   };
 };
 
-// New Data for HomePage CMS
 export type HeroSectionSlide = {
   title: string;
   description: string;
@@ -43,6 +42,16 @@ export type VisaAssistanceSectionData = {
   ctaText: string;
   ctaLink: string;
 };
+
+export type ThemeType =
+  | "Beach"
+  | "Adventure"
+  | "Honeymoon"
+  | "Wildlife"
+  | "Heritage"
+  | "Spiritual"
+  | "Nature";
+
 export type RegionType =
   | "North East India"
   | "South East India"
@@ -53,23 +62,17 @@ export type RegionType =
   | "East India"
   | "West India";
 
-export type InclusionType =
-  | "Resort Stay"
-  | "Airport Transfers"
-  | "Breakfast"
-  | "Celebrate";
-
 export type PackageData = {
   region: RegionType;
   location: string;
   heading: string;
   subheading: string;
-  currency: "INR" | "USD";
+  currency: string;
   days: number;
   nights: number;
   originalPrice: number;
   discountedPrice: number;
-  inclusions: InclusionType[];
+  inclusions: string[];
   image: string;
   url: string;
 };
@@ -80,28 +83,19 @@ export type PopularPackagesSectionData = {
   data: PackageData[];
 };
 
-export type ThemeType =
-  | "Honeymoon"
-  | "Adventure"
-  | "Beach"
-  | "Luxury"
-  | "Pilgrimage"
-  | "Solo Travel"
-  | "Resort";
-
 export type ThemePackage = {
   title: string;
   description: string;
   image: string;
   ctaText: string;
   ctaLink: string;
-  theme: ThemeType[];
+  theme: string[];
 };
 
 export type TravelByThemeSectionData = {
   heading: string;
   subheading: string;
-  themes: ThemeType[];
+  themes: string[];
   packages: ThemePackage[];
 };
 

@@ -8,10 +8,18 @@ const Breadcrumb: React.FC = () => {
   const pathNames = pathname.split("/").filter(Boolean);
 
   // Build breadcrumb objects with href and name
-  const breadcrumbs = pathNames.map((name, idx) => {
+  let breadcrumbs = pathNames.map((name, idx) => {
     const href = "/" + pathNames.slice(0, idx + 1).join("/");
     return { name, href };
   });
+
+  // Remove last crumb if its name is "s", "ct", "c", or "spl"
+  if (breadcrumbs.length > 0) {
+    const lastName = breadcrumbs[breadcrumbs.length - 1].name;
+    if (["s", "ct", "c", "spl"].includes(lastName)) {
+      breadcrumbs = breadcrumbs.slice(0, -1);
+    }
+  }
 
   breadcrumbs.unshift({ name: "home", href: "/" });
 

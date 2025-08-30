@@ -18,10 +18,10 @@ const PackageCard = ({
   url,
 }: PackageData) => {
   return (
-    <div className="relative gap-5 grid grid-cols-3 bg-white p-1.5 border rounded-xl w-full h-[13.75rem] overflow-hidden font-albertsans text-black text-xs">
+    <div className="relative gap-5 grid grid-cols-3 col-span-2 bg-white p-1.5 border border-silver rounded-xl w-full h-[13.75rem] overflow-hidden font-albertsans text-black text-xs">
       <div className="col-span-1 bg-gallery rounded-sm w-full h-full overflow-hidden text-bigstone">
         <Image
-          className="w-full h-full object-cover hover:scale-105 transition-all duration-300 ease-in-out"
+          className="w-full h-full object-cover"
           width={315.5}
           height={210}
           sizes="100vw"
@@ -37,7 +37,7 @@ const PackageCard = ({
           <div className="font-semibold capitalize">{region}</div>
         </div>
       </div>
-      <div className="flex flex-col gap-2 w-full">
+      <div className="flex flex-col gap-4 py-2 pr-2 w-full">
         <div className="flex flex-col gap-2 w-full text-lg">
           <b className="capitalize leading-[86.33%]">{heading}</b>
           <div className="flex flex-row items-center gap-1 text-base">
@@ -47,7 +47,7 @@ const PackageCard = ({
             <div className="text-sm leading-[86.33%]">in {location}</div>
           </div>
         </div>
-        <div className="flex flex-row flex-wrap items-start gap-1 w-full text-sm">
+        <div className="flex flex-row flex-wrap items-start gap-2 w-full text-sm">
           {inclusions.slice(0, 4).map((inclusion, idx) => (
             <div
               key={inclusion + idx}

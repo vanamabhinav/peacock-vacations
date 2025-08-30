@@ -158,6 +158,10 @@ function PartnerSection({
                   height={60}
                   title={`Logo of partner ${rowIdx * 6 + idx + 1}`}
                   loading="lazy"
+                  style={{
+                    width: "auto",
+                    height: "auto",
+                  }}
                 />
               </div>
             ))}

@@ -6,20 +6,20 @@ import { Icon } from "../ui/Icon";
 import TravelThemeSelection from "../selection/TravelThemeSelection";
 import TravelByThemeCard from "../card/TravelByThemeCard";
 import SwiperSlider, { SwiperSliderHandle } from "../slider/SwiperSlider";
-import { ThemeType, TravelByThemeSectionData } from "@/types";
+import { TravelByThemeSectionData } from "@/types";
 
 export default function TravelByThemeClient(data: TravelByThemeSectionData) {
   const sliderRef = useRef<SwiperSliderHandle>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const [selectedThemes, setSelectedThemes] = useState<ThemeType[]>([]);
+  const [selectedThemes, setSelectedThemes] = useState<string[]>([]);
 
   const handleScrollStateChange = (left: boolean, right: boolean) => {
     setCanScrollLeft(left);
     setCanScrollRight(right);
   };
 
-  const handleThemeSelectionChange = (newSelectedThemes: ThemeType[]) => {
+  const handleThemeSelectionChange = (newSelectedThemes: string[]) => {
     setSelectedThemes(newSelectedThemes);
     // Reset slider to beginning when themes change
     if (sliderRef.current) {

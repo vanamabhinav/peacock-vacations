@@ -13,7 +13,7 @@ const StickyNavWrapperClient = () => {
 
       const diff = currentScrollY - lastScrollY.current;
 
-      if (diff > 40 && window.innerHeight - 40 <= currentScrollY) {
+      if (diff > 40) {
         setShowMenu(false);
       } else if (diff < -40 || currentScrollY <= 180) {
         setShowMenu(true);

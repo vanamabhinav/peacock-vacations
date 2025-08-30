@@ -1,0 +1,87 @@
+export type Package = {
+  id: string;
+  title: string;
+  tagline?: string;
+  shortDescription: string;
+  longDescription: string;
+  slug: string;
+  isPublished: boolean;
+  departureCity: string[];
+  destination: {
+    cityName: string;
+    stateName: string;
+    countryName: string;
+  };
+  themes: string[];
+  packageType: string[];
+  price: {
+    originalAmount: number;
+    discountedAmount: number;
+    currency: string;
+  };
+  duration: {
+    days: number;
+    nights: number;
+  };
+  itinerary: {
+    day: number;
+    title: string;
+    events: {
+      timeOfDay: string;
+      title: string;
+      description: string;
+    }[];
+  }[];
+  inclusions: {
+    accommodation: {
+      hotelName: string;
+      rating: string;
+      roomType: string;
+      imageUrl: string;
+      amenities: string[];
+    }[];
+    transfers: {
+      vehicleName: string;
+      type: string;
+      imageUrl: string;
+      features: string[];
+    }[];
+    activities: {
+      title: string;
+      type: string;
+      imageUrl: string;
+      isRefundable: boolean;
+      highlights: string[];
+    }[];
+    meals: string[];
+  };
+  mainImageUrl: string;
+  galleryImages: string[];
+  suggestedFlights?: {
+    airline: string;
+    departureTime: string;
+    arrivalTime: string;
+    stops: number;
+  }[];
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type PackageSummary = Pick<
+  Package,
+  | "id"
+  | "title"
+  | "tagline"
+  | "shortDescription"
+  | "slug"
+  | "destination"
+  | "themes"
+  | "packageType"
+  | "price"
+  | "duration"
+  | "mainImageUrl"
+> & {
+  inclusions: {
+    meals: string[];
+  };
+};

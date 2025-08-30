@@ -66,6 +66,15 @@ async function processSvgFile(
   return svg.toString();
 }
 
+async function getFileSize(filePath: string): Promise<number> {
+  try {
+    const stats = await fs.stat(filePath);
+    return stats.size;
+  } catch {
+    return 0;
+  }
+}
+
 async function buildAllSprites() {
   await fs.ensureDir(outputPath);
   await fs.ensureDir(typeDir);
@@ -74,11 +83,19 @@ async function buildAllSprites() {
     .filter((dirent) => dirent.isDirectory())
     .map((dirent) => dirent.name);
   let allIconNames: string[] = [];
+  let originalTotalSize = 0;
+  let optimizedTotalSize = 0;
+
   await Promise.all(
     folders.map(async (folder) => {
       const folderPath = path.join(inputPath, folder);
       const isCustomize = folder === "customize";
       const files = await getAllSvgFiles(folderPath);
+
+      // Calculate original size
+      const originalSizes = await Promise.all(files.map(getFileSize));
+      originalTotalSize += originalSizes.reduce((a, b) => a + b, 0);
+
       const symbols = await Promise.all(
         files.map((file) => processSvgFile(file, isCustomize))
       );
@@ -88,11 +105,13 @@ async function buildAllSprites() {
         ...symbols,
         `</svg>`,
       ].join("\n");
-      await fs.writeFile(
-        path.join(outputPath, `${folder}-sprite.svg`),
-        sprite,
-        "utf8"
-      );
+      const spritePath = path.join(outputPath, `${folder}-sprite.svg`);
+      await fs.writeFile(spritePath, sprite, "utf8");
+
+      // Calculate optimized size
+      const optimizedSize = await getFileSize(spritePath);
+      optimizedTotalSize += optimizedSize;
+
       logVerbose(`✅ Generated sprite for '${folder}'`);
       allIconNames.push(...files.map(iconName));
     })
@@ -126,6 +145,17 @@ export type IconName =
     )};\nexport default iconManifestData;\n`
   );
   console.log(`✅ Generated ${filesCount} icons`);
+
+  // Show % size saved
+  if (originalTotalSize > 0) {
+    const percentSaved =
+      ((originalTotalSize - optimizedTotalSize) / originalTotalSize) * 100;
+    console.log(
+      `💾 Size saved: ${percentSaved.toFixed(2)}% (${(
+        originalTotalSize / 1024
+      ).toFixed(2)} KB → ${(optimizedTotalSize / 1024).toFixed(2)} KB)`
+    );
+  }
 }
 
 async function writeIfChanged(filepath: string, newContent: string) {
@@ -137,5 +167,4 @@ async function writeIfChanged(filepath: string, newContent: string) {
 
 buildAllSprites().catch((err) => {
   console.error("❌ Error building sprites:", err);
-  process.exit(1);
 });

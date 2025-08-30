@@ -3,9 +3,11 @@ import { Icon } from "./Icon";
 export default function Rating({
   rating,
   showRating = true,
+  hideExtra = false,
 }: {
   rating: number;
   showRating?: boolean;
+  hideExtra?: boolean;
 }) {
   const fullStars = Math.floor(rating);
   const hasHalfStar = rating % 1 >= 0.5;
@@ -26,8 +28,10 @@ export default function Rating({
               />
             </div>
           );
-        } else {
+        } else if (!hideExtra) {
           return <Icon key={index} name="star" className="text-alto" />;
+        } else {
+          return null;
         }
       })}
       {showRating && (
