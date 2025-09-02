@@ -1,5 +1,6 @@
 import { getFilteredPackages } from "./packageData";
 import { PackageListingPageData } from "@/types/pages/packageListing";
+import { extractFilterOptions } from "@/lib/utils/extractFilters";
 
 const plpData: PackageListingPageData[] = [
   // 1. Telangana (State)
@@ -226,6 +227,8 @@ export async function getFilteredPlpByUrl(
   const packagesData = await getFilteredPackages(plpPageData.packageFilters);
   // Convert PackageSummary to Package for now (can optimize later)
   plpPageData.packages = packagesData;
+
+  plpPageData.filterOptions = extractFilterOptions(packagesData);
 
   return plpPageData;
 }

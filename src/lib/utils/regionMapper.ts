@@ -1,7 +1,5 @@
-import { RegionString } from "./iconMapper";
-
 // Comprehensive mapping of Indian states to regions
-const STATE_TO_REGION_MAP: Record<string, RegionString> = {
+const STATE_TO_REGION_MAP: Record<string, string> = {
   // North India
   Delhi: "North India",
   Punjab: "North India",
@@ -46,7 +44,6 @@ const STATE_TO_REGION_MAP: Record<string, RegionString> = {
   Tripura: "North East India",
   Sikkim: "North East India",
 
-  // Central India (can be mapped to nearby regions based on preference)
   "Madhya Pradesh": "North India", // Often considered North/Central
   Chhattisgarh: "East India", // Often considered East/Central
 
@@ -55,7 +52,7 @@ const STATE_TO_REGION_MAP: Record<string, RegionString> = {
 };
 
 // Alternative regional mappings for more specific regions
-const STATE_TO_SPECIFIC_REGION_MAP: Record<string, RegionString> = {
+const STATE_TO_SPECIFIC_REGION_MAP: Record<string, string> = {
   // North West India
   Rajasthan: "North West India",
   Gujarat: "North West India",
@@ -89,7 +86,7 @@ const STATE_TO_SPECIFIC_REGION_MAP: Record<string, RegionString> = {
 export function stateToRegion(
   stateName: string,
   useSpecificRegions: boolean = false
-): RegionString {
+): string {
   if (!stateName) {
     return "North India"; // Default fallback
   }
@@ -138,7 +135,7 @@ export function stateToRegion(
 export function statesToRegions(
   stateNames: string[],
   useSpecificRegions: boolean = false
-): RegionString[] {
+): string[] {
   return stateNames.map((state) => stateToRegion(state, useSpecificRegions));
 }
 
@@ -149,7 +146,7 @@ export function statesToRegions(
  * @returns Array of states in that region
  */
 export function getStatesInRegion(
-  region: RegionString,
+  region: string,
   useSpecificRegions: boolean = false
 ): string[] {
   const mapping = useSpecificRegions
@@ -170,7 +167,7 @@ export function getStatesInRegion(
  */
 export function isStateInRegion(
   stateName: string,
-  region: RegionString,
+  region: string,
   useSpecificRegions: boolean = false
 ): boolean {
   return stateToRegion(stateName, useSpecificRegions) === region;

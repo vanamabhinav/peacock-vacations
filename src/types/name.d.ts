@@ -33,6 +33,7 @@ export type IconName =
 	| "chime"
 	| "curated-locals"
 	| "dateTemplate"
+	| "generic"
 	| "heart"
 	| "instagram"
 	| "phone"

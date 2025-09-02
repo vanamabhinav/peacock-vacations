@@ -14,4 +14,12 @@ export type PackageListingPageData = {
     currentPage: number;
     totalPages: number;
   };
+  filterOptions?: {
+    availableThemes: string[];
+    availablePackageTypes: string[];
+    priceRange: {
+      min: number;
+      max: number;
+    };
+  };
 };

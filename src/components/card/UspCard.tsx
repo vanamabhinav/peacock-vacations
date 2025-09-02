@@ -1,7 +1,8 @@
 import { UspCardType } from "@/types";
 import { Icon } from "../ui/Icon";
-import { getIconName } from "@/lib/utils/iconMapper";
+
 import { twMerge } from "tailwind-merge";
+import { getIconForValue } from "@/lib/utils/iconMapper";
 
 function UspCard({
   data,
@@ -18,7 +19,7 @@ function UspCard({
       )}
     >
       <Icon
-        name={getIconName(data.icon)}
+        name={getIconForValue(data.icon)}
         className="self-start w-14 h-auto aspect-[26/29]"
         color={isActive ? "#d68d2c" : "#1A3642"}
       />

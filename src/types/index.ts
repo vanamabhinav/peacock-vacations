@@ -43,27 +43,8 @@ export type VisaAssistanceSectionData = {
   ctaLink: string;
 };
 
-export type ThemeType =
-  | "Beach"
-  | "Adventure"
-  | "Honeymoon"
-  | "Wildlife"
-  | "Heritage"
-  | "Spiritual"
-  | "Nature";
-
-export type RegionType =
-  | "North East India"
-  | "South East India"
-  | "North West India"
-  | "South West India"
-  | "North India"
-  | "South India"
-  | "East India"
-  | "West India";
-
 export type PackageData = {
-  region: RegionType;
+  region: string;
   location: string;
   heading: string;
   subheading: string;

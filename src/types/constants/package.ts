@@ -1,19 +1,3 @@
-export const PACKAGE_THEMES = [
-  "Beach",
-  "Adventure",
-  "Honeymoon",
-  "Wildlife",
-  "Heritage",
-  "Spiritual",
-  "Nature",
-] as const;
-
-export const PACKAGE_TYPES = [
-  "Solo Tour",
-  "Group Tour",
-  "Couple Tour",
-] as const;
-
 export const CURRENCIES = ["INR", "USD"] as const;
 
 export const TIME_OF_DAY = [
@@ -26,7 +10,11 @@ export const TIME_OF_DAY = [
   "Night",
 ] as const;
 
-export type PackageTheme = (typeof PACKAGE_THEMES)[number];
-export type PackageType = (typeof PACKAGE_TYPES)[number];
+export const DEFAULT_FILTER_OPTIONS = {
+  availableThemes: [],
+  availablePackageTypes: [],
+  priceRange: { min: 0, max: 1000000 },
+};
+
 export type Currency = (typeof CURRENCIES)[number];
 export type TimeOfDay = (typeof TIME_OF_DAY)[number];
