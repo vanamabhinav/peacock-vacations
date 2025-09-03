@@ -1,70 +1,71 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Icon } from "../ui/Icon";
-import CopyrightYear from "../client/CopyrightYear";
+import { Icon } from "../../components/ui/Icon";
+import CopyrightYear from "../../components/client/CopyrightYear";
+import { twMerge } from "tailwind-merge";
 export default function Footer() {
   const LinkSectionData = [
     {
       title: "Top Cities in India",
       links: [
-        { link_href: "#", label: "Hotels in Goa" },
-        { link_href: "#", label: "Hotels in Jaipur" },
-        { link_href: "#", label: "Hotels in Delhi" },
-        { link_href: "#", label: "Hotels in Mumbai" },
-        { link_href: "#", label: "Hotels in Udaipur" },
-        { link_href: "#", label: "Hotels in Manali" },
-        { link_href: "#", label: "Hotels in Rishikesh" },
-        { link_href: "#", label: "Hotels in Kochi" },
-        { link_href: "#", label: "Hotels in Udaipur" },
-        { link_href: "#", label: "Hotels in Manali" },
-        { link_href: "#", label: "Hotels in Rishikesh" },
-        { link_href: "#", label: "Hotels in Kochi" },
-        { link_href: "#", label: "Hotels in Ooty" },
-        { link_href: "#", label: "Hotels in Pondicherry" },
-        { link_href: "#", label: "Hotels in Goa" },
-        { link_href: "#", label: "Hotels in Jaipur" },
+        { linkHref: "#", label: "Hotels in Goa" },
+        { linkHref: "#", label: "Hotels in Jaipur" },
+        { linkHref: "#", label: "Hotels in Delhi" },
+        { linkHref: "#", label: "Hotels in Mumbai" },
+        { linkHref: "#", label: "Hotels in Udaipur" },
+        { linkHref: "#", label: "Hotels in Manali" },
+        { linkHref: "#", label: "Hotels in Rishikesh" },
+        { linkHref: "#", label: "Hotels in Kochi" },
+        { linkHref: "#", label: "Hotels in Udaipur" },
+        { linkHref: "#", label: "Hotels in Manali" },
+        { linkHref: "#", label: "Hotels in Rishikesh" },
+        { linkHref: "#", label: "Hotels in Kochi" },
+        { linkHref: "#", label: "Hotels in Ooty" },
+        { linkHref: "#", label: "Hotels in Pondicherry" },
+        { linkHref: "#", label: "Hotels in Goa" },
+        { linkHref: "#", label: "Hotels in Jaipur" },
       ],
     },
     {
       title: "Popular Resorts & Stays",
       links: [
-        { link_href: "#", label: "Luxury Resorts in Goa" },
-        { link_href: "#", label: "Beach Resorts in Kerala" },
-        { link_href: "#", label: "Heritage Hotels in Jaipur" },
-        { link_href: "#", label: "Mountain Retreats in Himach" },
-        { link_href: "#", label: "Nature Stays in Coorg" },
-        { link_href: "#", label: "Jungle Lodges in Bandipur" },
-        { link_href: "#", label: "Lake Resorts in Udaipur" },
-        { link_href: "#", label: "Spa Resorts in Rishikesh" },
-        { link_href: "#", label: "Boutique Hotels in Pondicher" },
-        { link_href: "#", label: "Treehouse Stays in Wayanad" },
-        { link_href: "#", label: "Beach Resorts in Kerala" },
-        { link_href: "#", label: "Lake Resorts in Udaipur" },
-        { link_href: "#", label: "Nature Stays in Coorg" },
-        { link_href: "#", label: "Jungle Lodges in Bandipur" },
-        { link_href: "#", label: "Lake Resorts in Udaipur" },
-        { link_href: "#", label: "Spa Resorts in Rishikesh" },
+        { linkHref: "#", label: "Luxury Resorts in Goa" },
+        { linkHref: "#", label: "Beach Resorts in Kerala" },
+        { linkHref: "#", label: "Heritage Hotels in Jaipur" },
+        { linkHref: "#", label: "Mountain Retreats in Himach" },
+        { linkHref: "#", label: "Nature Stays in Coorg" },
+        { linkHref: "#", label: "Jungle Lodges in Bandipur" },
+        { linkHref: "#", label: "Lake Resorts in Udaipur" },
+        { linkHref: "#", label: "Spa Resorts in Rishikesh" },
+        { linkHref: "#", label: "Boutique Hotels in Pondicher" },
+        { linkHref: "#", label: "Treehouse Stays in Wayanad" },
+        { linkHref: "#", label: "Beach Resorts in Kerala" },
+        { linkHref: "#", label: "Lake Resorts in Udaipur" },
+        { linkHref: "#", label: "Nature Stays in Coorg" },
+        { linkHref: "#", label: "Jungle Lodges in Bandipur" },
+        { linkHref: "#", label: "Lake Resorts in Udaipur" },
+        { linkHref: "#", label: "Spa Resorts in Rishikesh" },
       ],
     },
     {
       title: "Travel by Season/Month",
       links: [
-        { link_href: "#", label: "Best Places to Visit in January" },
-        { link_href: "#", label: "Best Places to Visit in April" },
-        { link_href: "#", label: "Best Places to Visit in July" },
-        { link_href: "#", label: "Best Monsoon place in India" },
-        { link_href: "#", label: "Winter Destinations in India" },
-        { link_href: "#", label: "Summer Escapes in the Hills" },
-        { link_href: "#", label: "Honeymoon Spots by Season" },
-        { link_href: "#", label: "Long Weekend Getaways" },
-        { link_href: "#", label: "Offbeat Winter Travel Ideas" },
-        { link_href: "#", label: "Budget Trips for Every Month" },
-        { link_href: "#", label: "Best Places to Visit in January" },
-        { link_href: "#", label: "Best Places to Visit in April" },
-        { link_href: "#", label: "Best Places to Visit in July" },
-        { link_href: "#", label: "Winter Destinations in India" },
-        { link_href: "#", label: "Summer Escapes in the Hills" },
-        { link_href: "#", label: "Honeymoon Spots by Season" },
+        { linkHref: "#", label: "Best Places to Visit in January" },
+        { linkHref: "#", label: "Best Places to Visit in April" },
+        { linkHref: "#", label: "Best Places to Visit in July" },
+        { linkHref: "#", label: "Best Monsoon place in India" },
+        { linkHref: "#", label: "Winter Destinations in India" },
+        { linkHref: "#", label: "Summer Escapes in the Hills" },
+        { linkHref: "#", label: "Honeymoon Spots by Season" },
+        { linkHref: "#", label: "Long Weekend Getaways" },
+        { linkHref: "#", label: "Offbeat Winter Travel Ideas" },
+        { linkHref: "#", label: "Budget Trips for Every Month" },
+        { linkHref: "#", label: "Best Places to Visit in January" },
+        { linkHref: "#", label: "Best Places to Visit in April" },
+        { linkHref: "#", label: "Best Places to Visit in July" },
+        { linkHref: "#", label: "Winter Destinations in India" },
+        { linkHref: "#", label: "Summer Escapes in the Hills" },
+        { linkHref: "#", label: "Honeymoon Spots by Season" },
       ],
     },
   ];
@@ -94,13 +95,16 @@ export default function Footer() {
           />
         </section>
 
-        <nav aria-label="Footer Navigation">
+        <nav
+          aria-label="Footer Navigation"
+          className="divide-y-[1px] divide-nevada"
+        >
           {LinkSectionData.map(({ title, links }, idx) => {
             return <LinkSection key={idx} title={title} links={links} />;
           })}
         </nav>
 
-        <section aria-label="Newsletter">
+        <section aria-label="Newsletter" className="mt-20">
           <NewsLetterComponent />
         </section>
       </div>
@@ -172,19 +176,32 @@ function PartnerSection({
   );
 }
 
-function LinkSection({
-  title,
-  links,
-}: {
+export type LinkSectionType = {
   title: string;
   links: {
-    link_href: string;
+    linkHref: string;
     label: string;
   }[];
-}) {
+  isFooter?: boolean;
+};
+export function LinkSection({
+  title,
+  links,
+  isFooter = true,
+}: LinkSectionType) {
   return (
-    <div className="flex flex-col gap-7 mb-2 border-peachorange/28 border-b-[1px] font-albertsans">
-      <h3 className="font-semibold text-rawsienna text-2xl leading-normal">
+    <div
+      className={twMerge(
+        "flex flex-col gap-7 mt-12 mb-2 font-albertsans",
+        isFooter ? "border-peachorange/28" : "border-silver"
+      )}
+    >
+      <h3
+        className={twMerge(
+          "font-semibold text-2xl leading-normal",
+          isFooter ? "text-rawsienna" : "text-william"
+        )}
+      >
         {title}
       </h3>
 
@@ -192,8 +209,11 @@ function LinkSection({
         {links.map((link, idx) => (
           <Link
             key={idx}
-            href={link.link_href}
-            className="w-full font-light text-white text-xl text-left leading-normal"
+            href={link.linkHref}
+            className={twMerge(
+              "w-full font-light text-xl text-left leading-normal",
+              isFooter ? "text-white" : "text-pizazz"
+            )}
           >
             {link.label}
           </Link>
@@ -209,7 +229,7 @@ function VerticalLinkSection({
 }: {
   title: string;
   links: {
-    link_href: string;
+    linkHref: string;
     label: string;
   }[];
 }) {
@@ -217,9 +237,9 @@ function VerticalLinkSection({
     <div className="flex flex-col gap-6">
       <h3 className="font-semibold text-bigstone text-base">{title}</h3>
       <div className="flex flex-col gap-3">
-        {links.map(({ link_href, label }, idx) => {
+        {links.map(({ linkHref, label }, idx) => {
           return (
-            <Link key={idx} href={link_href} className="text-nevada text-sm">
+            <Link key={idx} href={linkHref} className="text-nevada text-sm">
               {label}
             </Link>
           );
@@ -234,30 +254,30 @@ function NewsLetterComponent() {
     {
       title: "Company",
       links: [
-        { label: "Careers", link_href: "#" },
-        { label: "Press", link_href: "#" },
-        { label: "Blog", link_href: "#" },
-        { label: "ContactUs", link_href: "#" },
+        { label: "Careers", linkHref: "#" },
+        { label: "Press", linkHref: "#" },
+        { label: "Blog", linkHref: "#" },
+        { label: "ContactUs", linkHref: "#" },
       ],
     },
     {
       title: "Services",
       links: [
-        { label: "Travel Booking", link_href: "#" },
-        { label: "Hotel Aggregator", link_href: "#" },
-        { label: "Tour Packages", link_href: "#" },
-        { label: "Visa Assistance", link_href: "#" },
-        { label: "Corporate Travel", link_href: "#" },
+        { label: "Travel Booking", linkHref: "#" },
+        { label: "Hotel Aggregator", linkHref: "#" },
+        { label: "Tour Packages", linkHref: "#" },
+        { label: "Visa Assistance", linkHref: "#" },
+        { label: "Corporate Travel", linkHref: "#" },
       ],
     },
     {
       title: "Support",
       links: [
-        { label: "Help Center", link_href: "#" },
-        { label: "Terms & Conditions", link_href: "#" },
-        { label: "Cancellation Policy", link_href: "#" },
-        { label: "Privacy Policy", link_href: "#" },
-        { label: "FAQs", link_href: "#" },
+        { label: "Help Center", linkHref: "#" },
+        { label: "Terms & Conditions", linkHref: "#" },
+        { label: "Cancellation Policy", linkHref: "#" },
+        { label: "Privacy Policy", linkHref: "#" },
+        { label: "FAQs", linkHref: "#" },
       ],
     },
   ];

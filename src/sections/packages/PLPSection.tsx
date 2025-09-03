@@ -11,7 +11,7 @@ const PLPSection = ({ pageData }: { pageData: PackageListingPageData }) => {
   const packageCount = pageData.packages?.length || 0;
 
   return (
-    <div className="bg-provincialpink px-4 py-6 w-full">
+    <div className="bg-provincialpink px-4 py-6 w-full" id="plp-section">
       <div className="flex flex-col gap-6 mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl">
         <Breadcrumb />
         <PackageDescription {...pageData} />
