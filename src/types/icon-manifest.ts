@@ -18,6 +18,7 @@ const iconManifestData = {
   "chime": "customize-sprite.svg",
   "curated-locals": "customize-sprite.svg",
   "dateTemplate": "customize-sprite.svg",
+  "generic": "customize-sprite.svg",
   "heart": "customize-sprite.svg",
   "instagram": "customize-sprite.svg",
   "phone": "customize-sprite.svg",

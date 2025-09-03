@@ -1,6 +1,6 @@
 "use server";
 import { getFilteredPackages } from "../data/cms/packageData";
-import { PackageFilters } from "@/types/packageFilters";
+import { PackageFilters } from "@/types/packages/package";
 import {
   getFilteredPlpByUrl,
   PackageListingPageData,

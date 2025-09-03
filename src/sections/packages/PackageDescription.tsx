@@ -1,6 +1,6 @@
 "use client";
 
-import { PackageListingPageData } from "@/types/pages/packageListing";
+import { PackageListingPageData } from "@/types/packages/package";
 import { useState, useRef, useLayoutEffect } from "react";
 
 export default function PackageDescription({

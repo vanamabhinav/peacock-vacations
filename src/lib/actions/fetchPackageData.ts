@@ -1,7 +1,6 @@
 "use server";
 
-import { PackageFilters } from "@/types/packageFilters";
-import { Package } from "@/types/package";
+import { PackageFilters, Package } from "@/types/packages/package";
 import { getFilteredPackages } from "../data/cms/packageData";
 
 export async function fetchPackageDataAction(

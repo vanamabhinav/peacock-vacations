@@ -3,8 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Rating from "@/components/ui/Rating";
-import { PACKAGE_THEMES, PACKAGE_TYPES } from "@/types/constants/package";
-import { UIFilters } from "@/types/packageFilters";
+import { UIFilters, FilterOptions } from "@/types/packages/package";
 import { Icon } from "../ui/Icon";
 
 interface FilterChipProps {
@@ -150,17 +149,14 @@ const DoubleRangeSlider = ({
   );
 };
 
-const PlpFilter = () => {
+const PlpFilter = ({ filterOptions }: { filterOptions: FilterOptions }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // Price range constants
-  const PRICE_RANGE = { min: 10999, max: 175000 };
-
   // State for temporary filters (before applying)
   const [tempFilters, setTempFilters] = useState<UIFilters>({
-    minPrice: PRICE_RANGE.min,
-    maxPrice: PRICE_RANGE.max,
+    minPrice: filterOptions.priceRange.min,
+    maxPrice: filterOptions.priceRange.max,
     themes: [],
     packageTypes: [],
     minRating: undefined,
@@ -199,13 +195,17 @@ const PlpFilter = () => {
 
     // Update temp filters with applied values or defaults
     setTempFilters({
-      minPrice: newAppliedFilters.minPrice || PRICE_RANGE.min,
-      maxPrice: newAppliedFilters.maxPrice || PRICE_RANGE.max,
+      minPrice: newAppliedFilters.minPrice || filterOptions.priceRange.min,
+      maxPrice: newAppliedFilters.maxPrice || filterOptions.priceRange.max,
       themes: newAppliedFilters.themes || [],
       packageTypes: newAppliedFilters.packageTypes || [],
       minRating: newAppliedFilters.minRating,
     });
-  }, [searchParams, PRICE_RANGE.min, PRICE_RANGE.max]);
+  }, [
+    searchParams,
+    filterOptions.priceRange.min,
+    filterOptions.priceRange.max,
+  ]);
 
   const updateURL = useCallback(
     (newFilters: UIFilters, resetPagination: boolean = true) => {
@@ -226,13 +226,13 @@ const PlpFilter = () => {
       // Add new filter params
       if (
         newFilters.minPrice !== undefined &&
-        newFilters.minPrice !== PRICE_RANGE.min
+        newFilters.minPrice !== filterOptions.priceRange.min
       ) {
         params.set("minPrice", newFilters.minPrice.toString());
       }
       if (
         newFilters.maxPrice !== undefined &&
-        newFilters.maxPrice !== PRICE_RANGE.max
+        newFilters.maxPrice !== filterOptions.priceRange.max
       ) {
         params.set("maxPrice", newFilters.maxPrice.toString());
       }
@@ -254,7 +254,12 @@ const PlpFilter = () => {
 
       router.push(`?${params.toString()}`, { scroll: false });
     },
-    [router, searchParams, PRICE_RANGE.min, PRICE_RANGE.max]
+    [
+      router,
+      searchParams,
+      filterOptions.priceRange.min,
+      filterOptions.priceRange.max,
+    ]
   );
 
   const handleThemeChange = (theme: string, checked: boolean) => {
@@ -302,8 +307,8 @@ const PlpFilter = () => {
         // Reset temp price filters to default when removing price filter
         setTempFilters((prev) => ({
           ...prev,
-          minPrice: PRICE_RANGE.min,
-          maxPrice: PRICE_RANGE.max,
+          minPrice: filterOptions.priceRange.min,
+          maxPrice: filterOptions.priceRange.max,
         }));
         break;
       case "theme":
@@ -326,8 +331,8 @@ const PlpFilter = () => {
 
   const clearAllFilters = () => {
     const clearedFilters: UIFilters = {
-      minPrice: PRICE_RANGE.min,
-      maxPrice: PRICE_RANGE.max,
+      minPrice: filterOptions.priceRange.min,
+      maxPrice: filterOptions.priceRange.max,
       themes: [],
       packageTypes: [],
       minRating: undefined,
@@ -350,8 +355,8 @@ const PlpFilter = () => {
   // Helper function to check if price has been modified from default
   const isPriceModified = () => {
     return (
-      tempFilters.minPrice !== PRICE_RANGE.min ||
-      tempFilters.maxPrice !== PRICE_RANGE.max
+      tempFilters.minPrice !== filterOptions.priceRange.min ||
+      tempFilters.maxPrice !== filterOptions.priceRange.max
     );
   };
 
@@ -383,8 +388,10 @@ const PlpFilter = () => {
           {(isPriceModified() || hasAppliedPriceFilter()) && (
             <FilterChip
               label={`${formatPrice(
-                tempFilters.minPrice || PRICE_RANGE.min
-              )} - ${formatPrice(tempFilters.maxPrice || PRICE_RANGE.max)}`}
+                tempFilters.minPrice || filterOptions.priceRange.min
+              )} - ${formatPrice(
+                tempFilters.maxPrice || filterOptions.priceRange.max
+              )}`}
               onRemove={() => removeFilter("price")}
             />
           )}
@@ -438,11 +445,11 @@ const PlpFilter = () => {
             {/* Price Slider */}
             <div className="px-2">
               <DoubleRangeSlider
-                min={PRICE_RANGE.min}
-                max={PRICE_RANGE.max}
+                min={filterOptions.priceRange.min}
+                max={filterOptions.priceRange.max}
                 value={[
-                  tempFilters.minPrice || PRICE_RANGE.min,
-                  tempFilters.maxPrice || PRICE_RANGE.max,
+                  tempFilters.minPrice || filterOptions.priceRange.min,
+                  tempFilters.maxPrice || filterOptions.priceRange.max,
                 ]}
                 onChange={handlePriceChange}
                 formatValue={formatPrice}
@@ -453,55 +460,67 @@ const PlpFilter = () => {
             <div className="flex justify-between w-full text-sm">
               <div className="flex flex-col items-start">
                 <div className="font-medium">
-                  {formatPrice(tempFilters.minPrice || PRICE_RANGE.min)}
+                  {formatPrice(
+                    tempFilters.minPrice || filterOptions.priceRange.min
+                  )}
                 </div>
                 <div className="text-gray-500 text-xs">min price</div>
               </div>
               <div className="flex flex-col items-end">
                 <div className="font-medium">
-                  {formatPrice(tempFilters.maxPrice || PRICE_RANGE.max)}
+                  {formatPrice(
+                    tempFilters.maxPrice || filterOptions.priceRange.max
+                  )}
                 </div>
                 <div className="text-gray-500 text-xs">max price</div>
               </div>
             </div>
           </div>
         </div>
+        {filterOptions.availableThemes.length > 0 && (
+          <>
+            <div className="bg-alto w-full h-[1px]" />
+            {/* Theme Section */}
+            <div className="flex flex-col gap-2">
+              <div className="font-semibold">Theme</div>
+              <div className="flex flex-col text-base">
+                {filterOptions.availableThemes.map((theme) => (
+                  <Checkbox
+                    key={theme}
+                    checked={(tempFilters.themes || []).includes(theme)}
+                    onChange={(checked) => handleThemeChange(theme, checked)}
+                    label={theme}
+                  />
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+        {filterOptions.availablePackageTypes.length > 0 && (
+          <>
+            <div className="bg-alto w-full h-[1px]" />
 
-        <div className="bg-alto w-full h-[1px]" />
-        {/* Theme Section */}
-        <div className="flex flex-col gap-2">
-          <div className="font-semibold">Theme</div>
-          <div className="flex flex-col text-base">
-            {PACKAGE_THEMES.map((theme) => (
-              <Checkbox
-                key={theme}
-                checked={(tempFilters.themes || []).includes(theme)}
-                onChange={(checked) => handleThemeChange(theme, checked)}
-                label={theme}
-              />
-            ))}
-          </div>
-        </div>
+            {/* Package Type Section */}
 
-        <div className="bg-alto w-full h-[1px]" />
-
-        {/* Package Type Section */}
-        <div className="flex flex-col gap-2">
-          <div className="font-semibold">Package Type</div>
-          <div className="flex flex-col text-base">
-            {PACKAGE_TYPES.map((packageType) => (
-              <Checkbox
-                key={packageType}
-                checked={(tempFilters.packageTypes || []).includes(packageType)}
-                onChange={(checked) =>
-                  handlePackageTypeChange(packageType, checked)
-                }
-                label={packageType}
-              />
-            ))}
-          </div>
-        </div>
-
+            <div className="flex flex-col gap-2">
+              <div className="font-semibold">Package Type</div>
+              <div className="flex flex-col text-base">
+                {filterOptions.availablePackageTypes.map((packageType) => (
+                  <Checkbox
+                    key={packageType}
+                    checked={(tempFilters.packageTypes || []).includes(
+                      packageType
+                    )}
+                    onChange={(checked) =>
+                      handlePackageTypeChange(packageType, checked)
+                    }
+                    label={packageType}
+                  />
+                ))}
+              </div>
+            </div>
+          </>
+        )}
         <div className="bg-alto w-full h-[1px]" />
 
         {/* Hotel Ratings Section */}

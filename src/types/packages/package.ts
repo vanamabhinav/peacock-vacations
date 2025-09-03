@@ -85,3 +85,58 @@ export type PackageSummary = Pick<
     meals: string[];
   };
 };
+
+export type PackageFilters = {
+  cityName?: string[];
+  stateName?: string[];
+  countryName?: string[];
+  minPrice?: number;
+  maxPrice?: number;
+  minDays?: number;
+  maxDays?: number;
+  departureCity?: string[];
+  themes?: string[];
+  packageTypes?: string[]; // Add this line
+  minRating?: number;
+  isPublished?: boolean;
+};
+
+export type UIFilters = {
+  minPrice?: number;
+  maxPrice?: number;
+  themes?: string[];
+  packageTypes?: string[];
+  minRating?: number;
+};
+
+export interface FilterOptions {
+  availableThemes: string[];
+  availablePackageTypes: string[];
+  priceRange: {
+    min: number;
+    max: number;
+  };
+}
+
+export type PackageListingPageData = {
+  plpUrl: string;
+  backgroundImage: string;
+  bigHeading: string;
+  shortDescription: string;
+  longDescription: string;
+  packageFilters: PackageFilters;
+  packages?: PackageSummary[];
+  metadata?: {
+    totalCount: number;
+    currentPage: number;
+    totalPages: number;
+  };
+  filterOptions?: {
+    availableThemes: string[];
+    availablePackageTypes: string[];
+    priceRange: {
+      min: number;
+      max: number;
+    };
+  };
+};

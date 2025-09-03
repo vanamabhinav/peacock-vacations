@@ -1,8 +1,8 @@
 import { PackageData } from "@/types";
 import Image from "next/image";
 import { Icon } from "../ui/Icon";
-import { getIconName, getRegionIcon } from "@/lib/utils/iconMapper";
 import Link from "next/link";
+import { getIconForValue } from "@/lib/utils/iconMapper";
 
 const PackageCard = ({
   region,
@@ -30,7 +30,7 @@ const PackageCard = ({
         />
         <div className="top-2.5 left-2.5 absolute flex flex-row items-center gap-2 bg-white px-2 py-1 rounded-[4px_12px_12px_4px]">
           <Icon
-            name={getRegionIcon(region)}
+            name={getIconForValue(region)}
             className="w-[18px] h-5"
             aria-hidden="true"
           />
@@ -54,7 +54,7 @@ const PackageCard = ({
               className="inline-flex flex-row items-center gap-1 bg-bridalHealth px-2 py-1 border border-frangipani rounded-[20px] whitespace-nowrap"
             >
               <Icon
-                name={getIconName(inclusion)}
+                name={getIconForValue(inclusion)}
                 className="w-4 h-4"
                 aria-hidden="true"
               />

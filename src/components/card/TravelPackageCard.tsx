@@ -2,7 +2,7 @@ import { PackageData } from "@/types";
 import Link from "next/link";
 import { Icon } from "../ui/Icon";
 import Image from "next/image";
-import { getIconName, getRegionIcon } from "@/lib/utils/iconMapper";
+import { getIconForValue } from "@/lib/utils/iconMapper";
 
 function TravelPackageCard({
   region,
@@ -42,7 +42,7 @@ function TravelPackageCard({
             <header className="flex flex-col items-center gap-2.5 w-full">
               <div className="flex items-center gap-1.5">
                 <Icon
-                  name={getRegionIcon(region)}
+                  name={getIconForValue(region)}
                   className="w-[18px] h-5"
                   aria-hidden="true"
                 />
@@ -99,7 +99,7 @@ function TravelPackageCard({
               <ul className="flex flex-col gap-0 opacity-70 px-4 text-sm">
                 {inclusions.slice(0, 3).map((item, index) => (
                   <li key={index} className="flex items-center gap-1.5">
-                    <Icon name={getIconName(item)} aria-hidden="true" />
+                    <Icon name={getIconForValue(item)} aria-hidden="true" />
                     <span>{item}</span>
                   </li>
                 ))}

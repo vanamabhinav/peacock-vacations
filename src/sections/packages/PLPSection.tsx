@@ -1,8 +1,8 @@
 import PackageCard from "@/components/card/PackageCard";
 import Breadcrumb from "@/components/ui/Breadcrumb";
-
+import { DEFAULT_FILTER_OPTIONS } from "@/types/constants/defaults";
 import PackageDescription from "./PackageDescription";
-import { PackageListingPageData } from "@/types/pages/packageListing";
+import { PackageListingPageData } from "@/types/packages/package";
 import PlpFilter from "@/components/client/PlpFilter";
 import Pagination from "@/components/ui/Pagination";
 import { stateToRegion } from "@/lib/utils/regionMapper";
@@ -18,7 +18,9 @@ const PLPSection = ({ pageData }: { pageData: PackageListingPageData }) => {
 
         <div className="gap-6 grid grid-cols-1 lg:grid-cols-6">
           <div className="sticky lg:col-span-2">
-            <PlpFilter />
+            <PlpFilter
+              filterOptions={pageData.filterOptions || DEFAULT_FILTER_OPTIONS}
+            />
           </div>
 
           <div className="flex flex-col gap-6 lg:col-span-4">
