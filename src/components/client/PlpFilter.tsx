@@ -3,9 +3,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Rating from "@/components/ui/Rating";
-import { UIFilters } from "@/types/packageFilters";
+import { UIFilters, FilterOptions } from "@/types/packages/package";
 import { Icon } from "../ui/Icon";
-import { FilterOptions } from "@/types/packageFilters";
 
 interface FilterChipProps {
   label: string;

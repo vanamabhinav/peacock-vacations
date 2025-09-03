@@ -1,5 +1,5 @@
 import { getFilteredPackages } from "./packageData";
-import { PackageListingPageData } from "@/types/pages/packageListing";
+import { PackageListingPageData } from "@/types/packages/package";
 import { extractFilterOptions } from "@/lib/utils/extractFilters";
 
 const plpData: PackageListingPageData[] = [

@@ -1,8 +1,8 @@
 import PackageCard from "@/components/card/PackageCard";
 import Breadcrumb from "@/components/ui/Breadcrumb";
-import { DEFAULT_FILTER_OPTIONS } from "@/types/constants/package";
+import { DEFAULT_FILTER_OPTIONS } from "@/types/constants/defaults";
 import PackageDescription from "./PackageDescription";
-import { PackageListingPageData } from "@/types/pages/packageListing";
+import { PackageListingPageData } from "@/types/packages/package";
 import PlpFilter from "@/components/client/PlpFilter";
 import Pagination from "@/components/ui/Pagination";
 import { stateToRegion } from "@/lib/utils/regionMapper";

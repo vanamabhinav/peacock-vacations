@@ -1,5 +1,4 @@
-import { PackageSummary } from "@/types/package";
-import { FilterOptions } from "@/types/packageFilters";
+import { FilterOptions, PackageSummary } from "@/types/packages/package";
 
 export function extractFilterOptions(
   packages: PackageSummary[]

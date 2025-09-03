@@ -1,5 +1,8 @@
-import { Package, PackageSummary } from "@/types/package";
-import type { PackageFilters } from "@/types/packageFilters";
+import {
+  Package,
+  PackageSummary,
+  PackageFilters,
+} from "@/types/packages/package";
 
 const packageData: Package[] = [
   // 1. Goa Beach Package
