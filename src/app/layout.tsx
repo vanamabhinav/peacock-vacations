@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localfont from "next/font/local";
 import { Inter, Albert_Sans, DM_Sans } from "next/font/google";
-import Footer from "@/components/slider/Footer";
+import Footer from "@/sections/global/Footer";
 import StickyNavWrapper from "@/sections/global/StickyNavWrapper";
 
 const clashDisplayFont = localfont({

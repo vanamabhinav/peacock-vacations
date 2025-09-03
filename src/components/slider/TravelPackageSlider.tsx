@@ -27,7 +27,7 @@ export default function TravelPackageSlider({
   return (
     <section
       className="flex flex-col gap-5 mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl"
-      aria-label="Popular Packages"
+      aria-label="Travel Packages"
     >
       <div className="flex justify-between items-center">
         <div className="flex flex-col gap-2">
@@ -41,7 +41,7 @@ export default function TravelPackageSlider({
               "flex justify-center items-center border border-bigstone rounded-full focus:outline-none focus:ring-0 w-10 h-10 transition-all duration-300",
               canScrollLeft
                 ? "bg-bridalHealth hover:bg-karry cursor-pointer"
-                : "bg-bridalHealth/90 cursor-default"
+                : "bg-bridalHealth/90 cursor-not-allowed"
             )}
             aria-label="Scroll Left"
             disabled={!canScrollLeft}
@@ -58,7 +58,7 @@ export default function TravelPackageSlider({
               "flex justify-center items-center border border-bigstone rounded-full focus:outline-none focus:ring-0 w-10 h-10 transition-all duration-300",
               canScrollRight
                 ? "bg-bridalHealth hover:bg-karry cursor-pointer"
-                : "bg-bridalHealth/90 cursor-default"
+                : "bg-bridalHealth/90 cursor-not-allowed"
             )}
             aria-label="Scroll Right"
             disabled={!canScrollRight}

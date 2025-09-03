@@ -1,7 +1,11 @@
 import Link from "next/link";
-import { fetchPlpDataAction } from "@/lib/actions/fetchPlpData";
+import { fetchPlpDataAction } from "@/lib/actions/fetchPlpAction";
 import HeroSection from "@/sections/packages/HeroSection";
 import PLPSection from "@/sections/packages/PLPSection";
+import { fetchPlpSeoFooterAction } from "@/lib/actions/fetchPlpSeoFooterAction";
+import { LinkSection } from "@/sections/global/Footer";
+import TestimonialsSection from "@/sections/homepage/TestimonialsSection";
+import { fetchTestimonialData } from "@/lib/actions/fetchTestimonialData";
 
 interface PageProps {
   params: Promise<{ plpSegments: string[] }>;
@@ -16,6 +20,10 @@ export default async function PlpPage({ params, searchParams }: PageProps) {
 
     const pageData = await fetchPlpDataAction(packageURL, resolvedSearchParams);
 
+    const plpSeoFooterData = await fetchPlpSeoFooterAction();
+
+    const testimonialSectionData = await fetchTestimonialData();
+
     return (
       <main role="main">
         <HeroSection
@@ -28,6 +36,30 @@ export default async function PlpPage({ params, searchParams }: PageProps) {
           }}
         />
         <PLPSection pageData={pageData} />
+
+        <TestimonialsSection
+          {...testimonialSectionData}
+          className="bg-provincialpink"
+        />
+        <div className="bg-provincialpink px-4 py-6 w-full">
+          <div className="flex flex-col gap-6 mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl">
+            <nav
+              aria-label="Related Travel Options"
+              className="divide-y-[1px] divide-silver"
+            >
+              {plpSeoFooterData.map(({ title, links, isFooter }, idx) => {
+                return (
+                  <LinkSection
+                    key={idx}
+                    title={title}
+                    links={links}
+                    isFooter={isFooter}
+                  />
+                );
+              })}
+            </nav>
+          </div>
+        </div>
       </main>
     );
   } catch (error) {
