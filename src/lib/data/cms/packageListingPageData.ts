@@ -216,11 +216,12 @@ const plpData: PackageListingPageData[] = [
 
 export async function getFilteredPlpByUrl(
   plpUrl: string
-): Promise<PackageListingPageData> {
+): Promise<PackageListingPageData | null> {
   const plpPageData = plpData.find((plp) => plp.plpUrl === plpUrl);
 
   if (!plpPageData) {
-    throw new Error("PLP Data not found");
+    console.warn(`PLP Data not found for URL: ${plpUrl}`);
+    return null; // Now this is allowed
   }
 
   // Fetch packages for this PLP
