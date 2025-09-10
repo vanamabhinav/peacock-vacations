@@ -1,7 +1,7 @@
 "use client";
 
+import { DropDownNavbar } from "@/components/client/DropDownNavbar";
 import { useEffect, useRef, useState } from "react";
-import { AdditionalNavMenu } from "./StickyNavWrapper";
 
 const StickyNavWrapperClient = () => {
   const [showMenu, setShowMenu] = useState<boolean>(true);
@@ -26,7 +26,7 @@ const StickyNavWrapperClient = () => {
   }, []);
 
   return (
-    <AdditionalNavMenu
+    <DropDownNavbar
       className={`transition-transform ease-in-out duration-300 w-full relative z-[80] ${
         showMenu ? "translate-y-0" : "-translate-y-full"
       }`}

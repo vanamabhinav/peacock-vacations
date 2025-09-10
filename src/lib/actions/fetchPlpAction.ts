@@ -86,9 +86,15 @@ function paginateResults<T>(
 export async function fetchPlpDataAction(
   plpUrl: string,
   searchParams?: Record<string, string | string[] | undefined>
-): Promise<PackageListingPageData> {
+): Promise<PackageListingPageData | null> {
+  // Add | null to return type
   try {
     const plpPageData = await getFilteredPlpByUrl(plpUrl);
+
+    // Return null if no data found
+    if (!plpPageData) {
+      return null;
+    }
 
     // Get pagination params
     const page = searchParams?.page
@@ -143,6 +149,6 @@ export async function fetchPlpDataAction(
     return plpPageData;
   } catch (error) {
     console.error("Error fetching PLP data:", error);
-    throw new Error("Failed to fetch package listing data");
+    return null; // Return null instead of throwing error
   }
 }

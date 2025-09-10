@@ -6,6 +6,7 @@ import { PackageListingPageData } from "@/types/packages/package";
 import PlpFilter from "@/components/client/PlpFilter";
 import Pagination from "@/components/ui/Pagination";
 import { stateToRegion } from "@/lib/utils/regionMapper";
+import Link from "next/link";
 
 const PLPSection = ({ pageData }: { pageData: PackageListingPageData }) => {
   const packageCount = pageData.packages?.length || 0;
@@ -58,13 +59,31 @@ const PLPSection = ({ pageData }: { pageData: PackageListingPageData }) => {
                 )}
               </>
             ) : (
-              <div className="py-12 text-center">
-                <p className="mb-4 text-gray-600">
-                  No packages found matching your filters.
-                </p>
-                <p className="text-gray-500 text-sm">
-                  Try adjusting your filters or search criteria.
-                </p>
+              <div className="flex flex-col items-center py-16 text-center">
+                <div className="mb-6">
+                  <h3 className="mb-2 font-semibold text-bigstone text-xl">
+                    No packages found
+                  </h3>
+                  <p className="text-codgrey">
+                    No travel packages match your current filters or search
+                    criteria.
+                  </p>
+                </div>
+
+                <div className="flex sm:flex-row flex-col gap-4">
+                  <button
+                    onClick={() => window.location.reload()}
+                    className="bg-bigstone hover:bg-bigstone/90 px-6 py-2 rounded-lg font-medium text-white transition-colors"
+                  >
+                    Clear Filters
+                  </button>
+                  <Link
+                    href="/india/c"
+                    className="bg-white hover:bg-gray-50 px-6 py-2 border border-bigstone rounded-lg font-medium text-bigstone transition-colors"
+                  >
+                    Browse All Packages
+                  </Link>
+                </div>
               </div>
             )}
           </div>

@@ -5,10 +5,13 @@ import Image from "next/image";
 export default function StickyNavWrapper() {
   return (
     <header className="top-0 z-[100] sticky w-full">
-      <div className="z-[120] relative bg-bigstone px-4 py-4">
+      {" "}
+      {/* Reduced from z-[110] */}
+      <div className="z-[105] relative bg-bigstone px-4 py-4">
+        {" "}
+        {/* Reduced from z-[115] */}
         <Topbar />
       </div>
-
       <StickyNavWrapperClient />
     </header>
   );
@@ -16,7 +19,7 @@ export default function StickyNavWrapper() {
 
 export const Topbar = () => (
   <nav
-    className="z-[100] flex justify-between items-center mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl font-inter font-semibold text-white text-base"
+    className="z-[110] flex justify-between items-center mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl font-inter font-semibold text-white text-base" // Increased from z-[100] to z-[110]
     aria-label="Main navigation"
   >
     {/* Left Logo Section */}
@@ -56,45 +59,6 @@ export const Topbar = () => (
         className="flex items-center px-4 py-3 border border-white rounded-lg h-9"
       >
         Login
-      </Link>
-    </div>
-  </nav>
-);
-
-export const AdditionalNavMenu = ({
-  className = "",
-}: {
-  className?: string;
-}) => (
-  <nav
-    className={`flex overflow-hidden flex-col items-start text-left text-sm text-black font-albertsans font-medium capitalize bg-marconi_cheese ${className}`}
-    aria-label="Secondary navigation"
-  >
-    <div className="flex flex-row justify-center items-center gap-6 mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl h-9">
-      <Link href="/" className="flex items-center px-[10px] h-[35px]">
-        Home
-      </Link>
-      <div className="flex items-center gap-[5px] bg-marconi_cheese px-[10px] h-[35px] text-bigstone">
-        Destinations
-        <Icon name="right-arrow" className="rotate-90" />
-      </div>
-      <Link href="/packages" className="flex items-center px-[10px] h-[35px]">
-        Packages
-      </Link>
-      <Link href="/blog" className="flex items-center px-[10px] h-[35px]">
-        Blog
-      </Link>
-      <Link
-        href="/events-festivals"
-        className="flex items-center px-[10px] h-[35px]"
-      >
-        Events & Festivals
-      </Link>
-      <Link href="/about" className="flex items-center px-[10px] h-[35px]">
-        About Us
-      </Link>
-      <Link href="/faqs" className="flex items-center px-[10px] h-[35px]">
-        FAQs
       </Link>
     </div>
   </nav>
