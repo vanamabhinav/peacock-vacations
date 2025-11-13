@@ -3,6 +3,35 @@ import { HomePageData } from "@/types";
 export async function fetchHomePageCmsData(): Promise<HomePageData> {
   const data: HomePageData = {
     heroSectionData: {
+      // slides: [
+      //   {
+      //     title: "Incredible India 360°",
+      //     description:
+      //       "Experience the diverse beauty of India from every angle. Discover stunning landscapes, rich culture, and unforgettable adventures.",
+      //     ctaText: "Explore India",
+      //     ctaLink: "/destinations/india",
+      //     videoUrl:
+      //       "https://www.incredibleindia.gov.in/content/dam/incredible-india/videos/home/India-360-v2.mp4",
+      //   },
+      //   {
+      //     title: "Adventure Awaits",
+      //     description:
+      //       "Embark on thrilling adventures across India's diverse terrains. From mountain peaks to river rapids, your next adventure starts here.",
+      //     ctaText: "Book Adventure",
+      //     ctaLink: "/destinations/adventure",
+      //     videoUrl:
+      //       "https://www.incredibleindia.gov.in/content/dam/incredible-india/videos/home/Adventure.mp4",
+      //   },
+      //   {
+      //     title: "Nature's Paradise",
+      //     description:
+      //       "Immerse yourself in India's pristine natural beauty. From lush forests to serene lakes, discover untouched wilderness.",
+      //     ctaText: "Discover Nature",
+      //     ctaLink: "/destinations/nature",
+      //     videoUrl:
+      //       "https://www.incredibleindia.gov.in/content/dam/incredible-india/videos/home/Nature.mp4",
+      //   },
+      // ],
       slides: [
         {
           title: "Incredible India 360°",
@@ -11,7 +40,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           ctaText: "Explore India",
           ctaLink: "/destinations/india",
           videoUrl:
-            "https://www.incredibleindia.gov.in/content/dam/incredible-india/videos/home/India-360-v2.mp4",
+            "https://www.credible-india/videos/home/India-360-v2.mp4",
         },
         {
           title: "Adventure Awaits",
@@ -20,7 +49,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           ctaText: "Book Adventure",
           ctaLink: "/destinations/adventure",
           videoUrl:
-            "https://www.incredibleindia.gov.in/content/dam/incredible-india/videos/home/Adventure.mp4",
+            "https://ww=m/incredible-india/videos/home/Adventure.mp4",
         },
         {
           title: "Nature's Paradise",
@@ -29,7 +58,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           ctaText: "Discover Nature",
           ctaLink: "/destinations/nature",
           videoUrl:
-            "https://www.incredibleindia.gov.in/content/dam/incredible-india/videos/home/Nature.mp4",
+            "https://wwwredible-india/videos/home/Nature.mp4",
         },
       ],
     },

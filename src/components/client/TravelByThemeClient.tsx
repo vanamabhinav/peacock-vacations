@@ -47,11 +47,11 @@ export default function TravelByThemeClient(data: TravelByThemeSectionData) {
       {/* Header Section with Navigation Buttons */}
       <div className="flex justify-between items-center">
         <div className="flex flex-col gap-2">
-          <h2 className="font-black text-william text-4xl">{data.heading}</h2>
+          <h2 className="font-black text-william text-2xl sm:text-3xl md:text-4xl">{data.heading}</h2>
           <p className="font-medium text-scorpion text-xl">{data.subheading}</p>
         </div>
-        {/* Navigation Buttons at header level - same as PopularPackages */}
-        <div className="flex gap-4">
+        {/* Navigation Buttons at header level - hidden on mobile */}
+        <div className="hidden sm:flex gap-4">
           <button
             onClick={() => sliderRef.current?.scrollLeft()}
             className={twMerge(
@@ -92,7 +92,7 @@ export default function TravelByThemeClient(data: TravelByThemeSectionData) {
       {/* Content Section - Filter and Slider at same level */}
       <div className="flex gap-5">
         {/* Filter Section - 304px width */}
-        <aside className="flex-shrink-0 w-[304px]" aria-label="Theme Filters">
+        <aside className="flex-shrink-0 " aria-label="Theme Filters">
           <TravelThemeSelection
             travelThemes={data.themes}
             selectedThemes={selectedThemes}

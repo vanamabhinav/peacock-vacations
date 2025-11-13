@@ -1,11 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
 
 export default function CopyrightYear() {
-  const [year, setYear] = useState<number | null>(null);
-  useEffect(() => {
-    setYear(new Date().getFullYear());
-  }, []);
-  if (year === null) return null; // or a fallback
-  return <>© {year} Peacock Vacations. All rights reserved.</>;
+  const year = new Date().getFullYear();
+
+  return (
+    <div className="text-center text-sm sm:text-base text-gray-600 py-4">
+      © {year} Peacock Vacations. All rights reserved.
+    </div>
+  );
 }

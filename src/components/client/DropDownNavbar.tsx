@@ -3,19 +3,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { Icon } from "../ui/Icon";
 import { useState } from "react";
+import { cn } from "@/lib/cn";
 
-type City = {
+export type City = {
   name: string;
   slug: string; // e.g., "india/himachal-pradesh/manali/ct"
 };
 
-type State = {
+export type State = {
   name: string;
   slug: string; // e.g., "india/himachal-pradesh/st"
   cities: City[];
 };
 
-type Region = {
+export type Region = {
   name: string;
   slug: string; // e.g., "india/c"
   image?: string;
@@ -523,7 +524,7 @@ export function DropDownNavbar({ className = "" }: { className?: string }) {
   }: (typeof navigationItems)[0]) => (
     <div
       key={name}
-      className="relative"
+      className="sm:relative"
       onMouseEnter={() => hasDropdown && setIsDestVisible(true)}
       onMouseLeave={() => hasDropdown && setIsDestVisible(false)}
     >
@@ -610,15 +611,15 @@ export function DropDownNavbar({ className = "" }: { className?: string }) {
           onMouseLeave={() => setIsDestVisible(false)}
         >
           {/* Header Info - Fixed height */}
-          <div className="flex flex-shrink-0 justify-center gap-14 px-4 py-4 border-[#ffd39a] border-b font-medium text-[17px] text-black">
-            <div className="flex items-start gap-2.5 text-[#535353]">
+          <div className="flex flex-shrink-0 justify-center gap-14 px-4 py-4 border-peachorange border-b font-medium text-[17px] text-black">
+            <div className="flex items-start gap-2.5 text-emperor">
               <span>{selectedRegion.name}:</span>
               <span className="font-normal text-black">Avg Temp</span>
               <span>{selectedRegion.avgTemp ?? "N/A"}</span>
               <Icon name="weather-sunny" className="w-5 h-5" />
             </div>
 
-            <div className="flex items-start gap-2.5 text-[#535353]">
+            <div className="flex items-start gap-2.5 text-emperor">
               <span>Best Picks:</span>
               <span className="text-black">
                 {selectedRegion.bestPicks?.join(", ") ?? "—"}
@@ -689,5 +690,182 @@ export function DropDownNavbar({ className = "" }: { className?: string }) {
         </div>
       </div>
     </nav>
+  );
+}
+
+export function MobileNavbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentView, setCurrentView] = useState<"main" | "regions" | "states" | "cities">("main");
+  const [expandedRegionName, setExpandedRegionName] = useState<string | null>(null);
+  const [selectedRegion, setSelectedRegion] = useState<Region | null>(null);
+  const [selectedState, setSelectedState] = useState<State | null>(null);
+
+  // Track which state's cities are expanded
+  const [expandedState, setExpandedState] = useState<string | null>(null);
+
+  // Open regions accordion
+  const openRegions = () => {
+    setCurrentView("regions");
+    setExpandedRegionName(null);
+    setSelectedRegion(null);
+    setSelectedState(null);
+  };
+
+  // Toggle region accordion
+  const toggleRegionAccordion = (regionName: string) => {
+    setExpandedRegionName(prev => (prev === regionName ? null : regionName));
+  };
+
+  // Select a region to view its states
+  const selectRegion = (region: Region) => {
+    setSelectedRegion(region);
+    setCurrentView("states");
+    setSelectedState(null);
+    setExpandedState(null); // Reset expanded state when navigating to states view
+  };
+
+  // Toggle state accordion (expand/collapse cities)
+  const toggleStateAccordion = (stateName: string) => {
+    setExpandedState(prev => (prev === stateName ? null : stateName));
+  };
+
+  // Back to Regions
+  const backToRegions = () => {
+    setCurrentView("regions");
+    setSelectedState(null);
+    setExpandedState(null); // Reset expanded state when going back to regions
+  };
+
+  // Back to Main
+  const backToMain = () => {
+    setCurrentView("main");
+    setSelectedRegion(null);
+    setSelectedState(null);
+    setExpandedState(null); // Reset expanded state when going back to main
+  };
+
+  return (
+    <>
+      {/* Hamburger Button */}
+      <button
+        type="button"
+        onClick={() => setIsOpen(prev => !prev)}
+        className="block sm:hidden p-4"
+        aria-label="Open menu"
+      >
+        <Icon name={isOpen ? "cross" : "hamburger-menu"} className={cn("w-6 text-white", isOpen ? "h-4" : "h-6")} />
+      </button>
+
+      {/* Mobile Menu Overlay */}
+      {isOpen && (
+        <div className="fixed top-20 inset-0 bg-black/50 z-[150] sm:hidden">
+          <div className="absolute right-0 top-0 h-full w-full bg-white transition-transform duration-300 transform">
+            <div className="h-[calc(100%-72px)] overflow-y-auto p-4">
+              {/* Main Menu */}
+              {currentView === "main" && (
+                <div className="flex flex-col">
+                  {navigationItems.map(item => (
+                    <div key={item.name} className="border-b border-mercury">
+                      {item.name === "Destinations" ? (
+                        <button onClick={openRegions} className="flex items-center justify-between w-full p-4 text-bigstone">
+                          {item.name}
+                          <Icon name="right-arrow" width={16} height={16} />
+                        </button>
+                      ) : item.hasDropdown ? (
+                        <button className="flex items-center justify-between w-full p-4 text-bigstone">
+                          {item.name}
+                          <Icon name="right-arrow" width={16} height={16} />
+                        </button>
+                      ) : (
+                        <Link href={item.href} onClick={() => setIsOpen(false)} className="block p-4 text-bigstone">
+                          {item.name}
+                        </Link>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Regions Accordion List */}
+              {currentView === "regions" && (
+                <div>
+                  <button onClick={backToMain} className="flex items-center gap-2 mb-3 text-sandybrown">
+                    <Icon name="right-arrow" width={16} height={16} className="rotate-180" />
+                    <span>Back to Menu</span>
+                  </button>
+                  <div className="flex flex-col border-t-[1px] border-mercury">
+                    {regionsData.map(region => (
+                      <div key={region.name} className="border-b border-mercury">
+                        <button
+                          onClick={() => selectRegion(region)}
+                          className="flex items-center justify-between text-nevada hover:text-sandybrown transition-colors w-full p-4"
+                        >
+                          <span>{region.name}</span>
+                          <Icon name={"right-arrow"} width={16} height={16} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* States Accordion View */}
+              {currentView === "states" && selectedRegion && (
+                <div>
+                  <button onClick={backToRegions} className="flex items-center gap-2 mb-3 text-sandybrown">
+                    <Icon name="right-arrow" width={16} height={16} className="rotate-180" />
+                    <span>Back to Destinations</span>
+                  </button>
+
+                  <div className="flex flex-col border-t-[1px] gap-2 px-4 py-3 mb-2 border-b border-peachorange font-medium text-[15px] text-black">
+                    <div className="flex items-center gap-1 text-emperor">
+                      <span className="font-semibold">{selectedRegion.name}:</span>
+                      <span className="font-normal text-black">Avg Temp</span>
+                      <span>{selectedRegion.avgTemp ?? "N/A"}</span>
+                      <Icon name="weather-sunny" className="w-4 h-4" />
+                    </div>
+                    <div className="flex items-center gap-1 text-emperor">
+                      <span className="font-semibold">Best Picks:</span>
+                      <span className="text-black">{selectedRegion.bestPicks?.join(", ") ?? "—"}</span>
+                    </div>
+                  </div>
+
+                  {/* States List with Expandable Cities Accordion */}
+                  <div className="flex flex-col">
+                    {selectedRegion.states.map(state => (
+                      <div key={state.slug} className="border-b border-mercury">
+                        <button
+                          onClick={() => toggleStateAccordion(state.name)}
+                          className="flex items-center justify-between w-full p-2 text-nevada hover:text-sandybrown transition-colors"
+                        >
+                          <span>{state.name}</span>
+                          <Icon
+                            name="right-arrow"
+                            width={16}
+                            height={16}
+                            className={cn("transition-transform duration-200", expandedState === state.name ? "rotate-90" : "rotate-0")}
+                          />
+                        </button>
+
+                        {expandedState === state.name && (
+                          <div className="p-2 pl-4 bg-[#f9f9f9] flex flex-col gap-1">
+                            {state.cities.map(city => (
+                              <Link key={city.slug} href={`/${city.slug}`} className="text-sm text-gray font-normal hover:text-sandybrown transition-colors" onClick={() => setIsOpen(false)}>
+                                  <span>{city.name}</span>
+                              </Link>
+                      
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

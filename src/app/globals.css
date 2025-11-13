@@ -1,8 +1,20 @@
 @import "tailwindcss";
 
-html {
+html, 
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
+
+/* Prevent iOS safari elastic scrolling causing horizontal overflow */
+body {
+  position: relative;
+  overscroll-behavior-x: none;
+}
+
 
 @theme {
   --color-alto: #d1d1d1;
@@ -17,6 +29,7 @@ html {
   --color-codgrey: #1e1e1e;
   --color-desertstorm: #f2f1f0;
   --color-eggsour: #fff4dc;
+  --color-emperor:#535353;
   --color-firefly: #0c1b22;
   --color-frangipani: #ffe1b9;
   --color-gallery: #eeeeee;

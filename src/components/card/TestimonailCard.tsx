@@ -9,8 +9,11 @@ export default function TestimonialCard({
   testimonial: TestimonialCardData;
 }) {
   return (
-    <div className="flex flex-col justify-center items-start gap-5 bg-islandSplice p-6 border border-putty rounded-3xl w-[29.125rem] aspect-square">
+    <div
+      className="flex flex-col justify-center items-start gap-5 bg-islandSplice p-6 border border-putty rounded-3xl max-w-[400px] aspect-square sm:p-4"
+    >
       <ProfileCard testimonial={testimonial} />
+
       {testimonial.images && testimonial.images.length > 0 && (
         <div className="w-full">
           <span className="font-semibold text-black text-lg capitalize">

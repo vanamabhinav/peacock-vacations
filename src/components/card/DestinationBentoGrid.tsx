@@ -6,11 +6,11 @@ import Link from "next/link";
 import { CtaCard, Destination } from "@/types";
 
 const sizes = [
-  "col-span-4 row-span-6",
-  "col-span-4 row-span-8",
-  "col-span-4 row-span-4",
-  "col-span-4 row-span-6",
-  "col-span-4 row-span-4",
+  "col-span-6 row-span-2 sm:col-span-6 lg:col-span-4 sm:row-span-6", // First row, first item
+  "col-span-6 row-span-2 sm:col-span-6 lg:col-span-4 sm:row-span-8", // First row, second item
+  "col-span-12 row-span-2 sm:col-span-6 lg:col-span-4 sm:row-span-4", // Second row, spans full width in mobile
+  "hidden sm:block sm:col-span-6 lg:col-span-4 sm:row-span-6", // Hidden in mobile
+  "hidden sm:block sm:col-span-6 lg:col-span-4 sm:row-span-4", // Hidden in mobile
 ];
 const DestinationCard = memo(
   ({
@@ -46,8 +46,8 @@ const DestinationCard = memo(
         blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjY2NjIi8+PC9zdmc+"
       />
 
-      <div className="z-10 relative p-2">
-        <h4 className="font-semibold text-lg leading-none">{title}</h4>
+      <div className="z-10 relative p-2 sm:p-3">
+        <h4 className="font-semibold text-base sm:text-lg leading-tight">{title}</h4>
         <p className="font-normal text-base italic">{subtitle}</p>
       </div>
 
@@ -76,7 +76,7 @@ DestinationCard.displayName = "DestinationCard";
 
 const CallToActionCard = memo(
   ({ title, subtitle, lowertext, url }: CtaCard) => (
-    <div className="flex justify-between items-center col-span-4 row-span-2 bg-astra p-5 rounded-[18px] text-bigstone">
+    <div className="flex justify-between items-center col-span-12 row-span-1 sm:col-span-6 lg:col-span-4 sm:row-span-2 bg-astra p-5 rounded-[18px] text-bigstone">
       <div>
         <h4 className="font-bold text-lg leading-none">{title}</h4>
         <p className="font-semibold text-sm">{subtitle}</p>
@@ -110,8 +110,8 @@ const DestinationBentoGrid = memo(
     ctaCard: CtaCard;
   }) => {
     return (
-      <div className="gap-5 grid grid-cols-12 grid-rows-10 w-full h-[37.5rem]">
-        {destinations.map((destination, index) => (
+      <div className="gap-4 sm:gap-5 grid grid-cols-12 grid-rows-[repeat(5,minmax(0,1fr))] sm:grid-rows-[repeat(10,minmax(0,1fr))] w-full min-h-[20rem] sm:h-[30rem] md:h-[37.5rem]">
+        {destinations.slice(0, 3).map((destination, index) => (
           <DestinationCard
             key={`${destination.title}-${index}`}
             title={destination.title}
@@ -120,6 +120,18 @@ const DestinationBentoGrid = memo(
             url={destination.url}
             size={sizes[index]}
             index={index}
+          />
+        ))}
+        {/* Show remaining destinations only on tablet and above */}
+        {destinations.slice(3).map((destination, index) => (
+          <DestinationCard
+            key={`${destination.title}-${index + 3}`}
+            title={destination.title}
+            subtitle={destination.subtitle}
+            image={destination.image}
+            url={destination.url}
+            size={sizes[index + 3]}
+            index={index + 3}
           />
         ))}
         <CallToActionCard

@@ -84,11 +84,11 @@ export default function PopularDestinationsClient({
     initialData[currentSelectionText.toLowerCase() as keyof DestinationsData];
 
   return (
-    <section className="bg-bridalHealth p-16 w-full font-albertsans">
-      <div className="flex flex-col gap-2 mx-auto max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl">
-        <div className="flex items-start w-full">
-          <div className="flex flex-col gap-2">
-            <h2 className="flex items-center gap-2 font-black text-william text-4xl leading-none">
+    <section className="bg-bridalHealth px-4 sm:px-8 md:px-12 lg:px-16 py-8 sm:py-12 md:py-16 w-full font-albertsans">
+      <div className="flex flex-col gap-2 mx-auto max-w-full sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl">
+        <div className="flex flex-col sm:flex-row items-start w-full">
+          <div className="flex flex-col gap-2 w-full">
+            <h2 className="flex flex-wrap items-center gap-2 font-black text-william text-2xl sm:text-3xl md:text-4xl leading-tight">
               {heading}{" "}
               <div
                 ref={selectionRef}
@@ -103,8 +103,9 @@ export default function PopularDestinationsClient({
                   {isRegion() && !isSelectionVisible && (
                     <RegionIcon
                       region={currentSelectionText as RegionType}
-                      height={36}
-                      width={40}
+                      height={28}
+                      width={32}
+                      className="sm:w-10 sm:h-9"
                       fill="#345B63"
                       aria-hidden="true"
                     />
@@ -121,13 +122,13 @@ export default function PopularDestinationsClient({
                 </span>
               </div>
             </h2>
-            <p className="font-medium text-scorpion text-xl">
+            <p className="font-medium text-scorpion text-base sm:text-lg md:text-xl">
               {subheading} {isRegion() ? "in this region" : "this month"}
             </p>
           </div>
         </div>
 
-        <div className="relative mt-10">
+        <div className="relative mt-6 sm:mt-8 md:mt-10">
           <div
             ref={selectionBoxRef}
             className={`top-0 left-0 z-50 absolute w-full transition-all duration-300 ease-in-out ${

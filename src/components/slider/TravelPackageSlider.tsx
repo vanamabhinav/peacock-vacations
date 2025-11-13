@@ -34,7 +34,7 @@ export default function TravelPackageSlider({
           <h2 className="font-black text-william text-4xl">{heading}</h2>
           <p className="font-medium text-scorpion text-xl">{subheading}</p>
         </div>
-        <div className="flex gap-4">
+        <div className="hidden sm:flex gap-4">
           <button
             onClick={() => sliderRef.current?.scrollLeft()}
             className={twMerge(

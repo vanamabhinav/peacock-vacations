@@ -27,7 +27,7 @@ const StickyNavWrapperClient = () => {
 
   return (
     <DropDownNavbar
-      className={`transition-transform ease-in-out duration-300 w-full relative z-[80] ${
+      className={`hidden sm:block transition-transform ease-in-out duration-300 w-full relative z-[80] ${
         showMenu ? "translate-y-0" : "-translate-y-full"
       }`}
     />
