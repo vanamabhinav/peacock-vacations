@@ -274,7 +274,7 @@ function PartnerSection({
   );
 }
 // Link Section Components
-function LinkSection({ title, links, isFooter = true }: {
+export function LinkSection({ title, links, isFooter = true }: {
   title: string;
   links: LinkType[];
   isFooter?: boolean;
