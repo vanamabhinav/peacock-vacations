@@ -1,6 +1,10 @@
 "use server";
 
-import { LinkSectionType } from "@/sections/global/Footer";
+export interface LinkSectionType {
+  title: string;
+  links: { label: string; linkHref: string }[];
+  isFooter: boolean;
+}
 
 export async function fetchPlpSeoFooterAction(): Promise<LinkSectionType[]> {
   // Currently mock data, to be replaced with DB-based logic

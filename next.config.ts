@@ -24,6 +24,21 @@ const nextConfig: NextConfig = {
         hostname: "images.pexels.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "imgs.search.brave.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "media.gettyimages.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "hblimg.mmtcdn.com",
+        pathname: "/**",
+      },
     ],
   },
   webpack(config) {

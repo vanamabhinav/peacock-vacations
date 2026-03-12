@@ -8,20 +8,20 @@ const packageData: Package[] = [
   // 1. Goa Beach Package
   {
     id: "1",
-    title: "Goa Beach Escape",
+    title: "North Goa Sightseeing – 5 Night In Goa",
     tagline: "Sun, Sand & Serenity",
     shortDescription:
       "Experience the best of Goa with pristine beaches, vibrant nightlife, and delicious cuisine.",
     longDescription:
       "This Goa Beach Escape package offers a perfect blend of relaxation and adventure. Enjoy sunbathing on golden sands, water sports, and exploring the vibrant Goan culture. Stay at a luxury beachfront resort, savor local delicacies, and make memories that last a lifetime.",
-    slug: "goa-beach-escape",
+    slug: "north-goa-sightseeing",
     isPublished: true,
     departureCity: ["Mumbai", "Delhi", "Bengaluru"],
     destination: { cityName: "Goa", stateName: "Goa", countryName: "India" },
     themes: ["Beach", "Adventure"],
     packageType: ["Couple Tour", "Group Tour"],
-    price: { originalAmount: 35000, discountedAmount: 28999, currency: "INR" },
-    duration: { days: 5, nights: 4 },
+    price: { originalAmount: 48921, discountedAmount: 38590, currency: "INR" },
+    duration: { days: 6, nights: 5 },
     itinerary: [
       {
         day: 1,
