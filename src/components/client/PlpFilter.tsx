@@ -149,7 +149,15 @@ const DoubleRangeSlider = ({
   );
 };
 
-const PlpFilter = ({ filterOptions }: { filterOptions: FilterOptions }) => {
+const PlpFilter = ({
+  filterOptions,
+  isMobile = false,
+  onClose
+}: {
+  filterOptions: FilterOptions;
+  isMobile?: boolean;
+  onClose?: () => void;
+}) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -294,7 +302,8 @@ const PlpFilter = ({ filterOptions }: { filterOptions: FilterOptions }) => {
   };
 
   const applyFilters = () => {
-    updateURL(tempFilters, true); // Reset pagination when applying filters
+    updateURL(tempFilters, true);
+    if (onClose) onClose();
   };
 
   const removeFilter = (type: string, value?: string | number) => {
@@ -304,7 +313,6 @@ const PlpFilter = ({ filterOptions }: { filterOptions: FilterOptions }) => {
       case "price":
         newFilters.minPrice = undefined;
         newFilters.maxPrice = undefined;
-        // Reset temp price filters to default when removing price filter
         setTempFilters((prev) => ({
           ...prev,
           minPrice: filterOptions.priceRange.min,
@@ -347,203 +355,183 @@ const PlpFilter = ({ filterOptions }: { filterOptions: FilterOptions }) => {
         minRating: undefined,
       },
       true
-    ); // Reset pagination when clearing all filters
+    );
   };
 
   const formatPrice = (price: number) => `₹${price.toLocaleString("en-IN")}`;
+  const isPriceModified = () => tempFilters.minPrice !== filterOptions.priceRange.min || tempFilters.maxPrice !== filterOptions.priceRange.max;
+  const hasAppliedPriceFilter = () => appliedFilters.minPrice !== undefined || appliedFilters.maxPrice !== undefined;
 
-  // Helper function to check if price has been modified from default
-  const isPriceModified = () => {
-    return (
-      tempFilters.minPrice !== filterOptions.priceRange.min ||
-      tempFilters.maxPrice !== filterOptions.priceRange.max
-    );
-  };
+  const FilterContent = () => (
+    <div className="flex flex-col gap-6">
+      {/* Price Section */}
+      <div className="flex flex-col gap-4">
+        <h4 className="font-black text-[#1a3642] text-lg">Price</h4>
+        <div className="flex flex-col gap-4 w-full">
+          <div className="px-2">
+            <DoubleRangeSlider
+              min={filterOptions.priceRange.min}
+              max={filterOptions.priceRange.max}
+              value={[
+                tempFilters.minPrice || filterOptions.priceRange.min,
+                tempFilters.maxPrice || filterOptions.priceRange.max,
+              ]}
+              onChange={handlePriceChange}
+              formatValue={formatPrice}
+            />
+          </div>
+          <div className="flex justify-between w-full">
+            <div className="flex flex-col items-start">
+              <span className="font-black text-[#1a3642]">{formatPrice(tempFilters.minPrice || filterOptions.priceRange.min)}</span>
+              <span className="text-[10px] font-black uppercase text-gray-400 tracking-widest">min price</span>
+            </div>
+            <div className="flex flex-col items-end">
+              <span className="font-black text-[#1a3642]">{formatPrice(tempFilters.maxPrice || filterOptions.priceRange.max)}</span>
+              <span className="text-[10px] font-black uppercase text-gray-400 tracking-widest">max price</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  // Helper function to check if there are any applied price filters
-  const hasAppliedPriceFilter = () => {
+      {filterOptions.availableThemes.length > 0 && (
+        <>
+          <div className="bg-gray-100 w-full h-[1px]" />
+          <div className="flex flex-col gap-4">
+            <h4 className="font-black text-[#1a3642] text-lg">Theme</h4>
+            <div className="flex flex-col gap-3">
+              {filterOptions.availableThemes.map((theme) => (
+                <Checkbox
+                  key={theme}
+                  checked={(tempFilters.themes || []).includes(theme)}
+                  onChange={(checked) => handleThemeChange(theme, checked)}
+                  label={theme}
+                />
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+
+      {filterOptions.availablePackageTypes.length > 0 && (
+        <>
+          <div className="bg-gray-100 w-full h-[1px]" />
+          <div className="flex flex-col gap-4">
+            <h4 className="font-black text-[#1a3642] text-lg">Package Type</h4>
+            <div className="flex flex-col gap-3">
+              {filterOptions.availablePackageTypes.map((packageType) => (
+                <Checkbox
+                  key={packageType}
+                  checked={(tempFilters.packageTypes || []).includes(packageType)}
+                  onChange={(checked) => handlePackageTypeChange(packageType, checked)}
+                  label={packageType}
+                />
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+
+      <div className="bg-gray-100 w-full h-[1px]" />
+      <div className="flex flex-col gap-4">
+        <h4 className="font-black text-[#1a3642] text-lg">Hotel Ratings</h4>
+        <div className="flex flex-col gap-4">
+          {[5, 4, 3].map((rating) => (
+            <StarRatingFilter
+              key={rating}
+              rating={rating}
+              checked={tempFilters.minRating === rating}
+              onChange={(checked) => handleRatingChange(rating, checked)}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  if (isMobile) {
     return (
-      appliedFilters.minPrice !== undefined ||
-      appliedFilters.maxPrice !== undefined
+      <div className="fixed inset-0 z-[100] bg-white flex flex-col font-albertsans">
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100 sticky top-0 bg-white">
+          <h2 className="text-2xl font-black text-[#1a3642]">Filters</h2>
+          <button onClick={onClose} className="p-2 -mr-2">
+            <Icon name="cross" className="w-5 h-5 text-[#1a3642]" />
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto px-6 py-8">
+          <div className="mb-8 flex justify-between items-center bg-[#fffbf2] p-4 rounded-2xl border border-orange-100/50">
+            <span className="text-sm font-bold text-[#345b63]">Active Filters</span>
+            <button onClick={clearAllFilters} className="text-xs font-black text-[#903f3f] uppercase tracking-widest underline underline-offset-4">Clear All</button>
+          </div>
+          <FilterContent />
+        </div>
+
+        {/* Footer */}
+        <div className="p-6 border-t border-gray-100 sticky bottom-0 bg-white">
+          <button
+            onClick={applyFilters}
+            className="w-full bg-[#f1aa4c] hover:bg-[#e09a3c] text-[#1a3642] py-5 rounded-[24px] font-black tracking-widest text-sm shadow-xl shadow-orange-900/10 transition-all active:scale-95"
+          >
+            APPLY FILTERS
+          </button>
+        </div>
+      </div>
     );
-  };
+  }
 
   return (
-    <div className="flex flex-col gap-4 w-full font-albertsans text-sm text-left">
-      {/* Active Filters Section */}
-      <div className="flex flex-col gap-5 bg-eggsour p-5 border border-goldentainoi rounded-xl">
+    <div className="flex flex-col gap-6 w-full font-albertsans text-sm text-left">
+      {/* Desktop Version */}
+      <div className="flex flex-col gap-5 bg-[#fffbf2] p-6 border border-orange-100/50 rounded-[32px] shadow-sm">
         <div className="flex justify-between items-center">
-          <div className="font-semibold">Filters</div>
+          <div className="font-black text-[#1a3642] text-lg uppercase tracking-tight">Filters</div>
           <button
             onClick={clearAllFilters}
-            className="hover:opacity-70 font-medium text-[#903f3f] text-sm underline"
+            className="text-xs font-black text-[#903f3f] uppercase tracking-widest underline underline-offset-4 hover:opacity-70"
           >
             Clear All
           </button>
         </div>
 
-        {/* Active Filter Chips */}
-        <div className="flex flex-wrap gap-x-4 gap-y-2">
-          {/* Price Filter Chip - Show current temp price if modified OR applied price from URL */}
+        <div className="flex flex-wrap gap-2">
           {(isPriceModified() || hasAppliedPriceFilter()) && (
             <FilterChip
-              label={`${formatPrice(
-                tempFilters.minPrice || filterOptions.priceRange.min
-              )} - ${formatPrice(
-                tempFilters.maxPrice || filterOptions.priceRange.max
-              )}`}
+              label={`${formatPrice(tempFilters.minPrice || filterOptions.priceRange.min)} - ${formatPrice(tempFilters.maxPrice || filterOptions.priceRange.max)}`}
               onRemove={() => removeFilter("price")}
             />
           )}
 
-          {/* Default Price Chip - Show when no price modifications */}
           {!isPriceModified() && !hasAppliedPriceFilter() && (
-            <div className="flex items-center gap-2 bg-white px-3 py-1 border border-[#929292] rounded-md">
+            <div className="flex items-center gap-2 bg-white px-4 py-2 border border-gray-200 rounded-xl font-bold text-[#345b63]">
               <span>Any Price</span>
             </div>
           )}
 
-          {/* Theme Filter Chips */}
           {(appliedFilters.themes || []).map((theme) => (
-            <FilterChip
-              key={theme}
-              label={theme}
-              onRemove={() => removeFilter("theme", theme)}
-            />
+            <FilterChip key={theme} label={theme} onRemove={() => removeFilter("theme", theme)} />
           ))}
 
-          {/* Package Type Filter Chips */}
           {(appliedFilters.packageTypes || []).map((packageType) => (
-            <FilterChip
-              key={packageType}
-              label={packageType}
-              onRemove={() => removeFilter("packageType", packageType)}
-            />
+            <FilterChip key={packageType} label={packageType} onRemove={() => removeFilter("packageType", packageType)} />
           ))}
 
-          {/* Rating Filter Chip */}
           {appliedFilters.minRating && (
-            <FilterChip
-              label="Star Rating"
-              onRemove={() => removeFilter("rating")}
-            >
-              <Rating
-                rating={appliedFilters.minRating}
-                showRating={false}
-                hideExtra={true}
-              />
+            <FilterChip label="Star Rating" onRemove={() => removeFilter("rating")}>
+              <Rating rating={appliedFilters.minRating} showRating={false} hideExtra={true} />
             </FilterChip>
           )}
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 bg-white p-7 border-[1px] border-goldentainoi rounded-xl">
-        {/* Price Section */}
-        <div className="flex flex-col gap-2">
-          <div className="font-semibold">Price</div>
-          <div className="flex flex-col gap-2 w-full">
-            {/* Price Slider */}
-            <div className="px-2">
-              <DoubleRangeSlider
-                min={filterOptions.priceRange.min}
-                max={filterOptions.priceRange.max}
-                value={[
-                  tempFilters.minPrice || filterOptions.priceRange.min,
-                  tempFilters.maxPrice || filterOptions.priceRange.max,
-                ]}
-                onChange={handlePriceChange}
-                formatValue={formatPrice}
-              />
-            </div>
-
-            {/* Price Display */}
-            <div className="flex justify-between w-full text-sm">
-              <div className="flex flex-col items-start">
-                <div className="font-medium">
-                  {formatPrice(
-                    tempFilters.minPrice || filterOptions.priceRange.min
-                  )}
-                </div>
-                <div className="text-gray-500 text-xs">min price</div>
-              </div>
-              <div className="flex flex-col items-end">
-                <div className="font-medium">
-                  {formatPrice(
-                    tempFilters.maxPrice || filterOptions.priceRange.max
-                  )}
-                </div>
-                <div className="text-gray-500 text-xs">max price</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {filterOptions.availableThemes.length > 0 && (
-          <>
-            <div className="bg-alto w-full h-[1px]" />
-            {/* Theme Section */}
-            <div className="flex flex-col gap-2">
-              <div className="font-semibold">Theme</div>
-              <div className="flex flex-col text-base">
-                {filterOptions.availableThemes.map((theme) => (
-                  <Checkbox
-                    key={theme}
-                    checked={(tempFilters.themes || []).includes(theme)}
-                    onChange={(checked) => handleThemeChange(theme, checked)}
-                    label={theme}
-                  />
-                ))}
-              </div>
-            </div>
-          </>
-        )}
-        {filterOptions.availablePackageTypes.length > 0 && (
-          <>
-            <div className="bg-alto w-full h-[1px]" />
-
-            {/* Package Type Section */}
-
-            <div className="flex flex-col gap-2">
-              <div className="font-semibold">Package Type</div>
-              <div className="flex flex-col text-base">
-                {filterOptions.availablePackageTypes.map((packageType) => (
-                  <Checkbox
-                    key={packageType}
-                    checked={(tempFilters.packageTypes || []).includes(
-                      packageType
-                    )}
-                    onChange={(checked) =>
-                      handlePackageTypeChange(packageType, checked)
-                    }
-                    label={packageType}
-                  />
-                ))}
-              </div>
-            </div>
-          </>
-        )}
-        <div className="bg-alto w-full h-[1px]" />
-
-        {/* Hotel Ratings Section */}
-        <div className="flex flex-col gap-2">
-          <div className="font-semibold">Hotel Ratings</div>
-          <div className="flex flex-col gap-2">
-            {[5, 4, 3].map((rating) => (
-              <StarRatingFilter
-                key={rating}
-                rating={rating}
-                checked={tempFilters.minRating === rating}
-                onChange={(checked) => handleRatingChange(rating, checked)}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Apply Filters Button */}
+      <div className="flex flex-col gap-8 bg-white p-8 border border-gray-100 rounded-[32px] shadow-sm">
+        <FilterContent />
         <button
           onClick={applyFilters}
-          className="bg-[#ffc65d] hover:bg-[#ffb84d] px-6 py-3 rounded-lg w-full font-semibold text-black transition-colors duration-200 cursor-pointer"
+          className="w-full bg-[#1a3642] hover:bg-[#254d5e] text-white py-5 rounded-[24px] font-black tracking-widest text-sm shadow-xl shadow-blue-900/10 transition-all active:scale-95"
         >
-          Apply Filters
+          APPLY FILTERS
         </button>
       </div>
     </div>

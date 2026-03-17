@@ -18,48 +18,46 @@ const HeroSection = ({
 }) => {
   return (
     <>
-      <section className="relative bg-white font-albertsans">
+      <section className="relative bg-white font-albertsans overflow-hidden">
         <Image
           src={packageImageUrl}
           alt="Support team background"
           width={1280}
-          height={0}
-          className="w-full h-auto object-cover aspect-[4/1]"
+          height={600}
+          className="w-full h-[180px] md:h-auto object-cover md:aspect-[4/1]"
           priority
         />
-        <RequestCallBack className="top-1/2 right-10 absolute w-80 -translate-y-1/2" />
+        <RequestCallBack className="hidden md:block top-1/2 right-10 absolute w-80 -translate-y-1/2" />
       </section>
-      <div className="relative flex bg-bigstone px-4 py-6 h-20 text-alto text-xs">
-        <div className="flex justify-between items-center mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl">
-          <div className="flex gap-12">
+      <div className="relative flex bg-[#1a3642] px-4 py-3 md:py-6 md:h-20 text-alto text-[10px] md:text-xs">
+        <div className="flex justify-between items-center mx-auto w-full max-w-7xl">
+          <div className="flex gap-6 md:gap-12">
             <div>
-              <div className="font-medium">Average Duration</div>
-              <div className="font-semibold text-white text-sm">
+              <div className="font-medium opacity-80 mb-0.5">Avg. Duration</div>
+              <div className="font-bold text-white text-xs md:text-sm">
                 {average_duration}
               </div>
             </div>
             <div>
-              <div className="font-medium">Base Price</div>
-              <div className="font-semibold text-white text-sm">
+              <div className="font-medium opacity-80 mb-0.5">Base Price</div>
+              <div className="font-bold text-white text-xs md:text-sm">
                 ₹ {basePrice.toLocaleString("en-IN")}
               </div>
             </div>
           </div>
-          <div className="flex flex-col items-end w-64 text-left">
-            <div className="font-medium">Traveler Feedback</div>
-            <div className="flex items-center gap-1 text-white text-sm">
-              <div className="flex gap-0.5">
+          <div className="flex flex-col items-end text-right">
+            <div className="font-medium opacity-80 mb-0.5">Traveler Feedback</div>
+            <div className="flex items-center gap-1.5 text-white">
+              <div className="scale-75 md:scale-100 origin-right">
                 <Rating rating={userRating.rating} showRating={false} />
               </div>
 
-              <div className="font-semibold">
-                Rated {userRating.rating} by{" "}
-                {userRating.count >= 1000
+              <div className="font-bold text-xs md:text-sm">
+                {userRating.rating} <span className="font-medium opacity-60">({userRating.count >= 1000
                   ? `${(userRating.count / 1000)
-                      .toFixed(1)
-                      .replace(/\.0$/, "")}k`
-                  : userRating.count}{" "}
-                travellers
+                    .toFixed(1)
+                    .replace(/\.0$/, "")}k`
+                  : userRating.count})</span>
               </div>
             </div>
           </div>

@@ -27,27 +27,32 @@ export default function PackageDescription({
   };
 
   return (
-    <div className="relative flex flex-col bg-white px-4 sm:px-6 md:px-10 pt-5 pb-3 border border-silver rounded-2xl w-full font-albertsans text-black text-base sm:text-lg">
-      <div>
-        <h2 className="w-full font-semibold capitalize">{bigHeading}</h2>
+    <div className="relative flex flex-col bg-white px-5 sm:px-8 py-6 border border-gray-100/80 rounded-[32px] w-full font-albertsans text-black shadow-sm shadow-gray-100/50">
+      <div className="flex flex-col gap-2">
+        <h2 className="w-full font-black text-[#1a3642] text-lg sm:text-xl capitalize leading-tight">
+          {bigHeading}
+        </h2>
         <div
           id="package-description"
-          className="relative overflow-hidden transition-all duration-500"
+          className="relative overflow-hidden transition-all duration-500 ease-in-out"
           style={{ height, opacity: isExpanded ? 1 : 0.85 }}
           ref={contentRef}
         >
           <div>
-            <p className="w-full text-mineshaft text-sm sm:text-base capitalize">
+            <p className="w-full text-[#345b63] font-bold text-sm sm:text-[15px] leading-relaxed opacity-80">
               {shortDescription}
-              <br />
-              {isExpanded && longDescription}
+              {isExpanded && (
+                <span className="block mt-2 font-medium">
+                  {longDescription}
+                </span>
+              )}
             </p>
           </div>
         </div>
       </div>
       <button
         type="button"
-        className="w-full text-william text-sm sm:text-base text-right underline cursor-pointer"
+        className="mt-2 text-[#1a3642] text-xs sm:text-sm font-black text-right underline underline-offset-4 cursor-pointer hover:text-[#f1aa4c] transition-colors"
         onClick={handleExpandToggle}
         aria-expanded={isExpanded}
         aria-controls="package-description"

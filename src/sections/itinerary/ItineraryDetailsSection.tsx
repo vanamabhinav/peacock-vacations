@@ -81,13 +81,14 @@ export const ItineraryDetailsSection = () => {
                 <h2 className="text-2xl font-black text-[#1a3642]">Itinerary</h2>
                 <p className="text-xs font-medium text-gray-500 mb-2">Step-by-step plan designed for your perfect vacation.</p>
 
-                {/* Trip Summary Table */}
-                <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-                    <div className="bg-[#f1aa4c] px-6 py-3 flex items-center justify-between">
-                        <h3 className="text-white text-base font-bold">Goa Trip Summary – {itineraryData.duration.nights} Nights, {itineraryData.duration.days} Days</h3>
-                        <span className="text-white text-[10px] font-bold italic underline cursor-pointer">View Detail</span>
+                {/* Trip Summary Card for Mobile / Table for Desktop */}
+                <div className="bg-white border border-gray-200 rounded-[24px] md:rounded-2xl overflow-hidden shadow-sm">
+                    <div className="bg-[#f1aa4c] px-5 py-4 flex items-center justify-between">
+                        <h3 className="text-white text-sm md:text-base font-black">Goa Trip Summary – {itineraryData.duration.nights} Nights, {itineraryData.duration.days} Days</h3>
+                        <span className="text-white text-[10px] font-bold italic underline cursor-pointer hidden md:block">View Detail</span>
                     </div>
-                    <div className="overflow-x-auto">
+                    {/* Desktop Table */}
+                    <div className="hidden md:block overflow-x-auto">
                         <table className="w-full text-left border-collapse">
                             <tbody className="divide-y divide-gray-100">
                                 {itineraryData.summaryTable.map((item, i) => (
@@ -132,6 +133,34 @@ export const ItineraryDetailsSection = () => {
                             </tbody>
                         </table>
                     </div>
+                    {/* Mobile List View */}
+                    <div className="md:hidden flex flex-col divide-y divide-gray-50">
+                        {itineraryData.summaryTable.map((item, i) => (
+                            <div key={i} className="p-5 flex flex-col gap-4">
+                                <div className="flex justify-between items-center">
+                                    <div className="flex items-center gap-2">
+                                        <span className="w-8 h-8 rounded-full bg-[#1a3642] text-white flex items-center justify-center text-xs font-black">D{item.day}</span>
+                                        <span className="text-xs font-black text-gray-400">{item.date}</span>
+                                    </div>
+                                    {(item.isArrive || item.isDepart) && (
+                                        <span className="text-lg opacity-70">{item.isArrive ? "🌅" : "✈️"}</span>
+                                    )}
+                                </div>
+                                <div className="space-y-4">
+                                    <div className="flex flex-col gap-1">
+                                        <span className="text-[9px] font-black text-gray-300 uppercase tracking-[0.2em]">{item.morningTime}</span>
+                                        <p className="text-sm font-bold text-[#1a3642] leading-relaxed">{item.morningText}</p>
+                                    </div>
+                                    {item.noonEveningText && (
+                                        <div className="flex flex-col gap-1">
+                                            <span className="text-[9px] font-black text-gray-300 uppercase tracking-[0.2em]">{item.noonEveningTime}</span>
+                                            <p className="text-sm font-bold text-[#1a3642] leading-relaxed">{item.noonEveningText}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
 
@@ -144,32 +173,34 @@ export const ItineraryDetailsSection = () => {
                     {/* Stay Section */}
                     <div className="flex flex-col gap-4">
                         <h4 className="text-base font-black text-[#1a3642] italic">Stay</h4>
-                        <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex h-52 group">
-                            <div className="relative w-1/3 overflow-hidden">
+                        <div className="bg-white border border-gray-200 rounded-[28px] md:rounded-2xl overflow-hidden shadow-sm flex flex-col md:flex-row h-auto md:h-52 group">
+                            <div className="relative w-full md:w-1/3 aspect-[2/1] md:aspect-auto overflow-hidden">
                                 <Image src={itineraryData.stayDetails.imageUrl} alt="Stay" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
                             </div>
-                            <div className="p-8 flex flex-col justify-center gap-2 w-2/3">
-                                <h3 className="text-2xl font-black text-[#1a3642]">{itineraryData.stayDetails.hotelName}</h3>
-                                <p className="text-[#345b63] text-sm font-bold opacity-60 italic">{itineraryData.stayDetails.dates}</p>
-                                <div className="flex items-center gap-4 mt-2">
+                            <div className="p-6 md:p-8 flex flex-col justify-center gap-3 w-full md:w-2/3">
+                                <div>
+                                    <h3 className="text-xl md:text-2xl font-black text-[#1a3642] leading-tight mb-1">{itineraryData.stayDetails.hotelName}</h3>
+                                    <p className="text-[#345b63] text-xs md:text-sm font-bold opacity-60 italic">{itineraryData.stayDetails.dates}</p>
+                                </div>
+                                <div className="flex flex-wrap items-center gap-3 md:gap-4 mt-1">
                                     <div className="bg-[#fff9f1] border border-[#f1aa4c]/30 px-3 py-1 rounded-md flex items-center gap-1.5 shadow-sm">
-                                        <span className="text-[#f1aa4c] text-sm font-black">{itineraryData.stayDetails.rating}★ Hotel</span>
+                                        <span className="text-[#f1aa4c] text-xs md:text-sm font-black">{itineraryData.stayDetails.rating}★ Hotel</span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <span className="text-xs">🛋️</span>
-                                        <span className="text-[13px] font-bold text-[#1a3642]">{itineraryData.stayDetails.area}</span>
+                                        <span className="text-[11px] md:text-[13px] font-bold text-[#1a3642]">{itineraryData.stayDetails.area}</span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <span className="text-xs">🛏️</span>
-                                        <span className="text-[13px] font-bold text-[#1a3642]">{itineraryData.stayDetails.bedType}</span>
+                                        <span className="text-[11px] md:text-[13px] font-bold text-[#1a3642]">{itineraryData.stayDetails.bedType}</span>
                                     </div>
                                 </div>
-                                <div className="w-full h-px bg-gray-100 my-2"></div>
-                                <div className="flex gap-6">
+                                <div className="w-full h-px bg-gray-50 my-1 md:my-2"></div>
+                                <div className="flex flex-wrap gap-4 md:gap-6">
                                     {itineraryData.stayDetails.amenities.map((item, i) => (
                                         <div key={i} className="flex items-center gap-1.5">
-                                            <span className="text-[#3ed0b3] text-sm">{item.included ? "✔" : "✘"}</span>
-                                            <span className="text-xs font-bold text-gray-500">{item.label}</span>
+                                            <span className="text-[#3ed0b3] text-sm md:text-base">{item.included ? "✔" : "✘"}</span>
+                                            <span className="text-[10px] md:text-xs font-bold text-gray-500">{item.label}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -180,32 +211,34 @@ export const ItineraryDetailsSection = () => {
                     {/* Transfers Section */}
                     <div className="flex flex-col gap-4">
                         <h4 className="text-base font-black text-[#1a3642] italic">Transfers</h4>
-                        <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex h-52 group">
-                            <div className="relative w-1/3 overflow-hidden">
+                        <div className="bg-white border border-gray-200 rounded-[28px] md:rounded-2xl overflow-hidden shadow-sm flex flex-col md:flex-row h-auto md:h-52 group">
+                            <div className="relative w-full md:w-1/3 aspect-[2/1] md:aspect-auto overflow-hidden">
                                 <Image src={itineraryData.transferDetails.imageUrl} alt="Transfer" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
                             </div>
-                            <div className="p-8 flex flex-col justify-center gap-2 w-2/3">
-                                <h3 className="text-2xl font-black text-[#1a3642]">{itineraryData.transferDetails.vehicleName}</h3>
-                                <p className="text-[#345b63] text-sm font-bold opacity-60 italic">{itineraryData.transferDetails.dates}</p>
-                                <div className="flex items-center gap-4 mt-2">
+                            <div className="p-6 md:p-8 flex flex-col justify-center gap-3 w-full md:w-2/3">
+                                <div>
+                                    <h3 className="text-xl md:text-2xl font-black text-[#1a3642] leading-tight mb-1">{itineraryData.transferDetails.vehicleName}</h3>
+                                    <p className="text-[#345b63] text-xs md:text-sm font-bold opacity-60 italic">{itineraryData.transferDetails.dates}</p>
+                                </div>
+                                <div className="flex flex-wrap items-center gap-3 md:gap-4 mt-1">
                                     <div className="bg-[#fff9f1] border border-[#f1aa4c]/30 px-3 py-1 rounded-md flex items-center gap-1.5 shadow-sm">
-                                        <span className="text-[#f1aa4c] text-sm font-black">{itineraryData.transferDetails.type}</span>
+                                        <span className="text-[#f1aa4c] text-xs md:text-sm font-black">{itineraryData.transferDetails.type}</span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <span className="text-xs">🚗</span>
-                                        <span className="text-[13px] font-bold text-[#1a3642]">{itineraryData.transferDetails.capacity}</span>
+                                        <span className="text-[11px] md:text-[13px] font-bold text-[#1a3642]">{itineraryData.transferDetails.capacity}</span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <span className="text-xs">💼</span>
-                                        <span className="text-[13px] font-bold text-[#1a3642]">{itineraryData.transferDetails.luggage}</span>
+                                        <span className="text-[11px] md:text-[13px] font-bold text-[#1a3642]">{itineraryData.transferDetails.luggage}</span>
                                     </div>
                                 </div>
-                                <div className="w-full h-px bg-gray-100 my-2"></div>
-                                <div className="flex gap-6">
+                                <div className="w-full h-px bg-gray-50 my-1 md:my-2"></div>
+                                <div className="flex flex-wrap gap-4 md:gap-6">
                                     {itineraryData.transferDetails.features.map((item, i) => (
                                         <div key={i} className="flex items-center gap-1.5">
-                                            <span className="text-[#3ed0b3] text-sm">{item.included ? "✔" : "✘"}</span>
-                                            <span className="text-xs font-bold text-gray-500">{item.label}</span>
+                                            <span className="text-[#3ed0b3] text-sm md:text-base">{item.included ? "✔" : "✘"}</span>
+                                            <span className="text-[10px] md:text-xs font-bold text-gray-500">{item.label}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -215,48 +248,48 @@ export const ItineraryDetailsSection = () => {
 
                     {/* Inclusion/Exclusion Toggle Section */}
                     <div className="mt-4 bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-sm">
-                        <div className="flex bg-[#f1f2f4] p-1.5">
+                        <div className="flex bg-[#f1f2f4] p-1 md:p-1.5">
                             <button
                                 onClick={() => setShowInclusions(true)}
-                                className={`flex-1 py-4 text-base font-black rounded-2xl transition-all ${showInclusions
+                                className={`flex-1 py-3 md:py-4 text-sm md:text-base font-black rounded-xl md:rounded-2xl transition-all ${showInclusions
                                     ? "bg-[#f1aa4c] text-white shadow-md scale-[1.01]"
                                     : "text-gray-400"
                                     }`}
                             >
-                                Tour Inclusions
+                                Inclusions
                             </button>
                             <button
                                 onClick={() => setShowInclusions(false)}
-                                className={`flex-1 py-4 text-base font-black rounded-2xl transition-all ${!showInclusions
+                                className={`flex-1 py-3 md:py-4 text-sm md:text-base font-black rounded-xl md:rounded-2xl transition-all ${!showInclusions
                                     ? "bg-[#f1aa4c] text-white shadow-md scale-[1.01]"
                                     : "text-gray-400"
                                     }`}
                             >
-                                Tour Exclusions
+                                Exclusions
                             </button>
                         </div>
-                        <div className="p-10 min-h-[250px] bg-[#fdfbf9]">
+                        <div className="p-6 md:p-10 min-h-[200px] md:min-h-[250px] bg-[#fdfbf9]">
                             {showInclusions ? (
-                                <ul className="space-y-5">
+                                <ul className="space-y-4 md:space-y-5">
                                     {itineraryData.tourInclusionsList.map((item, i) => (
-                                        <li key={i} className="text-[16px] font-bold text-[#345b63] flex items-start gap-4 hover:translate-x-1 transition-transform">
-                                            <span className="text-[#3ed0b3] text-xl leading-none">✔</span>
+                                        <li key={i} className="text-sm md:text-[16px] font-bold text-[#345b63] flex items-start gap-3 md:gap-4 hover:translate-x-1 transition-transform">
+                                            <span className="text-[#3ed0b3] text-lg md:text-xl leading-none">✔</span>
                                             <span className="leading-relaxed">{item}</span>
                                         </li>
                                     ))}
                                 </ul>
                             ) : (
-                                <ul className="space-y-5">
+                                <ul className="space-y-4 md:space-y-5">
                                     {itineraryData.tourExclusionsList.map((item, i) => (
-                                        <li key={i} className="text-[16px] font-bold text-[#345b63] flex items-start gap-4 hover:translate-x-1 transition-transform">
-                                            <span className="text-[#bc283a] text-xl leading-none">✘</span>
+                                        <li key={i} className="text-sm md:text-[16px] font-bold text-[#345b63] flex items-start gap-3 md:gap-4 hover:translate-x-1 transition-transform">
+                                            <span className="text-[#bc283a] text-lg md:text-xl leading-none">✘</span>
                                             <span className="leading-relaxed">{item}</span>
                                         </li>
                                     ))}
                                     {itineraryData.tourExclusionsList.length === 0 && (
                                         <div className="flex flex-col items-center justify-center py-10 opacity-40">
-                                            <span className="text-4xl mb-4">✘</span>
-                                            <p className="text-lg font-bold">No Exclusions Listed</p>
+                                            <span className="text-3xl md:text-4xl mb-4">✘</span>
+                                            <p className="text-base md:text-lg font-bold">No Exclusions Listed</p>
                                         </div>
                                     )}
                                 </ul>
@@ -273,20 +306,20 @@ export const ItineraryDetailsSection = () => {
 
                 <div className="flex flex-col gap-6">
                     {/* Documents Required */}
-                    <div className="bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-sm">
+                    <div className="bg-white border border-gray-100 rounded-[28px] md:rounded-3xl overflow-hidden shadow-sm">
                         <div className="bg-gradient-to-r from-[#fedec0] to-[#fff3e7] px-6 py-4">
-                            <h3 className="text-lg font-black text-[#345b63]">Documents Required for Travel</h3>
+                            <h3 className="text-base md:text-lg font-black text-[#345b63]">Documents Required for Travel</h3>
                         </div>
-                        <div className="p-10 flex flex-col gap-8">
+                        <div className="p-6 md:p-10 flex flex-col gap-6 md:gap-8">
                             <div className="flex flex-col gap-2">
-                                <p className="text-[17px] font-black text-[#1a3642]">For International Travelers (Adults):</p>
-                                <p className="text-[17px] font-bold text-[#345b63] leading-relaxed">
+                                <p className="text-base md:text-[17px] font-black text-[#1a3642]">For International Travelers (Adults):</p>
+                                <p className="text-sm md:text-[17px] font-bold text-[#345b63] leading-relaxed opacity-80 md:opacity-100">
                                     {itineraryData.needToKnow.documents.international}
                                 </p>
                             </div>
                             <div className="flex flex-col gap-2">
-                                <p className="text-[17px] font-black text-[#1a3642]">For Children:</p>
-                                <p className="text-[17px] font-bold text-[#345b63] leading-relaxed">
+                                <p className="text-base md:text-[17px] font-black text-[#1a3642]">For Children:</p>
+                                <p className="text-sm md:text-[17px] font-bold text-[#345b63] leading-relaxed opacity-80 md:opacity-100">
                                     {itineraryData.needToKnow.documents.children}
                                 </p>
                             </div>
@@ -306,19 +339,19 @@ export const ItineraryDetailsSection = () => {
                     </div>
 
                     {/* Hotel Guidelines */}
-                    <div className="bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-sm">
+                    <div className="bg-white border border-gray-100 rounded-[28px] md:rounded-3xl overflow-hidden shadow-sm">
                         <div className="bg-gradient-to-r from-[#fedec0] to-[#fff3e7] px-6 py-4">
-                            <h3 className="text-lg font-black text-[#345b63]">Hotel &amp; Stay Guidelines</h3>
+                            <h3 className="text-base md:text-lg font-black text-[#345b63]">Hotel &amp; Stay Guidelines</h3>
                         </div>
-                        <div className="p-10 flex flex-col gap-8">
+                        <div className="p-6 md:p-10 flex flex-col gap-6 md:gap-8">
                             <div className="flex flex-col gap-1.5">
-                                <p className="text-[17px] font-bold text-[#1a3642]"><span className="font-black">Check-in:</span> {itineraryData.needToKnow.hotelGuidelines.checkIn}</p>
-                                <p className="text-[17px] font-bold text-[#1a3642]"><span className="font-black">Check-out:</span> {itineraryData.needToKnow.hotelGuidelines.checkOut}</p>
-                                <p className="text-[17px] font-bold text-[#345b63] mt-2 leading-relaxed">{itineraryData.needToKnow.hotelGuidelines.notes}</p>
+                                <p className="text-sm md:text-[17px] font-bold text-[#1a3642]"><span className="font-black">Check-in:</span> {itineraryData.needToKnow.hotelGuidelines.checkIn}</p>
+                                <p className="text-sm md:text-[17px] font-bold text-[#1a3642]"><span className="font-black">Check-out:</span> {itineraryData.needToKnow.hotelGuidelines.checkOut}</p>
+                                <p className="text-sm md:text-[17px] font-bold text-[#345b63] mt-2 leading-relaxed opacity-80 md:opacity-100">{itineraryData.needToKnow.hotelGuidelines.notes}</p>
                             </div>
                             <div className="flex flex-col gap-3">
-                                <p className="text-[17px] font-black text-[#1a3642]">Child Policy:</p>
-                                <p className="text-[17px] font-bold text-[#345b63] leading-relaxed">
+                                <p className="text-base md:text-[17px] font-black text-[#1a3642]">Child Policy:</p>
+                                <p className="text-sm md:text-[17px] font-bold text-[#345b63] leading-relaxed opacity-80 md:opacity-100">
                                     {itineraryData.needToKnow.hotelGuidelines.childPolicy}
                                 </p>
                             </div>
@@ -326,15 +359,15 @@ export const ItineraryDetailsSection = () => {
                     </div>
 
                     {/* Additional Notes */}
-                    <div className="bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-sm">
+                    <div className="bg-white border border-gray-100 rounded-[28px] md:rounded-3xl overflow-hidden shadow-sm">
                         <div className="bg-gradient-to-r from-[#6596a0] to-[#8eb0b8] px-6 py-4">
-                            <h3 className="text-lg font-black text-white">Additional Notes</h3>
+                            <h3 className="text-base md:text-lg font-black text-white">Additional Notes</h3>
                         </div>
-                        <div className="p-10">
-                            <ul className="space-y-5">
+                        <div className="p-6 md:p-10">
+                            <ul className="space-y-4 md:space-y-5">
                                 {itineraryData.needToKnow.additionalNotes.map((note, i) => (
-                                    <li key={i} className="text-[17px] font-bold text-[#345b63] leading-relaxed flex items-start gap-4">
-                                        <span className="text-[#3ed0b3] mt-1.5 min-w-[6px] h-[6px] rounded-full bg-[#3ed0b3]"></span>
+                                    <li key={i} className="text-sm md:text-[17px] font-bold text-[#345b63] leading-relaxed flex items-start gap-3 md:gap-4 opacity-80 md:opacity-100">
+                                        <span className="text-[#3ed0b3] mt-2 md:mt-1.5 min-w-[6px] h-[6px] rounded-full bg-[#3ed0b3]"></span>
                                         {note}
                                     </li>
                                 ))}
@@ -388,31 +421,31 @@ export const ItineraryDetailsSection = () => {
                 <h2 className="text-2xl font-black text-[#1a3642]">Cancellation Terms &amp; Policy</h2>
                 <p className="text-[11px] font-medium text-gray-400 mb-2">Everything you need to know before your trip begins</p>
 
-                <div className="bg-white border border-gray-200 rounded-[25px] p-10 shadow-sm flex flex-col gap-8">
-                    <div className="space-y-4">
-                        <p className="text-[17px] font-bold text-[#345b63] leading-tight max-w-3xl tracking-tight">
+                <div className="bg-white border border-gray-100 rounded-[28px] md:rounded-[25px] p-6 md:p-10 shadow-sm flex flex-col gap-6 md:gap-8">
+                    <div className="space-y-3 md:space-y-4">
+                        <p className="text-sm md:text-[17px] font-bold text-[#345b63] leading-relaxed max-w-3xl opacity-80 md:opacity-100">
                             We understand that travel plans can change, and we're here to assist you. Below are the standard cancellation fees based on when you cancel the trip.
                         </p>
-                        <div className="flex flex-col gap-1 pt-2">
-                            <p className="text-[17px] font-black text-[#1a3642]">Tour Package Price: <span className="text-gray-500 font-bold">₹{itineraryData.price.discountedAmount.toLocaleString()}</span></p>
-                            <p className="text-[17px] font-black text-[#1a3642]">TCS (5%): <span className="text-gray-500 font-bold">₹{(itineraryData.price.discountedAmount * 0.05).toLocaleString()}</span></p>
+                        <div className="flex flex-col gap-1 pt-1 md:pt-2">
+                            <p className="text-sm md:text-[17px] font-black text-[#1a3642]">Tour Package Price: <span className="text-gray-400 md:text-gray-500 font-bold">₹{itineraryData.price.discountedAmount.toLocaleString()}</span></p>
+                            <p className="text-sm md:text-[17px] font-black text-[#1a3642]">TCS (5%): <span className="text-gray-400 md:text-gray-500 font-bold">₹{(itineraryData.price.discountedAmount * 0.05).toLocaleString()}</span></p>
                         </div>
                     </div>
 
-                    <div className="overflow-hidden border border-gray-100 rounded-xl max-w-lg">
+                    <div className="overflow-hidden border border-gray-100 rounded-2xl max-w-lg">
                         <table className="w-full text-left border-collapse">
                             <thead>
-                                <tr className="text-[15px] font-black">
-                                    <th className="px-5 py-2.5 bg-gradient-to-r from-[#ffd3a7] to-[#ffe4c4] text-[#345b63] border-r border-white/20">Time of Cancellation</th>
-                                    <th className="px-5 py-2.5 bg-gradient-to-r from-[#ffd3a7] to-[#ffe4c4] text-[#345b63]">Cancellation Fee</th>
+                                <tr className="text-xs md:text-[15px] font-black">
+                                    <th className="px-4 md:px-5 py-3 md:py-2.5 bg-gradient-to-r from-[#ffd3a7] to-[#ffe4c4] text-[#345b63] border-r border-white/20 whitespace-nowrap">Time Of Cancellation</th>
+                                    <th className="px-4 md:px-5 py-3 md:py-2.5 bg-gradient-to-r from-[#ffd3a7] to-[#ffe4c4] text-[#345b63] whitespace-nowrap">Cancellation Fee</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-gray-100">
+                            <tbody className="divide-y divide-gray-50">
                                 {itineraryData.cancellationPolicy.map((item, i) => (
                                     <tr key={i} className={item.isHighlight ? "bg-gray-50/30" : ""}>
-                                        <td className="px-5 py-3 text-[15px] font-bold text-[#345b63] border-r border-gray-100 text-center">{item.timeframe}</td>
-                                        <td className="px-5 py-3 text-[15px] font-bold text-[#345b63] text-center">
-                                            {item.fee} {item.isHighlight && <span className="text-[#bc283a] text-[11px] font-black italic ml-1">No Refund*</span>}
+                                        <td className="px-4 md:px-5 py-3 text-xs md:text-[15px] font-bold text-[#345b63] border-r border-gray-50 text-center">{item.timeframe}</td>
+                                        <td className="px-4 md:px-5 py-3 text-xs md:text-[15px] font-bold text-[#345b63] text-center">
+                                            {item.fee} {item.isHighlight && <span className="text-[#bc283a] text-[10px] md:text-[11px] font-black italic ml-1 whitespace-nowrap">No Refund*</span>}
                                         </td>
                                     </tr>
                                 ))}
@@ -420,15 +453,15 @@ export const ItineraryDetailsSection = () => {
                         </table>
                     </div>
 
-                    <div className="space-y-1.5 pt-2">
+                    <div className="space-y-2 pt-1 md:pt-2">
                         {[
                             "All cancellations must be made in writing (Email/WhatsApp).",
                             "Partial cancellations or no-shows are non-refundable.",
-                            "This policy is subject to Terms & Conditions and payments received till the cancellation date."
+                            "This policy is subject to Terms & Conditions."
                         ].map((note, i) => (
-                            <div key={i} className="flex gap-2 text-[14px] font-bold text-[#345b63] items-start leading-tight">
+                            <div key={i} className="flex gap-2 text-xs md:text-[14px] font-bold text-[#345b63] items-start leading-snug">
                                 <span className="text-[#bc283a] font-black">*</span>
-                                <p>{note}</p>
+                                <p className="opacity-80 md:opacity-100">{note}</p>
                             </div>
                         ))}
                     </div>
