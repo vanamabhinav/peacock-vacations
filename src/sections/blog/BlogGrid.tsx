@@ -1,12 +1,16 @@
-import { allBlogPosts } from "@/lib/data/cms/blogData";
+import { IBlog } from "@/models/Blog";
 import BlogPostCard from "./BlogPostCard";
 
-export default function BlogGrid() {
+interface BlogGridProps {
+    posts: IBlog[];
+}
+
+export default function BlogGrid({ posts }: BlogGridProps) {
     return (
         <section className="mb-12 md:mb-20">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-10 md:mb-16">
-                {allBlogPosts.map((post) => (
-                    <BlogPostCard key={post.id} post={post} />
+                {posts.map((post: any) => (
+                    <BlogPostCard key={post._id} post={post} />
                 ))}
             </div>
 

@@ -9,9 +9,11 @@ export type Package = {
   departureCity: string[];
   destination: {
     cityName: string;
+    district?: string;
     stateName: string;
     countryName: string;
   };
+  region?: string;
   themes: string[];
   packageType: string[];
   price: {
@@ -88,7 +90,9 @@ export type PackageSummary = Pick<
 
 export type PackageFilters = {
   cityName?: string[];
+  district?: string[];
   stateName?: string[];
+  region?: string[];
   countryName?: string[];
   minPrice?: number;
   maxPrice?: number;

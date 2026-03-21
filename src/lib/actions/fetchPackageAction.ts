@@ -1,16 +1,15 @@
 "use server";
 
 import { PackageFilters, Package } from "@/types/packages/package";
-import { getFilteredPackages } from "../data/cms/packageData";
+import { getFilteredPackagesFromDb } from "@/lib/services/packageService";
 
 export async function fetchPackageDataAction(
   filters: PackageFilters
 ): Promise<Package[]> {
   try {
-    const data = await getFilteredPackages(filters);
-    return data as Package[];
+    return await getFilteredPackagesFromDb(filters);
   } catch (err) {
-    console.log("Error: ", err);
+    console.error("Error fetching package data action:", err);
     throw new Error("Failed to fetch package data");
   }
 }

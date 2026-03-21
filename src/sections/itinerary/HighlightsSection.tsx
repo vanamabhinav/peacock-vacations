@@ -1,7 +1,16 @@
 import Image from "next/image";
-import { itineraryData } from "../../lib/data/cms/itinerarydata";
+import { IPackage } from "@/models/Package";
 
-export const HighlightsSection = () => {
+const defaultHighlights = [
+    { title: "Customized Itinerary", description: "Tailored to your preferences", id: "default-1" },
+    { title: "24/7 Support", description: "Expert assistance anytime", id: "default-2" },
+    { title: "Secure Payments", description: "Safe and verified transactions", id: "default-3" },
+    { title: "Verified Stays", description: "Quality assured accommodation", id: "default-4" }
+];
+
+export const HighlightsSection = ({ highlights }: { highlights?: IPackage['highlights'] }) => {
+    const items = (highlights && highlights.length > 0) ? highlights : defaultHighlights;
+
     return (
         <section className="flex flex-col w-full items-start gap-6 mt-6">
             <h2 className="text-2xl font-bold text-[#1a3642]">
@@ -9,15 +18,15 @@ export const HighlightsSection = () => {
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-                {itineraryData.highlights.map((highlight) => (
+                {items.map((highlight, index) => (
                     <article
-                        key={highlight.id}
+                        key={highlight.id || index}
                         className="flex items-center gap-4 md:gap-6 p-4 md:p-6 bg-[#fdfbf9] rounded-[24px] border border-gray-100 shadow-sm transition-all hover:shadow-md"
                     >
                         <div className="flex-shrink-0 w-10 md:w-12 h-10 md:h-12 flex items-center justify-center">
                             <Image
                                 src="/images/south-india.png"
-                                alt={highlight.title}
+                                alt={highlight.title || "Highlight"}
                                 width={48}
                                 height={48}
                                 className="w-full h-full object-contain opacity-70"

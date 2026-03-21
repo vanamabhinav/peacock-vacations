@@ -1,7 +1,11 @@
-import { highlightPosts } from "@/lib/data/cms/blogData";
+import { IBlog } from "@/models/Blog";
 import BlogPostCard from "./BlogPostCard";
 
-export default function BlogHighlights() {
+interface BlogHighlightsProps {
+    posts: IBlog[];
+}
+
+export default function BlogHighlights({ posts }: BlogHighlightsProps) {
     return (
         <section className="mb-10 md:mb-16">
             <h2 className="text-xl md:text-2xl font-black text-[#1a3642] mb-5 md:mb-10 tracking-tight">
@@ -10,15 +14,15 @@ export default function BlogHighlights() {
 
             {/* Desktop Grid */}
             <div className="hidden md:grid grid-cols-3 gap-8">
-                {highlightPosts.map((post) => (
-                    <BlogPostCard key={post.id} post={post} />
+                {posts.map((post: any) => (
+                    <BlogPostCard key={post._id} post={post} />
                 ))}
             </div>
 
             {/* Mobile View */}
             <div className="md:hidden flex flex-col gap-6">
-                {highlightPosts.slice(0, 2).map((post) => (
-                    <BlogPostCard key={post.id} post={post} />
+                {posts.slice(0, 2).map((post: any) => (
+                    <BlogPostCard key={post._id} post={post} />
                 ))}
 
                 {/* Pagination Dots */}

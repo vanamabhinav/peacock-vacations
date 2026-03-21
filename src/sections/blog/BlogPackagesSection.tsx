@@ -1,37 +1,28 @@
 import Link from "next/link";
 import PackageCard from "@/components/card/PackageCard";
 
-export default function BlogPackagesSection() {
-    const packages = [
-        {
-            heading: "Sikkim Adventure Rush",
-            subheading: "Adventure & Mountains",
-            location: "Northeast India",
-            region: "Northeast India",
-            discountedPrice: 38590,
-            originalPrice: 48590,
-            image: "https://images.unsplash.com/photo-1589136142558-18c0c143af6c?q=80&w=2070&auto=format&fit=crop",
-            days: 6,
-            nights: 5,
-            currency: "INR",
-            inclusions: ["Luxury Hotel", "Transport", "Meals", "Experiences"],
-            url: "#"
-        },
-        {
-            heading: "Andaman Island Explorer",
-            subheading: "Island Adventure",
-            location: "South India",
-            region: "South India",
-            discountedPrice: 38590,
-            originalPrice: 48590,
-            image: "https://images.unsplash.com/photo-1589909202802-8f4abbce7502?q=80&w=2070&auto=format&fit=crop",
-            days: 6,
-            nights: 5,
-            currency: "INR",
-            inclusions: ["Luxury Hotel", "Transport", "Meals", "Experiences"],
-            url: "#"
-        }
-    ];
+interface BlogPackagesSectionProps {
+    packages?: any[];
+}
+
+export default function BlogPackagesSection({ packages = [] }: BlogPackagesSectionProps) {
+    if (packages.length === 0) return null;
+
+    const formattedPackages = packages.map(pkg => ({
+        heading: pkg.title,
+        subheading: pkg.category || "Adventure & Mountains", // Fallback or mapping
+        location: pkg.location?.state || "India",
+        region: pkg.location?.state || "India",
+        discountedPrice: pkg.discountedPrice,
+        originalPrice: pkg.originalPrice,
+        image: pkg.mainImageUrl,
+        days: pkg.duration?.days || 0,
+        nights: pkg.duration?.nights || 0,
+        currency: "INR",
+        inclusions: pkg.inclusions || [],
+        url: `/india/${pkg.slug}`
+    }));
+
 
     return (
         <section className="mb-24">

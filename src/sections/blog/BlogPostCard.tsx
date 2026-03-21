@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BlogPost } from "@/lib/data/cms/blogData";
+import { IBlog } from "@/models/Blog";
 
 interface BlogPostCardProps {
-    post: BlogPost;
+    post: IBlog;
     layout?: "vertical" | "horizontal";
 }
 

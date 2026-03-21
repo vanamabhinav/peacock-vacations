@@ -1,10 +1,16 @@
+import { fetchBlogsAction, fetchHighlightBlogsAction } from "@/lib/actions/blogActions";
 import BlogHero from "./BlogHero";
 import BlogHighlights from "./BlogHighlights";
 import BlogFilters from "./BlogFilters";
 import BlogGrid from "./BlogGrid";
 import BlogCTA from "./BlogCTA";
 
-export default function BlogSections() {
+export default async function BlogSections() {
+    const [highlights, allPosts] = await Promise.all([
+        fetchHighlightBlogsAction(),
+        fetchBlogsAction("All")
+    ]);
+
     return (
         <div className="bg-[#fafbfc] min-h-screen">
             <BlogHero />
@@ -17,9 +23,9 @@ export default function BlogSections() {
                     <span className="text-[#1a3642]">Blog</span>
                 </div>
 
-                <BlogHighlights />
+                <BlogHighlights posts={highlights} />
                 <BlogFilters />
-                <BlogGrid />
+                <BlogGrid posts={allPosts} />
                 <BlogCTA />
             </div>
         </div>

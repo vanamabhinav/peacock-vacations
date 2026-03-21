@@ -1,4 +1,4 @@
-import { getFilteredPackages } from "./packageData";
+import { getFilteredPackagesFromDb } from "@/lib/services/packageService";
 import { PackageListingPageData } from "@/types/packages/package";
 import { extractFilterOptions } from "@/lib/utils/extractFilters";
 
@@ -198,7 +198,7 @@ const plpData: PackageListingPageData[] = [
 
   // 12. Uttar Pradesh (State)
   {
-    plpUrl: "/india/varanasi-tour-packages/ct",
+    plpUrl: "/india/uttar-pradesh-tour-packages/s",
     backgroundImage:
       "https://images.pexels.com/photos/1578750/pexels-photo-1578750.jpeg",
     bigHeading: "Uttar Pradesh Tour Packages",
@@ -212,23 +212,626 @@ const plpData: PackageListingPageData[] = [
       isPublished: true,
     },
   },
+
+  // 13. North India (Region)
+  {
+    plpUrl: "/india/north-india-tour-packages/r",
+    backgroundImage:
+      "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg",
+    bigHeading: "North India Tour Packages",
+    shortDescription: "Explore the majestic Himalayas and the rich cultural heritage of Northern India.",
+    longDescription: "From the snow-capped peaks of Himachal and Kashmir to the spiritual banks of the Ganges in Uttarakhand, North India is a land of diverse landscapes and ancient traditions.",
+    packageFilters: {
+      region: ["North India"],
+      isPublished: true,
+    },
+  },
+
+  // 14. South India (Region)
+  {
+    plpUrl: "/india/south-india-tour-packages/r",
+    backgroundImage:
+      "https://images.pexels.com/photos/16166132/pexels-photo-16166132.jpeg",
+    bigHeading: "South India Tour Packages",
+    shortDescription: "Discover the tropical paradise, ancient temples, and serene backwaters of South India.",
+    longDescription: "Experience the unique charm of the southern peninsula, where lush greenery meets historic architecture and coastal beauty.",
+    packageFilters: {
+      region: ["South India"],
+      isPublished: true,
+    },
+  },
+
+  // 15. West India (Region)
+  {
+    plpUrl: "/india/west-india-tour-packages/r",
+    backgroundImage:
+      "https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg",
+    bigHeading: "West India Tour Packages",
+    shortDescription: "Explore the vibrant culture, sun-kissed beaches, and royal heritage of Western India.",
+    longDescription: "From the deserts of Rajasthan to the beaches of Goa and the bustling energy of Mumbai, West India offers a kaleidoscope of experiences.",
+    packageFilters: {
+      region: ["West India"],
+      isPublished: true,
+    },
+  },
+
+  // 16. East India (Region)
+  {
+    plpUrl: "/india/east-india-tour-packages/r",
+    backgroundImage:
+      "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg",
+    bigHeading: "East India Tour Packages",
+    shortDescription: "Discover the untouched beauty and cultural richness of Eastern India.",
+    longDescription: "Experience the tea gardens of Darjeeling, the spiritual essence of Puri, and the natural wonders of the Sundarbans.",
+    packageFilters: {
+      region: ["East India"],
+      isPublished: true,
+    },
+  },
+
+  // 17. North East India (Region)
+  {
+    plpUrl: "/india/north-east-india-tour-packages/r",
+    backgroundImage:
+      "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg",
+    bigHeading: "North East India Tour Packages",
+    shortDescription: "Explore the 'Seven Sisters' and the hidden gems of North East India.",
+    longDescription: "Discover the mist-covered hills, vibrant tribal cultures, and pristine wildlife sanctuaries of India's most mystical region.",
+    packageFilters: {
+      region: ["North East India"],
+      isPublished: true,
+    },
+  },
+
+  // 18. Rishikesh (District)
+  {
+    plpUrl: "/india/uttarakhand/rishikesh-tour-packages/d",
+    backgroundImage:
+      "https://images.pexels.com/photos/532826/pexels-photo-532826.jpeg",
+    bigHeading: "Rishikesh Tour Packages",
+    shortDescription: "Experience adventure and spirituality in the Yoga Capital of the World.",
+    longDescription: "Located in the Dehradun district of Uttarakhand, Rishikesh offers a unique blend of white-water rafting, bungee jumping, and serene spiritual retreats along the Ganges.",
+    packageFilters: {
+      district: ["Dehradun"],
+      cityName: ["Rishikesh"],
+      isPublished: true,
+    },
+  },
+
+  // 19. Mumbai (City)
+  {
+    plpUrl: "/india/maharashtra/mumbai-tour-packages/ct",
+    backgroundImage:
+      "https://images.pexels.com/photos/358443/pexels-photo-358443.jpeg",
+    bigHeading: "Mumbai Tour Packages",
+    shortDescription: "Discover the City of Dreams, where glamour meets history.",
+    longDescription: "Explore the bustling streets of Mumbai, from the Gateway of India to the vibrant markets and coastal drives.",
+    packageFilters: {
+      cityName: ["Mumbai"],
+      isPublished: true,
+    },
+  },
+  // 20. Honeymoon (Theme)
+  {
+    plpUrl: "/india/honeymoon-tour-packages/t",
+    backgroundImage:
+      "https://images.pexels.com/photos/1024960/pexels-photo-1024960.jpeg",
+    bigHeading: "Honeymoon Tour Packages",
+    shortDescription: "Create unforgettable memories with our specially curated romantic getaways.",
+    longDescription: "From the beaches of Goa to the snow-capped mountains of Kashmir, discover the perfect destination for your dream honeymoon.",
+    packageFilters: {
+      themes: ["Honeymoon"],
+      isPublished: true,
+    },
+  },
+
+  // 21. Adventure (Theme)
+  {
+    plpUrl: "/india/adventure-tour-packages/t",
+    backgroundImage:
+      "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg",
+    bigHeading: "Adventure Tour Packages",
+    shortDescription: "Get your heart racing with our thrilling adventure tours across India.",
+    longDescription: "Experience white-water rafting, mountain trekking, and jungle safaris designed for the ultimate adventure seeker.",
+    packageFilters: {
+      themes: ["Adventure"],
+      isPublished: true,
+    },
+  },
+
+  // 22. Nature (Theme)
+  {
+    plpUrl: "/india/nature-tour-packages/t",
+    backgroundImage:
+      "https://images.pexels.com/photos/16166132/pexels-photo-16166132.jpeg",
+    bigHeading: "Nature Tour Packages",
+    shortDescription: "Reconnect with nature in India's most pristine landscapes.",
+    longDescription: "Explore lush forests, serene lakes, and breathtaking mountain views with our nature-focused tour packages.",
+    packageFilters: {
+      themes: ["Nature"],
+      isPublished: true,
+    },
+  },
+
+  // 23. Beach (Theme)
+  {
+    plpUrl: "/india/beach-tour-packages/t",
+    backgroundImage:
+      "https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg",
+    bigHeading: "Beach Tour Packages",
+    shortDescription: "Sun, sand, and serenity on India's most beautiful coastlines.",
+    longDescription: "From the vibrant beaches of Goa to the pristine shores of Andaman, find your perfect coastal escape.",
+    packageFilters: {
+      themes: ["Beach"],
+      isPublished: true,
+    },
+  },
+
+  // 24. Luxury (Theme)
+  {
+    plpUrl: "/india/luxury-tour-packages/t",
+    backgroundImage:
+      "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg",
+    bigHeading: "Luxury Tour Packages",
+    shortDescription: "Experience the ultimate in comfort, elegance, and premium service.",
+    longDescription: "Indulge in royal palace stays, private tours, and 5-star experiences tailored for the discerning traveler.",
+    packageFilters: {
+      themes: ["Luxury"],
+      isPublished: true,
+    },
+  },
+
+  // 25. Pilgrimage (Theme)
+  {
+    plpUrl: "/india/pilgrimage-tour-packages/t",
+    backgroundImage:
+      "https://images.pexels.com/photos/8112558/pexels-photo-8112558.jpeg",
+    bigHeading: "Pilgrimage Tour Packages",
+    shortDescription: "Embark on a spiritual journey to India's most sacred destinations.",
+    longDescription: "Explore the ancient temples of Varanasi, the holy banks of the Ganges, and the divine energy of India's spiritual heartland.",
+    packageFilters: {
+      themes: ["Pilgrimage", "Spiritual"],
+      isPublished: true,
+    },
+  },
+
+  // 26. Solo Travel (Theme)
+  {
+    plpUrl: "/india/solo-travel-tour-packages/t",
+    backgroundImage:
+      "https://images.pexels.com/photos/14392872/pexels-photo-14392872.jpeg",
+    bigHeading: "Solo Travel Tour Packages",
+    shortDescription: "Discover self-growth and adventure with our curated solo traveler experiences.",
+    longDescription: "Safe, engaging, and flexible tours designed specifically for those who love to explore the world on their own terms.",
+    packageFilters: {
+      themes: ["Solo Travel"],
+      isPublished: true,
+    },
+  },
+
+  // 27. Resort (Theme)
+  {
+    plpUrl: "/india/resort-tour-packages/t",
+    backgroundImage:
+      "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg",
+    bigHeading: "Resort Stay Tour Packages",
+    shortDescription: "Relax and rejuvenate in India's finest luxury resorts.",
+    longDescription: "From mountain retreats to beachfront stays, enjoy world-class amenities and unparalleled hospitality.",
+    packageFilters: {
+      themes: ["Resort"],
+      isPublished: true,
+    },
+  },
+
+  // --- CITIES & DESTINATIONS ---
+
+  // 28. Auli (City)
+  {
+    plpUrl: "/india/uttarakhand/auli-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/14392872/pexels-photo-14392872.jpeg",
+    bigHeading: "Auli Tour Packages",
+    shortDescription: "Skiing and snowy adventures in the Garhwal Himalayas.",
+    longDescription: "Auli is a premier ski destination in India, offering breathtaking views of Nanda Devi and thrill-filled winter sports.",
+    packageFilters: {
+      cityName: ["Auli"],
+      isPublished: true,
+    },
+  },
+
+  // 29. Kashmir (State/Region)
+  {
+    plpUrl: "/india/jammu-and-kashmir/kashmir-tour-packages/st",
+    backgroundImage: "https://images.pexels.com/photos/10975803/pexels-photo-10975803.jpeg",
+    bigHeading: "Kashmir Tour Packages",
+    shortDescription: "Experience 'Heaven on Earth' with its serene lakes and snowy peaks.",
+    longDescription: "Discover the beauty of Srinagar, Gulmarg, and Pahalgam. Enjoy shikara rides on Dal Lake and the magic of the valley.",
+    packageFilters: {
+      stateName: ["Jammu and Kashmir"],
+      isPublished: true,
+    },
+  },
+
+  // 30. Varanasi (City)
+  {
+    plpUrl: "/india/uttar-pradesh/varanasi-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/8112558/pexels-photo-8112558.jpeg",
+    bigHeading: "Varanasi Tour Packages",
+    shortDescription: "The spiritual capital of India on the banks of the Ganges.",
+    longDescription: "Witness the grand Ganga Aarti, explore ancient temples, and experience the timeless spiritual flow of Kashi.",
+    packageFilters: {
+      cityName: ["Varanasi"],
+      isPublished: true,
+    },
+  },
+
+  // 31. Shimla (City)
+  {
+    plpUrl: "/india/himachal-pradesh/shimla-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg",
+    bigHeading: "Shimla Tour Packages",
+    shortDescription: "The 'Queen of Hills' with its colonial charm and mountain views.",
+    longDescription: "Explore the Mall Road, Jakhu Temple, and the scenic Ridge in the capital of Himachal Pradesh.",
+    packageFilters: {
+      cityName: ["Shimla"],
+      isPublished: true,
+    },
+  },
+
+  // 32. Manali (City)
+  {
+    plpUrl: "/india/himachal-pradesh/manali-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg",
+    bigHeading: "Manali Tour Packages",
+    shortDescription: "Adventure and natural beauty in the heart of the Himalayas.",
+    longDescription: "Visit Solang Valley, Rohtang Pass, and enjoy trekking, paragliding, and more in this popular hill station.",
+    packageFilters: {
+      cityName: ["Manali"],
+      isPublished: true,
+    },
+  },
+
+  // 33. Dehradun (City)
+  {
+    plpUrl: "/india/uttarakhand/dehradun-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/16166132/pexels-photo-16166132.jpeg",
+    bigHeading: "Dehradun Tour Packages",
+    shortDescription: "The capital of Uttarakhand, a gateway to the mountains.",
+    longDescription: "Explore the Robber's Cave, Sahastradhara, and the scenic beauty of the Doon Valley.",
+    packageFilters: {
+      cityName: ["Dehradun"],
+      isPublished: true,
+    },
+  },
+
+  // 34. Rishikesh (City - Standardized Route)
+  {
+    plpUrl: "/india/uttarakhand/rishikesh-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/532826/pexels-photo-532826.jpeg",
+    bigHeading: "Rishikesh Tour Packages",
+    shortDescription: "Spirituality and adventure combined in the Yoga Capital.",
+    longDescription: "Experience the Ganga Aarti, river rafting, and meditation in the peaceful atmosphere of Rishikesh.",
+    packageFilters: {
+      cityName: ["Rishikesh"],
+      isPublished: true,
+    },
+  },
+
+  // 35. Munnar (City - Standardized Route)
+  {
+    plpUrl: "/india/kerala/munnar-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/16166132/pexels-photo-16166132.jpeg",
+    bigHeading: "Munnar Tour Packages",
+    shortDescription: "Verdant tea gardens and misty hills of Kerala.",
+    longDescription: "Walk through emerald tea plantations, visit the Tea Museum, and enjoy the cool hills of Munnar.",
+    packageFilters: {
+      cityName: ["Munnar"],
+      isPublished: true,
+    },
+  },
+
+  // 36. Alleppey (City)
+  {
+    plpUrl: "/india/kerala/alleppey-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/1484435/pexels-photo-1484435.jpeg",
+    bigHeading: "Alleppey Tour Packages",
+    shortDescription: "The 'Venice of the East' with its beautiful backwaters.",
+    longDescription: "Enjoy a houseboat stay, serene canal cruises, and the unique culture of Kerala's backwaters.",
+    packageFilters: {
+      cityName: ["Alleppey"],
+      isPublished: true,
+    },
+  },
+
+  // 37. Wayanad (City)
+  {
+    plpUrl: "/india/kerala/wayanad-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/16166132/pexels-photo-16166132.jpeg",
+    bigHeading: "Wayanad Tour Packages",
+    shortDescription: "Untouched nature and spice plantations in Kerala.",
+    longDescription: "Explore the waterfalls, caves, and lush green forests of Wayanad.",
+    packageFilters: {
+      cityName: ["Wayanad"],
+      isPublished: true,
+    },
+  },
+
+  // 38. Coorg (City)
+  {
+    plpUrl: "/india/karnataka/coorg-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/982021/pexels-photo-982021.jpeg",
+    bigHeading: "Coorg Tour Packages",
+    shortDescription: "The 'Scotland of India' with its coffee trails and mist.",
+    longDescription: "Breathe in the aroma of fresh coffee, visit Abbey Falls, and enjoy the highland beauty of Kodagu.",
+    packageFilters: {
+      cityName: ["Coorg"],
+      isPublished: true,
+    },
+  },
+
+  // 39. Jaipur (City)
+  {
+    plpUrl: "/india/rajasthan/jaipur-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg",
+    bigHeading: "Jaipur Tour Packages",
+    shortDescription: "The 'Pink City' of India, rich in royal heritage.",
+    longDescription: "Explore the Amber Fort, Hawa Mahal, and the vibrant markets of Rajasthan's capital.",
+    packageFilters: {
+      cityName: ["Jaipur"],
+      isPublished: true,
+    },
+  },
+
+  // 40. Udaipur (City)
+  {
+    plpUrl: "/india/rajasthan/udaipur-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/461940/pexels-photo-461940.jpeg",
+    bigHeading: "Udaipur Tour Packages",
+    shortDescription: "The 'City of Lakes' and romantic sunsets.",
+    longDescription: "Enjoy boat rides on Lake Pichola, visit the City Palace, and experience the royal charm of Udaipur.",
+    packageFilters: {
+      cityName: ["Udaipur"],
+      isPublished: true,
+    },
+  },
+
+  // 41. Mumbai (City)
+  {
+    plpUrl: "/india/maharashtra/mumbai-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/358443/pexels-photo-358443.jpeg",
+    bigHeading: "Mumbai Tour Packages",
+    shortDescription: "The 'City of Dreams' and India's financial heart.",
+    longDescription: "Visit the Gateway of India, Marine Drive, and experience the vibrant energy of Mumbai.",
+    packageFilters: {
+      cityName: ["Mumbai"],
+      isPublished: true,
+    },
+  },
+
+  // 42. Goa (City/State)
+  {
+    plpUrl: "/india/goa/goa-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg",
+    bigHeading: "Goa Tour Packages",
+    shortDescription: "Sun, sand, and the ultimate beach holiday destination.",
+    longDescription: "Explore North and South Goa's beaches, historic churches, and vibrant local culture.",
+    packageFilters: {
+      cityName: ["Goa"],
+      isPublished: true,
+    },
+  },
+
+  // 43. Delhi (City)
+  {
+    plpUrl: "/india/delhi/delhi-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/1543419/pexels-photo-1543419.jpeg",
+    bigHeading: "Delhi Tour Packages",
+    shortDescription: "India's capital, where ancient history meets modern life.",
+    longDescription: "Explore the Red Fort, Qutub Minar, and the bustling markets of Old Delhi.",
+    packageFilters: {
+      cityName: ["Delhi"],
+      isPublished: true,
+    },
+  },
+
+  // 44. Amritsar (City)
+  {
+    plpUrl: "/india/punjab/amritsar-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/358220/pexels-photo-358220.jpeg",
+    bigHeading: "Amritsar Tour Packages",
+    shortDescription: "The holy city of Punjab, home to the Golden Temple.",
+    longDescription: "Experience the divinity of the Golden Temple and the patriotic fervor of the Wagah Border.",
+    packageFilters: {
+      cityName: ["Amritsar"],
+      isPublished: true,
+    },
+  },
+
+  // 45. Darjeeling (City)
+  {
+    plpUrl: "/india/west-bengal/darjeeling-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/189857/pexels-photo-189857.jpeg",
+    bigHeading: "Darjeeling Tour Packages",
+    shortDescription: "The 'Queen of Hills' with its tea gardens and toy train.",
+    longDescription: "Enjoy the Himalayan views, tea plantations, and the colonial charm of Darjeeling.",
+    packageFilters: {
+      cityName: ["Darjeeling"],
+      isPublished: true,
+    },
+  },
+
+  // 46. Hampi (City)
+  {
+    plpUrl: "/india/karnataka/hampi-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/931007/pexels-photo-931007.jpeg",
+    bigHeading: "Hampi Tour Packages",
+    shortDescription: "The ruins of the Vijayanagara Empire, a UNESCO World Heritage site.",
+    longDescription: "Explore the ancient temples, royal structures, and the unique landscape of Hampi.",
+    packageFilters: {
+      cityName: ["Hampi"],
+      isPublished: true,
+    },
+  },
+
+  // 47. Ooty (City)
+  {
+    plpUrl: "/india/tamil-nadu/ooty-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/1660995/pexels-photo-1660995.jpeg",
+    bigHeading: "Ooty Tour Packages",
+    shortDescription: "The most popular hill station in South India.",
+    longDescription: "Enjoy the botanical gardens, Ooty Lake, and the pleasant climate of the Nilgiris.",
+    packageFilters: {
+      cityName: ["Ooty"],
+      isPublished: true,
+    },
+  },
+
+  // 48. Kodaikanal (City)
+  {
+    plpUrl: "/india/tamil-nadu/kodaikanal-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg",
+    bigHeading: "Kodaikanal Tour Packages",
+    shortDescription: "The 'Princess of Hill Stations' in Tamil Nadu.",
+    longDescription: "Discover the Kodaikanal Lake, Pillar Rocks, and the serene beauty of the Palani Hills.",
+    packageFilters: {
+      cityName: ["Kodaikanal"],
+      isPublished: true,
+    },
+  },
+
+  // 49. Kutch (District/Region)
+  {
+    plpUrl: "/india/gujarat/kutch-tour-packages/d",
+    backgroundImage: "https://images.pexels.com/photos/1004665/pexels-photo-1004665.jpeg",
+    bigHeading: "Kutch Tour Packages",
+    shortDescription: "The white salt desert and vibrant cultural heritage of Gujarat.",
+    longDescription: "Experience the Rann Utsav, traditional handicrafts, and the surreal landscapes of Kutch.",
+    packageFilters: {
+      district: ["Kutch"],
+      isPublished: true,
+    },
+  },
+
+  // 50. Spiti Valley (District/Region)
+  {
+    plpUrl: "/india/himachal-pradesh/spiti-valley-tour-packages/d",
+    backgroundImage: "https://images.pexels.com/photos/1612351/pexels-photo-1612351.jpeg",
+    bigHeading: "Spiti Valley Tour Packages",
+    shortDescription: "Remote high-altitude adventure in a lunar-like landscape.",
+    longDescription: "Explore ancient monasteries, high passes, and the stark beauty of the Spiti Valley.",
+    packageFilters: {
+      district: ["Lahaul and Spiti"],
+      isPublished: true,
+    },
+  },
+
+  // 51. Ladakh (State/Region)
+  {
+    plpUrl: "/india/ladakh/ladakh-tour-packages/st",
+    backgroundImage: "https://images.pexels.com/photos/1666012/pexels-photo-1666012.jpeg",
+    bigHeading: "Ladakh Tour Packages",
+    shortDescription: "The 'Land of High Passes' with its unique culture and terrain.",
+    longDescription: "Experience the beauty of Pangong Lake, Nubra Valley, and the spiritual aura of Leh's monasteries.",
+    packageFilters: {
+      stateName: ["Ladakh"],
+      isPublished: true,
+    },
+  },
+
+  // 52. Puri (City)
+  {
+    plpUrl: "/india/puri-tour-packages/ct",
+    backgroundImage: "https://images.pexels.com/photos/8112558/pexels-photo-8112558.jpeg",
+    bigHeading: "Puri Tour Packages",
+    shortDescription: "Spiritual retreats and seaside serenity in Odisha.",
+    longDescription: "Visit the Jagannath Temple, relax on Puri Beach, and explore the heritage of Odisha.",
+    packageFilters: {
+      cityName: ["Puri"],
+      isPublished: true,
+    },
+  },
 ];
+
+import {
+  getCityNameBySlug,
+  getRegionNameBySlug,
+  getStateNameBySlug,
+} from "./destinationsData";
 
 export async function getFilteredPlpByUrl(
   plpUrl: string
 ): Promise<PackageListingPageData | null> {
-  const plpPageData = plpData.find((plp) => plp.plpUrl === plpUrl);
+  let plpPageData = plpData.find((plp) => plp.plpUrl === plpUrl);
+
+  if (!plpPageData) {
+    // Attempt dynamic resolution
+    const segments = plpUrl.split("/").filter(Boolean);
+
+    // Expected formats: /region or /region/city
+    if (segments.length === 1 || segments.length === 2) {
+      const regionSlug = segments[0];
+      const cityOrStateSlug = segments[1];
+
+      const regionName = getRegionNameBySlug(regionSlug);
+
+      if (regionName) {
+        if (cityOrStateSlug) {
+          const cityName = getCityNameBySlug(cityOrStateSlug);
+          const stateName = getStateNameBySlug(cityOrStateSlug);
+
+          if (cityName) {
+            plpPageData = {
+              plpUrl,
+              bigHeading: `${cityName} Tour Packages`,
+              shortDescription: `Explore the best travel packages in ${cityName}.`,
+              longDescription: `<p>Discover the beauty and adventure that ${cityName} has to offer. Our curated packages bring you the best experiences in this amazing destination.</p>`,
+              backgroundImage:
+                "https://images.pexels.com/photos/358443/pexels-photo-358443.jpeg",
+              packageFilters: {
+                cityName: [cityName],
+                isPublished: true,
+              },
+            };
+          } else if (stateName) {
+            plpPageData = {
+              plpUrl,
+              bigHeading: `${stateName} Tour Packages`,
+              shortDescription: `Discover the wonders of ${stateName}.`,
+              longDescription: `<p>From majestic landscapes to rich cultural heritage, ${stateName} is a must-visit destination for every traveler.</p>`,
+              backgroundImage:
+                "https://images.pexels.com/photos/1484435/pexels-photo-1484435.jpeg",
+              packageFilters: {
+                stateName: [stateName],
+                isPublished: true,
+              },
+            };
+          }
+        } else {
+          // Region only
+          plpPageData = {
+            plpUrl,
+            bigHeading: `${regionName} Tour Packages`,
+            shortDescription: `Explore the vibrant culture and landscapes of ${regionName}.`,
+            longDescription: `<p>Experience the diversity of ${regionName}, where every corner tells a new story and every journey is an adventure.</p>`,
+            backgroundImage:
+              "https://images.pexels.com/photos/11993433/pexels-photo-11993433.jpeg",
+            packageFilters: {
+              region: [regionName],
+              isPublished: true,
+            },
+          };
+        }
+      }
+    }
+  }
 
   if (!plpPageData) {
     console.warn(`PLP Data not found for URL: ${plpUrl}`);
-    return null; // Now this is allowed
+    return null;
   }
 
   // Fetch packages for this PLP
-  const packagesData = await getFilteredPackages(plpPageData.packageFilters);
-  // Convert PackageSummary to Package for now (can optimize later)
+  const packagesData = await getFilteredPackagesFromDb(plpPageData.packageFilters);
   plpPageData.packages = packagesData;
-
   plpPageData.filterOptions = extractFilterOptions(packagesData);
 
   return plpPageData;

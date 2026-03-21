@@ -1,5 +1,5 @@
 "use server";
-import { getFilteredPackages } from "../data/cms/packageData";
+import { getFilteredPackagesFromDb } from "@/lib/services/packageService";
 import { PackageFilters } from "@/types/packages/package";
 import {
   getFilteredPlpByUrl,
@@ -99,10 +99,10 @@ export async function fetchPlpDataAction(
     // Get pagination params
     const page = searchParams?.page
       ? Number(
-          Array.isArray(searchParams.page)
-            ? searchParams.page[0]
-            : searchParams.page
-        ) || 1
+        Array.isArray(searchParams.page)
+          ? searchParams.page[0]
+          : searchParams.page
+      ) || 1
       : 1;
 
     if (searchParams && Object.keys(searchParams).length > 0) {
@@ -114,7 +114,7 @@ export async function fetchPlpDataAction(
       };
 
       // Get all filtered packages (without pagination at data level)
-      const allFilteredPackages = await getFilteredPackages(combinedFilters);
+      const allFilteredPackages = await getFilteredPackagesFromDb(combinedFilters);
 
       // Apply pagination
       const paginationResult = paginateResults(

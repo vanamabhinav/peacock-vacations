@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { BlogPost } from "@/lib/data/cms/blogData";
+import { IBlog } from "@/models/Blog";
 
 interface BlogDetailHeroProps {
-    post: BlogPost;
+    post: IBlog;
 }
 
 export default function BlogDetailHero({ post }: BlogDetailHeroProps) {

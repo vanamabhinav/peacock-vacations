@@ -75,42 +75,42 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               subtitle: "Last Snow Adventures",
               image:
                 "https://images.pexels.com/photos/14392872/pexels-photo-14392872.jpeg",
-              url: "/destinations/auli",
+              url: "/india/uttarakhand/auli-tour-packages/ct",
             },
             {
               title: "Kashmir",
               subtitle: "Blooming In Colors",
               image:
                 "https://images.pexels.com/photos/10975803/pexels-photo-10975803.jpeg",
-              url: "/destinations/kashmir",
+              url: "/india/jammu-and-kashmir/kashmir-tour-packages/st",
             },
             {
               title: "Wayanad, Kerala",
               subtitle: "Into The Wild & Waterfalls",
               image:
                 "https://images.pexels.com/photos/16166132/pexels-photo-16166132.jpeg",
-              url: "/destinations/wayanad",
+              url: "/india/kerala/wayanad-tour-packages/ct",
             },
             {
               title: "Coorg, Karnataka",
               subtitle: "Coffee Trails & Mist",
               image:
                 "https://images.pexels.com/photos/982021/pexels-photo-982021.jpeg",
-              url: "/destinations/coorg",
+              url: "/india/karnataka/coorg-tour-packages/ct",
             },
             {
               title: "Varanasi",
               subtitle: "Ganga Ghats & Spiritual Flow",
               image:
                 "https://images.pexels.com/photos/8112558/pexels-photo-8112558.jpeg",
-              url: "/destinations/varanasi",
+              url: "/india/uttar-pradesh/varanasi-tour-packages/ct",
             },
           ],
           ctaCard: {
             title: "Winter Whispers",
             subtitle: "Snow-Clad Serenity, Festive Charm",
             lowertext: "Chill in the air, Warmth in the soul",
-            url: "/destinations/winter",
+            url: "/india/nature-tour-packages/t",
           },
         },
         february: {
@@ -120,42 +120,42 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               subtitle: "Perfect Beach Weather",
               image:
                 "https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg", // Goa beach
-              url: "/destinations/goa",
+              url: "/india/goa/goa-tour-packages/ct",
             },
             {
               title: "Andaman Islands",
               subtitle: "Pristine Blue Waters",
               image:
                 "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Rajasthan desert
-              url: "/destinations/andaman",
+              url: "/india/nature-tour-packages/t",
             },
             {
               title: "Rishikesh",
               subtitle: "Adventure & Spirituality",
               image:
                 "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Kutch salt desert
-              url: "/destinations/rishikesh",
+              url: "/india/uttarakhand/rishikesh-tour-packages/ct",
             },
             {
               title: "Jaisalmer, Rajasthan",
               subtitle: "Desert Festival & Dunes",
               image:
                 "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Pushkar fair
-              url: "/destinations/jaisalmer",
+              url: "/india/rajasthan/jaipur-tour-packages/ct",
             },
             {
               title: "Shillong",
               subtitle: "Scotland of the East",
               image:
                 "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Jaisalmer fort
-              url: "/destinations/shillong",
+              url: "/india/north-east-india-tour-packages/r",
             },
           ],
           ctaCard: {
             title: "Spring Beginnings",
             subtitle: "Pleasant Weather, Cultural Celebrations",
             lowertext: "Festivals & Fairytales across the land",
-            url: "/destinations/spring",
+            url: "/india/culture-tour-packages/t",
           },
         },
         march: {
@@ -165,42 +165,42 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               subtitle: "Tea Gardens & Kanchenjunga Views",
               image:
                 "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg", // Darjeeling tea gardens
-              url: "/destinations/darjeeling",
+              url: "/india/west-bengal/darjeeling-tour-packages/ct",
             },
             {
               title: "Udaipur",
               subtitle: "City of Lakes",
               image:
                 "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Udaipur palace
-              url: "/destinations/udaipur",
+              url: "/india/rajasthan/udaipur-tour-packages/ct",
             },
             {
               title: "Kaziranga National Park",
               subtitle: "One-Horned Rhinos",
               image:
                 "https://images.pexels.com/photos/164631/pexels-photo-164631.jpeg", // Kaziranga forest
-              url: "/destinations/kaziranga",
+              url: "/india/north-east-india-tour-packages/r",
             },
             {
               title: "Hampi",
               subtitle: "Ancient Ruins & Boulders",
               image:
                 "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Hampi ruins
-              url: "/destinations/hampi",
+              url: "/india/karnataka/hampi-tour-packages/ct",
             },
             {
               title: "Mathura & Vrindavan",
               subtitle: "Holi Celebrations",
               image:
                 "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg", // Mathura festival
-              url: "/destinations/mathura",
+              url: "/india/uttar-pradesh-tour-packages/s",
             },
           ],
           ctaCard: {
             title: "Colorful Transitions",
             subtitle: "Spring Blooms, Festival Vibes",
             lowertext: "Awakening of colors across landscapes",
-            url: "/destinations/spring-festivals",
+            url: "/india/nature-tour-packages/t",
           },
         },
         april: {
@@ -210,42 +210,42 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               subtitle: "Rhododendron Blooms",
               image:
                 "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Gangtok monastery
-              url: "/destinations/gangtok",
+              url: "/india/north-east-india-tour-packages/r",
             },
             {
               title: "Ooty",
               subtitle: "Queen of Hill Stations",
               image:
                 "https://images.pexels.com/photos/982021/pexels-photo-982021.jpeg", // Ooty hills
-              url: "/destinations/ooty",
+              url: "/india/tamil-nadu/ooty-tour-packages/ct",
             },
             {
               title: "Ranthambore",
               subtitle: "Tiger Sightings",
               image:
                 "https://images.pexels.com/photos/164631/pexels-photo-164631.jpeg", // Ranthambore forest
-              url: "/destinations/ranthambore",
+              url: "/india/rajasthan-tour-packages/s",
             },
             {
               title: "Munnar",
               subtitle: "Tea Plantations & Cool Hills",
               image:
                 "https://images.pexels.com/photos/16166132/pexels-photo-16166132.jpeg", // Munnar tea gardens
-              url: "/destinations/munnar",
+              url: "/india/kerala/munnar-tour-packages/ct",
             },
             {
               title: "Lansdowne",
               subtitle: "Peaceful Hill Station",
               image:
                 "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg", // Lansdowne hills
-              url: "/destinations/lansdowne",
+              url: "/india/uttarakhand-tour-packages/s",
             },
           ],
           ctaCard: {
             title: "Spring Splendor",
             subtitle: "Perfect Weather, Blooming Gardens",
             lowertext: "Nature's canvas in full display",
-            url: "/destinations/spring-destinations",
+            url: "/india/nature-tour-packages/t",
           },
         },
         may: {
@@ -255,42 +255,42 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               subtitle: "Roads Open, High Altitude Adventure",
               image:
                 "https://images.pexels.com/photos/14392872/pexels-photo-14392872.jpeg", // Ladakh
-              url: "/destinations/ladakh",
+              url: "/india/ladakh/ladakh-tour-packages/st",
             },
             {
               title: "Manali",
               subtitle: "Valley of Gods",
               image:
                 "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg", // Manali mountains
-              url: "/destinations/manali",
+              url: "/india/himachal-pradesh/manali-tour-packages/ct",
             },
             {
               title: "Dharamshala",
               subtitle: "Little Lhasa",
               image:
                 "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Dharamshala monastery
-              url: "/destinations/dharamshala",
+              url: "/india/himachal-pradesh-tour-packages/s",
             },
             {
               title: "Kodaikanal",
               subtitle: "Princess of Hill Stations",
               image:
                 "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg", // Kodaikanal lake
-              url: "/destinations/kodaikanal",
+              url: "/india/tamil-nadu/kodaikanal-tour-packages/ct",
             },
             {
               title: "Shimla",
               subtitle: "Queen of Hills",
               image:
                 "https://images.pexels.com/photos/14392872/pexels-photo-14392872.jpeg", // Shimla snow
-              url: "/destinations/shimla",
+              url: "/india/himachal-pradesh/shimla-tour-packages/ct",
             },
           ],
           ctaCard: {
             title: "Summer Escapes",
             subtitle: "Cool Hills, Fresh Mountain Air",
             lowertext: "Beat the heat in nature's lap",
-            url: "/destinations/summer-hills",
+            url: "/india/nature-tour-packages/t",
           },
         },
         june: {
@@ -300,42 +300,42 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               subtitle: "Wettest Place on Earth",
               image:
                 "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/cherrapunji",
+              url: "/india/north-east-india-tour-packages/r",
             },
             {
               title: "Coorg",
               subtitle: "Coffee Plantations in Monsoon",
               image:
                 "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/coorg",
+              url: "/india/karnataka/coorg-tour-packages/ct",
             },
             {
               title: "Munnar",
               subtitle: "Misty Tea Gardens",
               image:
                 "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/munnar",
+              url: "/india/kerala/munnar-tour-packages/ct",
             },
             {
               title: "Wayanad",
               subtitle: "Monsoon Magic",
               image:
                 "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/wayanad",
+              url: "/india/kerala/wayanad-tour-packages/ct",
             },
             {
               title: "Shillong",
               subtitle: "Monsoon Capital",
               image:
                 "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/shillong",
+              url: "/india/north-east-india-tour-packages/r",
             },
           ],
           ctaCard: {
             title: "Monsoon Magic",
             subtitle: "Lush Greens, Dancing Clouds",
             lowertext: "Experience India's romantic monsoons",
-            url: "/destinations/monsoon",
+            url: "/india/nature-tour-packages/t",
           },
         },
         july: {
@@ -345,42 +345,42 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               subtitle: "Himalayan Meadows in Bloom",
               image:
                 "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/valley-of-flowers",
+              url: "/india/uttarakhand-tour-packages/s",
             },
             {
               title: "Spiti Valley",
               subtitle: "Cold Desert Beauty",
               image:
                 "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg", // Goa festive beach
-              url: "/destinations/spiti",
+              url: "/india/himachal-pradesh/spiti-valley-tour-packages/d",
             },
             {
               title: "Tawang",
               subtitle: "Monastery in the Clouds",
               image:
                 "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg", // Puducherry festive beach
-              url: "/destinations/tawang",
+              url: "/india/north-east-india-tour-packages/r",
             },
             {
               title: "Pahalgam",
               subtitle: "Valley of Shepherds",
               image:
                 "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg", // Kerala festive backwaters
-              url: "/destinations/pahalgam",
+              url: "/india/jammu-and-kashmir/kashmir-tour-packages/st",
             },
             {
               title: "Gulmarg",
               subtitle: "Meadow of Flowers",
               image:
                 "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg", // Andaman festive beach
-              url: "/destinations/gulmarg",
+              url: "/india/jammu-and-kashmir/kashmir-tour-packages/st",
             },
           ],
           ctaCard: {
             title: "Monsoon Peaks",
             subtitle: "High Altitude Adventures, Blooming Valleys",
             lowertext: "Where clouds touch the earth",
-            url: "/destinations/high-altitude",
+            url: "/india/nature-tour-packages/t",
           },
         },
         august: {
@@ -390,42 +390,42 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               subtitle: "Monsoon Houseboats",
               image:
                 "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg", // Kerala backwaters
-              url: "/destinations/kerala-backwaters",
+              url: "/india/kerala/alleppey-tour-packages/ct",
             },
             {
               title: "Udaipur",
               subtitle: "Monsoon Palace",
               image:
                 "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg", // Andaman beach
-              url: "/destinations/udaipur",
+              url: "/india/rajasthan/udaipur-tour-packages/ct",
             },
             {
               title: "Mount Abu",
               subtitle: "Hill Station in Desert",
               image:
                 "https://images.pexels.com/photos/14392872/pexels-photo-14392872.jpeg", // Kashmir valley
-              url: "/destinations/mount-abu",
+              url: "/india/rajasthan-tour-packages/s",
             },
             {
               title: "Panchgani",
               subtitle: "Table Land Views",
               image:
                 "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Rishikesh river
-              url: "/destinations/panchgani",
+              url: "/india/maharashtra-tour-packages/s",
             },
             {
               title: "Lonavala",
               subtitle: "Monsoon Waterfalls",
               image:
                 "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg", // Pondicherry beach
-              url: "/destinations/lonavala",
+              url: "/india/maharashtra-tour-packages/s",
             },
           ],
           ctaCard: {
             title: "Monsoon Romance",
             subtitle: "Waterfalls, Lakes, Romantic Getaways",
             lowertext: "Love is in the monsoon air",
-            url: "/destinations/monsoon-romance",
+            url: "/india/nature-tour-packages/t",
           },
         },
         september: {
@@ -435,42 +435,42 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               subtitle: "Post-Monsoon Freshness",
               image:
                 "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/himachal",
+              url: "/india/himachal-pradesh-tour-packages/s",
             },
             {
               title: "Uttarakhand",
               subtitle: "Clear Mountain Views",
               image:
                 "https://images.pexels.com/photos/14392872/pexels-photo-14392872.jpeg",
-              url: "/destinations/uttarakhand",
+              url: "/india/uttarakhand-tour-packages/s",
             },
             {
               title: "Kerala",
               subtitle: "God's Own Country",
               image:
                 "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/kerala",
+              url: "/india/kerala-tour-packages/s",
             },
             {
               title: "Karnataka",
               subtitle: "Garden State",
               image:
                 "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/karnataka",
+              url: "/india/karnataka-tour-packages/s",
             },
             {
               title: "Sikkim",
               subtitle: "Organic State",
               image:
                 "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/sikkim",
+              url: "/india/north-east-india-tour-packages/r",
             },
           ],
           ctaCard: {
             title: "Post-Monsoon Glory",
             subtitle: "Fresh Air, Clear Skies, Perfect Weather",
             lowertext: "Nature rejuvenated and refreshed",
-            url: "/destinations/post-monsoon",
+            url: "/india/nature-tour-packages/t",
           },
         },
         october: {
@@ -480,42 +480,42 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               subtitle: "Desert Festival Season",
               image:
                 "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/rajasthan",
+              url: "/india/rajasthan-tour-packages/s",
             },
             {
               title: "Goa",
               subtitle: "Tourist Season Begins",
               image:
                 "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/goa",
+              url: "/india/goa/goa-tour-packages/ct",
             },
             {
               title: "Kerala",
               subtitle: "Festival Celebrations",
               image:
                 "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/kerala",
+              url: "/india/kerala-tour-packages/s",
             },
             {
               title: "Agra",
               subtitle: "Taj Mahal in Perfect Weather",
               image:
                 "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/agra",
+              url: "/india/uttar-pradesh-tour-packages/s",
             },
             {
               title: "Delhi",
               subtitle: "Capital in Pleasant Weather",
               image:
                 "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/delhi",
+              url: "/india/delhi/delhi-tour-packages/ct",
             },
           ],
           ctaCard: {
             title: "Festive Journeys",
             subtitle: "Cultural Celebrations, Divine Experiences",
             lowertext: "Experience India's vibrant traditions",
-            url: "/destinations/festivals",
+            url: "/india/pilgrimage-tour-packages/t",
           },
         },
         november: {
@@ -525,42 +525,42 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               subtitle: "Camel Fair",
               image:
                 "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/pushkar",
+              url: "/india/rajasthan-tour-packages/s",
             },
             {
               title: "Goa",
               subtitle: "Beach Season Begins",
               image:
                 "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/goa",
+              url: "/india/goa/goa-tour-packages/ct",
             },
             {
               title: "Kutch",
               subtitle: "White Rann Festival",
               image:
                 "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/kutch",
+              url: "/india/gujarat/kutch-tour-packages/d",
             },
             {
               title: "Varanasi",
               subtitle: "Dev Deepawali",
               image:
                 "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/varanasi",
+              url: "/india/uttar-pradesh/varanasi-tour-packages/ct",
             },
             {
               title: "Hampi",
               subtitle: "Ancient Ruins",
               image:
                 "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/hampi",
+              url: "/india/karnataka/hampi-tour-packages/ct",
             },
           ],
           ctaCard: {
             title: "Winter Welcome",
             subtitle: "Deserts & Beaches, Cultural Fairs",
             lowertext: "Perfect weather for exploring India",
-            url: "/destinations/winter-destinations",
+            url: "/india/nature-tour-packages/t",
           },
         },
         december: {
@@ -570,42 +570,42 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               subtitle: "Christmas & New Year Celebrations",
               image:
                 "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/goa",
+              url: "/india/goa/goa-tour-packages/ct",
             },
             {
               title: "Auli",
               subtitle: "Skiing Season",
               image:
                 "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/auli",
+              url: "/india/uttarakhand/auli-tour-packages/ct",
             },
             {
               title: "Andaman Islands",
               subtitle: "Beach Paradise",
               image:
                 "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/andaman",
+              url: "/india/nature-tour-packages/t",
             },
             {
               title: "Kutch",
               subtitle: "Rann Utsav",
               image:
                 "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/kutch",
+              url: "/india/gujarat/kutch-tour-packages/d",
             },
             {
               title: "Dalhousie",
               subtitle: "Snowfall & Christmas",
               image:
                 "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop&auto=format",
-              url: "/destinations/dalhousie",
+              url: "/india/himachal-pradesh-tour-packages/s",
             },
           ],
           ctaCard: {
             title: "Year-End Wonders",
             subtitle: "Festive Celebrations, Snowy Retreats",
             lowertext: "Farewell the year in style",
-            url: "/destinations/year-end",
+            url: "/india/nature-tour-packages/t",
           },
         },
 
@@ -652,7 +652,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
             title: "Northern Frontiers",
             subtitle: "Mountains, Spirituality, Heritage",
             lowertext: "Where the Himalayas embrace the plains",
-            url: "/destinations/north-india",
+            url: "/india/north-india-tour-packages/r",
           },
         },
         south: {
@@ -697,7 +697,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
             title: "Southern Splendors",
             subtitle: "Beaches, Hills, Ancient Temples",
             lowertext: "Where traditions meet coastal beauty",
-            url: "/destinations/south-india",
+            url: "/india/south-india-tour-packages/r",
           },
         },
         east: {
@@ -742,7 +742,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
             title: "Eastern Mysteries",
             subtitle: "Tea Gardens, Mangroves, Ancient Culture",
             lowertext: "Where the sun rises on Indian soil",
-            url: "/destinations/east-india",
+            url: "/india/east-india-tour-packages/r",
           },
         },
         west: {
@@ -787,7 +787,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
             title: "Western Wonders",
             subtitle: "Deserts, Beaches, Royal Heritage",
             lowertext: "Where royal history meets modern dreams",
-            url: "/destinations/west-india",
+            url: "/india/west-india-tour-packages/r",
           },
         },
         northeast: {
@@ -1112,7 +1112,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           image:
             "https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg", // Goa beach
           ctaText: "Book Honeymoon",
-          ctaLink: "/packages/honeymoon/goa",
+          ctaLink: "/india/honeymoon-tour-packages/t",
           theme: ["Honeymoon"],
         },
         {
@@ -1122,7 +1122,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           image:
             "https://images.pexels.com/photos/10975803/pexels-photo-10975803.jpeg", // Kashmir snow
           ctaText: "Plan Romance",
-          ctaLink: "/packages/honeymoon/kashmir",
+          ctaLink: "/india/honeymoon-tour-packages/t",
           theme: ["Honeymoon", "Luxury"],
         },
         {
@@ -1132,7 +1132,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           image:
             "https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg", // Udaipur palace
           ctaText: "Royal Honeymoon",
-          ctaLink: "/packages/honeymoon/udaipur",
+          ctaLink: "/india/honeymoon-tour-packages/t",
           theme: ["Honeymoon", "Luxury"],
         },
         {
@@ -1142,7 +1142,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           image:
             "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg", // Himalayas
           ctaText: "Start Adventure",
-          ctaLink: "/packages/adventure/himalayas",
+          ctaLink: "/india/adventure-tour-packages/t",
           theme: ["Adventure"],
         },
         {
@@ -1152,7 +1152,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           image:
             "https://images.pexels.com/photos/14392872/pexels-photo-14392872.jpeg", // Ladakh
           ctaText: "Book Expedition",
-          ctaLink: "/packages/adventure/ladakh",
+          ctaLink: "/india/adventure-tour-packages/t",
           theme: ["Adventure", "Solo Travel"],
         },
         {
@@ -1162,7 +1162,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           image:
             "https://images.pexels.com/photos/532826/pexels-photo-532826.jpeg", // Rishikesh river
           ctaText: "Adventure Time",
-          ctaLink: "/packages/adventure/rishikesh",
+          ctaLink: "/india/adventure-tour-packages/t",
           theme: ["Adventure", "Pilgrimage"],
         },
         {
@@ -1182,7 +1182,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           image:
             "https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg", // Andaman beach
           ctaText: "Island Hopping",
-          ctaLink: "/packages/beach/andaman",
+          ctaLink: "/india/nature-tour-packages/t",
           theme: ["Beach", "Adventure"],
         },
         {
@@ -1465,7 +1465,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
                 "Ornate carvings, cultural shows, and a lighted musical fountain",
             },
           ],
-          exploreLink: "/packages/delhi",
+          exploreLink: "/india/delhi/delhi-tour-packages/ct",
         },
         mumbai: {
           destination: "MUMBAI",
@@ -1503,7 +1503,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               description: "An engineering marvel with cityscape views",
             },
           ],
-          exploreLink: "/packages/mumbai",
+          exploreLink: "/india/maharashtra/mumbai-tour-packages/ct",
         },
         telangana: {
           destination: "TELANGANA",
@@ -1542,7 +1542,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
                 "Buy colorful bangles and pearls in Hyderabad's famous shopping street",
             },
           ],
-          exploreLink: "/packages/telangana",
+          exploreLink: "/india/telangana-tour-packages/s",
         },
         kerala: {
           destination: "KERALA",
@@ -1577,7 +1577,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
             },
             { name: "Athirappilly Falls", description: "The Niagara of India" },
           ],
-          exploreLink: "/packages/kerala",
+          exploreLink: "/india/kerala-tour-packages/s",
         },
         puri: {
           destination: "PURI (Odisha)",
@@ -1615,7 +1615,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
               description: "Vibrant appliqué handicrafts and street art",
             },
           ],
-          exploreLink: "/packages/puri",
+          exploreLink: "/india/puri-tour-packages/ct",
         },
         goa: {
           destination: "GOA",
@@ -1649,7 +1649,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
                 "Majestic four-tiered waterfall near the Goa-Karnataka border",
             },
           ],
-          exploreLink: "/packages/goa",
+          exploreLink: "/india/goa-tour-packages/ct",
         },
       },
     },

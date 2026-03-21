@@ -169,5 +169,56 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   pointer-events: all;
-  border: none;
+}
+
+/* Custom Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.animate-slide-up {
+  animation: slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.input-field {
+  width: 100%;
+  background: #f9fafb;
+  border: 2px solid transparent;
+  border-radius: 1.25rem;
+  padding: 1rem 1.5rem;
+  outline: none;
+  transition: all 0.3s;
+  font-weight: 700;
+  color: #1a3642;
+}
+
+.input-field:focus {
+  background: white;
+  border-color: #f1aa4c;
+  box-shadow: 0 10px 15px -3px rgba(241, 170, 76, 0.1);
 }
