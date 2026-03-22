@@ -5,7 +5,7 @@ import { jwtVerify } from 'jose';
 const JWT_SECRET = process.env.JWT_SECRET || 'peacock-secret-key-123';
 const secret = new TextEncoder().encode(JWT_SECRET);
 
-export async function middleware(request: NextRequest) {
+export default async function proxy(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
     // Protect /admin routes
