@@ -13,7 +13,7 @@ export const Itinerary = ({ packageData }: { packageData: IPackage }) => {
     const data = packageData;
 
     return (
-        <div className="min-h-screen bg-[#fcfbfb] pb-24 md:pb-0 font-albertsans">
+        <div className="min-h-screen bg-[#fcfbfb] pt-28 md:pt-32 pb-24 md:pb-0 font-albertsans">
             <div className="mx-auto max-w-7xl px-4 md:px-6 py-6 md:py-8">
                 {/* Header / Breadcrumbs */}
                 <div className="mb-6">

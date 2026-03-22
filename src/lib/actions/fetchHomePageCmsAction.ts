@@ -4,6 +4,7 @@ import dbConnect from "@/lib/mongodb";
 import CMSContent from "@/models/CMSContent";
 import PackageModel from "@/models/Package";
 import { mapIPackagesToPackageData } from "../utils/packageMapper";
+import { fetchTestimonialData } from "./fetchTestimonialData";
 
 export async function fetchHomePageCmsDataAction(): Promise<HomePageData> {
   try {
@@ -62,6 +63,8 @@ export async function fetchHomePageCmsDataAction(): Promise<HomePageData> {
       }));
     }
 
+    // Fetch dynamic testimonials from the Testimonial DB model, replacing any static CMS entry
+    data.testimonialsSectionData = await fetchTestimonialData();
 
     return data;
   } catch (error) {

@@ -3,6 +3,7 @@ import StickyNavWrapperClient from "./StickyNavWrapperClient";
 import { Icon } from "@/components/ui/Icon";
 import Image from "next/image";
 import { MobileNavbar } from "@/components/client/DropDownNavbar";
+import NavbarSearch from "@/components/layout/NavbarSearch";
 
 export default function StickyNavWrapper() {
   return (
@@ -38,9 +39,7 @@ export function Topbar() {
 
       {/* Desktop icons/links */}
       <div className="items-center gap-3 sm:gap-5 hidden sm:flex">
-        <button type="button" aria-label="Search" className="flex items-center">
-          <Icon name="search" className="w-5 h-5 sm:w-6 sm:h-6 text-white" aria-hidden="true" />
-        </button>
+        <NavbarSearch />
         <Link
           href="/wishlist"
           aria-label="Wishlist"

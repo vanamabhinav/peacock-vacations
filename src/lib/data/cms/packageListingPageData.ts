@@ -760,6 +760,20 @@ import {
 export async function getFilteredPlpByUrl(
   plpUrl: string
 ): Promise<PackageListingPageData | null> {
+  if (plpUrl === '/search' || plpUrl === 'search') {
+    const rawPackages = await getFilteredPackagesFromDb({ isPublished: true });
+    return {
+      plpUrl: '/search',
+      backgroundImage: "https://images.pexels.com/photos/3225531/pexels-photo-3225531.jpeg",
+      bigHeading: "Search Results",
+      shortDescription: "Discover incredible journeys that match your search.",
+      longDescription: "<p>Browse through our collection of premium and immersive travel experiences to find exactly what you are looking for.</p>",
+      packageFilters: { isPublished: true },
+      packages: rawPackages as any,
+      filterOptions: extractFilterOptions(rawPackages as any)
+    };
+  }
+
   let plpPageData = plpData.find((plp) => plp.plpUrl === plpUrl);
 
   if (!plpPageData) {

@@ -22,6 +22,18 @@ export async function getFilteredPackagesFromDb(filters: PackageFilters): Promis
     if (filters.countryName?.length) {
         query["destination.countryName"] = { $in: filters.countryName };
     }
+
+    if (filters.search) {
+        query.$or = [
+            ...(query.$or || []),
+            { 'destination.cityName': { $regex: filters.search, $options: 'i' } },
+            { 'destination.stateName': { $regex: filters.search, $options: 'i' } },
+            { title: { $regex: filters.search, $options: 'i' } },
+            { category: { $regex: filters.search, $options: 'i' } },
+            { themes: { $regex: filters.search, $options: 'i' } }
+        ];
+    }
+
     if (filters.minPrice || filters.maxPrice) {
         query["price.discountedAmount"] = {};
         if (filters.minPrice) query["price.discountedAmount"].$gte = filters.minPrice;

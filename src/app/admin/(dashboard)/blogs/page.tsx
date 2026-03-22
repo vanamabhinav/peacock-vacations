@@ -75,12 +75,6 @@ export default function BlogsPage() {
                     <h1 className="text-4xl font-black text-[#1a3642] tracking-tighter">Blog Management</h1>
                     <p className="text-gray-400 font-bold mt-2 uppercase tracking-widest text-xs">Manage your stories and travel guides</p>
                 </div>
-                <Link
-                    href="/admin/blogs/new"
-                    className="bg-[#f1aa4c] text-[#1a3642] px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest flex items-center gap-3 hover:scale-[1.02] transition-all shadow-xl shadow-[#f1aa4c]/20 self-start md:self-auto"
-                >
-                    <Plus size={20} /> Create New Blog
-                </Link>
             </header>
 
             {/* Stats & Search Bar */}
@@ -195,6 +189,18 @@ export default function BlogsPage() {
                         </Link>
                     </div>
                 )}
+            </div>
+
+            {/* Bottom Sticky Action Bar */}
+            <div className="fixed bottom-0 right-0 left-0 md:left-72 bg-white border-t border-gray-200 p-4 shadow-[0_-4px_20px_-10px_rgba(0,0,0,0.1)] z-50">
+                <div className="max-w-7xl mx-auto flex justify-end gap-4">
+                    <Link
+                        href="/admin/blogs/new"
+                        className="bg-[#f1aa4c] text-[#1a3642] px-8 py-3 rounded-xl font-black text-xs uppercase tracking-widest flex items-center gap-3 hover:scale-[1.02] transition-all shadow-xl shadow-[#f1aa4c]/20"
+                    >
+                        <Plus size={20} /> Create New Blog
+                    </Link>
+                </div>
             </div>
         </div>
     );

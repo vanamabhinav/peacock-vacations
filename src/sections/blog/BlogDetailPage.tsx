@@ -8,6 +8,7 @@ import BlogTestimonialsSection from "./BlogTestimonialsSection";
 import BlogRecommendedSection from "./BlogRecommendedSection";
 import BlogCTA from "./BlogCTA";
 import { notFound } from "next/navigation";
+import { fetchTestimonialData } from "@/lib/actions/fetchTestimonialData";
 
 interface BlogDetailPageProps {
     slug: string;
@@ -15,6 +16,7 @@ interface BlogDetailPageProps {
 
 export default async function BlogDetailPage({ slug }: BlogDetailPageProps) {
     const post = await fetchBlogBySlugAction(slug);
+    const testimonialData = await fetchTestimonialData();
 
     if (!post) {
         notFound();
@@ -33,7 +35,7 @@ export default async function BlogDetailPage({ slug }: BlogDetailPageProps) {
                 <BlogPackagesSection packages={(post as any).packagesFromBlog || []} />
 
                 <BlogRecommendedSection />
-                <BlogTestimonialsSection />
+                <BlogTestimonialsSection testimonials={testimonialData.testimonials || []} />
 
                 <div className="pt-20">
                     <BlogCTA />

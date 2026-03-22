@@ -59,7 +59,7 @@ const PackageCard = ({
             </div>
 
             <div className="flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-8">
-              {inclusions.slice(0, 4).map((inclusion, idx) => (
+              {(Array.isArray(inclusions) ? inclusions : []).slice(0, 4).map((inclusion, idx) => (
                 <div
                   key={inclusion + idx}
                   className="flex items-center gap-1.5 bg-[#fffbf2] px-2.5 py-1 md:px-4 md:py-2 border border-orange-100/50 rounded-full whitespace-nowrap group-hover:border-[#f1aa4c]/30 transition-colors"
@@ -74,7 +74,7 @@ const PackageCard = ({
                   </span>
                 </div>
               ))}
-              {inclusions.length > 4 && (
+              {(Array.isArray(inclusions) ? inclusions : []).length > 4 && (
                 <div className="flex items-center justify-center bg-orange-50 px-2.5 py-1 md:px-4 md:py-2 rounded-full text-[10px] md:text-xs font-black text-[#f1aa4c]">
                   + More..
                 </div>
@@ -157,13 +157,13 @@ const PriceSection = ({ currency, originalPrice, discountedPrice, nights, isMobi
       <span className="text-[9px] md:text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none mb-0.5">Starts From</span>
       {!isMobile && (
         <span className="text-sm font-bold opacity-30 line-through text-[#345b63]">
-          {currency === "INR" ? "₹" : "$"}{originalPrice.toLocaleString("en-IN")}
+          {currency === "INR" ? "₹" : "$"}{(originalPrice || 0).toLocaleString("en-IN")}
         </span>
       )}
       {isMobile && (
         <div className="flex items-center gap-1.5 text-[#345b63]">
           <span className="text-[10px] font-bold opacity-40 line-through">
-            {currency === "INR" ? "₹" : "$"}{originalPrice.toLocaleString("en-IN")}
+            {currency === "INR" ? "₹" : "$"}{(originalPrice || 0).toLocaleString("en-IN")}
           </span>
           <span className="text-[9px] font-black uppercase tracking-wider">@INR</span>
         </div>
@@ -171,7 +171,7 @@ const PriceSection = ({ currency, originalPrice, discountedPrice, nights, isMobi
     </div>
     <div className={`flex ${isMobile ? 'flex-row' : 'flex-col items-end'} items-baseline md:items-end gap-2 md:gap-0`}>
       <div className="text-2xl md:text-3xl lg:text-4xl font-black text-[#1a3642] tracking-tighter leading-none">
-        ₹{discountedPrice.toLocaleString("en-IN").replace('₹', '')}/-
+        ₹{(discountedPrice || 0).toLocaleString("en-IN").replace('₹', '')}/-
       </div>
       <p className="text-[10px] md:text-[11px] font-bold text-[#345b63] opacity-60 italic">
         Per Person · {nights} Nights

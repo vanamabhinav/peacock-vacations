@@ -13,14 +13,14 @@ export default function BlogPackagesSection({ packages = [] }: BlogPackagesSecti
         subheading: pkg.category || "Adventure & Mountains", // Fallback or mapping
         location: pkg.location?.state || "India",
         region: pkg.location?.state || "India",
-        discountedPrice: pkg.discountedPrice,
-        originalPrice: pkg.originalPrice,
+        discountedPrice: pkg.price?.discountedAmount || 0,
+        originalPrice: pkg.price?.baseAmount || 0,
         image: pkg.mainImageUrl,
         days: pkg.duration?.days || 0,
         nights: pkg.duration?.nights || 0,
         currency: "INR",
         inclusions: pkg.inclusions || [],
-        url: `/india/${pkg.slug}`
+        url: `/packages/${pkg.slug}`
     }));
 
 
@@ -31,7 +31,7 @@ export default function BlogPackagesSection({ packages = [] }: BlogPackagesSecti
                     <h2 className="text-4xl md:text-5xl font-black text-[#1a3642] mb-4 tracking-tight leading-none">Packages from Blog</h2>
                     <p className="text-[#345b63] font-bold text-lg md:text-xl opacity-70">Handpicked travel experiences across India's most iconic routes</p>
                 </div>
-                <Link href="/india/c" className="text-[#f1aa4c] font-black text-sm uppercase tracking-widest flex items-center gap-2 hover:underline">
+                <Link href="/packages" className="text-[#f1aa4c] font-black text-sm uppercase tracking-widest flex items-center gap-2 hover:underline">
                     View All Packages <span>→</span>
                 </Link>
             </div>

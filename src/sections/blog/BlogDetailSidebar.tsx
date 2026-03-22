@@ -44,7 +44,7 @@ export default function BlogDetailSidebar({ post }: BlogDetailSidebarProps) {
                     </h3>
                     <div className="space-y-6">
                         {(post.packagesForBlog as any[]).map((pkg, i) => (
-                            <Link key={i} href={`/india/${pkg.slug}`} className="flex gap-4 group cursor-pointer hover:bg-gray-50 p-2 rounded-2xl transition-all">
+                            <Link key={i} href={`/packages/${pkg.slug}`} className="flex gap-4 group cursor-pointer hover:bg-gray-50 p-2 rounded-2xl transition-all">
                                 <div className="relative w-24 h-24 rounded-xl overflow-hidden flex-shrink-0 shadow-sm">
                                     <Image src={pkg.mainImageUrl} alt={pkg.title} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
                                 </div>
@@ -52,7 +52,7 @@ export default function BlogDetailSidebar({ post }: BlogDetailSidebarProps) {
                                     <h4 className="text-base font-black text-[#1a3642] mb-1 leading-tight group-hover:text-[#f1aa4c] transition-colors line-clamp-2">{pkg.title}</h4>
                                     <span className="text-[#345b63] text-xs font-bold mb-2">{pkg.duration?.days || 0} Days</span>
                                     <div className="text-lg font-black text-[#1a3642]">
-                                        ₹{pkg.discountedPrice?.toLocaleString()}/- <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider ml-1">Per Person</span>
+                                        ₹{(pkg.price?.discountedAmount || 0).toLocaleString('en-IN')}/- <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider ml-1">Per Person</span>
                                     </div>
                                 </div>
                             </Link>

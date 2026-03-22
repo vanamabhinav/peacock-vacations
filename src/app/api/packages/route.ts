@@ -7,6 +7,7 @@ export async function GET(request: Request) {
         const { searchParams } = new URL(request.url);
         const destination = searchParams.get('destination');
         const theme = searchParams.get('theme');
+        const search = searchParams.get('search');
         const minPrice = searchParams.get('minPrice');
         const maxPrice = searchParams.get('maxPrice');
 
@@ -19,6 +20,17 @@ export async function GET(request: Request) {
                 { 'destination.cityName': { $regex: destination, $options: 'i' } },
                 { 'destination.stateName': { $regex: destination, $options: 'i' } },
                 { title: { $regex: destination, $options: 'i' } }
+            ];
+        }
+
+        if (search) {
+            query.$or = [
+                ...(query.$or || []),
+                { 'destination.cityName': { $regex: search, $options: 'i' } },
+                { 'destination.stateName': { $regex: search, $options: 'i' } },
+                { title: { $regex: search, $options: 'i' } },
+                { category: { $regex: search, $options: 'i' } },
+                { themes: { $regex: search, $options: 'i' } }
             ];
         }
 

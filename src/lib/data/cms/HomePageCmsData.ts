@@ -977,7 +977,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
       description:
         "Get hassle-free visa assistance for your international travel. Our expert team ensures smooth processing with complete documentation support.",
       ctaText: "Get Visa Assistance",
-      ctaLink: "/visa-assistance",
+      ctaLink: "/visa-process",
     },
     popularPackagesSectionData: {
       heading: "Popular Packages",

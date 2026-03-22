@@ -56,6 +56,10 @@ function parseSearchParamsToFilters(
     filters.minRating = Number(get("minRating"));
   }
 
+  if (get("q")) {
+    filters.search = String(get("q")).trim();
+  }
+
   return filters;
 }
 

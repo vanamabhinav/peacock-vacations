@@ -103,6 +103,7 @@ export type PackageFilters = {
   packageTypes?: string[]; // Add this line
   minRating?: number;
   isPublished?: boolean;
+  search?: string;
 };
 
 export type UIFilters = {
