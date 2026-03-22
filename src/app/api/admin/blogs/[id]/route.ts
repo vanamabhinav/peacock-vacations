@@ -2,55 +2,60 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import Blog from '@/models/Blog';
 
+type RouteContext = { params: Promise<{ id: string }> };
+
 export async function GET(
-    request: Request,
-    { params }: { params: { id: string } }
+    _request: Request,
+    context: RouteContext
 ) {
     try {
+        const { id } = await context.params;
         await dbConnect();
-        const blog = await Blog.findById(params.id);
+        const blog = await Blog.findById(id);
         if (!blog) {
             return NextResponse.json({ message: 'Blog not found' }, { status: 404 });
         }
         return NextResponse.json(blog);
-    } catch (error: any) {
-        console.error('Error fetching blog:', error);
-        return NextResponse.json({ message: error.message }, { status: 500 });
+    } catch (error: unknown) {
+        const msg = error instanceof Error ? error.message : 'Unknown error';
+        return NextResponse.json({ message: msg }, { status: 500 });
     }
 }
 
 export async function PUT(
     request: Request,
-    { params }: { params: { id: string } }
+    context: RouteContext
 ) {
     try {
+        const { id } = await context.params;
         await dbConnect();
         const data = await request.json();
 
-        const updatedBlog = await Blog.findByIdAndUpdate(params.id, data, { new: true });
+        const updatedBlog = await Blog.findByIdAndUpdate(id, data, { new: true });
         if (!updatedBlog) {
             return NextResponse.json({ message: 'Blog not found' }, { status: 404 });
         }
         return NextResponse.json(updatedBlog);
-    } catch (error: any) {
-        console.error('Error updating blog:', error);
-        return NextResponse.json({ message: error.message }, { status: 500 });
+    } catch (error: unknown) {
+        const msg = error instanceof Error ? error.message : 'Unknown error';
+        return NextResponse.json({ message: msg }, { status: 500 });
     }
 }
 
 export async function DELETE(
-    request: Request,
-    { params }: { params: { id: string } }
+    _request: Request,
+    context: RouteContext
 ) {
     try {
+        const { id } = await context.params;
         await dbConnect();
-        const deletedBlog = await Blog.findByIdAndDelete(params.id);
+        const deletedBlog = await Blog.findByIdAndDelete(id);
         if (!deletedBlog) {
             return NextResponse.json({ message: 'Blog not found' }, { status: 404 });
         }
         return NextResponse.json({ message: 'Blog deleted successfully' });
-    } catch (error: any) {
-        console.error('Error deleting blog:', error);
-        return NextResponse.json({ message: error.message }, { status: 500 });
+    } catch (error: unknown) {
+        const msg = error instanceof Error ? error.message : 'Unknown error';
+        return NextResponse.json({ message: msg }, { status: 500 });
     }
 }

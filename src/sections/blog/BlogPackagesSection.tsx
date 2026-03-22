@@ -37,7 +37,7 @@ export default function BlogPackagesSection({ packages = [] }: BlogPackagesSecti
             </div>
 
             <div className="flex flex-col gap-10">
-                {packages.map((pkg, i) => (
+                {formattedPackages.map((pkg, i) => (
                     <PackageCard key={i} {...pkg} />
                 ))}
             </div>

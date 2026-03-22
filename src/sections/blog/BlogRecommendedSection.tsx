@@ -15,8 +15,9 @@ export default function BlogRecommendedSection() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {highlightPosts.slice(1).concat(highlightPosts[0]).map((post) => (
-                    <BlogPostCard key={post.id} post={post} />
+                {(highlightPosts.slice(1).concat(highlightPosts[0]) as any[]).map((post) => (
+                    <BlogPostCard key={post.id || post.slug} post={post} />
+
                 ))}
             </div>
         </section>

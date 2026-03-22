@@ -1,9 +1,10 @@
 import BlogDetailPage from "@/sections/blog/BlogDetailPage";
 
-export default function Page({ params }: { params: { slug: string } }) {
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
     return (
         <main>
-            <BlogDetailPage slug={params.slug} />
+            <BlogDetailPage slug={slug} />
         </main>
     );
 }

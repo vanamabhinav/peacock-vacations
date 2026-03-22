@@ -3,8 +3,8 @@ import dbConnect from '@/lib/mongodb';
 import Blog from '@/models/Blog';
 
 export async function GET(
-    request: Request,
-    { params }: { params: { slug: string } }
+    _request: Request,
+    { params }: { params: Promise<{ slug: string }> }
 ) {
     try {
         const { slug } = await params;

@@ -1,9 +1,5 @@
-import { Itinerary } from "@/sections/itinerary";
+import { redirect } from "next/navigation";
 
 export default function ItineraryPage() {
-    return (
-        <div className="w-full bg-[#f9f9f9]">
-            <Itinerary />
-        </div>
-    );
+    redirect("/india/c");
 }

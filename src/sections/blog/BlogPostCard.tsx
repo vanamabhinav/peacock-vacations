@@ -1,9 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
-import { IBlog } from "@/models/Blog";
+
+interface BlogPostCardPost {
+    slug: string;
+    title: string;
+    imageUrl: string;
+    category?: string;
+    author?: string;
+    readTime?: string;
+    excerpt?: string;
+    [key: string]: unknown;
+}
 
 interface BlogPostCardProps {
-    post: IBlog;
+    post: BlogPostCardPost;
     layout?: "vertical" | "horizontal";
 }
 

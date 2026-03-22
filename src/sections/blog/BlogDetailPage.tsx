@@ -30,7 +30,8 @@ export default async function BlogDetailPage({ slug }: BlogDetailPageProps) {
                     <BlogDetailSidebar post={post as IBlog} />
                 </div>
 
-                <BlogPackagesSection />
+                <BlogPackagesSection packages={(post as any).packagesFromBlog || []} />
+
                 <BlogRecommendedSection />
                 <BlogTestimonialsSection />
 
