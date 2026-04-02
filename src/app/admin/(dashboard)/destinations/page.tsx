@@ -17,7 +17,7 @@ import {
     Search,
     Star
 } from "lucide-react";
-import { Destination, CtaCard, DestinationsData } from "@/types";
+import { Destination, CtaCard, DestinationsData, PopularDestinationsSectionData } from "@/types";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -36,7 +36,7 @@ const REGIONS = [
 
 export default function DestinationsAdminPage() {
     const [selectedItem, setSelectedItem] = useState("January");
-    const [totalData, setTotalData] = useState<DestinationsData | null>(null);
+    const [totalData, setTotalData] = useState<PopularDestinationsSectionData | null>(null);
     const [currentDestinations, setCurrentDestinations] = useState<Destination[]>([]);
     const [currentCta, setCurrentCta] = useState<CtaCard>({
         title: "",
@@ -62,16 +62,17 @@ export default function DestinationsAdminPage() {
     useEffect(() => {
         if (totalData) {
             const key = selectedItem.toLowerCase();
-            const sectionData = totalData[key] || {
+            const dataMap = totalData.data as any;
+            const sectionData = (dataMap && dataMap[key]) || {
                 destinations: [],
                 ctaCard: { title: "", subtitle: "", lowertext: "", url: "", packageIds: [] },
                 bannerImage: ""
             };
-            setCurrentDestinations(sectionData.destinations);
+            setCurrentDestinations(sectionData.destinations || []);
             setBannerImage(sectionData.bannerImage || "");
             setCurrentCta({
-                ...sectionData.ctaCard,
-                packageIds: sectionData.ctaCard.packageIds || []
+                ...(sectionData.ctaCard || { title: "", subtitle: "", lowertext: "", url: "", packageIds: [] }),
+                packageIds: sectionData.ctaCard?.packageIds || []
             });
         }
     }, [selectedItem, totalData]);
@@ -120,9 +121,11 @@ export default function DestinationsAdminPage() {
                 if (totalData) {
                     const key = selectedItem.toLowerCase();
                     const newTotalData = { ...totalData };
-                    newTotalData[key] = {
+                    if (!newTotalData.data) newTotalData.data = {} as any;
+                    (newTotalData.data as any)[key] = {
                         destinations: currentDestinations,
-                        ctaCard: currentCta
+                        ctaCard: currentCta,
+                        bannerImage: bannerImage
                     };
                     setTotalData(newTotalData);
                 }

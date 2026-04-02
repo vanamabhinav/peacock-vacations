@@ -34,10 +34,12 @@ export async function PUT(request: Request) {
             return NextResponse.json({ message: 'Popular destinations data not found' }, { status: 404 });
         }
 
-        // Update the specific selection
+        // Update the specific selection (nested under the 'data' field)
         const newData = { ...content.data };
 
-        newData[selection.toLowerCase()] = {
+        if (!newData.data) newData.data = {};
+
+        newData.data[selection.toLowerCase()] = {
             destinations,
             ctaCard,
             bannerImage
