@@ -81,7 +81,15 @@ export default function PopularDestinationsClient({
 
   // Get current data based on selection
   const currentData =
-    initialData[currentSelectionText.toLowerCase() as keyof DestinationsData];
+    initialData?.[currentSelectionText.toLowerCase() as keyof DestinationsData];
+
+  if (!currentData) {
+    return (
+      <section className="bg-bridalHealth px-4 py-16 text-center">
+        <p className="text-scorpion">No data available for {currentSelectionText}</p>
+      </section>
+    );
+  }
 
   return (
     <section className="bg-bridalHealth px-4 sm:px-8 md:px-12 lg:px-16 py-8 sm:py-12 md:py-16 w-full font-albertsans">
@@ -114,9 +122,8 @@ export default function PopularDestinationsClient({
                     name="right-arrow"
                     width={20}
                     height={20}
-                    className={`ml-1 w-4 transition-transform duration-300 ${
-                      isSelectionVisible ? "-rotate-90" : "rotate-90"
-                    } origin-center`}
+                    className={`ml-1 w-4 transition-transform duration-300 ${isSelectionVisible ? "-rotate-90" : "rotate-90"
+                      } origin-center`}
                     aria-hidden="true"
                   />
                 </span>
@@ -131,11 +138,10 @@ export default function PopularDestinationsClient({
         <div className="relative mt-6 sm:mt-8 md:mt-10">
           <div
             ref={selectionBoxRef}
-            className={`top-0 left-0 z-50 absolute w-full transition-all duration-300 ease-in-out ${
-              isSelectionVisible
+            className={`top-0 left-0 z-50 absolute w-full transition-all duration-300 ease-in-out ${isSelectionVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 -translate-y-4 pointer-events-none"
-            }`}
+              }`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >

@@ -2,7 +2,7 @@ import Link from "next/link";
 import Video, { VideoHandle } from "../video/Video";
 
 export interface HeroVideoSlide {
-  videoUrl: string;
+  videoSrc: string;
   posterUrl?: string;
   title: string;
   description: string;
@@ -27,7 +27,7 @@ function HeroSectionSlide(slide: HeroVideoSlide) {
       <Video
         ref={slide.ref}
         muted={slide.muted}
-        src={slide.videoUrl}
+        src={slide.videoSrc}
         isActive={slide.isActive}
         onVideoEnd={slide.onVideoEnd}
         className="absolute inset-0 w-full h-full object-cover"

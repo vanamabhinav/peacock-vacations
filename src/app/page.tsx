@@ -8,6 +8,9 @@ import TravelByTheme from "@/sections/homepage/TravelByTheme";
 import VisaMadeEasy from "@/sections/homepage/VisaMadeEasy";
 import WhatMakesDifferent from "@/sections/homepage/WhatMakesDifferent";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function Home() {
   const homePageData = await fetchHomePageCmsDataAction();
   return (

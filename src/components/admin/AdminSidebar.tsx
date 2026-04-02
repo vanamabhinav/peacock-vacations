@@ -13,7 +13,8 @@ import {
     PlusCircle,
     Settings,
     BookOpen,
-    MessageSquare
+    MessageSquare,
+    MapPin
 } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -31,6 +32,7 @@ export default function AdminSidebar() {
         { name: "Package Inventory", href: "/admin/packages", icon: Package },
         { name: "Popular Packages", href: "/admin/homepage", icon: Home },
         { name: "Travel by Theme", href: "/admin/themes", icon: Home },
+        { name: "Popular Destinations", href: "/admin/destinations", icon: MapPin },
         { name: "Blog Management", href: "/admin/blogs", icon: BookOpen },
         { name: "Testimonials", href: "/admin/testimonials", icon: MessageSquare },
         { name: "Employee Access", href: "/admin/users", icon: Users },

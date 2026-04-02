@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import Package from '@/models/Package';
+import { revalidatePath } from 'next/cache';
 
 export async function GET() {
     try {
@@ -34,6 +35,7 @@ export async function PUT(request: Request) {
         );
 
         await Promise.all(updatePromises);
+        revalidatePath('/');
 
         return NextResponse.json({ message: 'Homepage updated successfully' });
     } catch (error) {

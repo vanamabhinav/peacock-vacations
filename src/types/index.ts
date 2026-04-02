@@ -10,12 +10,14 @@ export type CtaCard = {
   subtitle: string;
   lowertext: string;
   url: string;
+  packageIds?: string[];
 };
 
 export type DestinationsData = {
   [key: string]: {
     destinations: Destination[];
     ctaCard: CtaCard;
+    bannerImage?: string;
   };
 };
 
@@ -24,7 +26,7 @@ export type HeroSectionSlide = {
   description: string;
   ctaText: string;
   ctaLink: string;
-  videoUrl: string;
+  videoSrc: string;
 };
 export type HeroSectionData = {
   slides: HeroSectionSlide[];
@@ -65,12 +67,14 @@ export type PopularPackagesSectionData = {
 };
 
 export type ThemePackage = {
+  _id?: string;
   title: string;
   description: string;
   image: string;
   ctaText: string;
   ctaLink: string;
   theme: string[];
+  themeSortOrder?: { [key: string]: number };
 };
 
 export type TravelByThemeSectionData = {
@@ -78,6 +82,7 @@ export type TravelByThemeSectionData = {
   subheading: string;
   themes: string[];
   packages: ThemePackage[];
+  packageOrders?: Record<string, string[]>;
 };
 
 export type UspCardType = {

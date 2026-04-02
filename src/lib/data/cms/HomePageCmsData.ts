@@ -10,7 +10,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
       //       "Experience the diverse beauty of India from every angle. Discover stunning landscapes, rich culture, and unforgettable adventures.",
       //     ctaText: "Explore India",
       //     ctaLink: "/destinations/india",
-      //     videoUrl:
+      //     videoSrc:
       //       "https://www.incredibleindia.gov.in/content/dam/incredible-india/videos/home/India-360-v2.mp4",
       //   },
       //   {
@@ -19,7 +19,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
       //       "Embark on thrilling adventures across India's diverse terrains. From mountain peaks to river rapids, your next adventure starts here.",
       //     ctaText: "Book Adventure",
       //     ctaLink: "/destinations/adventure",
-      //     videoUrl:
+      //     videoSrc:
       //       "https://www.incredibleindia.gov.in/content/dam/incredible-india/videos/home/Adventure.mp4",
       //   },
       //   {
@@ -28,7 +28,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
       //       "Immerse yourself in India's pristine natural beauty. From lush forests to serene lakes, discover untouched wilderness.",
       //     ctaText: "Discover Nature",
       //     ctaLink: "/destinations/nature",
-      //     videoUrl:
+      //     videoSrc:
       //       "https://www.incredibleindia.gov.in/content/dam/incredible-india/videos/home/Nature.mp4",
       //   },
       // ],
@@ -38,9 +38,9 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
           description:
             "Experience the diverse beauty of India from every angle. Discover stunning landscapes, rich culture, and unforgettable adventures.",
           ctaText: "Explore India",
-          ctaLink: "/destinations/india",
-          videoUrl:
-            "https://www.credible-india/videos/home/India-360-v2.mp4",
+          ctaLink: "/india/c",
+          videoSrc:
+            "videos/India-360-v2.mp4",
         },
         {
           title: "Adventure Awaits",
@@ -48,7 +48,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
             "Embark on thrilling adventures across India's diverse terrains. From mountain peaks to river rapids, your next adventure starts here.",
           ctaText: "Book Adventure",
           ctaLink: "/destinations/adventure",
-          videoUrl:
+          videoSrc:
             "https://ww=m/incredible-india/videos/home/Adventure.mp4",
         },
         {
@@ -57,7 +57,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
             "Immerse yourself in India's pristine natural beauty. From lush forests to serene lakes, discover untouched wilderness.",
           ctaText: "Discover Nature",
           ctaLink: "/destinations/nature",
-          videoUrl:
+          videoSrc:
             "https://wwwredible-india/videos/home/Nature.mp4",
         },
       ],

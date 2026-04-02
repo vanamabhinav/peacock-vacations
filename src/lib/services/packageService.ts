@@ -53,6 +53,9 @@ export async function getFilteredPackagesFromDb(filters: PackageFilters): Promis
     if (filters.departureCity?.length) {
         query.departureCity = { $in: filters.departureCity };
     }
+    if (filters.packageIds?.length) {
+        query._id = { $in: filters.packageIds };
+    }
 
     const data = await PackageModel.find(query).sort({ createdAt: -1 });
     return JSON.parse(JSON.stringify(data));

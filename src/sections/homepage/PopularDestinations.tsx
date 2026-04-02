@@ -5,15 +5,20 @@ export default async function PopularDestinations({
   heading,
   subheading,
   data,
-}: PopularDestinationsSectionData) {
-  const selectedMonth = "January";
+  ...rest
+}: PopularDestinationsSectionData & any) {
+  const currentMonth = new Intl.DateTimeFormat("en-US", {
+    month: "long",
+  }).format(new Date());
+
+  const initialData = data || rest;
 
   return (
     <PopularDestinationsClient
       heading={heading}
       subheading={subheading}
-      initialData={data}
-      initialMonth={selectedMonth}
+      initialData={initialData}
+      initialMonth={currentMonth}
     />
   );
 }

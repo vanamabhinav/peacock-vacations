@@ -119,6 +119,7 @@ export interface IPackage extends Document {
     };
     showOnHome?: boolean;
     homePageSortOrder?: number;
+    themeSortOrder?: Map<string, number>;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -261,6 +262,7 @@ const PackageSchema: Schema = new Schema(
         },
         showOnHome: { type: Boolean, default: false },
         homePageSortOrder: { type: Number, default: 0 },
+        themeSortOrder: { type: Map, of: Number, default: {} },
     },
     { timestamps: true }
 );

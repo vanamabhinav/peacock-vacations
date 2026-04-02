@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import Package from '@/models/Package';
+import { revalidatePath } from 'next/cache';
 
 export async function GET() {
     try {
@@ -26,6 +27,7 @@ export async function POST(request: Request) {
         const newPackage = new Package(data);
         await newPackage.save();
 
+        revalidatePath('/');
         return NextResponse.json(newPackage, { status: 201 });
     } catch (error: any) {
         console.error('Error creating package:', error);

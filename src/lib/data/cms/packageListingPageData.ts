@@ -1,6 +1,9 @@
 import { getFilteredPackagesFromDb } from "@/lib/services/packageService";
 import { PackageListingPageData } from "@/types/packages/package";
 import { extractFilterOptions } from "@/lib/utils/extractFilters";
+import dbConnect from "@/lib/mongodb";
+import CMSContent from "@/models/CMSContent";
+import PackageModel from "@/models/Package";
 
 const plpData: PackageListingPageData[] = [
   // 1. Telangana (State)
@@ -776,6 +779,60 @@ export async function getFilteredPlpByUrl(
 
   let plpPageData = plpData.find((plp) => plp.plpUrl === plpUrl);
 
+  // If not in static data, check CMS Featured Categories (CTA Cards)
+  if (!plpPageData) {
+    await dbConnect();
+    const cmsContent = await CMSContent.findOne({
+      pageKey: "home",
+      sectionKey: "popularDestinationsSectionData"
+    });
+
+    if (cmsContent && cmsContent.data) {
+      const destinationsData = cmsContent.data;
+      const normalizedPlpUrl = plpUrl.replace(/\/$/, "");
+      const altPlpUrl = normalizedPlpUrl.startsWith("/packages")
+        ? normalizedPlpUrl.replace("/packages", "")
+        : "/packages" + normalizedPlpUrl;
+
+      // Search all month/region sections for a matching CTA URL
+      for (const key of Object.keys(destinationsData)) {
+        const section = destinationsData[key];
+        if (section.ctaCard) {
+          const ctaUrl = section.ctaCard.url.replace(/\/$/, "");
+          if (ctaUrl === normalizedPlpUrl || ctaUrl === altPlpUrl) {
+            const packageIds = section.ctaCard.packageIds || [];
+            if (packageIds.length > 0) {
+              const rawPackages = await PackageModel.find({
+                _id: { $in: packageIds },
+                isPublished: true
+              }).lean();
+
+              // Sort according to the order in packageIds
+              const sortedPackages = packageIds
+                .map(id => rawPackages.find(p => p._id.toString() === id.toString()))
+                .filter(Boolean);
+
+              plpPageData = {
+                plpUrl,
+                bigHeading: section.ctaCard.title,
+                shortDescription: section.ctaCard.subtitle,
+                longDescription: `<p>${section.ctaCard.lowertext}</p>`,
+                backgroundImage: section.bannerImage || (sortedPackages[0] as any)?.mainImageUrl || "https://images.pexels.com/photos/3225531/pexels-photo-3225531.jpeg",
+                packageFilters: {
+                  isPublished: true,
+                  packageIds: packageIds
+                },
+                packages: sortedPackages as any,
+                filterOptions: extractFilterOptions(sortedPackages as any)
+              };
+              break;
+            }
+          }
+        }
+      }
+    }
+  }
+
   if (!plpPageData) {
     // Attempt dynamic resolution
     const segments = plpUrl.split("/").filter(Boolean);
@@ -841,6 +898,32 @@ export async function getFilteredPlpByUrl(
   if (!plpPageData) {
     console.warn(`PLP Data not found for URL: ${plpUrl}`);
     return null;
+  }
+
+  // After resolving any PLP data, check if there's a custom banner image for the region or month in CMS
+  await dbConnect();
+  const cmsContent = await CMSContent.findOne({
+    pageKey: "home",
+    sectionKey: "popularDestinationsSectionData"
+  });
+
+  if (cmsContent && cmsContent.data) {
+    const destinationsData = cmsContent.data;
+
+    // 1. Try to find by region if available
+    const regionNameValue = plpPageData.packageFilters.region?.[0];
+    if (regionNameValue) {
+      const regionNameKey = regionNameValue.toLowerCase().replace(" india", "").trim();
+      if (destinationsData[regionNameKey]?.bannerImage) {
+        plpPageData.backgroundImage = destinationsData[regionNameKey].bannerImage;
+      }
+    }
+
+    // 2. Try to find by state/month if available
+    const stateName = plpPageData.packageFilters.stateName?.[0];
+    if (stateName && destinationsData[stateName.toLowerCase()]?.bannerImage) {
+      plpPageData.backgroundImage = destinationsData[stateName.toLowerCase()].bannerImage;
+    }
   }
 
   // Fetch packages for this PLP

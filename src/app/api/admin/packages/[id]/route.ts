@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import Package from '@/models/Package';
+import { revalidatePath } from 'next/cache';
 
 export async function GET(
     request: Request,
@@ -34,6 +35,7 @@ export async function PUT(
             return NextResponse.json({ message: 'Package not found' }, { status: 404 });
         }
 
+        revalidatePath('/');
         return NextResponse.json(updatedPackage);
     } catch (error: any) {
         console.error('Error updating package:', error);
