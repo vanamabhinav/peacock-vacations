@@ -105,13 +105,18 @@ export default function DestinationsAdminPage() {
         setSaving(true);
         setError(null);
         try {
+            const normalizedCta = {
+                ...currentCta,
+                url: currentCta.url.replace(/^\/package\//, "/packages/")
+            };
+
             const res = await fetch("/api/admin/homepage/destinations", {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     selection: selectedItem,
                     destinations: currentDestinations,
-                    ctaCard: currentCta,
+                    ctaCard: normalizedCta,
                     bannerImage: bannerImage
                 })
             });
@@ -124,9 +129,10 @@ export default function DestinationsAdminPage() {
                     if (!newTotalData.data) newTotalData.data = {} as any;
                     (newTotalData.data as any)[key] = {
                         destinations: currentDestinations,
-                        ctaCard: currentCta,
+                        ctaCard: normalizedCta,
                         bannerImage: bannerImage
                     };
+                    setCurrentCta(normalizedCta);
                     setTotalData(newTotalData);
                 }
                 alert(`Successfully updated destinations for ${selectedItem}`);

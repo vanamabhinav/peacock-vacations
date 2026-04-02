@@ -795,11 +795,17 @@ export async function getFilteredPlpByUrl(
         : "/packages" + normalizedPlpUrl;
 
       // Search all month/region sections for a matching CTA URL
-      for (const key of Object.keys(destinationsData)) {
-        const section = destinationsData[key];
-        if (section.ctaCard) {
+      const actualData = destinationsData.data || destinationsData;
+
+      for (const key of Object.keys(actualData)) {
+        const section = actualData[key];
+        if (section && section.ctaCard) {
           const ctaUrl = section.ctaCard.url.replace(/\/$/, "");
-          if (ctaUrl === normalizedPlpUrl || ctaUrl === altPlpUrl) {
+          // Support both /package/ and /packages/ singular/plural cases
+          const normalizedCtaUrl = ctaUrl.replace(/^\/package\//, "/packages/");
+          const normalizedTargetUrl = normalizedPlpUrl.replace(/^\/package\//, "/packages/");
+
+          if (normalizedCtaUrl === normalizedTargetUrl || normalizedCtaUrl === altPlpUrl) {
             const packageIds = section.ctaCard.packageIds || [];
             if (packageIds.length > 0) {
               const rawPackages = await PackageModel.find({

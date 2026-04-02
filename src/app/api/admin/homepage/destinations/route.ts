@@ -41,7 +41,10 @@ export async function PUT(request: Request) {
 
         newData.data[selection.toLowerCase()] = {
             destinations,
-            ctaCard,
+            ctaCard: {
+                ...ctaCard,
+                url: ctaCard.url.replace(/^\/package\//, "/packages/")
+            },
             bannerImage
         };
 
