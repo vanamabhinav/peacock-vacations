@@ -25,8 +25,8 @@ function TravelThemeSelection({
   };
 
   return (
-    <div className="relative flex flex-col gap-3 bg-white p-[14px] border border-botticelli rounded-[14px] h-[450px] overflow-hidden">
-      <div className="flex flex-col gap-3 [&::-webkit-scrollbar-thumb]:bg-[#D9D9D9] [&::-webkit-scrollbar-track]:bg-transparent pr-3 [&::-webkit-scrollbar-thumb]:rounded-[38px] [&::-webkit-scrollbar]:w-2 overflow-y-auto">
+    <div className="relative flex flex-col md:gap-3 bg-transparent md:bg-white p-0 md:p-[14px] md:border md:border-botticelli md:rounded-[14px] md:h-[450px] overflow-visible md:overflow-hidden">
+      <div className="flex flex-row flex-wrap md:flex-col gap-2 md:gap-3 [&::-webkit-scrollbar-thumb]:bg-[#D9D9D9] [&::-webkit-scrollbar-track]:bg-transparent md:pr-3 [&::-webkit-scrollbar-thumb]:rounded-[38px] [&::-webkit-scrollbar]:w-2 md:overflow-y-auto overflow-visible">
         {travelThemes.map((theme, idx) => (
           <TravelThemeSelectionItem
             key={idx}

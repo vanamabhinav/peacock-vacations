@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Icon,IconName } from "../../components/ui/Icon";
+import { Icon, IconName } from "../../components/ui/Icon";
 import CopyrightYear from "../../components/client/CopyrightYear";
 import { twMerge } from "tailwind-merge";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 // Types
 type LinkType = {
@@ -48,11 +49,11 @@ function SocialLinks({ isMobile = false }: { isMobile?: boolean }) {
       {socialIcons.map((social, idx) => (
         <div key={social.name} className="flex items-center">
           <Link href="#" aria-label={social.name}>
-            <Icon 
+            <Icon
               name={social.name as IconName}
               className={`transition-colors text-black hover:text-sandybrown`}
-              style={{ 
-                width: `${social.width}px`, 
+              style={{
+                width: `${social.width}px`,
                 height: `${social.height}px`
               }}
             />
@@ -74,11 +75,11 @@ function NewsletterForm({ isMobile = false }: { isMobile?: boolean }) {
     )}>
       <p className={twMerge(
         "font-medium tracking-[-0.05em] text-nevada",
-        isMobile 
-          ? "text-[13px] text-center" 
+        isMobile
+          ? "text-[13px] text-center"
           : "text-sm mt-4 mb-6"
       )}>
-        Your Gateway to Real India Where Every Trip Tells a Story of Culture, 
+        Your Gateway to Real India Where Every Trip Tells a Story of Culture,
         Traditions & Heritage.
       </p>
 
@@ -88,8 +89,8 @@ function NewsletterForm({ isMobile = false }: { isMobile?: boolean }) {
           placeholder="Enter your email address"
           className={twMerge(
             "bg-white text-xs text-center focus:outline-none border-mercury focus:border-ochre rounded-lg",
-            isMobile 
-              ? "px-[59px] py-2 w-full border-mercury" 
+            isMobile
+              ? "px-[59px] py-2 w-full border-mercury"
               : "px-4 py-2 w-64"
           )}
         />
@@ -111,6 +112,9 @@ function NewsletterForm({ isMobile = false }: { isMobile?: boolean }) {
 
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/admin")) return null;
+
   const LinkSectionData = [
     {
       title: "Top Cities in India",
@@ -177,7 +181,7 @@ export default function Footer() {
     },
   ];
   return (
- <footer className="flex flex-col gap-21 bg-firefly py-[62px] font-albertsans overflow-x-hidden ">
+    <footer className="flex flex-col gap-21 bg-firefly py-[62px] font-albertsans overflow-x-hidden ">
       <div className="mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl px-4 sm:px-0">
         <section aria-label="Partners">
           <PartnerSection
@@ -286,7 +290,7 @@ export function LinkSection({ title, links, isFooter = true }: {
       "flex flex-col mt-2 sm:mt-6 md:mt-12 font-albertsans", // Removed gap-7 and mb-2
       isFooter ? "border-peachorange/28" : "border-silver"
     )}>
-      <div className="flex items-center justify-between mb-2"> 
+      <div className="flex items-center justify-between mb-2">
         <h3 className={twMerge(
           "font-semibold leading-normal",
           "text-lg sm:text-xl md:text-2xl",
@@ -311,14 +315,14 @@ export function LinkSection({ title, links, isFooter = true }: {
         </button>
       </div>
 
-      <div 
-        id={`section-${title}`} 
+      <div
+        id={`section-${title}`}
         className={twMerge(
           "block sm:hidden ",
           !isOpen && "hidden"
         )}
       >
-        <nav className="flex flex-col w-full gap-2 mb-6"> 
+        <nav className="flex flex-col w-full gap-2 mb-6">
           {links.map((link, idx) => (
             <Link
               key={idx}
@@ -361,9 +365,9 @@ function VerticalLinkSection({ title, links }: {
       <h3 className="font-semibold text-bigstone text-base">{title}</h3>
       <div className="flex flex-col gap-3">
         {links.map(({ linkHref, label }, idx) => (
-          <Link 
-            key={idx} 
-            href={linkHref} 
+          <Link
+            key={idx}
+            href={linkHref}
             className="text-nevada text-sm"
           >
             {label}
@@ -392,7 +396,7 @@ function NewsLetterComponent() {
         { label: "Travel Booking", linkHref: "#" },
         { label: "Hotel Aggregator", linkHref: "#" },
         { label: "Tour Packages", linkHref: "#" },
-        { label: "Visa Assistance", linkHref: "#" },
+        { label: "Visa Assistance", linkHref: "/visa-process" },
         { label: "Corporate Travel", linkHref: "#" },
       ],
     },
@@ -410,51 +414,51 @@ function NewsLetterComponent() {
 
   return (
     <>
-    <div className="sm:hidden flex flex-col items-center bg-desertstorm rounded-[20px] p-[21px] w-full overflow-x-hidden">
+      <div className="sm:hidden flex flex-col items-center bg-desertstorm rounded-[20px] p-[21px] w-full overflow-x-hidden">
         <BrandLogo isMobile />
         <NewsletterForm isMobile />
-        
+
         {linksData.map((section) => (
-        <div 
-          key={section.title}
-          className="w-full border-b border-silver py-2"
-        >
-          <button
-            onClick={() => setOpenSection(
-              openSection === section.title ? null : section.title
-            )}
-            className="w-full flex justify-between items-center"
+          <div
+            key={section.title}
+            className="w-full border-b border-silver py-2"
           >
-            <h3 className="text-[16px] font-semibold text-bigstone tracking-[-0.05em]">
-              {section.title}
-            </h3>
-            <Icon
-              name="right-arrow"
-              className={`w-3 h-3 transition-transform duration-200 text-nevada
+            <button
+              onClick={() => setOpenSection(
+                openSection === section.title ? null : section.title
+              )}
+              className="w-full flex justify-between items-center"
+            >
+              <h3 className="text-[16px] font-semibold text-bigstone tracking-[-0.05em]">
+                {section.title}
+              </h3>
+              <Icon
+                name="right-arrow"
+                className={`w-3 h-3 transition-transform duration-200 text-nevada
                 ${openSection === section.title ? "-rotate-90" : "rotate-90"}`}
-            />
-          </button>
-          
-          {openSection === section.title && (
-            <div className="flex flex-col gap-2 mt-3">
-              {section.links.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.linkHref}
-                  className="text-[14px] text-nevada tracking-[-0.05em] font-medium hover:text-sandybrown transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
-      ))}
-      <SocialLinks isMobile />
-      <p className="text-[12px] text-nevada tracking-[-0.05em]">
-        © 2025 Peacock Vacations. All rights reserved.
-      </p>
-    </div>
+              />
+            </button>
+
+            {openSection === section.title && (
+              <div className="flex flex-col gap-2 mt-3">
+                {section.links.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.linkHref}
+                    className="text-[14px] text-nevada tracking-[-0.05em] font-medium hover:text-sandybrown transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+        <SocialLinks isMobile />
+        <p className="text-[12px] text-nevada tracking-[-0.05em]">
+          © 2025 Peacock Vacations. All rights reserved.
+        </p>
+      </div>
       <div className="hidden sm:block bg-desertstorm py-11 pr-21 pl-12 rounded-4xl w-full">
         <div className="flex flex-col gap-8">
           <div className="flex justify-between">

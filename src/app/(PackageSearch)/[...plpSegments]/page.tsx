@@ -72,12 +72,6 @@ export default async function PlpPage({ params, searchParams }: PageProps) {
       <main role="main">
         <HeroSection
           packageImageUrl={pageData.backgroundImage}
-          average_duration="5 - 7 days"
-          basePrice={48921}
-          userRating={{
-            rating: 4.2,
-            count: 7023,
-          }}
         />
         <PLPSection pageData={pageData} />
 

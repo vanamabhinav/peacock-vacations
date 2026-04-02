@@ -17,6 +17,11 @@ export async function fetchHomePageCmsDataAction(): Promise<HomePageData> {
       return acc;
     }, {} as HomePageData);
 
+    // Defensive fix for Visa Assistance link
+    if (data.visaAssistanceSectionData && (data.visaAssistanceSectionData.ctaLink === "#" || data.visaAssistanceSectionData.ctaLink === "/visa-assistance" || !data.visaAssistanceSectionData.ctaLink)) {
+      data.visaAssistanceSectionData.ctaLink = "/visa-process";
+    }
+
     // Fetch featured packages for the "Popular Packages" section
     let livePackages = await PackageModel.find({ isPublished: true, showOnHome: true })
       .sort({ homePageSortOrder: 1 })

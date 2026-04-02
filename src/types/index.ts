@@ -26,7 +26,7 @@ export type HeroSectionSlide = {
   description: string;
   ctaText: string;
   ctaLink: string;
-  videoSrc: string;
+  videoSrc: any;
 };
 export type HeroSectionData = {
   slides: HeroSectionSlide[];

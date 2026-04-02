@@ -1,11 +1,18 @@
+"use client";
+
 import Link from "next/link";
 import StickyNavWrapperClient from "./StickyNavWrapperClient";
 import { Icon } from "@/components/ui/Icon";
 import Image from "next/image";
 import { MobileNavbar } from "@/components/client/DropDownNavbar";
 import NavbarSearch from "@/components/layout/NavbarSearch";
+import { usePathname } from "next/navigation";
 
 export default function StickyNavWrapper() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/admin")) return null;
+
   return (
     <header className="top-0 z-[100] fixed w-full">
       <div className="z-[105] relative bg-bigstone px-3 py-3 sm:px-4 sm:py-4">

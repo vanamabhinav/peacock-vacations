@@ -85,48 +85,73 @@ export default function TravelByThemeClient(data: TravelByThemeSectionData) {
           <p className="font-medium text-scorpion text-xl">{data.subheading}</p>
         </div>
         {/* Navigation Buttons at header level - hidden on mobile */}
-        <div className="hidden sm:flex gap-4">
-          <button
-            onClick={() => sliderRef.current?.scrollLeft()}
-            className={twMerge(
-              "flex justify-center items-center border border-bigstone rounded-full w-10 h-10 transition-all duration-300",
-              canScrollLeft
-                ? "bg-bridalHealth hover:bg-karry cursor-pointer"
-                : "bg-bridalHealth/90 cursor-default"
-            )}
-            aria-label="Scroll to previous travel themes"
-            disabled={!canScrollLeft}
-          >
-            <Icon
-              name="right-arrow"
-              className="text-bigstone rotate-180"
-              aria-hidden="true"
-            />
-          </button>
-          <button
-            onClick={() => sliderRef.current?.scrollRight()}
-            className={twMerge(
-              "flex justify-center items-center border border-bigstone rounded-full w-10 h-10 transition-all duration-300",
-              canScrollRight
-                ? "bg-bridalHealth hover:bg-karry cursor-pointer"
-                : "bg-bridalHealth/90 cursor-default"
-            )}
-            aria-label="Scroll to next travel themes"
-            disabled={!canScrollRight}
-          >
-            <Icon
-              name="right-arrow"
-              className="text-bigstone"
-              aria-hidden="true"
-            />
-          </button>
+        {/* Navigation Buttons - desktop only, matched with slider */}
+        <div className="hidden sm:flex items-center gap-4">
+          {selectedThemes.length > 0 && (
+            <button
+              onClick={() => handleThemeSelectionChange([])}
+              className="flex justify-center items-center bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-lg px-3 py-1 text-xs font-bold text-gray-600 transition-colors uppercase tracking-wider h-10"
+              title="Clear all selections"
+            >
+              <Icon name="cross" className="w-4 h-4 mr-1" />
+              Clear
+            </button>
+          )}
+          <div className="flex gap-4">
+            <button
+              onClick={() => sliderRef.current?.scrollLeft()}
+              className={twMerge(
+                "flex justify-center items-center border border-bigstone rounded-full w-10 h-10 transition-all duration-300",
+                canScrollLeft
+                  ? "bg-bridalHealth hover:bg-karry cursor-pointer"
+                  : "bg-bridalHealth/90 cursor-default"
+              )}
+              aria-label="Scroll to previous travel themes"
+              disabled={!canScrollLeft}
+            >
+              <Icon
+                name="right-arrow"
+                className="text-bigstone rotate-180"
+                aria-hidden="true"
+              />
+            </button>
+            <button
+              onClick={() => sliderRef.current?.scrollRight()}
+              className={twMerge(
+                "flex justify-center items-center border border-bigstone rounded-full w-10 h-10 transition-all duration-300",
+                canScrollRight
+                  ? "bg-bridalHealth hover:bg-karry cursor-pointer"
+                  : "bg-bridalHealth/90 cursor-default"
+              )}
+              aria-label="Scroll to next travel themes"
+              disabled={!canScrollRight}
+            >
+              <Icon
+                name="right-arrow"
+                className="text-bigstone"
+                aria-hidden="true"
+              />
+            </button>
+          </div>
         </div>
       </div>
 
+      {/* Mobile Clear All Button - visible only on mobile when items selected */}
+      <div className="flex sm:hidden justify-end">
+        {selectedThemes.length > 0 && (
+          <button
+            onClick={() => handleThemeSelectionChange([])}
+            className="flex items-center gap-1 bg-gray-100 border border-gray-200 rounded-full px-4 py-1.5 text-xs font-bold text-gray-500"
+          >
+            Clear Selected <Icon name="cross" className="w-3 h-3" />
+          </button>
+        )}
+      </div>
+
       {/* Content Section - Filter and Slider at same level */}
-      <div className="flex gap-5">
-        {/* Filter Section - 304px width */}
-        <aside className="flex-shrink-0 " aria-label="Theme Filters">
+      <div className="flex flex-col md:flex-row gap-5">
+        {/* Filter Section */}
+        <aside className="flex-shrink-0 w-full md:w-[304px]" aria-label="Theme Filters">
           <TravelThemeSelection
             travelThemes={data.themes}
             selectedThemes={selectedThemes}

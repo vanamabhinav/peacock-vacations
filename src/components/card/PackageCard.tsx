@@ -58,6 +58,17 @@ const PackageCard = ({
               </div>
             </div>
 
+            {/* Mobile Price Area */}
+            <div className="md:hidden mb-4">
+              <PriceSection
+                currency={currency}
+                originalPrice={originalPrice}
+                discountedPrice={discountedPrice}
+                nights={nights}
+                isMobile
+              />
+            </div>
+
             <div className="flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-8">
               {(Array.isArray(inclusions) ? inclusions : []).slice(0, 4).map((inclusion, idx) => (
                 <div
@@ -82,29 +93,13 @@ const PackageCard = ({
             </div>
           </div>
 
-          {/* Desktop Hidden Price Area for Mobile Flow */}
-          <div className="md:hidden pt-3 border-t border-gray-50 mb-3">
-            <PriceSection
-              currency={currency}
-              originalPrice={originalPrice}
-              discountedPrice={discountedPrice}
-              nights={nights}
-              isMobile
-            />
-          </div>
 
-          <div className="flex flex-row gap-2 md:hidden">
-            <Link
-              href="/book-a-call"
-              className="flex-1 flex justify-center items-center bg-[#fff2e0] px-4 py-3 rounded-xl font-black text-[#1a3642] text-[11px] transition-all transform active:scale-95 leading-none"
-            >
-              Book a call
-            </Link>
+          <div className="md:hidden mt-4 -mx-4 -mb-4">
             <Link
               href={url}
-              className="flex-1 flex justify-center items-center bg-[#1a3642] px-4 py-3 rounded-xl font-black text-white text-[11px] transition-all transform active:scale-95 shadow-lg shadow-blue-900/10 leading-none"
+              className="w-full flex justify-center items-center bg-[#1a3642] py-4 font-black text-white text-sm transition-all active:bg-[#254d5e] gap-2"
             >
-              View Details
+              View Package <Icon name="right-arrow" className="w-4 h-4 rotate-0" />
             </Link>
           </div>
         </div>
@@ -152,31 +147,39 @@ const PackageCard = ({
 };
 
 const PriceSection = ({ currency, originalPrice, discountedPrice, nights, isMobile }: any) => (
-  <div className={`flex flex-col ${isMobile ? 'items-center' : 'items-end'} gap-0.5 md:gap-1 w-full text-center md:text-right`}>
-    <div className={`flex ${isMobile ? 'flex-row' : 'flex-col items-end'} items-baseline md:items-end gap-2 md:gap-0`}>
-      <span className="text-[9px] md:text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none mb-0.5">Starts From</span>
-      {!isMobile && (
-        <span className="text-sm font-bold opacity-30 line-through text-[#345b63]">
-          {currency === "INR" ? "₹" : "$"}{(originalPrice || 0).toLocaleString("en-IN")}
-        </span>
-      )}
-      {isMobile && (
-        <div className="flex items-center gap-1.5 text-[#345b63]">
-          <span className="text-[10px] font-bold opacity-40 line-through">
+  <div className={`flex ${isMobile ? 'flex-row items-center justify-between' : 'flex-col items-end'} gap-1 w-full`}>
+    {isMobile ? (
+      <>
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Starts From</span>
+          <span className="text-xs font-bold opacity-30 line-through text-[#345b63]">
             {currency === "INR" ? "₹" : "$"}{(originalPrice || 0).toLocaleString("en-IN")}
           </span>
-          <span className="text-[9px] font-black uppercase tracking-wider">@INR</span>
         </div>
-      )}
-    </div>
-    <div className={`flex ${isMobile ? 'flex-row' : 'flex-col items-end'} items-baseline md:items-end gap-2 md:gap-0`}>
-      <div className="text-2xl md:text-3xl lg:text-4xl font-black text-[#1a3642] tracking-tighter leading-none">
-        ₹{(discountedPrice || 0).toLocaleString("en-IN").replace('₹', '')}/-
-      </div>
-      <p className="text-[10px] md:text-[11px] font-bold text-[#345b63] opacity-60 italic">
-        Per Person · {nights} Nights
-      </p>
-    </div>
+        <div className="flex items-center gap-1">
+          <span className="text-xl font-black text-[#1a3642] tracking-tighter">
+            @{currency === "INR" ? "" : "$"}{(discountedPrice || 0).toLocaleString("en-IN")}
+          </span>
+        </div>
+      </>
+    ) : (
+      <>
+        <div className="flex flex-col items-end gap-0">
+          <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1">Starts From</span>
+          <span className="text-sm font-bold opacity-30 line-through text-[#345b63]">
+            {currency === "INR" ? "₹" : "$"}{(originalPrice || 0).toLocaleString("en-IN")}
+          </span>
+        </div>
+        <div className="flex flex-col items-end gap-0">
+          <div className="text-3xl lg:text-4xl font-black text-[#1a3642] tracking-tighter leading-none">
+            ₹{(discountedPrice || 0).toLocaleString("en-IN").replace('₹', '')}/-
+          </div>
+          <p className="text-[11px] font-bold text-[#345b63] opacity-60 italic">
+            Per Person · {nights} Nights
+          </p>
+        </div>
+      </>
+    )}
   </div>
 );
 

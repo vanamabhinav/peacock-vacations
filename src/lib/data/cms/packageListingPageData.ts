@@ -919,10 +919,40 @@ export async function getFilteredPlpByUrl(
       }
     }
 
-    // 2. Try to find by state/month if available
+    // 2. Try to find by month if available (using stateName filter as fallback for month names in some curated lists)
     const stateName = plpPageData.packageFilters.stateName?.[0];
     if (stateName && destinationsData[stateName.toLowerCase()]?.bannerImage) {
       plpPageData.backgroundImage = destinationsData[stateName.toLowerCase()].bannerImage;
+    }
+  }
+
+  // 3. Try to find by state-specific banners (with city inheritance)
+  const stateBannersContent = await CMSContent.findOne({
+    pageKey: "global",
+    sectionKey: "stateBanners"
+  });
+
+  if (stateBannersContent && stateBannersContent.data) {
+    const stateBanners = stateBannersContent.data;
+    let targetState = plpPageData.packageFilters.stateName?.[0];
+
+    // If city is searched, find its parent state from regionsData
+    if (!targetState && plpPageData.packageFilters.cityName?.[0]) {
+      const cityName = plpPageData.packageFilters.cityName[0];
+      const { regionsData } = await import("@/lib/data/cms/destinationsData");
+      for (const region of regionsData) {
+        for (const state of region.states) {
+          if (state.cities.some(c => c.name.toLowerCase() === cityName.toLowerCase() || c.slug === cityName.toLowerCase())) {
+            targetState = state.name;
+            break;
+          }
+        }
+        if (targetState) break;
+      }
+    }
+
+    if (targetState && stateBanners[targetState.toLowerCase()]) {
+      plpPageData.backgroundImage = stateBanners[targetState.toLowerCase()];
     }
   }
 

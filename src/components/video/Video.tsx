@@ -1,5 +1,6 @@
 "use client";
-import { useRef, useEffect, useImperativeHandle } from "react";
+import { useRef, useImperativeHandle } from "react";
+import InnerVideo from "next-video";
 
 interface VideoProps {
   muted: boolean;
@@ -35,19 +36,7 @@ function Video({
     pause: () => videoRef.current?.pause(),
   }));
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleEnded = () => {
-      onVideoEnd?.();
-    };
-
-    video.addEventListener("ended", handleEnded);
-    return () => video.removeEventListener("ended", handleEnded);
-  }, [onVideoEnd]);
   if (!isActive) {
-    // Render a black box with the same aspect ratio as your video
     return (
       <div
         className={className}
@@ -61,17 +50,17 @@ function Video({
   }
 
   return (
-    <video
+    <InnerVideo
       ref={videoRef}
       autoPlay
       muted={muted}
       playsInline
       className={className}
-      preload="auto"
-    >
-      <source src={src} type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+      src={src}
+      onEnded={onVideoEnd}
+      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+      controls={false}
+    />
   );
 }
 
