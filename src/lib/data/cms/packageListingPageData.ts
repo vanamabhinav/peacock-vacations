@@ -809,7 +809,7 @@ export async function getFilteredPlpByUrl(
 
               // Sort according to the order in packageIds
               const sortedPackages = packageIds
-                .map(id => rawPackages.find(p => p._id.toString() === id.toString()))
+                .map((id: string) => rawPackages.find(p => p._id.toString() === id.toString()))
                 .filter(Boolean);
 
               plpPageData = {
