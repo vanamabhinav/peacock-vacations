@@ -55,7 +55,7 @@ export type PackageData = {
   nights: number;
   originalPrice: number;
   discountedPrice: number;
-  inclusions: string[];
+  inclusions?: string[];
   packageIncludes?: { label: string; icon: string }[];
   image: string;
   url: string;

@@ -122,7 +122,7 @@ function TravelPackageCard({
                       <span>{item}</span>
                     </li>
                   ))}
-                  {(packageIncludes.length || inclusions?.length) > 3 && (
+                  {(packageIncludes.length || (inclusions?.length || 0)) > 3 && (
                     <li className="flex gap-1.5 ml-5">
                       <span>more...</span>
                     </li>
