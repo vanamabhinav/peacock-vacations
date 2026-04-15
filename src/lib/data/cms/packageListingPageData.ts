@@ -777,7 +777,8 @@ export async function getFilteredPlpByUrl(
     };
   }
 
-  let plpPageData = plpData.find((plp) => plp.plpUrl === plpUrl);
+  let plpPageDataMatched = plpData.find((plp) => plp.plpUrl === plpUrl);
+  let plpPageData = plpPageDataMatched ? JSON.parse(JSON.stringify(plpPageDataMatched)) : null;
 
   // If not in static data, check CMS Featured Categories (CTA Cards)
   if (!plpPageData) {

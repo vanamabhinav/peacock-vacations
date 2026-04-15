@@ -66,11 +66,9 @@ body {
   --color-variable-collection-p: var(--variable-collection-p, #345b63);
   --color-variable-collection-p-2: var(--variable-collection-p-2, #888888);
   --color-variable-collection-s: var(--variable-collection-s, #d49747);
-  --font-clashdisplay: var(--font-clashdisplay);
-  --font-cabinetgrotesk: var(--font-cabinetgrotesk);
-  --font-inter: var(--font-inter);
+  --font-kalnia: var(--font-kalnia);
+  --font-poppins: var(--font-poppins);
   --font-albertsans: var(--font-albertsans);
-  --font-dmsans: var(--font-dmsans);
 
   /* Component Variables */
   --slider-thumb-size: 20px;
@@ -221,4 +219,69 @@ body {
   background: white;
   border-color: #f1aa4c;
   box-shadow: 0 10px 15px -3px rgba(241, 170, 76, 0.1);
+}
+
+/* Force next-video to fill its container for hero background */
+[data-next-video-container],
+.next-video-container {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  inset: 0 !important;
+}
+
+[data-next-video-container] video,
+.next-video-container video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+/* Aggressive fix to kill aspect-ratio padding in next-video */
+[data-next-video-container],
+.next-video-container,
+.next-video-wrapper {
+  padding-top: 0 !important;
+  height: 100% !important;
+  min-height: 100% !important;
+}
+
+[data-next-video-container] video,
+.next-video-container video,
+.next-video-wrapper video {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: cover !important;
+}
+
+/* THE NUCLEAR OPTION: Force every possible element in next-video to zoom and fill */
+.HeroSection_Video_Wrapper [data-next-video-container],
+.HeroSection_Video_Wrapper .next-video-container,
+.HeroSection_Video_Wrapper .next-video-wrapper,
+.HeroSection_Video_Wrapper div {
+  padding-top: 0 !important;
+  height: 100% !important;
+  width: 100% !important;
+  position: absolute !important;
+  inset: 0 !important;
+  aspect-ratio: auto !important;
+}
+
+.HeroSection_Video_Wrapper video,
+.HeroSection_Video_Wrapper .next-video-element video {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: cover !important;
 }

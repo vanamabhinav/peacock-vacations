@@ -1,21 +1,38 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { HighlightsSection } from "./HighlightsSection";
 import { ImageGallerySection } from "./ImageGallerySection";
 import { ItineraryDetailsSection } from "./ItineraryDetailsSection";
 import { PriceDetailsSection } from "./PriceDetailsSection";
 import { SidebarSection } from "./SidebarSection";
-import { MobileActionFloat } from "../../components/itinerary/MobileActionFloat";
+import { Icon } from "@/components/ui/Icon";
 import { IPackage } from "@/models/Package";
+import { cn } from "@/lib/cn";
+import { ArrowUp, Settings2, MessageCircle } from "lucide-react";
+import RequestCallbackModal from "@/components/ui/RequestCallbackModal";
+import { useCurrency } from "@/contexts/CurrencyContext";
+import { MobileActionFloat } from "../../components/itinerary/MobileActionFloat";
 
 export const Itinerary = ({ packageData }: { packageData: IPackage }) => {
     const data = packageData;
+    const { formatPrice } = useCurrency();
+    const [showScrollTop, setShowScrollTop] = useState(false);
+    const [isCallbackModalOpen, setIsCallbackModalOpen] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => setShowScrollTop(window.scrollY > 400);
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
     return (
-        <div className="min-h-screen bg-[#fcfbfb] pt-28 md:pt-32 pb-24 md:pb-0 font-albertsans">
-            <div className="mx-auto max-w-7xl px-4 md:px-6 py-6 md:py-8">
-                {/* Header / Breadcrumbs */}
+        <div className="min-h-screen bg-[#fcfbfb] pt-0 md:pt-32 pb-24 md:pb-0 font-albertsans relative">
+            {/* Desktop Header / Breadcrumbs - Hidden on Mobile */}
+            <div className="hidden md:block mx-auto max-w-7xl px-4 md:px-6 py-6 md:py-8">
                 <div className="mb-6">
                     <div className="flex items-center gap-2 text-[10px] md:text-xs text-[#345b63] font-bold uppercase tracking-widest mb-3 md:mb-4">
                         <span>Home</span>
@@ -30,9 +47,31 @@ export const Itinerary = ({ packageData }: { packageData: IPackage }) => {
                         {data.title || "Exclusive Travel Experience"}
                     </h1>
                 </div>
+            </div>
 
-                {/* Main Gallery */}
+            {/* Main Gallery - Top on Mobile */}
+            <div className="w-full">
                 <ImageGallerySection images={data.galleryImages} />
+            </div>
+
+            <div className="mx-auto max-w-7xl px-4 md:px-6 py-6 md:py-4">
+                {/* Mobile Specific Breadcrumbs & Title - Below Gallery */}
+                <div className="md:hidden mt-2 mb-6">
+                    <div className="flex items-center gap-1.5 text-[11px] font-bold mb-3 overflow-x-auto no-scrollbar whitespace-nowrap">
+                        <span className="text-[#f1aa4c]">Home</span>
+                        <span className="text-gray-300 font-normal">{">"}</span>
+                        <span className="text-[#f1aa4c]">Package</span>
+                        <span className="text-gray-300 font-normal">{">"}</span>
+                        <span className="text-[#f1aa4c]">{data.destination?.stateName || "State"}</span>
+                        <span className="text-gray-300 font-normal">{">"}</span>
+                        <span className="text-gray-500">{data.title || "Itinerary"}</span>
+                    </div>
+                    <div className="flex justify-between items-start gap-4">
+                        <h1 className="text-2xl font-black text-[#1a3642] mb-1 leading-tight flex-1">
+                            {data.title || "Exclusive Travel Experience"}
+                        </h1>
+                    </div>
+                </div>
 
                 {/* Overview Banner Section / Goa Tour Packages on Mobile */}
                 <section className="bg-white border border-gray-100 rounded-[24px] md:rounded-[30px] p-6 md:p-8 mb-6 md:mb-10 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
@@ -41,7 +80,7 @@ export const Itinerary = ({ packageData }: { packageData: IPackage }) => {
                             <h2 className="text-lg md:text-xl font-black text-[#1a3642]">
                                 Over View Of {data.destination?.cityName || "the Destination"}
                             </h2>
-                            <span className="text-blue-500 text-[10px] font-bold underline md:hidden">Read More</span>
+                            <button className="text-blue-500 text-[11px] font-black underline md:hidden uppercase tracking-wider">Read More</button>
                         </div>
                         <span className="text-[#f1aa4c] text-[10px] font-black uppercase tracking-[0.2em] mb-4 hidden md:block">
                             {data.tagline || "Experience Extraordinary Journeys"}
@@ -61,14 +100,18 @@ export const Itinerary = ({ packageData }: { packageData: IPackage }) => {
                 {/* Mobile Package Includes Bar */}
                 {data.packageIncludes && (
                     <div className="md:hidden flex flex-col gap-3 mb-8">
-                        <p className="text-[10px] font-black text-[#1a3642]/40 uppercase tracking-widest pl-1">Package Includes</p>
+                        <p className="text-[11px] font-black text-[#1a3642]/40 uppercase tracking-widest pl-1">Package Includes</p>
                         <div className="flex items-center gap-4 bg-white border border-gray-50 rounded-[20px] p-4 shadow-sm overflow-x-auto no-scrollbar">
                             {data.packageIncludes.map((item) => (
                                 <div key={item.id} className="flex flex-col items-center gap-2 flex-shrink-0">
                                     <div className="w-12 h-12 bg-[#f8f8f8] rounded-2xl flex items-center justify-center p-2.5 border border-gray-50">
-                                        <Image src={item.icon || `/images/south-india.png`} alt={item.label} width={32} height={32} className="w-full h-full object-contain opacity-70" />
+                                        {item.icon && item.icon.includes("/") ? (
+                                            <img src={`/icons/${item.icon}`} alt={item.label} className="w-full h-full object-contain opacity-70" />
+                                        ) : (
+                                            <Icon name={item.icon as any} className="w-full h-full text-gray-400" />
+                                        )}
                                     </div>
-                                    <span className="text-[9px] font-black text-[#1a3642] uppercase tracking-tighter opacity-60">{item.label}</span>
+                                    <span className="text-[10px] font-black text-[#1a3642] uppercase tracking-tighter opacity-60">{item.label}</span>
                                 </div>
                             ))}
                         </div>
@@ -100,7 +143,17 @@ export const Itinerary = ({ packageData }: { packageData: IPackage }) => {
             <MobileActionFloat
                 price={data.price.discountedAmount}
                 currency={data.price.currency}
+                onAction={() => setIsCallbackModalOpen(true)}
+                showScrollTop={showScrollTop}
+                onScrollTop={scrollToTop}
+                isModalOpen={isCallbackModalOpen}
+            />
+
+            {/* Request Callback Modal */}
+            <RequestCallbackModal
+                isOpen={isCallbackModalOpen}
+                onClose={() => setIsCallbackModalOpen(false)}
             />
         </div>
     );
-}
+};

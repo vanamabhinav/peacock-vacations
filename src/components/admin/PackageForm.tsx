@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import {
     Save,
@@ -16,7 +16,8 @@ import {
     Utensils,
     Car,
     Bed,
-    Zap
+    Zap,
+    Tag
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { regionsData } from "@/lib/data/cms/destinationsData";
@@ -136,6 +137,60 @@ function AccommodationFields({ control, register }: { control: any, register: an
     );
 }
 
+function PackageIncludesFields({ control, register, availableIcons }: { control: any, register: any, availableIcons: string[] }) {
+    const { fields, append, remove } = useFieldArray({
+        control,
+        name: "packageIncludes"
+    });
+
+    return (
+        <div className="space-y-6 pt-10 border-t border-gray-100">
+            <div className="flex items-center justify-between">
+                <h3 className="text-xl font-black text-[#1a3642] tracking-tight italic">Custom Highlights / Tags</h3>
+                <button type="button" onClick={() => append({ label: "", icon: "" })} className="text-xs font-black uppercase tracking-widest text-[#f1aa4c] hover:bg-[#f1aa4c]/10 px-4 py-2 rounded-xl transition-all">
+                    + Add Tag
+                </button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {fields.map((field, index) => (
+                    <div key={field.id} className="p-6 rounded-[32px] bg-gray-50 border border-gray-100 relative group">
+                        <button type="button" onClick={() => remove(index)} className="absolute top-4 right-4 text-gray-300 hover:text-red-500 transition-all opacity-0 group-hover:opacity-100">
+                            <Trash2 size={16} />
+                        </button>
+                        <div className="flex flex-col gap-4">
+                            <div className="space-y-2">
+                                <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Tag Label</label>
+                                <input {...register(`packageIncludes.${index}.label` as const)} className="input-field py-2" placeholder="e.g. All Meals Included" />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Select Icon</label>
+                                <div className="grid grid-cols-4 sm:grid-cols-6 gap-2 max-h-[150px] overflow-y-auto p-2 bg-white rounded-xl border border-gray-100">
+                                    {availableIcons.map(icon => (
+                                        <label key={icon} className="relative cursor-pointer group/icon">
+                                            <input
+                                                type="radio"
+                                                {...register(`packageIncludes.${index}.icon` as const)}
+                                                value={icon}
+                                                className="peer sr-only"
+                                            />
+                                            <div className="w-10 h-10 rounded-lg border-2 border-transparent peer-checked:border-[#f1aa4c] peer-checked:bg-orange-50 flex items-center justify-center hover:bg-gray-50 transition-all">
+                                                <img src={`/icons/${icon}`} alt={icon} className="w-6 h-6 object-contain" />
+                                            </div>
+                                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 bg-black text-white text-[8px] px-1 rounded opacity-0 group-hover/icon:opacity-100 pointer-events-none whitespace-nowrap">
+                                                {icon}
+                                            </div>
+                                        </label>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
 function TransferFields({ control, register }: { control: any, register: any }) {
     const { fields, append, remove } = useFieldArray({
         control,
@@ -238,6 +293,14 @@ export default function PackageForm({ initialData, isEditing = false }: PackageF
     const [activeTab, setActiveTab] = useState("basic");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [availableIcons, setAvailableIcons] = useState<string[]>([]);
+
+    useEffect(() => {
+        fetch("/api/admin/icons")
+            .then(res => res.json())
+            .then(data => setAvailableIcons(data.icons || []))
+            .catch(err => console.error("Failed to fetch icons", err));
+    }, []);
 
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = useForm({
         defaultValues: initialData || {
@@ -268,12 +331,13 @@ export default function PackageForm({ initialData, isEditing = false }: PackageF
             galleryImages: ["", "", "", "", "", "", ""],
             itinerary: [{ day: 1, title: "", events: [{ timeOfDay: "Morning", title: "", description: "" }] }],
             inclusions: {
-                meals: ["Breakfast"],
+                meals: [],
                 accommodation: [],
                 transfers: []
             },
             tourInclusionsList: [],
-            tourExclusionsList: []
+            tourExclusionsList: [],
+            packageIncludes: []
         }
     });
 
@@ -560,6 +624,8 @@ export default function PackageForm({ initialData, isEditing = false }: PackageF
                             <AccommodationFields control={control} register={register} />
 
                             <TransferFields control={control} register={register} />
+
+                            <PackageIncludesFields control={control} register={register} availableIcons={availableIcons} />
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 border-t border-gray-100 pt-10">
                                 <div className="space-y-4">

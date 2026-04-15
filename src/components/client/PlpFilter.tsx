@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Rating from "@/components/ui/Rating";
+import { useCurrency } from "@/contexts/CurrencyContext";
 import { UIFilters, FilterOptions } from "@/types/packages/package";
 import { Icon } from "../ui/Icon";
 
@@ -160,6 +161,7 @@ const PlpFilter = ({
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { formatPrice } = useCurrency();
 
   // State for temporary filters (before applying)
   const [tempFilters, setTempFilters] = useState<UIFilters>({
@@ -358,7 +360,6 @@ const PlpFilter = ({
     );
   };
 
-  const formatPrice = (price: number) => `₹${price.toLocaleString("en-IN")}`;
   const isPriceModified = () => tempFilters.minPrice !== filterOptions.priceRange.min || tempFilters.maxPrice !== filterOptions.priceRange.max;
   const hasAppliedPriceFilter = () => appliedFilters.minPrice !== undefined || appliedFilters.maxPrice !== undefined;
 

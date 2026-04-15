@@ -1,33 +1,27 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import localfont from "next/font/local";
-import { Inter, Albert_Sans, DM_Sans } from "next/font/google";
+import { Kalnia, Poppins, Albert_Sans } from "next/font/google";
 import Footer from "@/sections/global/Footer";
 import StickyNavWrapper from "@/sections/global/StickyNavWrapper";
+import { CurrencyProvider } from "@/contexts/CurrencyContext";
 
-const clashDisplayFont = localfont({
-  src: "/fonts/clash-display/ClashDisplay-Variable.ttf",
-  weight: "500",
-  variable: "--font-clashdisplay",
-});
-const cabinetGroteskFont = localfont({
-  src: "/fonts/cabinet-grotesk/CabinetGrotesk-Variable.ttf",
-  weight: "500",
-  variable: "--font-cabinetgrotesk",
-});
-const interFont = Inter({
+const kalniaFont = Kalnia({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-kalnia",
+  weight: ["400", "500", "600", "700"],
+});
+
+const poppinsFont = Poppins({
+  subsets: ["latin"],
+  variable: "--font-poppins",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 const albertSansFont = Albert_Sans({
   subsets: ["latin"],
   variable: "--font-albertsans",
 });
-const dmSansFont = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-dmsans",
-});
+
 export const metadata: Metadata = {
   title: "Peacock Vacations",
   description: "Peacock Vacations - Your Gateway to Exotic Travel Experiences",
@@ -45,11 +39,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${clashDisplayFont.variable} ${cabinetGroteskFont.variable} ${interFont.variable} ${albertSansFont.variable} ${dmSansFont.variable}`}
+        className={`${kalniaFont.variable} ${poppinsFont.variable} ${albertSansFont.variable} font-albertsans antialiased text-[#345b63]`}
       >
-        <StickyNavWrapper />
-        {children}
-        <Footer />
+        <CurrencyProvider>
+          <StickyNavWrapper />
+          {children}
+          <Footer />
+        </CurrencyProvider>
       </body>
     </html>
   );

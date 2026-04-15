@@ -78,7 +78,7 @@ export async function fetchHomePageCmsDataAction(): Promise<HomePageData> {
     // Fetch dynamic testimonials from the Testimonial DB model, replacing any static CMS entry
     data.testimonialsSectionData = await fetchTestimonialData();
 
-    return data;
+    return JSON.parse(JSON.stringify(data));
   } catch (error) {
     console.error("Error fetching home page CMS data from MongoDB:", error);
     throw new Error("Failed to fetch home page data");

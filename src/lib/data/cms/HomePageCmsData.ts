@@ -1,7 +1,4 @@
 import { HomePageData } from "@/types";
-import india360 from "@videos/india-360.mp4";
-import wildlifeIndia from "@videos/wildlife-india.mp4";
-import indiaCinematic from "@videos/india-cinematic.mp4";
 
 export async function fetchHomePageCmsData(): Promise<HomePageData> {
   const data: HomePageData = {
@@ -13,7 +10,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
             "Experience the diverse beauty of India from every angle. Discover stunning landscapes, rich culture, and unforgettable adventures.",
           ctaText: "Explore India",
           ctaLink: "/india/c",
-          videoSrc: india360,
+          videoSrc: "/videos/india-360.mp4",
         },
         {
           title: "Adventure Awaits",
@@ -21,7 +18,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
             "Embark on thrilling adventures across India's diverse terrains. From mountain peaks to river rapids, your next adventure starts here.",
           ctaText: "Book Adventure",
           ctaLink: "/destinations/adventure",
-          videoSrc: wildlifeIndia,
+          videoSrc: "/videos/wildlife-india.mp4",
         },
         {
           title: "Nature's Paradise",
@@ -29,7 +26,7 @@ export async function fetchHomePageCmsData(): Promise<HomePageData> {
             "Immerse yourself in India's pristine natural beauty. From lush forests to serene lakes, discover untouched wilderness.",
           ctaText: "Discover Nature",
           ctaLink: "/destinations/nature",
-          videoSrc: indiaCinematic,
+          videoSrc: "/videos/india-cinematic.mp4",
         },
       ],
     },

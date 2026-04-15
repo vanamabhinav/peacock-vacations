@@ -7,6 +7,7 @@ import Image from "next/image";
 import { MobileNavbar } from "@/components/client/DropDownNavbar";
 import NavbarSearch from "@/components/layout/NavbarSearch";
 import { usePathname } from "next/navigation";
+import CurrencySelector from "@/components/ui/CurrencySelector";
 
 export default function StickyNavWrapper() {
   const pathname = usePathname();
@@ -26,7 +27,7 @@ export default function StickyNavWrapper() {
 export function Topbar() {
   return (
     <nav
-      className="z-[110] flex justify-between items-center mx-auto w-full max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl font-inter font-semibold text-white text-base"
+      className="z-[110] flex justify-between items-center mx-auto w-full max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl font-poppins font-semibold text-white text-base"
       aria-label="Main navigation"
     >
       {/* Left Logo Section */}
@@ -47,6 +48,7 @@ export function Topbar() {
       {/* Desktop icons/links */}
       <div className="items-center gap-3 sm:gap-5 hidden sm:flex">
         <NavbarSearch />
+        <CurrencySelector />
         <Link
           href="/wishlist"
           aria-label="Wishlist"
@@ -68,8 +70,10 @@ export function Topbar() {
         </Link>
       </div>
 
-      {/* Mobile hamburger */}
-      <div className="sm:hidden block">
+      {/* Mobile icons/hamburger */}
+      <div className="flex items-center gap-2 sm:hidden">
+        <CurrencySelector />
+        <NavbarSearch />
         <MobileNavbar />
       </div>
     </nav>

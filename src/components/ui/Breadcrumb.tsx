@@ -24,14 +24,14 @@ const Breadcrumb: React.FC = () => {
   breadcrumbs.unshift({ name: "home", href: "/" });
 
   return (
-    <nav className="inline-block w-full font-inter text-sandybrown text-base text-left capitalize">
+    <nav className="inline-block w-full font-poppins text-[#d4a373] text-[13px] sm:text-base text-left capitalize">
       {breadcrumbs.map((crumb, idx) => (
         <span key={crumb.href} className="inline-flex items-center">
-          {idx !== 0 && <span className={"text-bigstone px-2"}>&gt;</span>}
+          {idx !== 0 && <span className={"text-gray-300 px-2 font-light"}>&gt;</span>}
           {idx !== breadcrumbs.length - 1 ? (
-            <Link href={crumb.href}>{crumb.name}</Link>
+            <Link href={crumb.href} className="hover:text-[#1a3642] transition-colors">{crumb.name}</Link>
           ) : (
-            <span className="text-black">{crumb.name}</span>
+            <span className="text-[#1a3642] font-black">{crumb.name}</span>
           )}
         </span>
       ))}

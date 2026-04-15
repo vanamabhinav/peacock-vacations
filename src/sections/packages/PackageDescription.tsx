@@ -27,22 +27,31 @@ export default function PackageDescription({
   };
 
   return (
-    <div className="relative flex flex-col bg-white px-5 sm:px-8 py-6 border border-gray-100/80 rounded-[32px] w-full font-albertsans text-black shadow-sm shadow-gray-100/50">
-      <div className="flex flex-col gap-2">
-        <h2 className="w-full font-black text-[#1a3642] text-lg sm:text-xl capitalize leading-tight">
-          {bigHeading}
-        </h2>
+    <div className="relative flex flex-col bg-white px-6 sm:px-8 py-7 border border-gray-100 rounded-[28px] w-full font-albertsans text-black shadow-sm ring-1 ring-black/[0.02]">
+      <div className="flex flex-col gap-2.5">
+        <div className="flex items-center justify-between">
+          <h2 className="w-full font-black text-[#1a3642] text-xl sm:text-2xl capitalize leading-tight">
+            {bigHeading}
+          </h2>
+          <button
+            type="button"
+            className="hidden sm:block text-[#1a3642] text-sm font-black underline underline-offset-4 cursor-pointer hover:text-[#f1aa4c] transition-colors flex-shrink-0"
+            onClick={handleExpandToggle}
+          >
+            {isExpanded ? "Read Less" : "Read More"}
+          </button>
+        </div>
         <div
           id="package-description"
           className="relative overflow-hidden transition-all duration-500 ease-in-out"
-          style={{ height, opacity: isExpanded ? 1 : 0.85 }}
+          style={{ height, opacity: isExpanded ? 1 : 0.9 }}
           ref={contentRef}
         >
           <div>
-            <p className="w-full text-[#345b63] font-bold text-sm sm:text-[15px] leading-relaxed opacity-80">
+            <p className="w-full text-[#345b63] font-bold text-[14px] sm:text-[16px] leading-relaxed">
               {shortDescription}
               {isExpanded && (
-                <span className="block mt-2 font-medium">
+                <span className="block mt-4 font-medium text-gray-500">
                   {longDescription}
                 </span>
               )}
@@ -52,12 +61,12 @@ export default function PackageDescription({
       </div>
       <button
         type="button"
-        className="mt-2 text-[#1a3642] text-xs sm:text-sm font-black text-right underline underline-offset-4 cursor-pointer hover:text-[#f1aa4c] transition-colors"
+        className="sm:hidden mt-3 text-[#1a3642] text-[13px] font-black text-right underline underline-offset-4 cursor-pointer hover:text-[#f1aa4c] transition-colors"
         onClick={handleExpandToggle}
         aria-expanded={isExpanded}
         aria-controls="package-description"
       >
-        {isExpanded ? "Less" : "More"}
+        {isExpanded ? "Read Less" : "Read More"}
       </button>
     </div>
   );

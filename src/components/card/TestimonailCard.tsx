@@ -10,7 +10,7 @@ export default function TestimonialCard({
 }) {
   return (
     <div
-      className="flex flex-col justify-start items-start gap-6 bg-[#fffbf2] p-8 border border-orange-100/50 rounded-[40px] w-full max-w-[450px] shadow-sm hover:shadow-xl transition-all duration-500 font-albertsans group"
+      className="flex flex-col justify-start items-start gap-4 sm:gap-6 bg-[#fffbf2] p-5 sm:p-8 border border-orange-100/50 rounded-[20px] sm:rounded-[40px] w-full max-w-[450px] shadow-sm hover:shadow-xl transition-all duration-500 font-albertsans group"
     >
       <ProfileCard testimonial={testimonial} />
 
@@ -33,11 +33,11 @@ export default function TestimonialCard({
 
 function ProfileCard({ testimonial }: { testimonial: TestimonialCardData }) {
   return (
-    <div className="flex flex-col gap-6 w-full">
-      <div className="flex items-start gap-4">
+    <div className="flex flex-col gap-4 sm:gap-6 w-full">
+      <div className="flex items-start gap-3 sm:gap-4">
         <ProfileIcon src={testimonial.profileImage} />
         <div className="flex flex-col justify-center">
-          <p className="font-black text-[#1a3642] text-xl leading-none mb-1">
+          <p className="font-black text-[#1a3642] text-lg sm:text-xl leading-none mb-1">
             {testimonial.name}
             {testimonial.occupation && testimonial.occupation.length > 0 ? `, ${testimonial.occupation}` : ""}
           </p>
@@ -45,11 +45,11 @@ function ProfileCard({ testimonial }: { testimonial: TestimonialCardData }) {
         </div>
       </div>
 
-      <div className="space-y-4">
-        <div className="flex flex-col gap-2">
-          <h3 className="font-black text-[#1a3642] text-2xl leading-tight tracking-tight">{testimonial.title}</h3>
+      <div className="space-y-3 sm:space-y-4">
+        <div className="flex flex-col gap-1 sm:gap-2">
+          <h3 className="font-black text-[#1a3642] text-xl sm:text-2xl leading-tight tracking-tight">{testimonial.title}</h3>
           <div className="relative">
-            <p className="text-[#345b63] font-bold text-base leading-relaxed italic opacity-90 line-clamp-3 group-hover:line-clamp-none transition-all duration-500">
+            <p className="text-[#345b63] font-bold text-sm sm:text-base leading-relaxed italic opacity-90 line-clamp-3 group-hover:line-clamp-none transition-all duration-500">
               "{testimonial.description}"
             </p>
             <div className="mt-2">
@@ -67,7 +67,7 @@ function ProfileCard({ testimonial }: { testimonial: TestimonialCardData }) {
 
 function ProfileIcon({ src }: { src: string }) {
   return (
-    <div className="relative w-16 h-16 flex-shrink-0 group-hover:scale-105 transition-transform duration-500">
+    <div className="relative w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0 group-hover:scale-105 transition-transform duration-500">
       <Image
         src={src}
         fill

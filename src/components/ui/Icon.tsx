@@ -17,8 +17,20 @@ export function Icon({
   childClassName?: string;
   ref?: React.Ref<SVGSVGElement>;
 }) {
-  const spriteFile = iconManifest[name]; // fallback for dev
-  const href = `/icons/${spriteFile}#${name}`;
+  const isCustomIcon = name.includes("/") || name.endsWith(".svg");
+  const spriteFile = !isCustomIcon ? iconManifest[name] : null;
+  const href = isCustomIcon ? `/icons/${name}` : `/icons/${spriteFile}#${name}`;
+
+  if (isCustomIcon) {
+    return (
+      <img
+        src={href}
+        alt={`${name} icon`}
+        className={cn("inline-block w-[1em] h-[1em] object-contain", className)}
+        {...(props as any)}
+      />
+    );
+  }
 
   const accessibilityProps = {
     ...props,

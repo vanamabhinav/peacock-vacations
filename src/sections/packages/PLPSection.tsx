@@ -13,9 +13,12 @@ import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 import { useSearchParams } from "next/navigation";
 import { cn } from "@/lib/cn";
+import RequestCallbackModal from "@/components/ui/RequestCallbackModal";
+import { MessageCircle, Settings2, ArrowUp } from "lucide-react";
 
 const PLPSection = ({ pageData }: { pageData: PackageListingPageData }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isCallbackModalOpen, setIsCallbackModalOpen] = useState(false);
   const searchParams = useSearchParams();
   const packageCount = pageData.packages?.length || 0;
 
@@ -51,7 +54,7 @@ const PLPSection = ({ pageData }: { pageData: PackageListingPageData }) => {
   const activeFilters = getActiveFilters();
 
   return (
-    <div className="bg-[#fafbfc] px-4 md:px-8 py-6 md:py-10 w-full relative" id="plp-section">
+    <div className="bg-[#fafbfc] px-4 md:px-8 py-6 md:py-6 w-full relative" id="plp-section">
       <div className="mx-auto w-full max-w-7xl">
         <div className="mb-6 md:mb-10">
           <Breadcrumb />
@@ -62,13 +65,34 @@ const PLPSection = ({ pageData }: { pageData: PackageListingPageData }) => {
 
         {/* Selected Filters Summary (Mobile only) */}
         {activeFilters.length > 0 && (
-          <div className="lg:hidden mb-6 bg-[#fffbf2] p-4 md:p-5 border border-orange-100/50 rounded-2xl md:rounded-[32px] shadow-sm">
-            <h4 className="text-[10px] md:text-sm font-black text-[#1a3642] uppercase tracking-widest mb-3 md:mb-4">Selected Filters</h4>
+          <div className="lg:hidden mb-6 bg-[#fff8e7] px-5 py-6 border border-orange-100/40 rounded-[32px] shadow-sm">
+            <h4 className="text-base font-black text-[#1a3642] mb-4">Selected Filters</h4>
             <div className="flex flex-wrap gap-2">
               {activeFilters.map((f, i) => (
-                <div key={i} className="flex items-center gap-1.5 bg-white px-3 py-1.5 border border-gray-100 rounded-lg text-[10px] md:text-xs font-bold text-[#345b63]">
+                <div key={i} className="flex items-center gap-2 bg-white px-4 py-2 border border-gray-100 rounded-xl text-xs font-bold text-[#345b63]">
                   <span>{f.value}</span>
-                  <Icon name="cross" className="w-2 h-2 text-gray-400" />
+                  <button
+                    onClick={() => {
+                      const params = new URLSearchParams(searchParams.toString());
+                      if (f.type === "Price") {
+                        params.delete("minPrice");
+                        params.delete("maxPrice");
+                      } else if (f.type === "Theme") {
+                        const themes = params.get("themes")?.split(",") || [];
+                        params.set("themes", themes.filter(t => t !== f.value).join(","));
+                      } else if (f.type === "Type") {
+                        const types = params.get("packageTypes")?.split(",") || [];
+                        params.set("packageTypes", types.filter(t => t !== f.value).join(","));
+                      } else if (f.type === "Rating") {
+                        params.delete("minRating");
+                      }
+                      window.history.pushState({}, "", `?${params.toString()}`);
+                      window.location.reload(); // Refresh to update filters (simple way)
+                    }}
+                    className="text-gray-300 hover:text-red-400 ml-1"
+                  >
+                    <Icon name="cross" className="w-2.5 h-2.5" />
+                  </button>
                 </div>
               ))}
             </div>
@@ -93,7 +117,7 @@ const PLPSection = ({ pageData }: { pageData: PackageListingPageData }) => {
                   </p>
                 </div>
 
-                <div className="flex flex-col gap-5 md:gap-12">
+                <div className="flex flex-col gap-4 md:gap-8">
                   {pageData.packages?.map((pkg) => (
                     <PackageCard
                       key={pkg.slug}
@@ -106,7 +130,7 @@ const PLPSection = ({ pageData }: { pageData: PackageListingPageData }) => {
                       discountedPrice={pkg.price.discountedAmount}
                       days={pkg.duration.days}
                       nights={pkg.duration.nights}
-                      inclusions={pkg.inclusions.meals}
+                      packageIncludes={pkg.packageIncludes}
                       image={pkg.mainImageUrl}
                       url={`/packages/${pkg.slug}`}
                     />
@@ -115,7 +139,7 @@ const PLPSection = ({ pageData }: { pageData: PackageListingPageData }) => {
 
                 {/* Pagination */}
                 {pageData.metadata && pageData.metadata.totalPages > 1 && (
-                  <div className="flex justify-center mt-12 mb-20 md:mb-0">
+                  <div className="flex justify-center mt-12 mb-10 md:mb-0">
                     <Pagination
                       currentPage={pageData.metadata.currentPage}
                       totalPages={pageData.metadata.totalPages}
@@ -156,29 +180,51 @@ const PLPSection = ({ pageData }: { pageData: PackageListingPageData }) => {
       </div>
 
       {/* Floating Action Bar (Mobile Only) */}
-      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[50] flex items-center gap-3 w-[90%] max-w-[400px] lg:hidden">
+      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[50] flex items-center justify-between w-[95%] max-w-[420px] lg:hidden gap-3">
+        {/* Filter Button */}
         <button
           onClick={() => setIsFilterOpen(true)}
-          className="bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-gray-100 flex-shrink-0 active:scale-95 transition-all"
+          className="flex items-center justify-center bg-[#ecf0f3] border border-white/50 w-14 h-14 rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.08)] backdrop-blur-md active:scale-90 transition-all"
         >
-          <Icon name="search" className="w-6 h-6 text-[#1a3642]" />
+          <Settings2 className="w-6 h-6 text-[#1a3642]" strokeWidth={2.5} />
         </button>
 
-        <button className="flex-1 bg-[#ffc65d] text-[#1a3642] py-4 rounded-2xl font-black tracking-widest text-xs flex items-center justify-center gap-2 shadow-2xl shadow-orange-900/20 active:scale-[0.98] transition-all uppercase">
-          <Icon name="phone" className="w-4 h-4" />
+        {/* Main Action Pill */}
+        <button
+          onClick={() => setIsCallbackModalOpen(true)}
+          className="flex-1 bg-[#ffb948] text-[#1a3642] h-14 rounded-full font-black text-sm flex items-center justify-center gap-2 active:scale-[0.98] transition-all shadow-[0_8px_20px_rgba(255,185,72,0.3)] border border-white/20"
+        >
+          <Icon name="phone" className="w-4 h-4 fill-[#1a3642]" />
           Request a Callback
         </button>
 
+        {/* Scroll Top Button */}
         <button
           onClick={scrollToTop}
           className={cn(
-            "bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-gray-100 flex-shrink-0 transition-all active:scale-95",
-            showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
+            "flex items-center justify-center bg-[#eaeff9] border border-white/50 w-14 h-14 rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.08)] backdrop-blur-md transition-all active:scale-90",
+            showScrollTop ? "opacity-100 scale-100" : "opacity-0 scale-50 pointer-events-none"
           )}
         >
-          <Icon name="up-arrow" className="w-6 h-6 text-[#1a3642]" />
+          <ArrowUp className="w-6 h-6 text-[#1a3642]" strokeWidth={2.5} />
         </button>
+
+        {/* WhatsApp Floating Button (Shifted above) */}
+        <a
+          href="https://wa.me/91XXXXXXXXXX"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute -top-16 right-0 bg-green-500 text-white p-3.5 rounded-full shadow-2xl shadow-green-200 active:scale-90 transition-all animate-bounce duration-[2000ms]"
+        >
+          <MessageCircle className="w-7 h-7 fill-white" />
+        </a>
       </div>
+
+      {/* Request Callback Modal */}
+      <RequestCallbackModal
+        isOpen={isCallbackModalOpen}
+        onClose={() => setIsCallbackModalOpen(false)}
+      />
 
       {/* Mobile Filter Modal */}
       {isFilterOpen && (

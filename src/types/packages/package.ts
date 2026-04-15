@@ -59,6 +59,7 @@ export type Package = {
   };
   mainImageUrl: string;
   galleryImages: string[];
+  packageIncludes?: { id: string; label: string; icon: string }[];
   suggestedFlights?: {
     airline: string;
     departureTime: string;
@@ -82,6 +83,7 @@ export type PackageSummary = Pick<
   | "price"
   | "duration"
   | "mainImageUrl"
+  | "packageIncludes"
 > & {
   inclusions: {
     meals: string[];

@@ -1,5 +1,5 @@
 import iconManifestData from "@/types/icon-manifest";
-import { IconName } from "@/components/ui/Icon";
+import { IconName } from "@/types/name";
 import { normalizeKey } from "@/lib/utils/normalizeKey";
 
 const normalizedIconMap: Record<string, IconName> = {};

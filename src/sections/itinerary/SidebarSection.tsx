@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import { IPackage } from "@/models/Package";
+import { useCurrency } from "@/contexts/CurrencyContext";
 
 export const SidebarSection = ({ data }: { data: IPackage }) => {
+    const { formatPrice } = useCurrency();
     const hotelType = data.inclusions?.accommodation?.[0]?.roomType || "Standard Hotel";
 
     return (
@@ -50,7 +54,7 @@ export const SidebarSection = ({ data }: { data: IPackage }) => {
                                     <p className="text-[10px] text-green-600 font-black italic uppercase tracking-tighter">EMI Available</p>
                                     <p className="text-[10px] font-bold text-[#345b63] hover:underline cursor-pointer">check eligibility</p>
                                 </div>
-                                <p className="text-xl font-black text-[#1a3642]">₹{data.price.emiAmount} <span className="text-xs font-bold text-gray-400">/month</span></p>
+                                <p className="text-xl font-black text-[#1a3642]">{formatPrice(data.price.emiAmount)} <span className="text-xs font-bold text-gray-400">/month</span></p>
                             </div>
                         )}
                     </div>
@@ -61,7 +65,7 @@ export const SidebarSection = ({ data }: { data: IPackage }) => {
                     <div>
                         <p className="text-[#1a3642]/60 text-[11px] font-black uppercase tracking-widest mb-1.5">Starts From</p>
                         <div className="flex items-baseline gap-1">
-                            <p className="text-3xl font-black text-[#1a3642]">₹ {data.price.discountedAmount.toLocaleString()}</p>
+                            <p className="text-3xl font-black text-[#1a3642]">{formatPrice(data.price.discountedAmount)}</p>
                             <p className="text-gray-400 text-sm font-bold">/-</p>
                         </div>
                         <div className="flex flex-col mt-1">

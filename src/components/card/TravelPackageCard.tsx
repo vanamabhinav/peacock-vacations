@@ -1,8 +1,11 @@
+"use client";
+
 import { PackageData } from "@/types";
 import Link from "next/link";
 import { Icon } from "../ui/Icon";
 import Image from "next/image";
 import { getIconForValue } from "@/lib/utils/iconMapper";
+import { useCurrency } from "@/contexts/CurrencyContext";
 
 function TravelPackageCard({
   region,
@@ -12,9 +15,11 @@ function TravelPackageCard({
   originalPrice,
   discountedPrice,
   inclusions,
+  packageIncludes = [],
   image,
   url,
 }: PackageData) {
+  const { formatPrice } = useCurrency();
   return (
     <article
       className="w-fit h-fit cursor-pointer"
@@ -77,17 +82,16 @@ function TravelPackageCard({
               {/* Pricing section */}
               <div className="flex justify-between p-1 w-full">
                 <div className="flex items-center gap-1">
-                  <span className="font-dmsans font-bold text-normal">
+                  <span className="font-poppins font-bold text-normal">
                     Starts From
                   </span>
                   <s className="font-normal text-sm">
-                    {currency === "INR" ? "₹" : "$"}
-                    {originalPrice}
+                    {formatPrice(originalPrice)}
                   </s>
                 </div>
                 <div>
                   <strong className="font-semibold text-xl italic">
-                    @{discountedPrice}
+                    @{formatPrice(discountedPrice)}
                   </strong>
                 </div>
               </div>
@@ -97,8 +101,18 @@ function TravelPackageCard({
               {/* Features section */}
               <section className="flex flex-col gap-0 w-full">
                 <h5 className="font-extrabold italic text-sm">Includes</h5>
-                <ul className="flex flex-col gap-0 opacity-70 px-4 text-[12px]">
-                  {inclusions.slice(0, 3).map((item, index) => (
+                <ul className="flex flex-col gap-1 opacity-70 px-4 text-[12px] mt-1">
+                  {packageIncludes.slice(0, 3).map((item, index) => (
+                    <li key={index} className="flex items-center gap-1.5">
+                      <Icon
+                        name={item.icon as any}
+                        className="w-3.5 h-3.5"
+                        aria-hidden="true"
+                      />
+                      <span>{item.label}</span>
+                    </li>
+                  ))}
+                  {packageIncludes.length === 0 && (Array.isArray(inclusions) ? inclusions : []).slice(0, 3).map((item, index) => (
                     <li key={index} className="flex items-center gap-1.5">
                       <Icon
                         name={getIconForValue(item)}
@@ -108,7 +122,7 @@ function TravelPackageCard({
                       <span>{item}</span>
                     </li>
                   ))}
-                  {inclusions.length >= 3 && (
+                  {(packageIncludes.length || inclusions?.length) > 3 && (
                     <li className="flex gap-1.5 ml-5">
                       <span>more...</span>
                     </li>

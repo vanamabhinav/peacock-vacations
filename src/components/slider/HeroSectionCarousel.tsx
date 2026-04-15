@@ -133,7 +133,7 @@ export default function HeroSectionCarousel({ slides }: HeroSectionData) {
   }, []);
 
   return (
-    <div className="relative" style={{ maxHeight: "calc(100vh - 104px)" }}>
+    <div className="relative h-[calc(100dvh-52px)] sm:h-[calc(100vh-104px)]">
       <Swiper
         slidesPerView={1}
         modules={[Autoplay]}
@@ -144,9 +144,10 @@ export default function HeroSectionCarousel({ slides }: HeroSectionData) {
           swiperRef.current = swiper;
         }}
         autoplay={false}
+        className="h-full"
       >
         {slides.map((slide, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} className="h-full">
             <HeroSectionSlide
               ref={(ref) => setVideoRef(ref, index)}
               {...slide}
@@ -159,12 +160,11 @@ export default function HeroSectionCarousel({ slides }: HeroSectionData) {
       </Swiper>
 
       {/* Navigation dots */}
-      <div className="right-16 bottom-16 z-10 absolute flex space-x-2 bg-transparent">
+      <div className="left-6 sm:left-16 bottom-24 sm:bottom-16 z-10 absolute flex items-center space-x-2 bg-transparent">
         {slides.map((_, index) => (
           <button
-            className={`rounded-full w-4 h-4 cursor-pointer transition-all duration-300 ease-in-out ${
-              activeIndex === index ? "bg-sandybrown w-8" : "bg-white"
-            }`}
+            className={`rounded-full h-1.5 sm:h-2 cursor-pointer transition-all duration-300 ease-in-out ${activeIndex === index ? "bg-white w-8 sm:w-10" : "bg-white/40 w-1.5 sm:w-2"
+              }`}
             key={index}
             onClick={() => handleDotClick(index)}
             aria-label={`Go to slide ${index + 1}`}
@@ -174,13 +174,13 @@ export default function HeroSectionCarousel({ slides }: HeroSectionData) {
 
       {/* Mute/Unmute button */}
       <button
-        className="right-16 bottom-28 z-10 absolute hover:scale-110 transition-transform duration-200 cursor-pointer"
+        className="right-6 sm:right-16 bottom-20 sm:bottom-16 z-10 absolute hover:scale-110 transition-transform duration-200 cursor-pointer"
         onClick={toggleMute}
         aria-label={isMuted ? "Unmute video" : "Mute video"}
       >
         <Icon
           name={isMuted ? "mute" : "unmute"}
-          className="drop-shadow-lg w-10 h-10 text-white"
+          className="drop-shadow-lg w-8 h-8 sm:w-10 sm:h-10 text-white"
           aria-hidden="true"
         />
       </button>

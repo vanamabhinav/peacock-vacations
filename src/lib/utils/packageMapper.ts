@@ -20,6 +20,7 @@ export const mapIPackageToPackageData = (pkg: IPackage): PackageData => {
         originalPrice: pkg.price.originalAmount,
         discountedPrice: pkg.price.discountedAmount,
         inclusions: pkg.inclusions.meals || [],
+        packageIncludes: pkg.packageIncludes || [],
         image: pkg.mainImageUrl,
         url: `/packages/${pkg.slug}`
     };

@@ -50,17 +50,23 @@ function Video({
   }
 
   return (
-    <InnerVideo
-      ref={videoRef}
-      autoPlay
-      muted={muted}
-      playsInline
-      className={className}
-      src={src}
-      onEnded={onVideoEnd}
-      style={{ width: "100%", height: "100%", objectFit: "cover" }}
-      controls={false}
-    />
+    <div className={`HeroSection_Video_Wrapper ${className}`} style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden" }}>
+      <InnerVideo
+        ref={videoRef}
+        autoPlay
+        muted={muted}
+        playsInline
+        src={src}
+        onEnded={onVideoEnd}
+        className="next-video-element h-full w-full min-w-full min-h-full object-cover"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+        }}
+        controls={false}
+      />
+    </div>
   );
 }
 

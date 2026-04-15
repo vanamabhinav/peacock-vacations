@@ -1,6 +1,9 @@
+"use client";
+
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { IPackage } from "@/models/Package";
+import { useCurrency } from "@/contexts/CurrencyContext";
 
 const tabs = [
     { name: "Itinerary", id: "itinerary" },
@@ -11,6 +14,7 @@ const tabs = [
 ];
 
 export const ItineraryDetailsSection = ({ data }: { data: IPackage }) => {
+    const { formatPrice } = useCurrency();
     const [activeSection, setActiveSection] = useState("itinerary");
     const [showInclusions, setShowInclusions] = useState(true);
 
@@ -428,8 +432,8 @@ export const ItineraryDetailsSection = ({ data }: { data: IPackage }) => {
                             We understand that travel plans can change, and we're here to assist you. Below are the standard cancellation fees based on when you cancel the trip.
                         </p>
                         <div className="flex flex-col gap-1 pt-1 md:pt-2">
-                            <p className="text-sm md:text-[17px] font-black text-[#1a3642]">Tour Package Price: <span className="text-gray-400 md:text-gray-500 font-bold">₹{data.price.discountedAmount.toLocaleString()}</span></p>
-                            <p className="text-sm md:text-[17px] font-black text-[#1a3642]">TCS (5%): <span className="text-gray-400 md:text-gray-500 font-bold">₹{(data.price.discountedAmount * 0.05).toLocaleString()}</span></p>
+                            <p className="text-sm md:text-[17px] font-black text-[#1a3642]">Tour Package Price: <span className="text-gray-400 md:text-gray-500 font-bold">{formatPrice(data.price.discountedAmount)}</span></p>
+                            <p className="text-sm md:text-[17px] font-black text-[#1a3642]">TCS (5%): <span className="text-gray-400 md:text-gray-500 font-bold">{formatPrice(data.price.discountedAmount * 0.05)}</span></p>
                         </div>
                     </div>
 

@@ -31,8 +31,8 @@ export default function TravelPackageSlider({
     >
       <div className="flex justify-between items-center">
         <div className="flex flex-col gap-2">
-          <h2 className="font-black text-william text-4xl">{heading}</h2>
-          <p className="font-medium text-scorpion text-xl">{subheading}</p>
+          <h2 className="font-black text-william text-2xl sm:text-4xl">{heading}</h2>
+          <p className="font-medium text-scorpion text-base sm:text-lg md:text-xl">{subheading}</p>
         </div>
         <div className="hidden sm:flex gap-4">
           <button

@@ -1,12 +1,16 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { IBlog } from "@/models/Blog";
+import { useCurrency } from "@/contexts/CurrencyContext";
 
 interface BlogDetailSidebarProps {
     post: IBlog;
 }
 
 export default function BlogDetailSidebar({ post }: BlogDetailSidebarProps) {
+    const { formatPrice } = useCurrency();
     return (
         <aside className="lg:col-span-4 self-start sticky top-24 space-y-8">
             {/* Experience India Banner */}
@@ -52,7 +56,7 @@ export default function BlogDetailSidebar({ post }: BlogDetailSidebarProps) {
                                     <h4 className="text-base font-black text-[#1a3642] mb-1 leading-tight group-hover:text-[#f1aa4c] transition-colors line-clamp-2">{pkg.title}</h4>
                                     <span className="text-[#345b63] text-xs font-bold mb-2">{pkg.duration?.days || 0} Days</span>
                                     <div className="text-lg font-black text-[#1a3642]">
-                                        ₹{(pkg.price?.discountedAmount || 0).toLocaleString('en-IN')}/- <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider ml-1">Per Person</span>
+                                        {formatPrice(pkg.price?.discountedAmount || 0)} <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider ml-1">Per Person</span>
                                     </div>
                                 </div>
                             </Link>

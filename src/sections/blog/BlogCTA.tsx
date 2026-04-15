@@ -47,7 +47,7 @@ export default function BlogCTA() {
 
             {/* Floating Action Buttons (Mobile) */}
             <div className="md:hidden fixed bottom-6 right-5 flex flex-col gap-4 z-50">
-                <a href="https://wa.me/911234567890" target="_blank" rel="noopener noreferrer" className="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white text-3xl shadow-xl hover:scale-110 active:scale-90 transition-all">
+                <a href="https://wa.me/916305309803" target="_blank" rel="noopener noreferrer" className="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white text-3xl shadow-xl hover:scale-110 active:scale-90 transition-all">
                     <p className="text-2xl">💬</p>
                 </a>
                 <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="w-14 h-14 bg-[#eef1f6] rounded-full flex items-center justify-center text-[#1a3642] text-2xl shadow-xl hover:scale-110 active:scale-90 transition-all">

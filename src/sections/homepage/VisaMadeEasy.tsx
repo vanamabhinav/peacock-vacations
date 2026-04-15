@@ -21,7 +21,7 @@ function VisaMadeEasy(data: VisaAssistanceSectionData) {
             </div>
             <Link
               href={data.ctaLink}
-              className="inline-block z-5 bg-black hover:bg-gray-800 px-4 sm:px-5 py-2 sm:py-2.5 rounded-[40px] focus:ring-2 focus:ring-black w-fit font-inter text-white text-sm sm:text-base text-center transition-all duration-200 cursor-pointer"
+              className="inline-block z-5 bg-black hover:bg-gray-800 px-4 sm:px-5 py-2 sm:py-2.5 rounded-[40px] focus:ring-2 focus:ring-black w-fit font-poppins text-white text-sm sm:text-base text-center transition-all duration-200 cursor-pointer"
             >
               {data.ctaText}
             </Link>
