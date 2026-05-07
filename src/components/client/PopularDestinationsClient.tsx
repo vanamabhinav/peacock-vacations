@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { Sun } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import DestinationBentoGrid from "@/components/card/DestinationBentoGrid";
 import DestinationSelection from "@/components/selection/DestinationSelection";
@@ -32,6 +34,17 @@ export default function PopularDestinationsClient({
   const isRegion = () => {
     return regions.includes(currentSelectionText);
   };
+
+  const [collections, setCollections] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch("/api/collections")
+      .then(res => res.json())
+      .then(data => {
+        setCollections(data.filter((c: any) => c.showInNav));
+      })
+      .catch(err => console.error("Failed to fetch collections", err));
+  }, []);
 
   // Show selection box when hovering, with delay before hiding
   useEffect(() => {
@@ -139,8 +152,8 @@ export default function PopularDestinationsClient({
           <div
             ref={selectionBoxRef}
             className={`top-0 left-0 z-50 absolute w-full transition-all duration-300 ease-in-out ${isSelectionVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 -translate-y-4 pointer-events-none"
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 -translate-y-4 pointer-events-none"
               }`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -153,7 +166,41 @@ export default function PopularDestinationsClient({
             ctaCard={currentData.ctaCard}
           />
         </div>
+
+        {/* Collections Section */}
+        {collections.length > 0 && (
+          <div className="mt-12 pt-8 border-t border-peachorange/20">
+            <div className="flex items-center justify-between mb-8">
+              <h3 className="font-black text-william text-xl sm:text-2xl uppercase tracking-widest">
+                Collections
+              </h3>
+              <div className="h-px flex-1 bg-peachorange/20 mx-6 hidden sm:block"></div>
+            </div>
+
+            <div className="flex overflow-x-auto pb-4 gap-4 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+              {collections.map(col => (
+                <Link
+                  key={col._id}
+                  href={`/collection/${col.slug}`}
+                  className="group flex flex-col items-center gap-3 min-w-[120px] p-4 bg-white/50 hover:bg-white rounded-2xl transition-all hover:shadow-lg hover:-translate-y-1 border border-peachorange/10"
+                >
+                  <div className="w-16 h-16 rounded-full bg-peachorange/10 flex items-center justify-center group-hover:bg-peachorange group-hover:scale-110 transition-all duration-300">
+                    {col.navIcon ? (
+                      <img src={col.navIcon} alt="" className="w-8 h-8 object-contain" />
+                    ) : (
+                      <Sun className="w-8 h-8 text-peachorange group-hover:text-white" />
+                    )}
+                  </div>
+                  <span className="text-sm font-bold text-william text-center capitalize line-clamp-1">
+                    {col.name}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
+
   );
 }

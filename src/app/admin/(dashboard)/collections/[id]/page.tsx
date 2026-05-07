@@ -22,6 +22,10 @@ interface Collection {
     bannerImage: string;
     packageIds: string[];
     isPublished: boolean;
+    showInNav?: boolean;
+    navOrder?: number;
+    navIcon?: string;
+    navImage?: string;
 }
 
 export default function CollectionDetailPage() {
@@ -37,7 +41,17 @@ export default function CollectionDetailPage() {
     const [showSelector, setShowSelector] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [saved, setSaved] = useState(false);
-    const [form, setForm] = useState({ name: "", slug: "", description: "", bannerImage: "", isPublished: true });
+    const [form, setForm] = useState({
+        name: "",
+        slug: "",
+        description: "",
+        bannerImage: "",
+        isPublished: true,
+        showInNav: false,
+        navOrder: 999,
+        navIcon: "",
+        navImage: ""
+    });
 
     useEffect(() => {
         fetchCollection();
@@ -57,6 +71,10 @@ export default function CollectionDetailPage() {
                 description: data.description,
                 bannerImage: data.bannerImage || "",
                 isPublished: data.isPublished,
+                showInNav: data.showInNav || false,
+                navOrder: data.navOrder || 999,
+                navIcon: data.navIcon || "",
+                navImage: data.navImage || ""
             });
             // Restore package order from packageIds after packages are loaded
         } finally {
@@ -233,6 +251,57 @@ export default function CollectionDetailPage() {
                             >
                                 <span className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all shadow-sm ${form.isPublished ? "left-7" : "left-1"}`} />
                             </button>
+                        </div>
+
+                        <div className="pt-4 border-t border-gray-50 space-y-4">
+                            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-300">Navbar Customization</p>
+
+                            <div className="flex items-center justify-between px-4 py-3 bg-gray-50 rounded-[16px]">
+                                <span className="text-sm font-bold text-[#1a3642]">Show in Navbar</span>
+                                <button
+                                    onClick={() => setForm(f => ({ ...f, showInNav: !f.showInNav }))}
+                                    className={`relative w-12 h-6 rounded-full transition-colors ${form.showInNav ? "bg-orange-500" : "bg-gray-300"}`}
+                                >
+                                    <span className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all shadow-sm ${form.showInNav ? "left-7" : "left-1"}`} />
+                                </button>
+                            </div>
+
+                            <div>
+                                <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2">Display Order (Navbar)</label>
+                                <input
+                                    type="number"
+                                    value={form.navOrder}
+                                    onChange={e => setForm(f => ({ ...f, navOrder: parseInt(e.target.value) }))}
+                                    className="w-full bg-gray-50 px-4 py-3 rounded-[16px] text-sm font-medium border-2 border-transparent focus:border-[#f1aa4c]/40 outline-none transition-all"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2">Nav Icon URL (SVG preferred)</label>
+                                <input
+                                    type="text"
+                                    value={form.navIcon}
+                                    onChange={e => setForm(f => ({ ...f, navIcon: e.target.value }))}
+                                    className="w-full bg-gray-50 px-4 py-3 rounded-[16px] text-sm font-medium border-2 border-transparent focus:border-[#f1aa4c]/40 outline-none transition-all"
+                                    placeholder="https://.../icon.svg"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2">Nav Image URL (Optional Card Image)</label>
+                                <input
+                                    type="text"
+                                    value={form.navImage}
+                                    onChange={e => setForm(f => ({ ...f, navImage: e.target.value }))}
+                                    className="w-full bg-gray-50 px-4 py-3 rounded-[16px] text-sm font-medium border-2 border-transparent focus:border-[#f1aa4c]/40 outline-none transition-all"
+                                    placeholder="https://.../image.jpg"
+                                />
+                                {form.navImage && (
+                                    <div className="relative h-20 rounded-xl overflow-hidden mt-2">
+                                        <Image src={form.navImage} alt="Nav preview" fill className="object-cover" />
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>

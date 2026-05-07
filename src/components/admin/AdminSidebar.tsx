@@ -36,6 +36,7 @@ export default function AdminSidebar() {
         { name: "Travel by Theme", href: "/admin/themes", icon: Home },
         { name: "Collections", href: "/admin/collections", icon: Layers },
         { name: "Popular Destinations", href: "/admin/destinations", icon: MapPin },
+        { name: "Navbar Management", href: "/admin/navbar", icon: Settings },
         { name: "State Banners", href: "/admin/state-banners", icon: Image },
         { name: "Blog Management", href: "/admin/blogs", icon: BookOpen },
         { name: "Testimonials", href: "/admin/testimonials", icon: MessageSquare },

@@ -2,57 +2,136 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Icon } from "../ui/Icon";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/cn";
 
-import { User, MessageCircle, ArrowUp, X, ChevronRight, Sun } from "lucide-react";
+import { User, MessageCircle, ArrowUp, X, ChevronRight, Sun, ChevronDown } from "lucide-react";
 
 import { regionsData, Region, State, City } from "@/lib/data/cms/destinationsData";
 
 // Navigation items configuration
-const navigationItems = [
-  { name: "Home", href: "/" },
-  { name: "Destinations", href: "#", hasDropdown: true },
-  { name: "Blog", href: "/blog" },
-  { name: "Events & Festivals", href: "/events-festivals" },
-  { name: "About Us", href: "/about" },
-  { name: "FAQs", href: "/faqs" },
-];
+const navigationItems: Array<{
+  name: string;
+  href: string;
+  hasDropdown?: boolean;
+  type?: string;
+  id?: string;
+  collectionSlugs?: string[];
+}> = [
+    { name: "Home", href: "/" },
+    { name: "Destinations", href: "#", hasDropdown: true, type: 'destinations' },
+    { name: "Speciality Tours", href: "#", hasDropdown: true, type: 'collections' },
+    { name: "Blog", href: "/blog" },
+    { name: "Events & Festivals", href: "/events-festivals" },
+    { name: "About Us", href: "/about" },
+    { name: "FAQs", href: "/faqs" },
+  ];
 
 export function DropDownNavbar({ className = "" }: { className?: string }) {
-  const [isDestVisible, setIsDestVisible] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [selectedRegion, setSelectedRegion] = useState<Region>(regionsData[0]);
+  const [collections, setCollections] = useState<any[]>([]);
+  const [selectedCollection, setSelectedCollection] = useState<any>(null);
+  const [navbarConfig, setNavbarConfig] = useState<{ customDropdowns: any[] }>({ customDropdowns: [] });
+
+  useEffect(() => {
+    // Fetch collections for data lookup
+    fetch("/api/collections")
+      .then(res => res.json())
+      .then(data => {
+        setCollections(data);
+      })
+      .catch(err => console.error("Failed to fetch collections", err));
+
+    // Fetch navbar configuration
+    fetch("/api/navbar/config")
+      .then(res => res.json())
+      .then(data => {
+        setNavbarConfig(data);
+      })
+      .catch(err => console.error("Failed to fetch navbar config", err));
+  }, []);
 
   const handleRegionHover = (region: Region) => {
     setSelectedRegion(region);
   };
 
-  const renderNavigationItem = ({
-    name,
-    href,
-    hasDropdown,
-  }: (typeof navigationItems)[0]) => (
-    <div
-      key={name}
-      className="sm:relative"
-      onMouseEnter={() => hasDropdown && setIsDestVisible(true)}
-      onMouseLeave={() => hasDropdown && setIsDestVisible(false)}
-    >
-      <Link
-        href={href}
-        className="flex items-center gap-1 hover:bg-white px-[22px] h-[36px] text-bigstone transition-colors cursor-pointer"
+  // Merge static navigation with dynamic dropdowns
+  const dynamicNavigation = [
+    navigationItems[0], // Home
+    navigationItems[1], // Destinations
+    ...navbarConfig.customDropdowns.map(d => ({
+      name: d.label,
+      href: "#",
+      hasDropdown: true,
+      type: 'custom',
+      id: d.id,
+      collectionSlugs: d.collectionSlugs
+    })),
+    ...navigationItems.slice(3) // Blog, Events, etc (Skipping the old hardcoded Speciality Tours)
+  ];
+
+  const renderNavigationItem = (item: any) => {
+    const { name, href, hasDropdown, type, id } = item;
+    const dropdownKey = type === 'custom' ? `custom-${id}` : (type || name);
+
+    return (
+      <div
+        key={dropdownKey}
+        className="sm:relative"
+        onMouseEnter={() => hasDropdown && setActiveDropdown(dropdownKey)}
+        onMouseLeave={() => hasDropdown && setActiveDropdown(null)}
       >
-        {name}
-        {hasDropdown && (
-          <Icon
-            name="right-arrow"
-            className={`transition-transform duration-200 ${isDestVisible ? "-rotate-90" : "rotate-90"
-              }`}
-          />
+        <Link
+          href={href}
+          className="flex items-center gap-1 hover:bg-white px-[22px] h-[36px] text-bigstone transition-colors cursor-pointer"
+        >
+          <span className="text-nowrap">{name}</span>
+          {hasDropdown && (
+            <ChevronDown
+              size={14}
+              className={`transition-transform duration-200 ${activeDropdown === dropdownKey ? "rotate-180" : ""
+                }`}
+            />
+          )}
+        </Link>
+
+        {/* Compact Dropdown for Custom Types */}
+        {type === 'custom' && activeDropdown === dropdownKey && (
+          <div className="absolute top-full left-0 w-64 bg-white shadow-2xl border border-[#ffc77e]/30 rounded-b-xl overflow-hidden z-[200] animate-in fade-in slide-in-from-top-2 duration-200">
+            <div className="flex flex-col py-2">
+              {item.collectionSlugs?.map((slug: string) => {
+                const col = collections.find(c => c.slug === slug);
+                if (!col) return null;
+                return (
+                  <Link
+                    key={col.slug}
+                    href={`/collection/${col.slug}`}
+                    className="flex items-center gap-3 px-5 py-3 hover:bg-[#fffaf3] text-black transition-colors group"
+                    onClick={() => setActiveDropdown(null)}
+                  >
+                    {col.navIcon ? (
+                      <img src={col.navIcon} alt="" className="w-5 h-5 object-contain opacity-70 group-hover:opacity-100 transition-opacity" />
+                    ) : (
+                      <Sun className="w-4 h-4 text-[#ff9338] opacity-50 group-hover:opacity-100" />
+                    )}
+                    <span className="text-sm font-semibold group-hover:text-[#ff9338] transition-colors">{col.name}</span>
+                  </Link>
+                );
+              })}
+              {(!item.collectionSlugs || item.collectionSlugs.length === 0) && (
+                <div className="px-5 py-4 text-xs text-gray-400 italic">No collections added</div>
+              )}
+            </div>
+            <div className="bg-[#fffaf3] px-5 py-2 border-t border-[#ffc77e]/20">
+              <span className="text-[10px] font-bold text-[#ff9338]/60 uppercase tracking-widest">{name}</span>
+            </div>
+          </div>
         )}
-      </Link>
-    </div>
-  );
+      </div>
+    );
+  };
+
 
   const renderRegionButton = (region: Region) => (
     <button
@@ -104,101 +183,119 @@ export function DropDownNavbar({ className = "" }: { className?: string }) {
     >
       {/* Top Nav Links */}
       <div className="flex flex-row justify-center items-center mx-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl h-9">
-        {navigationItems.map(renderNavigationItem)}
+        {dynamicNavigation.map(renderNavigationItem)}
       </div>
 
-      {/* Dropdown Panel with Animation */}
+      {/* Dropdown Panels (Full width ones like Destinations) */}
       <div
-        className={`absolute top-full left-0 w-full overflow-hidden z-[140] transition-all duration-300 ease-in-out ${isDestVisible ? "max-h-[90vh] opacity-100" : "max-h-0 opacity-0"
+        className={`absolute top-full left-0 w-full overflow-hidden z-[140] transition-all duration-300 ease-in-out ${activeDropdown === 'destinations' ? "max-h-[90vh] opacity-100" : "max-h-0 opacity-0"
           }`}
       >
-        <div
-          className="flex flex-col bg-[#fffaf3] w-full h-[90vh]"
-          onMouseEnter={() => setIsDestVisible(true)}
-          onMouseLeave={() => setIsDestVisible(false)}
-        >
-          {/* Header Info - Fixed height */}
-          <div className="flex flex-shrink-0 justify-center gap-14 px-4 py-4 border-peachorange border-b font-medium text-[17px] text-black">
-            <div className="flex items-start gap-2.5 text-emperor">
-              <span>{selectedRegion.name}:</span>
-              <span className="font-normal text-black">Avg Temp</span>
-              <span>{selectedRegion.avgTemp ?? "N/A"}</span>
-              <Icon name="weather-sunny" className="w-5 h-5" />
+        {activeDropdown === 'destinations' && (
+          <div
+            className="flex flex-col bg-[#fffaf3] w-full h-[90vh]"
+            onMouseEnter={() => setActiveDropdown('destinations')}
+            onMouseLeave={() => setActiveDropdown(null)}
+          >
+            {/* Header Info - Fixed height */}
+            <div className="flex flex-shrink-0 justify-center gap-14 px-4 py-4 border-peachorange border-b font-medium text-[17px] text-black">
+              <div className="flex items-start gap-2.5 text-emperor">
+                <span>{selectedRegion.name}:</span>
+                <span className="font-normal text-black">Avg Temp</span>
+                <span>{selectedRegion.avgTemp ?? "N/A"}</span>
+                <Icon name="weather-sunny" className="w-5 h-5" />
+              </div>
+
+              <div className="flex items-start gap-2.5 text-emperor">
+                <span>Best Picks:</span>
+                <span className="text-black">
+                  {selectedRegion.bestPicks?.join(", ") ?? "—"}
+                </span>
+              </div>
             </div>
 
-            <div className="flex items-start gap-2.5 text-emperor">
-              <span>Best Picks:</span>
-              <span className="text-black">
-                {selectedRegion.bestPicks?.join(", ") ?? "—"}
-              </span>
-            </div>
-          </div>
+            {/* Main content area - Takes remaining height */}
+            <div className="flex-1 grid grid-cols-12 min-h-0">
+              {/* Region Switcher */}
+              <div className="relative flex col-span-5 bg-white border-[#ffc77e] border-r">
+                <div className="relative flex justify-center items-center p-4 w-full h-full">
+                  <div className="relative p-4 w-full h-full">
+                    <Image
+                      src={selectedRegion.image ?? "/images/east-india.png"}
+                      alt={`${selectedRegion.name} image`}
+                      fill
+                      className="rounded-lg object-contain"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      priority={false}
+                    />
+                  </div>
+                </div>
 
-          {/* Main content area - Takes remaining height */}
-          <div className="flex-1 grid grid-cols-12 min-h-0">
-            {/* Region Switcher */}
-            <div className="relative flex col-span-5 bg-white border-[#ffc77e] border-r">
-              {/* Region Image */}
-              <div className="relative flex justify-center items-center p-4 w-full h-full">
-                <div className="relative p-4 w-full h-full">
-                  <Image
-                    src={selectedRegion.image ?? "/images/east-india.png"}
-                    alt={`${selectedRegion.name} image`}
-                    fill
-                    className="rounded-lg object-contain"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    priority={false}
-                  />
+                <div className="flex flex-col items-start bg-white mt-8 rounded-sm w-60 overflow-y-auto text-black text-sm">
+                  {regionsData.map(renderRegionButton)}
+                  <Link
+                    href="/india/c"
+                    className="flex items-center gap-2 hover:bg-[#fffaf3] mt-2 px-4 py-2 text-[#5e5e5e] hover:text-[#221121] text-sm transition-colors"
+                  >
+                    <Icon name="search" width={16} height={16} />
+                    <span className="capitalize">Explore All</span>
+                  </Link>
+
+                  {/* Optional: Show collections in Destinations dropdown as well */}
+                  {collections.filter(c => c.showInNav).length > 0 && (
+                    <div className="w-full mt-6 pt-6 border-t border-peachorange">
+                      <p className="px-4 mb-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#ff9338]">Collections</p>
+                      {collections.filter(c => c.showInNav).slice(0, 8).map(col => (
+                        <Link
+                          key={col._id}
+                          href={`/collection/${col.slug}`}
+                          className="flex items-center gap-2 px-4 py-2 hover:bg-[#fff2e5] text-black transition-colors"
+                        >
+                          {col.navIcon ? (
+                            <img src={col.navIcon} alt="" className="w-4 h-4 object-contain" />
+                          ) : (
+                            <Sun className="w-4 h-4 text-[#ff9338]" />
+                          )}
+                          <span className="capitalize">{col.name}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
 
-              {/* Region List */}
-              <div className="flex flex-col items-start bg-white mt-8 rounded-sm w-60 overflow-y-auto text-black text-sm">
-                {regionsData.map(renderRegionButton)}
+              {/* States & Cities area */}
+              <div className="flex flex-col col-span-7 bg-[#fffaf3] border-[#ffc77e] border-l overflow-hidden">
+                <div className="flex flex-row flex-shrink-0 justify-start items-center gap-1.5 p-6 pb-4 text-[#f1aa4c]">
+                  <Link
+                    href={`/${selectedRegion.slug}`}
+                    className="relative font-medium hover:text-[#ff6600] capitalize transition-colors"
+                  >
+                    Explore {selectedRegion.name}
+                  </Link>
+                  <Icon name="right-arrow" width={5} height={10} />
+                </div>
 
-                {/* Explore All */}
-                <Link
-                  href="/india/c"
-                  className="flex items-center gap-2 hover:bg-[#fffaf3] mt-2 px-4 py-2 text-[#5e5e5e] hover:text-[#221121] text-sm transition-colors"
-                >
-                  <Icon name="search" width={16} height={16} />
-                  <span className="capitalize">Explore All</span>
-                </Link>
-              </div>
-            </div>
-
-            {/* States & Cities area */}
-            <div className="flex flex-col col-span-7 bg-[#fffaf3] border-[#ffc77e] border-l overflow-hidden">
-              {/* Region Title - Fixed */}
-              <div className="flex flex-row flex-shrink-0 justify-start items-center gap-1.5 p-6 pb-4 text-[#f1aa4c]">
-                <Link
-                  href={`/${selectedRegion.slug}`}
-                  className="relative font-medium hover:text-[#ff6600] capitalize transition-colors"
-                >
-                  Explore {selectedRegion.name}
-                </Link>
-                <Icon name="right-arrow" width={5} height={10} />
-              </div>
-
-              {/* States content - Scrollable */}
-              <div className="flex-1 px-6 pb-6 overflow-y-auto">
-                <div className="gap-4 space-y-2 columns-4">
-                  {selectedRegion.states
-                    .sort((a, b) => a.name.localeCompare(b.name))
-                    .map((state) => (
-                      <div key={state.name} className="mb-4 break-inside-avoid">
-                        {renderStateSection(state)}
-                      </div>
-                    ))}
+                <div className="flex-1 px-6 pb-6 overflow-y-auto">
+                  <div className="gap-4 space-y-2 columns-4">
+                    {selectedRegion.states
+                      .sort((a, b) => a.name.localeCompare(b.name))
+                      .map((state) => (
+                        <div key={state.name} className="mb-4 break-inside-avoid">
+                          {renderStateSection(state)}
+                        </div>
+                      ))}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </nav>
   );
 }
+
 
 export function MobileNavbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -206,6 +303,26 @@ export function MobileNavbar() {
   const [selectedRegion, setSelectedRegion] = useState<Region | null>(null);
   const [isDestinationsExpanded, setIsDestinationsExpanded] = useState(false);
   const [expandedState, setExpandedState] = useState<string | null>(null);
+
+  const [collections, setCollections] = useState<any[]>([]);
+  const [navbarConfig, setNavbarConfig] = useState<{ customDropdowns: any[] }>({ customDropdowns: [] });
+  const [expandedDropdownId, setExpandedDropdownId] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("/api/collections")
+      .then(res => res.json())
+      .then(data => {
+        setCollections(data);
+      })
+      .catch(err => console.error("Failed to fetch collections", err));
+
+    fetch("/api/navbar/config")
+      .then(res => res.json())
+      .then(data => {
+        setNavbarConfig(data);
+      })
+      .catch(err => console.error("Failed to fetch navbar config", err));
+  }, []);
 
   const openRegion = (region: Region) => {
     setSelectedRegion(region);
@@ -218,11 +335,26 @@ export function MobileNavbar() {
     setCurrentView("main");
     setSelectedRegion(null);
     setIsDestinationsExpanded(false);
+    setExpandedDropdownId(null);
   };
 
   const toggleState = (stateName: string) => {
     setExpandedState(prev => prev === stateName ? null : stateName);
   };
+
+  const dynamicNavigation = [
+    navigationItems[0], // Home
+    navigationItems[1], // Destinations
+    ...navbarConfig.customDropdowns.map(d => ({
+      name: d.label,
+      href: "#",
+      hasDropdown: true,
+      type: 'custom',
+      id: d.id,
+      collectionSlugs: d.collectionSlugs
+    })),
+    ...navigationItems.slice(3)
+  ];
 
   return (
     <>
@@ -281,8 +413,8 @@ export function MobileNavbar() {
 
               {/* Navigation Items */}
               <div className="flex flex-col">
-                {navigationItems.map((item) => (
-                  <div key={item.name} className="flex flex-col">
+                {dynamicNavigation.map((item: any) => (
+                  <div key={item.id || item.name} className="flex flex-col">
                     {item.name === "Destinations" ? (
                       <>
                         <button
@@ -308,6 +440,41 @@ export function MobileNavbar() {
                           </div>
                         )}
                       </>
+                    ) : item.type === "custom" ? (
+                      <>
+                        <button
+                          onClick={() => setExpandedDropdownId(expandedDropdownId === item.id ? null : item.id)}
+                          className="flex items-center justify-between px-6 py-6 text-white hover:bg-white/5 transition-colors border-b border-white/5"
+                        >
+                          <span className="text-xl font-bold tracking-wide">{item.name}</span>
+                          <ChevronRight
+                            className={cn("w-6 h-6 transition-transform text-white/40", expandedDropdownId === item.id ? "rotate-90" : "rotate-0")}
+                          />
+                        </button>
+                        {expandedDropdownId === item.id && (
+                          <div className="bg-black/20 flex flex-col py-2">
+                            {item.collectionSlugs?.map((slug: string) => {
+                              const col = collections.find(c => c.slug === slug);
+                              if (!col) return null;
+                              return (
+                                <Link
+                                  key={col.slug}
+                                  href={`/collection/${col.slug}`}
+                                  onClick={closeMenu}
+                                  className="flex items-center gap-4 px-10 py-5 text-[#ffc87e] hover:text-[#f1aa4c] text-xl font-bold transition-colors border-b border-white/5 last:border-0"
+                                >
+                                  {col.navIcon ? (
+                                    <img src={col.navIcon} alt="" className="w-6 h-6 object-contain" />
+                                  ) : (
+                                    <Sun className="w-5 h-5 text-[#ffc87e]" />
+                                  )}
+                                  {col.name}
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </>
                     ) : (
                       <Link
                         href={item.href}
@@ -321,6 +488,7 @@ export function MobileNavbar() {
                 ))}
               </div>
             </div>
+
           ) : (
             // Region Detail View
             <div className="flex flex-col bg-[#fffaf3] min-h-full">
