@@ -777,8 +777,50 @@ export async function getFilteredPlpByUrl(
     };
   }
 
+  // --- COLLECTIONS: Intercept /collection/[slug] ---
+  if (plpUrl.startsWith('/collection/')) {
+    const collectionSlug = plpUrl.replace('/collection/', '').split('/')[0];
+    if (collectionSlug) {
+      await dbConnect();
+      const { default: CollectionModel } = await import('@/models/Collection');
+      const collection = await CollectionModel.findOne({ slug: collectionSlug }).lean() as any;
+
+      if (!collection || !collection.isPublished) {
+        return null;
+      }
+
+      const packageIds = (collection.packageIds || []) as string[];
+
+      let packages: any[] = [];
+      if (packageIds.length > 0) {
+        const rawPackages = await PackageModel.find({
+          _id: { $in: packageIds },
+          isPublished: true,
+        }).lean();
+
+        // Preserve the admin-defined order
+        packages = packageIds
+          .map((id: string) => rawPackages.find((p: any) => p._id.toString() === id))
+          .filter(Boolean)
+          .map((p: any) => JSON.parse(JSON.stringify(p)));
+      }
+
+      return {
+        plpUrl,
+        bigHeading: collection.name,
+        shortDescription: collection.description || '',
+        longDescription: `<p>${collection.description || ''}</p>`,
+        backgroundImage: collection.bannerImage || 'https://images.pexels.com/photos/3225531/pexels-photo-3225531.jpeg',
+        packageFilters: { isPublished: true, packageIds },
+        packages: packages as any,
+        filterOptions: extractFilterOptions(packages as any),
+      };
+    }
+  }
+
   let plpPageDataMatched = plpData.find((plp) => plp.plpUrl === plpUrl);
   let plpPageData = plpPageDataMatched ? JSON.parse(JSON.stringify(plpPageDataMatched)) : null;
+
 
   // If not in static data, check CMS Featured Categories (CTA Cards)
   if (!plpPageData) {

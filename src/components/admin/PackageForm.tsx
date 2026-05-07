@@ -294,12 +294,17 @@ export default function PackageForm({ initialData, isEditing = false }: PackageF
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [availableIcons, setAvailableIcons] = useState<string[]>([]);
+    const [availableCollections, setAvailableCollections] = useState<{ _id: string; name: string; slug: string }[]>([]);
 
     useEffect(() => {
         fetch("/api/admin/icons")
             .then(res => res.json())
             .then(data => setAvailableIcons(data.icons || []))
             .catch(err => console.error("Failed to fetch icons", err));
+        fetch("/api/admin/collections")
+            .then(res => res.json())
+            .then(data => setAvailableCollections(data || []))
+            .catch(err => console.error("Failed to fetch collections", err));
     }, []);
 
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = useForm({
@@ -337,7 +342,8 @@ export default function PackageForm({ initialData, isEditing = false }: PackageF
             },
             tourInclusionsList: [],
             tourExclusionsList: [],
-            packageIncludes: []
+            packageIncludes: [],
+            collections: []
         }
     });
 
@@ -463,6 +469,7 @@ export default function PackageForm({ initialData, isEditing = false }: PackageF
                                     <textarea {...register("longDescription", { required: true })} className="input-field min-h-[200px]" placeholder="Detailed itinerary description..." />
                                 </div>
                             </div>
+
                             <div className="flex items-center gap-4 p-6 bg-gray-50 rounded-3xl mt-4">
                                 <input type="checkbox" {...register("isPublished")} className="w-6 h-6 rounded-lg accent-[#1a3642]" />
                                 <div>
@@ -470,8 +477,44 @@ export default function PackageForm({ initialData, isEditing = false }: PackageF
                                     <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Visibility on the public website</span>
                                 </div>
                             </div>
+
+                            {/* Collections selector */}
+                            {availableCollections.length > 0 && (
+                                <div className="space-y-3 pt-4">
+                                    <label className="block text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Collections</label>
+                                    <div className="flex flex-wrap gap-2">
+                                        {availableCollections.map(col => {
+                                            const current: string[] = watch("collections") || [];
+                                            const isSelected = current.includes(col.slug);
+                                            return (
+                                                <button
+                                                    key={col._id}
+                                                    type="button"
+                                                    onClick={() => {
+                                                        const cur: string[] = watch("collections") || [];
+                                                        setValue("collections", isSelected
+                                                            ? cur.filter((s: string) => s !== col.slug)
+                                                            : [...cur, col.slug]
+                                                        );
+                                                    }}
+                                                    className={`px-4 py-2 rounded-full font-black text-xs transition-all ${isSelected
+                                                        ? "bg-[#1a3642] text-white shadow-sm"
+                                                        : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+                                                        }`}
+                                                >
+                                                    {isSelected && <span className="mr-1">✓</span>}
+                                                    {col.name}
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
+                                    <p className="text-[9px] text-gray-300 ml-1">This package will appear on the selected collection pages.</p>
+                                </div>
+                            )}
                         </div>
+
                     )}
+
 
                     {activeTab === "destination" && (
                         <div className="space-y-8 animate-slide-up">

@@ -18,6 +18,7 @@ export interface IPackage extends Document {
     };
     region?: string;
     themes: string[];
+    collections?: string[];
     packageType: string[];
     price: {
         originalAmount: number;
@@ -143,6 +144,7 @@ const PackageSchema: Schema = new Schema(
         },
         region: { type: String },
         themes: [{ type: String }],
+        collections: [{ type: String, default: [] }],
         packageType: [{ type: String }],
         price: {
             originalAmount: { type: Number, required: true },
