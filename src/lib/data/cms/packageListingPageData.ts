@@ -1000,8 +1000,24 @@ export async function getFilteredPlpByUrl(
       }
     }
 
-    if (targetState && stateBanners[targetState.toLowerCase()]) {
-      plpPageData.backgroundImage = stateBanners[targetState.toLowerCase()];
+    if (targetState) {
+      const stateKey = targetState.toLowerCase();
+      if (stateBanners[stateKey]) {
+        const bannerData = stateBanners[stateKey];
+        if (typeof bannerData === 'string') {
+          plpPageData.backgroundImage = bannerData;
+        } else {
+          if (bannerData.bannerUrl) {
+            plpPageData.backgroundImage = bannerData.bannerUrl;
+          }
+          if (bannerData.shortDescription || bannerData.description) {
+            plpPageData.shortDescription = bannerData.shortDescription || bannerData.description;
+          }
+          if (bannerData.longDescription || bannerData.description) {
+            plpPageData.longDescription = bannerData.longDescription || bannerData.description;
+          }
+        }
+      }
     }
   }
 

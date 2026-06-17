@@ -7,6 +7,8 @@ export interface ICollection extends Document {
     bannerImage?: string;
     packageIds: string[];
     isPublished: boolean;
+    navIcon?: string;
+    navImage?: string;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -19,6 +21,8 @@ const CollectionSchema: Schema = new Schema(
         bannerImage: { type: String },
         packageIds: [{ type: String }],
         isPublished: { type: Boolean, default: true },
+        navIcon: { type: String, default: '' },
+        navImage: { type: String, default: '' },
     },
     { timestamps: true }
 );

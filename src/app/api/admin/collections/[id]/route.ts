@@ -35,6 +35,8 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
                     bannerImage: body.bannerImage,
                     packageIds: body.packageIds ?? [],
                     isPublished: body.isPublished ?? true,
+                    navIcon: body.navIcon || '',
+                    navImage: body.navImage || '',
                 },
             },
             { new: true }

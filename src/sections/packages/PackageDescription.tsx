@@ -48,14 +48,16 @@ export default function PackageDescription({
           ref={contentRef}
         >
           <div>
-            <p className="w-full text-[#345b63] font-bold text-[14px] sm:text-[16px] leading-relaxed">
-              {shortDescription}
-              {isExpanded && (
-                <span className="block mt-4 font-medium text-gray-500">
-                  {longDescription}
-                </span>
-              )}
-            </p>
+            <div
+              className="w-full text-[#345b63] font-bold text-[14px] sm:text-[16px] leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: shortDescription }}
+            />
+            {isExpanded && (
+              <div
+                className="block mt-4 font-medium text-gray-500"
+                dangerouslySetInnerHTML={{ __html: longDescription }}
+              />
+            )}
           </div>
         </div>
       </div>

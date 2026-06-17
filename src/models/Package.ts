@@ -25,6 +25,10 @@ export interface IPackage extends Document {
         discountedAmount: number;
         currency: string;
         emiAmount?: number;
+        occupancyPricing?: {
+            occupancy: number; // 2, 3, 4, 5
+            price: number;
+        }[];
     };
     duration: {
         days: number;
@@ -151,6 +155,12 @@ const PackageSchema: Schema = new Schema(
             discountedAmount: { type: Number, required: true },
             currency: { type: String, default: 'INR' },
             emiAmount: { type: Number },
+            occupancyPricing: [
+                {
+                    occupancy: { type: Number },
+                    price: { type: Number }
+                }
+            ]
         },
         duration: {
             days: { type: Number, required: true },
@@ -269,4 +279,11 @@ const PackageSchema: Schema = new Schema(
     { timestamps: true }
 );
 
-export default mongoose.models.Package || mongoose.model<IPackage>('Package', PackageSchema);
+
+// Clear the model from cache to force schema updates in Next.js development
+if (mongoose.models && mongoose.models.Package) {
+    delete mongoose.models.Package;
+}
+
+const Package = mongoose.model<IPackage>('Package', PackageSchema);
+export default Package;

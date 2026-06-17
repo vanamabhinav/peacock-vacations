@@ -30,13 +30,26 @@ export async function PUT(
         const { id } = await params;
         const data = await request.json();
 
-        const updatedPackage = await Package.findByIdAndUpdate(id, data, { new: true, runValidators: true });
-        if (!updatedPackage) {
+        console.log(`Updating package ${id}...`);
+
+        const pkg = await Package.findById(id);
+
+        if (!pkg) {
+            console.log(`Package ${id} not found`);
             return NextResponse.json({ message: 'Package not found' }, { status: 404 });
         }
 
+        // Deep merge data into pkg
+        Object.assign(pkg, data);
+
+        // Explicitly mark price as modified if it's nested
+        pkg.markModified('price');
+
+        await pkg.save();
+
+        console.log(`Successfully saved package ${id}`);
         revalidatePath('/');
-        return NextResponse.json(updatedPackage);
+        return NextResponse.json(pkg);
     } catch (error: any) {
         console.error('Error updating package:', error);
         if (error.code === 11000) {

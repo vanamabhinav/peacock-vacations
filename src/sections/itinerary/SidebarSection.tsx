@@ -1,12 +1,23 @@
-"use client";
-
+import { useState } from "react";
 import Image from "next/image";
 import { IPackage } from "@/models/Package";
 import { useCurrency } from "@/contexts/CurrencyContext";
+import { Users, Phone } from "lucide-react";
 
 export const SidebarSection = ({ data }: { data: IPackage }) => {
     const { formatPrice } = useCurrency();
+    const [guests, setGuests] = useState(2);
+
     const hotelType = data.inclusions?.accommodation?.[0]?.roomType || "Standard Hotel";
+
+    // Find price for current occupancy, fallback to base discountedAmount
+    const occupancyRecord = data.price.occupancyPricing?.find(p => p.occupancy === guests);
+    const displayPrice = (occupancyRecord && occupancyRecord.price > 0)
+        ? occupancyRecord.price
+        : data.price.discountedAmount;
+
+    // Show contact message for 6+ people or if no price is set for selected occupancy (3-5)
+    const isSpecialPricing = guests >= 6 || (guests > 2 && (!occupancyRecord || occupancyRecord.price === 0));
 
     return (
         <aside className="w-full flex flex-col gap-6">
@@ -61,22 +72,61 @@ export const SidebarSection = ({ data }: { data: IPackage }) => {
                 </div>
 
                 {/* Price Summary */}
-                <div className="bg-[#fef9f3] border border-[#fef2e2] rounded-2xl p-5 flex flex-col gap-4">
-                    <div>
-                        <p className="text-[#1a3642]/60 text-[11px] font-black uppercase tracking-widest mb-1.5">Starts From</p>
-                        <div className="flex items-baseline gap-1">
-                            <p className="text-3xl font-black text-[#1a3642]">{formatPrice(data.price.discountedAmount)}</p>
-                            <p className="text-gray-400 text-sm font-bold">/-</p>
+                <div className="bg-[#fef9f3] border border-[#fef2e2] rounded-2xl p-5 flex flex-col gap-4 shadow-sm">
+                    <div className="flex flex-col gap-4">
+                        <div className="flex items-center justify-between bg-white/50 p-3 rounded-xl border border-[#fef2e2]">
+                            <div className="flex items-center gap-2">
+                                <Users size={14} className="text-[#1a3642]/60" />
+                                <p className="text-[#1a3642]/60 text-[10px] font-black uppercase tracking-widest">Guests</p>
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <button
+                                    onClick={() => setGuests(Math.max(1, guests - 1))}
+                                    className="w-8 h-8 rounded-lg bg-white border border-gray-200 flex items-center justify-center text-[#1a3642] font-black hover:bg-gray-50 active:scale-90 transition-all shadow-sm disabled:opacity-30 disabled:cursor-not-allowed"
+                                    disabled={guests <= 1}
+                                >
+                                    -
+                                </button>
+                                <span className="text-base font-black text-[#1a3642] min-w-[24px] text-center">{guests}</span>
+                                <button
+                                    onClick={() => setGuests(guests + 1)}
+                                    className="w-8 h-8 rounded-lg bg-white border border-gray-200 flex items-center justify-center text-[#1a3642] font-black hover:bg-gray-50 active:scale-90 transition-all shadow-sm"
+                                >
+                                    +
+                                </button>
+                            </div>
                         </div>
-                        <div className="flex flex-col mt-1">
-                            <p className="text-[9px] font-black text-[#bc283a] uppercase tracking-wider leading-none">Excludes 5% GST & TCS</p>
-                            <p className="text-[11px] font-bold text-[#1a3642]/40">Per Person</p>
-                        </div>
+
+                        {!isSpecialPricing ? (
+                            <div>
+                                <p className="text-[#1a3642]/60 text-[11px] font-black uppercase tracking-widest mb-1.5">Starts From</p>
+                                <div className="flex items-baseline gap-1">
+                                    <p className="text-3xl font-black text-[#1a3642]">{formatPrice(displayPrice)}</p>
+                                    <p className="text-gray-400 text-sm font-bold">/-</p>
+                                </div>
+                                <div className="flex flex-col mt-1">
+                                    <p className="text-[9px] font-black text-[#bc283a] uppercase tracking-wider leading-none">Excludes 5% GST & TCS</p>
+                                    <p className="text-[11px] font-bold text-[#1a3642]/40">Per Person</p>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="py-2">
+                                <div className="bg-white p-4 rounded-xl border border-orange-100 flex flex-col gap-2">
+                                    <div className="flex items-center gap-2 text-orange-600">
+                                        <Phone size={14} />
+                                        <p className="text-[10px] font-black uppercase tracking-widest">Special Group Rate</p>
+                                    </div>
+                                    <p className="text-xs font-bold text-[#1a3642] leading-relaxed">
+                                        Please reach out to our Branch Office to get to know the best price for your group.
+                                    </p>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-3 pt-2 border-t border-[#fef2e2]">
                         <p className="text-[10px] font-black text-[#1a3642]/50 text-center uppercase tracking-widest">Reach out to our Local Branch Office</p>
-                        <a href={`tel:${data.contactPhone || "+91 90000 12345"}`} className="flex items-center justify-center gap-2 text-[#1a3642] font-black text-lg hover:scale-105 transition-all">
+                        <a href={`tel:${data.contactPhone || "+91 90000 12345"}`} className="flex items-center justify-center gap-3 text-[#1a3642] font-black text-lg hover:scale-105 transition-all bg-white py-2 rounded-xl border border-[#fef2e2]">
                             <span className="text-xl">📞</span> {data.contactPhone || "Call Us"}
                         </a>
                         <div className="flex flex-col gap-2.5 mt-1">

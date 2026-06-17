@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     try {
         await dbConnect();
         const body = await req.json();
-        const { name, slug, description, bannerImage, packageIds, isPublished } = body;
+        const { name, slug, description, bannerImage, packageIds, isPublished, navIcon, navImage } = body;
 
         if (!name || !slug) {
             return NextResponse.json({ error: 'name and slug are required' }, { status: 400 });
@@ -39,6 +39,8 @@ export async function POST(req: NextRequest) {
             bannerImage: bannerImage || '',
             packageIds: packageIds || [],
             isPublished: isPublished ?? true,
+            navIcon: navIcon || '',
+            navImage: navImage || '',
         });
 
         return NextResponse.json(JSON.parse(JSON.stringify(collection)), { status: 201 });

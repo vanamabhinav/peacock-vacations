@@ -137,6 +137,94 @@ function AccommodationFields({ control, register }: { control: any, register: an
     );
 }
 
+function OccupancyPricingFields({ control, register }: { control: any, register: any }) {
+    const { fields, append, remove } = useFieldArray({
+        control,
+        name: "price.occupancyPricing"
+    });
+
+    return (
+        <div className="space-y-6 pt-10 border-t border-gray-100 mt-10">
+            <div className="flex items-center justify-between">
+                <div className="flex flex-col gap-1">
+                    <h3 className="text-xl font-black text-[#1a3642] tracking-tight italic">Group Pricing (Per Person)</h3>
+                    <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Set specific prices based on number of travelers</p>
+                </div>
+                <button
+                    type="button"
+                    onClick={() => append({ occupancy: fields.length + 2, price: 0 })}
+                    className="text-xs font-black uppercase tracking-widest text-[#f1aa4c] hover:bg-[#f1aa4c]/10 px-6 py-2 rounded-xl transition-all border border-[#f1aa4c]/20"
+                >
+                    + Add Entry
+                </button>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                {fields.map((field, index) => (
+                    <div key={field.id} className="space-y-2 bg-gray-50 p-4 rounded-2xl border border-gray-100 flex flex-col relative group">
+                        <button
+                            type="button"
+                            onClick={() => remove(index)}
+                            className="absolute top-2 right-2 text-gray-300 hover:text-red-500 transition-all opacity-0 group-hover:opacity-100 z-10"
+                        >
+                            <Trash2 size={14} />
+                        </button>
+
+                        <div className="flex items-center justify-between mb-1">
+                            <label className="block text-[10px] font-black uppercase tracking-widest text-gray-400">
+                                People
+                            </label>
+                            <div className="flex items-center gap-2">
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        const current = watch(`price.occupancyPricing.${index}.occupancy`);
+                                        setValue(`price.occupancyPricing.${index}.occupancy`, Math.max(1, Number(current) - 1));
+                                    }}
+                                    className="w-6 h-6 rounded-lg bg-white border border-gray-100 flex items-center justify-center text-[#1a3642] text-xs font-black shadow-sm active:scale-90 transition-all hover:bg-gray-50"
+                                >
+                                    -
+                                </button>
+                                <input
+                                    type="number"
+                                    {...register(`price.occupancyPricing.${index}.occupancy`, { valueAsNumber: true })}
+                                    className="w-8 bg-transparent text-xs font-black text-[#1a3642] text-center outline-none"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        const current = watch(`price.occupancyPricing.${index}.occupancy`);
+                                        setValue(`price.occupancyPricing.${index}.occupancy`, Number(current) + 1);
+                                    }}
+                                    className="w-6 h-6 rounded-lg bg-white border border-gray-100 flex items-center justify-center text-[#1a3642] text-xs font-black shadow-sm active:scale-90 transition-all hover:bg-gray-50"
+                                >
+                                    +
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="relative">
+                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs font-bold">₹</span>
+                            <input
+                                type="number"
+                                {...register(`price.occupancyPricing.${index}.price`, { valueAsNumber: true })}
+                                className="w-full bg-white pl-7 pr-3 py-2 rounded-xl text-sm font-bold text-[#1a3642] border border-transparent focus:border-[#f1aa4c] transition-all outline-none"
+                                placeholder="Price"
+                            />
+                        </div>
+                    </div>
+                ))}
+            </div>
+            {fields.length === 0 && (
+                <div className="py-10 flex flex-col items-center justify-center bg-gray-50/50 rounded-[32px] border-2 border-dashed border-gray-100 text-center px-6">
+                    <p className="text-sm font-bold text-[#1a3642]/40 italic">No custom group pricing defined.</p>
+                    <p className="text-[10px] font-bold text-gray-300 uppercase tracking-widest mt-1">Default discounted price will be used for all group sizes</p>
+                </div>
+            )}
+        </div>
+    );
+}
+
 function PackageIncludesFields({ control, register, availableIcons }: { control: any, register: any, availableIcons: string[] }) {
     const { fields, append, remove } = useFieldArray({
         control,
@@ -308,42 +396,45 @@ export default function PackageForm({ initialData, isEditing = false }: PackageF
     }, []);
 
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = useForm({
-        defaultValues: initialData || {
-            title: "",
-            slug: "",
-            shortDescription: "",
-            longDescription: "",
-            isPublished: false,
-            departureCity: [""],
+        defaultValues: {
+            title: initialData?.title || "",
+            tagline: initialData?.tagline || "",
+            slug: initialData?.slug || "",
+            shortDescription: initialData?.shortDescription || "",
+            longDescription: initialData?.longDescription || "",
+            isPublished: initialData?.isPublished || false,
+            departureCity: initialData?.departureCity || [""],
             destination: {
-                cityName: "",
-                stateName: "",
-                countryName: "India"
+                cityName: initialData?.destination?.cityName || "",
+                stateName: initialData?.destination?.stateName || "",
+                countryName: initialData?.destination?.countryName || "India"
             },
-            region: "",
-            themes: [""],
-            packageType: [""],
+            region: initialData?.region || "",
+            themes: initialData?.themes || [""],
+            packageType: initialData?.packageType || [""],
             price: {
-                originalAmount: 0,
-                discountedAmount: 0,
-                currency: "INR"
+                originalAmount: initialData?.price?.originalAmount || 0,
+                discountedAmount: initialData?.price?.discountedAmount || 0,
+                currency: initialData?.price?.currency || "INR",
+                emiAmount: initialData?.price?.emiAmount || 0,
+                occupancyPricing: initialData?.price?.occupancyPricing || []
             },
             duration: {
-                days: 1,
-                nights: 0
+                days: initialData?.duration?.days || 1,
+                nights: initialData?.duration?.nights || 0
             },
-            mainImageUrl: "",
-            galleryImages: ["", "", "", "", "", "", ""],
-            itinerary: [{ day: 1, title: "", events: [{ timeOfDay: "Morning", title: "", description: "" }] }],
+            mainImageUrl: initialData?.mainImageUrl || "",
+            galleryImages: initialData?.galleryImages || ["", "", "", "", "", "", ""],
+            itinerary: initialData?.itinerary || [{ day: 1, title: "", events: [{ timeOfDay: "Morning", title: "", description: "" }] }],
             inclusions: {
-                meals: [],
-                accommodation: [],
-                transfers: []
+                meals: initialData?.inclusions?.meals || [],
+                accommodation: initialData?.inclusions?.accommodation || [],
+                transfers: initialData?.inclusions?.transfers || []
             },
-            tourInclusionsList: [],
-            tourExclusionsList: [],
-            packageIncludes: [],
-            collections: []
+            tourInclusionsList: initialData?.tourInclusionsList || [],
+            tourExclusionsList: initialData?.tourExclusionsList || [],
+            packageIncludes: initialData?.packageIncludes || [],
+            collections: initialData?.collections || []
         }
     });
 
@@ -366,6 +457,8 @@ export default function PackageForm({ initialData, isEditing = false }: PackageF
         try {
             const url = isEditing ? `/api/admin/packages/${initialData._id}` : "/api/admin/packages";
             const method = isEditing ? "PUT" : "POST";
+
+            console.log("Submitting Package Data:", data);
 
             const response = await fetch(url, {
                 method,
@@ -397,7 +490,7 @@ export default function PackageForm({ initialData, isEditing = false }: PackageF
     ];
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 animate-fade-in">
+        <form onSubmit={handleSubmit(onSubmit, (err) => console.log("Form Validation Errors:", err))} className="space-y-8 animate-fade-in">
             {/* Form Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-gray-100">
                 <div>
@@ -564,13 +657,55 @@ export default function PackageForm({ initialData, isEditing = false }: PackageF
                                 </div>
                                 <div className="space-y-2">
                                     <label className="block text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Duration Days</label>
-                                    <input type="number" {...register("duration.days", { required: true })} className="input-field" />
+                                    <div className="flex items-center gap-3 bg-gray-50 p-2 rounded-2xl border border-gray-100">
+                                        <button
+                                            type="button"
+                                            onClick={() => setValue("duration.days", Math.max(1, Number(watch("duration.days")) - 1))}
+                                            className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-[#1a3642] font-black shadow-sm active:scale-90 transition-all"
+                                        >
+                                            -
+                                        </button>
+                                        <input
+                                            type="number"
+                                            {...register("duration.days", { valueAsNumber: true })}
+                                            className="w-full bg-transparent text-center font-black text-[#1a3642] outline-none"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => setValue("duration.days", Number(watch("duration.days")) + 1)}
+                                            className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-[#1a3642] font-black shadow-sm active:scale-90 transition-all"
+                                        >
+                                            +
+                                        </button>
+                                    </div>
                                 </div>
                                 <div className="space-y-2">
                                     <label className="block text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Duration Nights</label>
-                                    <input type="number" {...register("duration.nights", { required: true })} className="input-field" />
+                                    <div className="flex items-center gap-3 bg-gray-50 p-2 rounded-2xl border border-gray-100">
+                                        <button
+                                            type="button"
+                                            onClick={() => setValue("duration.nights", Math.max(0, Number(watch("duration.nights")) - 1))}
+                                            className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-[#1a3642] font-black shadow-sm active:scale-90 transition-all"
+                                        >
+                                            -
+                                        </button>
+                                        <input
+                                            type="number"
+                                            {...register("duration.nights", { valueAsNumber: true })}
+                                            className="w-full bg-transparent text-center font-black text-[#1a3642] outline-none"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => setValue("duration.nights", Number(watch("duration.nights")) + 1)}
+                                            className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-[#1a3642] font-black shadow-sm active:scale-90 transition-all"
+                                        >
+                                            +
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
+
+                            <OccupancyPricingFields control={control} register={register} />
                         </div>
                     )}
 
