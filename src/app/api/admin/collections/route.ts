@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import CollectionModel from '@/models/Collection';
+import { requireAdmin } from '@/lib/admin-auth';
 
 // GET /api/admin/collections — list all collections
 export async function GET() {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         await dbConnect();
         const collections = await CollectionModel.find({})
@@ -18,6 +22,9 @@ export async function GET() {
 
 // POST /api/admin/collections — create a new collection
 export async function POST(req: NextRequest) {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         await dbConnect();
         const body = await req.json();

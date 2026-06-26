@@ -192,9 +192,11 @@ export default function HomepageManagementPage() {
 
             {/* Selector Modal */}
             {showSelector && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-[#1a3642]/60 backdrop-blur-sm" onClick={() => setShowSelector(false)}></div>
-                    <div className="bg-white w-full max-w-2xl rounded-[40px] shadow-2xl relative z-10 overflow-hidden animate-slide-up h-[70vh] flex flex-col">
+                <>
+                    <div className="fixed inset-0 z-[99] bg-[#1a3642]/60 backdrop-blur-sm" onClick={() => setShowSelector(false)} />
+                    <div className="fixed inset-0 z-[100] overflow-y-auto">
+                    <div className="flex min-h-screen items-start justify-center py-8 px-6" onClick={() => setShowSelector(false)}>
+                    <div className="bg-white w-full max-w-2xl rounded-[40px] shadow-2xl overflow-hidden animate-slide-up h-[70vh] flex flex-col my-auto" onClick={e => e.stopPropagation()}>
                         <div className="p-8 border-b border-gray-50 flex items-center justify-between">
                             <h2 className="text-2xl font-black text-[#1a3642] tracking-tight">Select Packages to Feature</h2>
                             <button onClick={() => setShowSelector(false)} className="text-gray-400 hover:text-[#1a3642]">
@@ -224,7 +226,9 @@ export default function HomepageManagementPage() {
                                 ))}
                         </div>
                     </div>
-                </div>
+                    </div>
+                    </div>
+                </>
             )}
 
 

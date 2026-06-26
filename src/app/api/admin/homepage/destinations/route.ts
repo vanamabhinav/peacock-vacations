@@ -2,8 +2,12 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import CMSContent from '@/models/CMSContent';
 import { revalidatePath } from 'next/cache';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export async function GET() {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         await dbConnect();
         const content = await CMSContent.findOne({ pageKey: 'home', sectionKey: 'popularDestinationsSectionData' });
@@ -20,6 +24,9 @@ export async function GET() {
 }
 
 export async function PUT(request: Request) {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         await dbConnect();
         const { selection, destinations, ctaCard, bannerImage } = await request.json();

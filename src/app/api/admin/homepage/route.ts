@@ -1,9 +1,14 @@
 import { NextResponse } from 'next/server';
+import mongoose from 'mongoose';
 import dbConnect from '@/lib/mongodb';
 import Package from '@/models/Package';
 import { revalidatePath } from 'next/cache';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export async function GET() {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         await dbConnect();
         const featuredPackages = await Package.find({ showOnHome: true }).sort({ homePageSortOrder: 1 });
@@ -15,12 +20,22 @@ export async function GET() {
 }
 
 export async function PUT(request: Request) {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         await dbConnect();
-        const { packageIds } = await request.json(); // Array of IDs in order
+        const { packageIds } = await request.json();
 
         if (!Array.isArray(packageIds)) {
             return NextResponse.json({ message: 'Invalid data format' }, { status: 400 });
+        }
+
+        // Validate all IDs before touching the database
+        for (const id of packageIds) {
+            if (!mongoose.isValidObjectId(id)) {
+                return NextResponse.json({ message: `Invalid package ID: ${id}` }, { status: 400 });
+            }
         }
 
         // Reset all

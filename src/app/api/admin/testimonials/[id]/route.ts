@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import Testimonial from '@/models/Testimonial';
+import { requireAdmin } from '@/lib/admin-auth';
 
 type RouteContext = { params: Promise<{ id: string }> };
 
@@ -8,6 +9,9 @@ export async function GET(
     _request: Request,
     context: RouteContext
 ) {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         await dbConnect();
         const { id } = await context.params;
@@ -26,6 +30,9 @@ export async function PUT(
     request: Request,
     context: RouteContext
 ) {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         await dbConnect();
         const { id } = await context.params;
@@ -47,6 +54,9 @@ export async function DELETE(
     _request: Request,
     context: RouteContext
 ) {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         await dbConnect();
         const { id } = await context.params;

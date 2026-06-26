@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import CollectionModel from '@/models/Collection';
+import { requireAdmin } from '@/lib/admin-auth';
 
 // GET /api/admin/collections/[id]
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         await dbConnect();
         const { id } = await params;
@@ -20,6 +24,9 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ id:
 
 // PUT /api/admin/collections/[id]
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         await dbConnect();
         const { id } = await params;
@@ -55,6 +62,9 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
 
 // DELETE /api/admin/collections/[id]
 export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         await dbConnect();
         const { id } = await params;

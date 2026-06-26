@@ -2,11 +2,15 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import Package from '@/models/Package';
 import { revalidatePath } from 'next/cache';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export async function GET(
     request: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         await dbConnect();
         const { id } = await params;
@@ -25,29 +29,28 @@ export async function PUT(
     request: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         await dbConnect();
         const { id } = await params;
         const data = await request.json();
 
-        console.log(`Updating package ${id}...`);
-
         const pkg = await Package.findById(id);
 
         if (!pkg) {
-            console.log(`Package ${id} not found`);
             return NextResponse.json({ message: 'Package not found' }, { status: 404 });
         }
 
-        // Deep merge data into pkg
-        Object.assign(pkg, data);
+        // Strip system fields before merging to prevent overwriting document metadata
+        const { _id, __v, createdAt, updatedAt, ...safeData } = data;
+        Object.assign(pkg, safeData);
 
-        // Explicitly mark price as modified if it's nested
         pkg.markModified('price');
 
         await pkg.save();
 
-        console.log(`Successfully saved package ${id}`);
         revalidatePath('/');
         return NextResponse.json(pkg);
     } catch (error: any) {
@@ -63,6 +66,9 @@ export async function DELETE(
     request: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         await dbConnect();
         const { id } = await params;

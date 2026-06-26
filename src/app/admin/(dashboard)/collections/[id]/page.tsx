@@ -362,9 +362,11 @@ export default function CollectionDetailPage() {
 
             {/* Package Selector Modal */}
             {showSelector && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-[#1a3642]/60 backdrop-blur-sm" onClick={() => setShowSelector(false)} />
-                    <div className="bg-white w-full max-w-2xl rounded-[40px] shadow-2xl relative z-10 overflow-hidden h-[80vh] flex flex-col">
+                <>
+                    <div className="fixed inset-0 z-[99] bg-[#1a3642]/60 backdrop-blur-sm" onClick={() => setShowSelector(false)} />
+                    <div className="fixed inset-0 z-[100] overflow-y-auto">
+                    <div className="flex min-h-screen items-start justify-center py-8 px-6" onClick={() => setShowSelector(false)}>
+                    <div className="bg-white w-full max-w-2xl rounded-[40px] shadow-2xl overflow-hidden h-[80vh] flex flex-col my-auto" onClick={e => e.stopPropagation()}>
                         <div className="p-8 border-b border-gray-50 bg-gray-50/50">
                             <div className="flex items-center justify-between mb-6">
                                 <div>
@@ -411,7 +413,9 @@ export default function CollectionDetailPage() {
                             )}
                         </div>
                     </div>
-                </div>
+                    </div>
+                    </div>
+                </>
             )}
 
             {/* Sticky Save Bar */}

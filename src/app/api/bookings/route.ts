@@ -16,7 +16,9 @@ export async function POST(request: Request) {
 
         await dbConnect();
 
-        const booking = await Booking.create(body);
+        // Strip client-supplied status — always start as 'pending' regardless of what client sends
+        const { status: _status, ...bookingData } = body;
+        const booking = await Booking.create({ ...bookingData, status: 'pending' });
 
         return NextResponse.json(booking, { status: 201 });
     } catch (error: any) {

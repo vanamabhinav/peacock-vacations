@@ -74,6 +74,7 @@ export default function CollectionsPage() {
         name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
     return (
+        <>
         <div className="space-y-8 animate-fade-in">
             {/* Header */}
             <header className="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -164,22 +165,26 @@ export default function CollectionsPage() {
                     ))}
                 </div>
             )}
+        </div>
 
-            {/* Create Modal */}
-            {showCreateModal && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-[#1a3642]/60 backdrop-blur-sm" onClick={() => setShowCreateModal(false)} />
-                    <div className="bg-white w-full max-w-lg rounded-[40px] shadow-2xl relative z-10 p-8 space-y-6">
-                        <div>
-                            <h2 className="text-2xl font-black text-[#1a3642] tracking-tight">New Collection</h2>
-                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">Fill in the details to create a collection</p>
-                        </div>
+        {/* Create Modal — outside animate-fade-in to avoid containing-block trap */}
+        {showCreateModal && (
+            <>
+                <div className="fixed inset-0 z-[99] bg-black/20 backdrop-blur-sm" onClick={() => setShowCreateModal(false)} />
+                <div className="fixed inset-0 z-[100] overflow-y-auto">
+                <div className="flex min-h-screen items-start justify-center py-4 px-6" onClick={() => setShowCreateModal(false)}>
+                <div className="bg-white w-full max-w-2xl rounded-[40px] shadow-2xl p-6 my-auto" onClick={e => e.stopPropagation()}>
+                    <div className="mb-4">
+                        <h2 className="text-2xl font-black text-[#1a3642] tracking-tight">New Collection</h2>
+                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">Fill in the details to create a collection</p>
+                    </div>
 
-                        {error && (
-                            <div className="bg-red-50 border border-red-200 text-red-700 text-xs font-bold px-4 py-3 rounded-2xl">{error}</div>
-                        )}
+                    {error && (
+                        <div className="bg-red-50 border border-red-200 text-red-700 text-xs font-bold px-4 py-3 rounded-2xl mb-5">{error}</div>
+                    )}
 
-                        <div className="space-y-4">
+                    <div className="space-y-3">
+                        <div className="grid grid-cols-2 gap-4">
                             <div>
                                 <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2">Name *</label>
                                 <input
@@ -190,7 +195,7 @@ export default function CollectionsPage() {
                                         const name = e.target.value;
                                         setForm(f => ({ ...f, name, slug: autoSlug(name) }));
                                     }}
-                                    className="w-full bg-gray-50 px-5 py-4 rounded-[20px] text-sm font-medium border-2 border-transparent focus:border-[#f1aa4c]/40 outline-none transition-all"
+                                    className="w-full bg-gray-50 px-4 py-3 rounded-[16px] text-sm font-medium border-2 border-transparent focus:border-[#f1aa4c]/40 outline-none transition-all"
                                 />
                             </div>
                             <div>
@@ -200,50 +205,53 @@ export default function CollectionsPage() {
                                     placeholder="e.g. near-india"
                                     value={form.slug}
                                     onChange={e => setForm(f => ({ ...f, slug: autoSlug(e.target.value) }))}
-                                    className="w-full bg-gray-50 px-5 py-4 rounded-[20px] text-sm font-medium border-2 border-transparent focus:border-[#f1aa4c]/40 outline-none transition-all font-mono"
+                                    className="w-full bg-gray-50 px-4 py-3 rounded-[16px] text-sm font-medium border-2 border-transparent focus:border-[#f1aa4c]/40 outline-none transition-all font-mono"
                                 />
-                                <p className="text-[9px] text-gray-300 mt-1 ml-1">Public URL: /collection/{form.slug || "..."}</p>
-                            </div>
-                            <div>
-                                <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2">Description</label>
-                                <textarea
-                                    rows={3}
-                                    placeholder="A short description shown on the collection page"
-                                    value={form.description}
-                                    onChange={e => setForm(f => ({ ...f, description: e.target.value }))}
-                                    className="w-full bg-gray-50 px-5 py-4 rounded-[20px] text-sm font-medium border-2 border-transparent focus:border-[#f1aa4c]/40 outline-none transition-all resize-none"
-                                />
-                            </div>
-                            <div>
-                                <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2">Banner Image URL</label>
-                                <input
-                                    type="text"
-                                    placeholder="https://..."
-                                    value={form.bannerImage}
-                                    onChange={e => setForm(f => ({ ...f, bannerImage: e.target.value }))}
-                                    className="w-full bg-gray-50 px-5 py-4 rounded-[20px] text-sm font-medium border-2 border-transparent focus:border-[#f1aa4c]/40 outline-none transition-all"
-                                />
+                                <p className="text-[9px] text-gray-300 mt-1 ml-1">URL: /collection/{form.slug || "..."}</p>
                             </div>
                         </div>
-
-                        <div className="flex gap-3 pt-2">
-                            <button
-                                onClick={() => setShowCreateModal(false)}
-                                className="flex-1 bg-gray-100 text-gray-400 py-3.5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-gray-200 transition-colors"
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                onClick={handleCreate}
-                                disabled={creating}
-                                className="flex-1 bg-[#f1aa4c] text-[#1a3642] py-3.5 rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-[1.02] transition-all disabled:opacity-60"
-                            >
-                                {creating ? "Creating..." : "Create Collection"}
-                            </button>
+                        <div>
+                            <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2">Description</label>
+                            <textarea
+                                rows={2}
+                                placeholder="A short description shown on the collection page"
+                                value={form.description}
+                                onChange={e => setForm(f => ({ ...f, description: e.target.value }))}
+                                className="w-full bg-gray-50 px-4 py-3 rounded-[16px] text-sm font-medium border-2 border-transparent focus:border-[#f1aa4c]/40 outline-none transition-all resize-none"
+                            />
+                        </div>
+                        <div>
+                            <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2">Banner Image URL</label>
+                            <input
+                                type="text"
+                                placeholder="https://..."
+                                value={form.bannerImage}
+                                onChange={e => setForm(f => ({ ...f, bannerImage: e.target.value }))}
+                                className="w-full bg-gray-50 px-4 py-3 rounded-[16px] text-sm font-medium border-2 border-transparent focus:border-[#f1aa4c]/40 outline-none transition-all"
+                            />
                         </div>
                     </div>
+
+                    <div className="flex gap-3 pt-5">
+                        <button
+                            onClick={() => setShowCreateModal(false)}
+                            className="flex-1 bg-gray-100 text-gray-400 py-3 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-gray-200 transition-colors"
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            onClick={handleCreate}
+                            disabled={creating}
+                            className="flex-1 bg-[#f1aa4c] text-[#1a3642] py-3 rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-[1.02] transition-all disabled:opacity-60"
+                        >
+                            {creating ? "Creating..." : "Create Collection"}
+                        </button>
+                    </div>
                 </div>
-            )}
-        </div>
+                </div>
+                </div>
+            </>
+        )}
+        </>
     );
 }

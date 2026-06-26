@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import Blog from '@/models/Blog';
+import { requireAdmin } from '@/lib/admin-auth';
 
 type RouteContext = { params: Promise<{ id: string }> };
 
@@ -8,6 +9,9 @@ export async function GET(
     _request: Request,
     context: RouteContext
 ) {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         const { id } = await context.params;
         await dbConnect();
@@ -26,12 +30,20 @@ export async function PUT(
     request: Request,
     context: RouteContext
 ) {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         const { id } = await context.params;
         await dbConnect();
         const data = await request.json();
 
-        const updatedBlog = await Blog.findByIdAndUpdate(id, data, { new: true });
+        // Sanitize: strip MongoDB operator keys to prevent operator injection
+        const sanitized = Object.fromEntries(
+            Object.entries(data).filter(([key]) => !key.startsWith('$'))
+        );
+
+        const updatedBlog = await Blog.findByIdAndUpdate(id, { $set: sanitized }, { new: true });
         if (!updatedBlog) {
             return NextResponse.json({ message: 'Blog not found' }, { status: 404 });
         }
@@ -46,6 +58,9 @@ export async function DELETE(
     _request: Request,
     context: RouteContext
 ) {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         const { id } = await context.params;
         await dbConnect();

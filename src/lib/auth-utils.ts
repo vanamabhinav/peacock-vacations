@@ -1,7 +1,11 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'peacock-secret-key-123';
+const JWT_SECRET = (() => {
+    const s = process.env.JWT_SECRET;
+    if (!s) throw new Error('JWT_SECRET environment variable is required');
+    return s;
+})();
 
 export async function hashPassword(password: string): Promise<string> {
     const salt = await bcrypt.genSalt(10);
@@ -16,10 +20,10 @@ export function generateToken(payload: { userId: string; role: string }): string
     return jwt.sign(payload, JWT_SECRET, { expiresIn: '7d' });
 }
 
-export function verifyToken(token: string): any {
+export function verifyToken(token: string): { userId: string; role: string } | null {
     try {
-        return jwt.verify(token, JWT_SECRET);
-    } catch (error) {
+        return jwt.verify(token, JWT_SECRET) as { userId: string; role: string };
+    } catch {
         return null;
     }
 }

@@ -4,8 +4,12 @@ import dbConnect from '@/lib/mongodb';
 import Package, { IPackage } from '@/models/Package';
 import CMSContent from '@/models/CMSContent';
 import { revalidatePath } from 'next/cache';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export async function GET(request: Request) {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         const { searchParams } = new URL(request.url);
         const theme = searchParams.get('theme');
@@ -51,6 +55,9 @@ export async function GET(request: Request) {
 }
 
 export async function PUT(request: Request) {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
+
     try {
         await dbConnect();
         const { theme, packageIds } = await request.json();

@@ -247,8 +247,11 @@ export default function StateBannersAdminPage() {
 
             {/* Description Editor Modal */}
             {editingState && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-bigstone/40 backdrop-blur-sm animate-in fade-in duration-200 text-left">
-                    <div className="bg-white w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200">
+                <>
+                    <div className="fixed inset-0 z-[99] bg-bigstone/40 backdrop-blur-sm animate-in fade-in duration-200" onClick={() => setEditingState(null)} />
+                    <div className="fixed inset-0 z-[100] overflow-y-auto">
+                    <div className="flex min-h-screen items-start justify-center py-8 px-6 text-left" onClick={() => setEditingState(null)}>
+                    <div className="bg-white w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200 my-auto" onClick={e => e.stopPropagation()}>
                         <div className="flex items-center justify-between px-8 py-6 border-b border-gray-100 bg-provincialpink/20">
                             <div>
                                 <h3 className="font-bold text-bigstone text-xl">Edit Description</h3>
@@ -301,7 +304,9 @@ export default function StateBannersAdminPage() {
                             </button>
                         </div>
                     </div>
-                </div>
+                    </div>
+                    </div>
+                </>
             )}
         </div>
     );

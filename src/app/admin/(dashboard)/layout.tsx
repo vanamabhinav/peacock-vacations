@@ -1,10 +1,19 @@
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+import { verifyToken } from '@/lib/auth-utils';
 import AdminSidebar from "@/components/admin/AdminSidebar";
 
-export default function AdminLayout({
+export default async function AdminLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('admin-token')?.value;
+    if (!token || !verifyToken(token)) {
+        redirect('/admin/login');
+    }
+
     return (
         <div className="min-h-screen bg-[#fafbfc] flex">
             <AdminSidebar />

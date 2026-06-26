@@ -96,35 +96,109 @@ export function DropDownNavbar({ className = "" }: { className?: string }) {
           )}
         </Link>
 
-        {/* Compact Dropdown for Custom Types */}
+        {/* Mega Menu Dropdown for Custom Types (Collections) */}
         {type === 'custom' && activeDropdown === dropdownKey && (
-          <div className="absolute top-full left-0 w-64 bg-white shadow-2xl border border-[#ffc77e]/30 rounded-b-xl overflow-hidden z-[200] animate-in fade-in slide-in-from-top-2 duration-200">
-            <div className="flex flex-col py-2">
+          <div className="absolute top-full left-1/2 -translate-x-1/2 w-[580px] bg-white shadow-[0_20px_60px_rgba(26,54,66,0.18)] border border-peachorange/50 rounded-b-2xl overflow-hidden z-[200] animate-fade-in">
+
+            {/* Header */}
+            <div className="flex items-center justify-between px-5 pt-4 pb-3 bg-islandSplice border-b border-peachorange/40">
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-black uppercase tracking-[0.22em] text-sandybrown">{name}</span>
+                <span className="h-px w-6 bg-sandybrown/30" />
+                <span className="text-[11px] text-bigstone/40 font-medium">
+                  {item.collectionSlugs?.length ?? 0} collections
+                </span>
+              </div>
+              <Link
+                href="#"
+                className="flex items-center gap-1 text-[11px] font-bold text-bigstone/50 hover:text-sandybrown transition-colors"
+                onClick={() => setActiveDropdown(null)}
+              >
+                See all <ChevronRight size={12} />
+              </Link>
+            </div>
+
+            {/* Card Grid */}
+            <div className="p-4 grid grid-cols-2 gap-3">
               {item.collectionSlugs?.map((slug: string) => {
                 const col = collections.find(c => c.slug === slug);
                 if (!col) return null;
+                const bgImage = col.navImage || col.bannerImage;
+
                 return (
                   <Link
                     key={col.slug}
                     href={`/collection/${col.slug}`}
-                    className="flex items-center gap-3 px-5 py-3 hover:bg-[#fffaf3] text-black transition-colors group"
+                    className="relative rounded-xl overflow-hidden group h-[148px] block"
                     onClick={() => setActiveDropdown(null)}
                   >
-                    {col.navIcon ? (
-                      <img src={col.navIcon} alt="" className="w-5 h-5 object-contain opacity-70 group-hover:opacity-100 transition-opacity" />
+                    {/* Background image or fallback gradient */}
+                    {bgImage ? (
+                      <Image
+                        src={bgImage}
+                        alt={col.name}
+                        fill
+                        className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+                        sizes="280px"
+                      />
                     ) : (
-                      <Sun className="w-4 h-4 text-[#ff9338] opacity-50 group-hover:opacity-100" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-bigstone via-william to-bluedianne" />
                     )}
-                    <span className="text-sm font-semibold group-hover:text-[#ff9338] transition-colors">{col.name}</span>
+
+                    {/* Persistent gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+
+                    {/* Hover tint — brand gold */}
+                    <div className="absolute inset-0 bg-sandybrown/0 group-hover:bg-sandybrown/15 transition-colors duration-300" />
+
+                    {/* Bottom content row */}
+                    <div className="absolute bottom-0 left-0 right-0 px-3 py-2.5 flex items-end justify-between">
+                      <div className="flex flex-col gap-0.5">
+                        {col.navIcon && (
+                          <img
+                            src={col.navIcon}
+                            alt=""
+                            className="w-4 h-4 object-contain opacity-75 group-hover:opacity-100 transition-opacity mb-0.5"
+                          />
+                        )}
+                        <span className="text-white font-bold text-sm leading-tight drop-shadow-sm">
+                          {col.name}
+                        </span>
+                        {col.description && (
+                          <span className="text-white/60 text-[11px] leading-tight line-clamp-1">
+                            {col.description}
+                          </span>
+                        )}
+                      </div>
+                      {/* Arrow badge */}
+                      <div className="flex-shrink-0 w-7 h-7 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-sandybrown transition-all duration-300 group-hover:scale-110">
+                        <ChevronRight size={13} className="text-white" />
+                      </div>
+                    </div>
                   </Link>
                 );
               })}
+
               {(!item.collectionSlugs || item.collectionSlugs.length === 0) && (
-                <div className="px-5 py-4 text-xs text-gray-400 italic">No collections added</div>
+                <div className="col-span-2 py-10 text-center">
+                  <Sun className="w-8 h-8 text-sandybrown/30 mx-auto mb-2" />
+                  <p className="text-sm text-bigstone/30 font-medium">No collections configured yet</p>
+                </div>
               )}
             </div>
-            <div className="bg-[#fffaf3] px-5 py-2 border-t border-[#ffc77e]/20">
-              <span className="text-[10px] font-bold text-[#ff9338]/60 uppercase tracking-widest">{name}</span>
+
+            {/* Footer */}
+            <div className="px-5 py-3 bg-islandSplice border-t border-peachorange/40 flex items-center justify-between">
+              <span className="text-[11px] text-bigstone/35 font-medium">
+                Handpicked travel experiences
+              </span>
+              <Link
+                href="#"
+                onClick={() => setActiveDropdown(null)}
+                className="text-[11px] font-black text-sandybrown hover:text-pizazz transition-colors uppercase tracking-wide flex items-center gap-1"
+              >
+                Explore all <ChevronRight size={11} />
+              </Link>
             </div>
           </div>
         )}
@@ -155,6 +229,7 @@ export function DropDownNavbar({ className = "" }: { className?: string }) {
       <div className="flex flex-row justify-start items-center self-stretch p-1 border-[#b6c9cd] border-b w-[80%] h-full">
         <Link
           href={`/${selectedRegion.slug}/${state.slug}`}
+          onClick={() => setActiveDropdown(null)}
           className="relative font-medium text-[#221121] hover:text-[#f1aa4c] text-sm capitalize transition-colors"
         >
           {state.name}
@@ -166,6 +241,7 @@ export function DropDownNavbar({ className = "" }: { className?: string }) {
             <Link
               key={city.name}
               href={`/${selectedRegion.slug}/${city.slug}`}
+              onClick={() => setActiveDropdown(null)}
               className="relative self-stretch py-0.5 hover:text-[#ff9338] capitalize transition-colors cursor-pointer"
             >
               {city.name}
@@ -235,6 +311,7 @@ export function DropDownNavbar({ className = "" }: { className?: string }) {
                   {regionsData.map(renderRegionButton)}
                   <Link
                     href="/india/c"
+                    onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2 hover:bg-[#fffaf3] mt-2 px-4 py-2 text-[#5e5e5e] hover:text-[#221121] text-sm transition-colors"
                   >
                     <Icon name="search" width={16} height={16} />
@@ -249,6 +326,7 @@ export function DropDownNavbar({ className = "" }: { className?: string }) {
                         <Link
                           key={col._id}
                           href={`/collection/${col.slug}`}
+                          onClick={() => setActiveDropdown(null)}
                           className="flex items-center gap-2 px-4 py-2 hover:bg-[#fff2e5] text-black transition-colors"
                         >
                           {col.navIcon ? (
@@ -269,6 +347,7 @@ export function DropDownNavbar({ className = "" }: { className?: string }) {
                 <div className="flex flex-row flex-shrink-0 justify-start items-center gap-1.5 p-6 pb-4 text-[#f1aa4c]">
                   <Link
                     href={`/${selectedRegion.slug}`}
+                    onClick={() => setActiveDropdown(null)}
                     className="relative font-medium hover:text-[#ff6600] capitalize transition-colors"
                   >
                     Explore {selectedRegion.name}
@@ -452,23 +531,40 @@ export function MobileNavbar() {
                           />
                         </button>
                         {expandedDropdownId === item.id && (
-                          <div className="bg-black/20 flex flex-col py-2">
+                          <div className="flex flex-col">
                             {item.collectionSlugs?.map((slug: string) => {
                               const col = collections.find(c => c.slug === slug);
                               if (!col) return null;
+                              const bgImage = col.navImage || col.bannerImage;
                               return (
                                 <Link
                                   key={col.slug}
                                   href={`/collection/${col.slug}`}
                                   onClick={closeMenu}
-                                  className="flex items-center gap-4 px-10 py-5 text-[#ffc87e] hover:text-[#f1aa4c] text-xl font-bold transition-colors border-b border-white/5 last:border-0"
+                                  className="relative flex items-center gap-4 px-10 py-5 border-b border-white/5 last:border-0 overflow-hidden group"
                                 >
-                                  {col.navIcon ? (
-                                    <img src={col.navIcon} alt="" className="w-6 h-6 object-contain" />
-                                  ) : (
-                                    <Sun className="w-5 h-5 text-[#ffc87e]" />
+                                  {/* Subtle image tint background */}
+                                  {bgImage && (
+                                    <div
+                                      className="absolute inset-0 bg-cover bg-center opacity-10 group-active:opacity-20 transition-opacity"
+                                      style={{ backgroundImage: `url(${bgImage})` }}
+                                    />
                                   )}
-                                  {col.name}
+                                  <div className="absolute inset-0 bg-black/50" />
+                                  <div className="relative flex items-center gap-4">
+                                    {col.navIcon ? (
+                                      <img src={col.navIcon} alt="" className="w-7 h-7 object-contain opacity-80" />
+                                    ) : (
+                                      <Sun className="w-6 h-6 text-sandybrown" />
+                                    )}
+                                    <div className="flex flex-col">
+                                      <span className="text-[#ffc87e] text-xl font-bold leading-tight">{col.name}</span>
+                                      {col.description && (
+                                        <span className="text-white/40 text-sm font-normal mt-0.5 line-clamp-1">{col.description}</span>
+                                      )}
+                                    </div>
+                                  </div>
+                                  <ChevronRight className="relative ml-auto w-5 h-5 text-white/30" />
                                 </Link>
                               );
                             })}

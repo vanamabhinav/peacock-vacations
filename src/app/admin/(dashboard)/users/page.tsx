@@ -99,6 +99,7 @@ export default function UserManagementPage() {
     };
 
     return (
+        <>
         <div className="space-y-8 animate-fade-in">
             <header className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
@@ -160,27 +161,34 @@ export default function UserManagementPage() {
                     </div>
                 ))}
             </div>
+        </div>
 
-            {/* Creation Modal */}
-            {showModal && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-[#1a3642]/60 backdrop-blur-sm" onClick={() => setShowModal(false)}></div>
-                    <div className="bg-white w-full max-w-lg rounded-[40px] shadow-2xl relative z-10 overflow-hidden animate-slide-up">
-                        <div className="p-8 md:p-12">
-                            <div className="flex items-center justify-between mb-8">
+        {/* Creation Modal — outside animate-fade-in to avoid containing-block trap */}
+        {showModal && (
+            <>
+                <div className="fixed inset-0 z-[99] bg-black/20 backdrop-blur-sm" onClick={() => setShowModal(false)} />
+                <div className="fixed inset-0 z-[100] overflow-y-auto">
+                <div className="flex min-h-screen items-start justify-center py-4 px-6" onClick={() => setShowModal(false)}>
+                <div className="bg-white w-full max-w-2xl rounded-[40px] shadow-2xl animate-slide-up my-auto" onClick={e => e.stopPropagation()}>
+                    <div className="p-6">
+                        <div className="flex items-center justify-between mb-4">
+                            <div>
                                 <h2 className="text-2xl font-black text-[#1a3642] tracking-tight">New Employee Account</h2>
-                                <button onClick={() => setShowModal(false)} className="text-gray-400 hover:text-[#1a3642] transition-colors">
-                                    <X size={24} />
-                                </button>
+                                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">Grant admin access to a new team member</p>
                             </div>
+                            <button onClick={() => setShowModal(false)} className="text-gray-400 hover:text-[#1a3642] transition-colors">
+                                <X size={24} />
+                            </button>
+                        </div>
 
-                            {modalError && (
-                                <div className="mb-6 p-4 bg-red-50 text-red-600 rounded-2xl text-xs font-bold border border-red-100">
-                                    {modalError}
-                                </div>
-                            )}
+                        {modalError && (
+                            <div className="mb-5 p-4 bg-red-50 text-red-600 rounded-2xl text-xs font-bold border border-red-100">
+                                {modalError}
+                            </div>
+                        )}
 
-                            <form onSubmit={handleCreateUser} className="space-y-6">
+                        <form onSubmit={handleCreateUser} className="space-y-3">
+                            <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Username (Login ID)</label>
                                     <input
@@ -188,7 +196,7 @@ export default function UserManagementPage() {
                                         required
                                         value={newUser.username}
                                         onChange={(e) => setNewUser({ ...newUser, username: e.target.value })}
-                                        className="w-full bg-gray-50 border-2 border-transparent focus:border-[#f1aa4c] rounded-2xl px-6 py-4 outline-none transition-all font-bold text-[#1a3642]"
+                                        className="w-full bg-gray-50 border-2 border-transparent focus:border-[#f1aa4c] rounded-2xl px-4 py-3 outline-none transition-all font-bold text-[#1a3642]"
                                         placeholder="e.g. abhinav_admin"
                                     />
                                 </div>
@@ -199,10 +207,12 @@ export default function UserManagementPage() {
                                         required
                                         value={newUser.email}
                                         onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-                                        className="w-full bg-gray-50 border-2 border-transparent focus:border-[#f1aa4c] rounded-2xl px-6 py-4 outline-none transition-all font-bold text-[#1a3642]"
+                                        className="w-full bg-gray-50 border-2 border-transparent focus:border-[#f1aa4c] rounded-2xl px-4 py-3 outline-none transition-all font-bold text-[#1a3642]"
                                         placeholder="e.g. employee@peacock.com"
                                     />
                                 </div>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Password</label>
                                     <input
@@ -210,48 +220,47 @@ export default function UserManagementPage() {
                                         required
                                         value={newUser.password}
                                         onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
-                                        className="w-full bg-gray-50 border-2 border-transparent focus:border-[#f1aa4c] rounded-2xl px-6 py-4 outline-none transition-all font-bold text-[#1a3642]"
+                                        className="w-full bg-gray-50 border-2 border-transparent focus:border-[#f1aa4c] rounded-2xl px-4 py-3 outline-none transition-all font-bold text-[#1a3642]"
                                         placeholder="••••••••"
                                     />
                                 </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Access Level</label>
-                                        <select
-                                            value={newUser.role}
-                                            onChange={(e) => setNewUser({ ...newUser, role: e.target.value as any })}
-                                            className="w-full bg-gray-50 border-2 border-transparent focus:border-[#f1aa4c] rounded-2xl px-6 py-4 outline-none transition-all font-bold text-[#1a3642]"
-                                        >
-                                            <option value="admin">Admin</option>
-                                            <option value="super_admin">Super Admin</option>
-                                        </select>
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Display Name</label>
-                                        <input
-                                            type="text"
-                                            value={newUser.displayName}
-                                            onChange={(e) => setNewUser({ ...newUser, displayName: e.target.value })}
-                                            className="w-full bg-gray-50 border-2 border-transparent focus:border-[#f1aa4c] rounded-2xl px-6 py-4 outline-none transition-all font-bold text-[#1a3642]"
-                                            placeholder="e.g. Abhinav"
-                                        />
-                                    </div>
+                                <div className="space-y-2">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Display Name</label>
+                                    <input
+                                        type="text"
+                                        value={newUser.displayName}
+                                        onChange={(e) => setNewUser({ ...newUser, displayName: e.target.value })}
+                                        className="w-full bg-gray-50 border-2 border-transparent focus:border-[#f1aa4c] rounded-2xl px-4 py-3 outline-none transition-all font-bold text-[#1a3642]"
+                                        placeholder="e.g. Abhinav"
+                                    />
                                 </div>
-
-                                <button
-                                    type="submit"
-                                    disabled={submitting}
-                                    className="w-full bg-[#1a3642] text-white py-5 rounded-3xl font-black text-sm tracking-widest uppercase shadow-xl shadow-[#1a3642]/30 hover:scale-[1.02] active:scale-95 transition-all mt-4 disabled:opacity-70"
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Access Level</label>
+                                <select
+                                    value={newUser.role}
+                                    onChange={(e) => setNewUser({ ...newUser, role: e.target.value as any })}
+                                    className="w-full bg-gray-50 border-2 border-transparent focus:border-[#f1aa4c] rounded-2xl px-4 py-3 outline-none transition-all font-bold text-[#1a3642]"
                                 >
-                                    {submitting ? "Creating..." : "Generate Account"}
-                                </button>
-                            </form>
-                        </div>
+                                    <option value="admin">Admin</option>
+                                    <option value="super_admin">Super Admin</option>
+                                </select>
+                            </div>
+
+                            <button
+                                type="submit"
+                                disabled={submitting}
+                                className="w-full bg-[#1a3642] text-white py-4 rounded-3xl font-black text-sm tracking-widest uppercase shadow-xl shadow-[#1a3642]/30 hover:scale-[1.02] active:scale-95 transition-all mt-2 disabled:opacity-70"
+                            >
+                                {submitting ? "Creating..." : "Generate Account"}
+                            </button>
+                        </form>
                     </div>
                 </div>
-            )}
-
-
-        </div>
+                </div>
+                </div>
+            </>
+        )}
+        </>
     );
 }
